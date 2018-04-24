@@ -1,25 +1,30 @@
-//
-//  ViewController.swift
-//  SeniorProject
-//
-//  Created by Patrick Cook on 4/23/18.
-//  Copyright © 2018 Patrick Cook. All rights reserved.
-//
 
 import UIKit
+import SpotifyLogin
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    @IBOutlet weak var loggedInStackView: UIStackView!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
+            self?.loggedInStackView.alpha = (error == nil) ? 1.0 : 0.0
+            if error != nil, token == nil {
+                self?.showLoginFlow()
+            }
+        }
     }
+    
+    func showLoginFlow() {
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.performSegue(withIdentifier: "home_to_login", sender: self)
     }
-
-
+    
+    @IBAction func didTapLogOut(_ sender: Any) {
+        SpotifyLogin.shared.logout()
+        self.loggedInStackView.alpha = 0.0
+        self.showLoginFlow()
+    }
+    
 }
-
