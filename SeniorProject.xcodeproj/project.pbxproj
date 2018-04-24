@@ -619,6 +619,7 @@
 			baseConfigurationReference = B0719795B4E98A388B401D4B /* Pods-SeniorProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -640,6 +641,7 @@
 			baseConfigurationReference = B6FC3F3586F5EF532343A3FF /* Pods-SeniorProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
