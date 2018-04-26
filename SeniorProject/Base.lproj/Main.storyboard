@@ -35,6 +35,82 @@
             </objects>
             <point key="canvasLocation" x="223" y="5"/>
         </scene>
+        <!--Popover View Controller-->
+        <scene sceneID="Zi2-TX-2sY">
+            <objects>
+                <viewController id="Log-Lb-Y0q" customClass="PopoverViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="Dmt-In-nEK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OYP-VW-kHy">
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FC-Q2-9GC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="vU9-Qh-18q"/>
+                                        </constraints>
+                                        <state key="normal" title="Create a queue"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baV-cL-Xaq">
+                                        <rect key="frame" x="0.0" y="50" width="375" height="50"/>
+                                        <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="M4h-A8-CYS"/>
+                                        </constraints>
+                                        <state key="normal" title="Join a queue"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4FC-Q2-9GC" secondAttribute="trailing" id="653-8a-XeD"/>
+                                    <constraint firstItem="4FC-Q2-9GC" firstAttribute="leading" secondItem="OYP-VW-kHy" secondAttribute="leading" id="OXH-YO-QwR"/>
+                                    <constraint firstAttribute="trailing" secondItem="baV-cL-Xaq" secondAttribute="trailing" id="oDX-bj-eDG"/>
+                                    <constraint firstItem="baV-cL-Xaq" firstAttribute="leading" secondItem="OYP-VW-kHy" secondAttribute="leading" id="xyJ-Zf-gdn"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aj1-hW-Qg8">
+                                <rect key="frame" x="344" y="544" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="Fum-Bj-buy"/>
+                                    <constraint firstAttribute="height" constant="15" id="oP7-Dx-KSe"/>
+                                </constraints>
+                                <state key="normal" image="cancel-icon">
+                                    <color key="titleColor" red="0.1647058824" green="0.72156862749999995" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelTapped:" destination="Log-Lb-Y0q" eventType="touchUpInside" id="vRr-gz-GXJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Etg-1h-hPP" firstAttribute="trailing" secondItem="Aj1-hW-Qg8" secondAttribute="trailing" constant="16" id="5Da-Yf-o5J"/>
+                            <constraint firstItem="Aj1-hW-Qg8" firstAttribute="top" secondItem="Etg-1h-hPP" secondAttribute="top" constant="524" id="HhZ-SI-WUY"/>
+                            <constraint firstItem="OYP-VW-kHy" firstAttribute="leading" secondItem="Etg-1h-hPP" secondAttribute="leading" id="ibm-z0-6yU"/>
+                            <constraint firstItem="OYP-VW-kHy" firstAttribute="bottom" secondItem="Etg-1h-hPP" secondAttribute="bottom" id="kbA-Vp-aVr"/>
+                            <constraint firstItem="Etg-1h-hPP" firstAttribute="trailing" secondItem="OYP-VW-kHy" secondAttribute="trailing" id="wXu-mk-oie"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Etg-1h-hPP"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aEs-Fl-7WH" appends="YES" id="hif-ew-1BA"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="Aj1-hW-Qg8" id="aUZ-8y-bqE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VsE-Ha-KMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aEs-Fl-7WH">
+                    <connections>
+                        <action selector="cancelTapped:" destination="Log-Lb-Y0q" id="MNk-Ix-Kgf"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1077.5999999999999" y="-714.69265367316348"/>
+        </scene>
         <!--QueuesViewController-->
         <scene sceneID="Qod-6D-822">
             <objects>
@@ -96,8 +172,12 @@
                                 <action selector="didTapLogout:" destination="aKo-B7-gg7" id="u3g-eX-Fve"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="X5U-8k-Fqb">
+                        <barButtonItem key="rightBarButtonItem" title="•••" id="X5U-8k-Fqb">
                             <color key="tintColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="openPopover:" destination="aKo-B7-gg7" id="zpU-JX-eIe"/>
+                                <segue destination="Log-Lb-Y0q" kind="presentation" identifier="showPopoverView" id="Wez-MC-3BR"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -106,6 +186,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTa-sM-bPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="QRe-MH-uXJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="kly-SV-8Xb"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1084" y="4.9475262368815596"/>
         </scene>
@@ -246,8 +332,11 @@
             <point key="canvasLocation" x="1084" y="796"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancel-icon" width="720" height="720"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t1Z-8O-rgH"/>
+        <segue reference="9Oy-0X-7eT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

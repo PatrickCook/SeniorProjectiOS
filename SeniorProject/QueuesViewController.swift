@@ -4,8 +4,21 @@ import SpotifyLogin
 
 class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "showPopoverView" {
+                if let viewController = segue.destination as? PopoverViewController {
+                    viewController.modalPresentationStyle = .overFullScreen
+                }
+            }
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
