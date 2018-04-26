@@ -11,7 +11,6 @@ import UIKit
 class QueueCell: UITableViewCell {
     
     @IBOutlet weak var queueNameLabel: UILabel!
-    @IBOutlet weak var modifiedAtLabel: UILabel!
     @IBOutlet weak var currentSongLabel: UILabel!
     
     override func awakeFromNib() {

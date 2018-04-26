@@ -29,7 +29,6 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let queueCell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath) as? QueueCell
         
         queueCell?.queueNameLabel.text = "DEFAULT QUEUE NAME"
-        queueCell?.modifiedAtLabel.text = "00:00"
         queueCell?.currentSongLabel.text = "DEFAULT SONG LABEL"
         
         return queueCell!

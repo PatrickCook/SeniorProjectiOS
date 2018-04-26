@@ -18,7 +18,7 @@
 		3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */; };
 		3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */; };
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
-		3AC4A8A4208EE07C006D9B2B /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A8A3208EE07C006D9B2B /* QueueViewController.swift */; };
+		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
 		7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,7 +75,7 @@
 		3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuesViewController.swift; sourceTree = "<group>"; };
 		3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3AC4A89F208EDCBF006D9B2B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
-		3AC4A8A3208EE07C006D9B2B /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = "/Users/patrickcook/Library/Mobile Documents/com~apple~CloudDocs/Programming/Senior Project/SeniorProject/SeniorProject/QueueViewController.swift"; sourceTree = "<absolute>"; };
+		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = "/Users/patrickcook/Library/Mobile Documents/com~apple~CloudDocs/Programming/Senior Project/SeniorProject/SeniorProject/QueueViewController.swift"; sourceTree = "<absolute>"; };
 		B0719795B4E98A388B401D4B /* Pods-SeniorProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FC3F3586F5EF532343A3FF /* Pods-SeniorProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,7 +205,7 @@
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
 				3A191BD1208E57C500734405 /* LoginViewController.swift */,
 				3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */,
-				3AC4A8A3208EE07C006D9B2B /* QueueViewController.swift */,
+				3ACF780820914DC3000A025C /* QueueViewController.swift */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
@@ -439,8 +439,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */,
+				3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,
-				3AC4A8A4208EE07C006D9B2B /* QueueViewController.swift in Sources */,
 				3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */,
 				3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */,
 				3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */,
