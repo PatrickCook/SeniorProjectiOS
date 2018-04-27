@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SpotifyLogin.shared.configure(clientID: "579d6186a40a450a9d7f1467278f7fe1",
                                       clientSecret: "ef9e181e33254d96a6e895ee03527cac",
                                       redirectURL: redirectURL)
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         return true
     }
     

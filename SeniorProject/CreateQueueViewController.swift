@@ -26,6 +26,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor.black
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
@@ -33,7 +34,6 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
         searchController.searchBar.placeholder = "Add members"
         searchController.searchBar.barStyle = .black
         tableView.tableHeaderView = searchController.searchBar
-        tableView.contentOffset = CGPoint(x: 0.0, y: 60.0)
         tableView.reloadData()
         
         definesPresentationContext = true
@@ -47,11 +47,10 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let queueCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? QueueCell
+        let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell
         
-        queueCell?.queueNameLabel.text = "DEFAULT QUEUE NAME"
-        queueCell?.currentSongLabel.text = "DEFAULT SONG LABEL"
+        userCell?.userNameLabel.text = "default_user"
         
-        return queueCell!
+        return userCell!
     }
 }
