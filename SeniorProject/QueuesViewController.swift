@@ -5,9 +5,31 @@ import SpotifyLogin
 class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
+            if error != nil, token == nil {
+                self?.showLoginFlow()
+            }
+        }
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.sizeToFit()
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search queues"
+        searchController.searchBar.barStyle = .black
+        tableView.tableHeaderView = searchController.searchBar
+        tableView.contentOffset = CGPoint(x: 0.0, y: 60.0)
+        tableView.reloadData()
+        
+        definesPresentationContext = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -18,17 +40,6 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
-            if error != nil, token == nil {
-                self?.showLoginFlow()
-            }
-        }
-        
-        self.tableView.reloadData()
     }
     
     /* TABLE DELEGATE METHODS */
@@ -51,7 +62,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /* Helpers */
     func showLoginFlow() {
-        self.performSegue(withIdentifier: "home_to_login", sender: self)
+        //self.performSegue(withIdentifier: "home_to_login", sender: self)
     }
     
     @IBAction func didTapLogout(_ sender: Any) {
