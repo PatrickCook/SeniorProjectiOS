@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A1538E8209911210083EA18 /* QueueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538E7209911210083EA18 /* QueueModel.swift */; };
 		3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A191BD1208E57C500734405 /* LoginViewController.swift */; };
 		3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4E31862091668200D5A870 /* PopoverViewController.swift */; };
 		3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeniorProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A1538E7209911210083EA18 /* QueueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueModel.swift; sourceTree = "<group>"; };
 		3A18A9B4208E4F9900DE098C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		3A18A9B6208E4F9900DE098C /* SpotifyLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyLogin.h; sourceTree = "<group>"; };
 		3A18A9B8208E4F9900DE098C /* spotifylogo-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spotifylogo-32.png"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		3AC4A89B208EDC0D006D9B2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3A1538E7209911210083EA18 /* QueueModel.swift */,
 			);
 			name = Models;
 			path = SeniorProject/Models;
@@ -457,6 +460,7 @@
 				3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */,
 				3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */,
 				3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */,
+				3A1538E8209911210083EA18 /* QueueModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
