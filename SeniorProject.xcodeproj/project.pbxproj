@@ -209,11 +209,6 @@
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
-				3A191BD1208E57C500734405 /* LoginViewController.swift */,
-				3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */,
-				3ACF780820914DC3000A025C /* QueueViewController.swift */,
-				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
-				3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
@@ -243,6 +238,11 @@
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A191BD1208E57C500734405 /* LoginViewController.swift */,
+				3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */,
+				3ACF780820914DC3000A025C /* QueueViewController.swift */,
+				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
+				3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
