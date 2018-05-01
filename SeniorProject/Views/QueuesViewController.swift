@@ -16,6 +16,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
             if error != nil, token == nil {
+                print(error.debugDescription)
                 self?.showLoginFlow()
             }
         }
