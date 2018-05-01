@@ -61,7 +61,7 @@
 		3A18A9C6208E4F9900DE098C /* SpotifyLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
 		3A18A9C7208E4F9900DE098C /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
 		3A191BD1208E57C500734405 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3A4E31862091668200D5A870 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopoverViewController.swift; path = "/Users/patrickcook/Library/Mobile Documents/com~apple~CloudDocs/Programming/Senior Project/SeniorProject/SeniorProject/PopoverViewController.swift"; sourceTree = "<absolute>"; };
+		3A4E31862091668200D5A870 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopoverViewController.swift; path = ../PopoverViewController.swift; sourceTree = "<group>"; };
 		3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQueueViewController.swift; sourceTree = "<group>"; };
 		3A581BA82092A72B00E2E872 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3A667329208E502F0005940A /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,7 +81,7 @@
 		3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuesViewController.swift; sourceTree = "<group>"; };
 		3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3AC4A89F208EDCBF006D9B2B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
-		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = "/Users/patrickcook/Library/Mobile Documents/com~apple~CloudDocs/Programming/Senior Project/SeniorProject/SeniorProject/QueueViewController.swift"; sourceTree = "<absolute>"; };
+		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = ../QueueViewController.swift; sourceTree = "<group>"; };
 		B0719795B4E98A388B401D4B /* Pods-SeniorProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FC3F3586F5EF532343A3FF /* Pods-SeniorProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -251,8 +251,9 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = Models;
-			sourceTree = "<group>";
+			name = Models;
+			path = SeniorProject/Models;
+			sourceTree = SOURCE_ROOT;
 		};
 		3AC4A89C208EDC10006D9B2B /* Cells */ = {
 			isa = PBXGroup;
