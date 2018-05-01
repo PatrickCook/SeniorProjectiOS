@@ -62,7 +62,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /* Helpers */
     func showLoginFlow() {
-        //self.performSegue(withIdentifier: "home_to_login", sender: self)
+        self.performSegue(withIdentifier: "home_to_login", sender: self)
     }
     
     @IBAction func didTapLogout(_ sender: Any) {
