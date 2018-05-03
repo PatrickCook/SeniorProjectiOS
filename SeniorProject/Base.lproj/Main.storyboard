@@ -54,7 +54,7 @@
                                         </constraints>
                                         <state key="normal" title="Create a queue"/>
                                         <connections>
-                                            <segue destination="2NO-I5-JmF" kind="show" id="rJ2-au-z7O"/>
+                                            <segue destination="ydq-LT-0WT" kind="presentation" identifier="show_create_queue" id="RrM-wX-Nna"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baV-cL-Xaq">
@@ -65,7 +65,7 @@
                                         </constraints>
                                         <state key="normal" title="Join a queue"/>
                                         <connections>
-                                            <segue destination="ydq-LT-0WT" kind="presentation" id="V2V-HP-yvW"/>
+                                            <segue destination="2NO-I5-JmF" kind="presentation" identifier="show_join_queue" id="04i-Jo-lju"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -120,30 +120,30 @@
             </objects>
             <point key="canvasLocation" x="1108" y="-1075"/>
         </scene>
-        <!--Create Queue-->
+        <!--Join Queue-->
         <scene sceneID="LNS-wZ-AJh">
             <objects>
-                <viewController title="Create Queue" id="2NO-I5-JmF" customClass="CreateQueueViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Join Queue" id="2NO-I5-JmF" customClass="JoinQueueViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kyO-3X-kqN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jbJ-Bu-PCK">
-                                <rect key="frame" x="0.0" y="71" width="375" height="420"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jbJ-Bu-PCK">
+                                <rect key="frame" x="0.0" y="115" width="375" height="552"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="userCell" rowHeight="40" id="aFi-a6-qsc" customClass="UserCell" customModule="SeniorProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="joinQueueCell" rowHeight="60" id="aFi-a6-qsc" customClass="JoinQueueCell" customModule="SeniorProject" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aFi-a6-qsc" id="VLI-cv-qF1">
-                                            <rect key="frame" x="0.0" y="0.0" width="336" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0a-KV-QhP">
-                                                    <rect key="frame" x="15" y="10" width="283" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QUEUENAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0a-KV-QhP">
+                                                    <rect key="frame" x="15" y="20" width="283" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -153,63 +153,45 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="userNameLabel" destination="T0a-KV-QhP" id="nsn-b7-Xch"/>
+                                            <outlet property="queueNameLabel" destination="T0a-KV-QhP" id="eGP-so-bbp"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="2NO-I5-JmF" id="XzX-il-1Ul"/>
-                                    <outlet property="delegate" destination="2NO-I5-JmF" id="wY7-DX-Cxa"/>
+                                    <outlet property="dataSource" destination="2NO-I5-JmF" id="VKh-zL-XZg"/>
+                                    <outlet property="delegate" destination="2NO-I5-JmF" id="m0e-JC-pbP"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2t-hz-RRO">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.1647058824" green="0.72156862749999995" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                <state key="normal" title="Create Group Queue"/>
-                                <connections>
-                                    <action selector="createQueueTapped:" destination="2NO-I5-JmF" eventType="touchUpInside" id="GU2-v1-rgb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I9-RQ-WMM">
-                                <rect key="frame" x="132" y="38" width="112" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Join Queue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2I9-RQ-WMM">
+                                <rect key="frame" x="142" y="26" width="90" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <searchBar contentMode="redraw" fixedFrame="YES" barStyle="black" placeholder="Search queues..." translatesAutoresizingMaskIntoConstraints="NO" id="KNL-Fo-S4s">
+                                <rect key="frame" x="0.0" y="59" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                            </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzD-w5-7tA">
-                                <rect key="frame" x="15" y="33" width="48" height="30"/>
+                                <rect key="frame" x="16" y="21" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="eQy-3T-uEW" kind="unwind" unwindAction="unwindToQueuesViewWithSegue:" id="OTz-Wb-i7O"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Added Members:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uBV-hd-qgZ">
-                                <rect key="frame" x="15" y="499" width="137" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user_a, user_b, user_c" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ow-oe-3X0">
-                                <rect key="frame" x="15" y="523" width="344" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="5Q9-tU-Z4Y"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="tableView" destination="jbJ-Bu-PCK" id="B5n-SZ-kfZ"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUU-Oc-5Rf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eQy-3T-uEW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1908" y="-1399"/>
+            <point key="canvasLocation" x="1908" y="-746.17691154422789"/>
         </scene>
         <!--QueuesViewController-->
         <scene sceneID="Qod-6D-822">
@@ -255,8 +237,8 @@
                                 <connections>
                                     <outlet property="currentSongLabel" destination="lwT-lp-ULH" id="LE0-h7-2V7"/>
                                     <outlet property="queueNameLabel" destination="TOz-Fc-WM4" id="0qh-gt-Xcs"/>
-                                    <segue destination="L1w-q5-Uih" kind="show" id="t1Z-8O-rgH"/>
-                                    <segue destination="L1w-q5-Uih" kind="show" trigger="accessoryAction" id="9Oy-0X-7eT"/>
+                                    <segue destination="L1w-q5-Uih" kind="show" identifier="show_queue_from_row" id="t1Z-8O-rgH"/>
+                                    <segue destination="L1w-q5-Uih" kind="show" identifier="show_queue_from_accessory" trigger="accessoryAction" id="9Oy-0X-7eT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -544,17 +526,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJK-uA-M6H">
-                                <rect key="frame" x="132" y="38" width="112" height="21"/>
+                                <rect key="frame" x="131" y="31" width="112" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z8-BG-sZD">
-                                <rect key="frame" x="15" y="33" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Cancel"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Added Members:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olD-v6-mvs">
                                 <rect key="frame" x="15" y="499" width="137" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -569,6 +546,14 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z8-BG-sZD">
+                                <rect key="frame" x="16" y="26" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToQueuesViewWithSegue:" id="qot-ug-V7y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="HJ6-Q0-Qew"/>
@@ -579,15 +564,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixi-OC-LBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oGZ-Ks-D2s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1908" y="-700"/>
+            <point key="canvasLocation" x="1908" y="-1439"/>
         </scene>
     </scenes>
     <resources>
         <image name="cancel-icon" width="720" height="720"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t1Z-8O-rgH"/>
+        <segue reference="9Oy-0X-7eT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
