@@ -1,11 +1,17 @@
 
 import UIKit
 import SpotifyLogin
+import DynamicBlurView
 
-class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol PopoverDelegate {
+    func popoverDismissed()
+}
+
+class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var searchController: UISearchController!
+    var blurView: DynamicBlurView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +43,11 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if let identifier = segue.identifier {
             if identifier == "showPopoverView" {
                 if let viewController = segue.destination as? PopoverViewController {
+                    blurView = DynamicBlurView(frame: view.bounds)
                     viewController.modalPresentationStyle = .overFullScreen
+                    viewController.delegate = self
+                    blurView.blurRadius = 10
+                    view.addSubview(blurView)
                 }
             }
         }
@@ -45,7 +55,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -65,6 +75,11 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //self.performSegue(withIdentifier: "home_to_login", sender: self)
     }
     
+    func popoverDismissed() {
+        blurView.blurRadius = 0
+        blurView.remove()
+    }
+    
     @IBAction func didTapLogout(_ sender: Any) {
         SpotifyLogin.shared.logout()
         self.showLoginFlow()
@@ -76,5 +91,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else if let sourceViewController = sender.source as? JoinQueueViewController {
             //Create queue unwind
         }
+        blurView.blurRadius = 0
+        blurView.remove()
     }
 }

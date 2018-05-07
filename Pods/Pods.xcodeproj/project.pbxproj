@@ -7,57 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F3877B11F692EF0C087F443F96EFDC2 /* SessionLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FE0CB326894CCF956E9933AFD283E2 /* SessionLocalStorage.swift */; };
-		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2518BAD7AA71F2378BA047CB5D4FA66 /* Timeline.swift */; };
-		1891D94BE183D863A06201B124B7167F /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29461847B7F5FF92F38F4D9CE73CFB7 /* URLBuilder.swift */; };
-		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CFC60EA79170FFA19EBA3A3B8CE2FA03 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		318E19601595842A3BFE99E5B8B5C577 /* SpotifyLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51EB9C04036044AB06474EF3C24141A /* SpotifyLoginButton.swift */; };
-		3339881D1C2AAC75FBDA8901631F0A4B /* SpotifyLogin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F7BF983A3F57C32E2452B311B2006DD6 /* SpotifyLogin-dummy.m */; };
-		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756ABFEBBC6E632BA70D3AF2382C6BE /* TaskDelegate.swift */; };
-		3B694A59E7C96FEA0EDC560B6E8787C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		438DF5AE1AA4D32F14BD1CA142567285 /* SpotifyLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = 942B147C32A39E450ECE5226A1B43B75 /* SpotifyLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFF97B99450F41B35500FD6A41754E /* Request.swift */; };
-		5668B5CC5B1ED2F49083F02125809C3C /* spotifylogo-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 9757944B6417F8FBACDA0F3A15344F2F /* spotifylogo-32.png */; };
-		569DF1C0EE1678CF0BD0D30E85A94706 /* SafariDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B09A07F97D335FF44150337777B4301 /* SafariDelegate.swift */; };
-		586EA688CE9C578AB8101CB66EFA52EC /* SpotifyLogin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04FEA4AA2E96BCB1E9C783EFC30E6FFF /* SpotifyLogin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C17C33BEA72E904E7F5CDA2A1B08861 /* DispatchQueue+Alamofire.swift */; };
-		624538B48867A4CBB603518D71E889EC /* SpotifyLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC7DCA0C489A3D55CC886907DBE86F6 /* SpotifyLoginPresenter.swift */; };
-		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA7E92C66997910DCC87E990AE65B90 /* ServerTrustPolicy.swift */; };
-		6CE4D61D5EC70BDD55EAA06501592D4B /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F9A8D998232AA61BB56E94A814B81D /* Scope.swift */; };
-		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1356EA5413DA4EDC1522513494BF8891 /* SessionDelegate.swift */; };
-		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9AF9AE5022F660D89C0205214D9DC0 /* Result.swift */; };
-		935148E7F52B6C212340DB6D3B0A5C16 /* SpotifyLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7350EA3F0A53472520B6E21FD08A445C /* SpotifyLogin.swift */; };
-		98E0A250218E0261B712AB5CC4728030 /* spotifylogo-32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1428695F1F1C334EDF75B64648927964 /* spotifylogo-32@3x.png */; };
-		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40259B207EC40C985BBF2B8DA6C9BD22 /* AFError.swift */; };
-		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BED269F37754EE8F2FA369DDFCD9360 /* NetworkReachabilityManager.swift */; };
-		A8D84B7EA750CA71D970F3758BFD2B05 /* Pods-SeniorProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4DBD5D576DF53C5D52035083E01DD4A /* Pods-SeniorProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 243105A3D97B1F026F8714A6B96FB4B0 /* Alamofire-dummy.m */; };
-		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD899A845FD59757865BB0312967394D /* SessionManager.swift */; };
-		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8C2563B1AC55D807CB6392363A823B /* MultipartFormData.swift */; };
-		B716DCFFF3FFBF35D4471A50D4AFE213 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1607B26593BD96EF6275ACB2679700F /* Constants.swift */; };
-		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1FE4CB451AD5D46A931281A73BFE4A /* Validation.swift */; };
-		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E545DD7920C23BD3729087974DAD674A /* ParameterEncoding.swift */; };
-		C07C6D6C20AE994A7A5CFE0500CF0C6E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2572E7A045C744940124403DBF486D0E /* Session.swift */; };
-		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA00ADD427B8ABC178A890538CFE59C /* Response.swift */; };
-		D85445DE49C3FEAFC814B952B8A16977 /* Pods-SeniorProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4F3F16F5F245AA8FB59231A3073877 /* Pods-SeniorProject-dummy.m */; };
-		D94D641B5DDED25B5E4D8E2C6EF27A73 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90ADC9E1C3249217FF1EC93F51E690C2 /* Networking.swift */; };
-		E04B4F08413961B03E42CB51251FCF3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		E0B096CE567AADA3B1E41C4F5C9CDCE5 /* spotifylogo-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE7E18750DB2DB8F28401708E233585 /* spotifylogo-32@2x.png */; };
-		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C42EBD4FAC2B6273E98783A52172DC /* Notifications.swift */; };
-		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259704870329E7424A197A57196D0C1A /* ResponseSerialization.swift */; };
-		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A935648A3C160738137E4ED156EE57 /* Alamofire.swift */; };
+		0E6EB1C14562B176F77FE7743AB4F87E /* spotifylogo-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 797F45DCFB1BC680D41DB3576E1205CC /* spotifylogo-32.png */; };
+		0F979D0A878062EA1DFD82B4ACE22C01 /* DynamicBlurView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3097633C6DC51F59BFAAEDC478FDEC /* DynamicBlurView-dummy.m */; };
+		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186FE629D00EA85328D5EDA8DCB0E6B1 /* Timeline.swift */; };
+		16D0AA472153A7F71E9C84C066732E37 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494399E81FFF998219FD36BA6BB36698 /* Scope.swift */; };
+		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AD66B64CD2C11604D3F1676902FA267 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1BD95819A67825305691F9D03A1477E3 /* DynamicBlurView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 959109E22112981AAFB08CDD94CBE20E /* DynamicBlurView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F6D143061A37F1799C4E9E70178679C /* DynamicBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = AD3FD16F2C0D438AD28A48C3A7769971 /* DynamicBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD49B25F7376057B44ADD80729C7E5C4 /* TaskDelegate.swift */; };
+		3CB62F74528372E0BB9EA437FE8147DB /* SpotifyLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB9E9B54BB9520EFC19643D10A0B210 /* SpotifyLoginButton.swift */; };
+		3E5F27F8A0BF78E9BEC061DD4D29688F /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B822D65C3C124AB6717DFB5253E3013C /* URLBuilder.swift */; };
+		46948DAFC76CE60532EB6D1C3D4D06EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCF35FABDC2A7F9B9334AC8E6E7FB90 /* Foundation.framework */; };
+		4D195701C54A2BCA2B81E4ACE10F360E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCF35FABDC2A7F9B9334AC8E6E7FB90 /* Foundation.framework */; };
+		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E8782FBFB537388A8846937517FED /* Request.swift */; };
+		5D19BAE8B0155836806C26876E2F812A /* CGImage+Accelerate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEFC4B017C296BA31F77553ADAB2CBE /* CGImage+Accelerate.swift */; };
+		608FF6E4BCB0660D1D6D9DB0FF6B22FC /* DynamicBlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B96099B784CE572643663C4368A58E /* DynamicBlurView.swift */; };
+		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358E4F4FCE97B9CFE9798160F7E297 /* DispatchQueue+Alamofire.swift */; };
+		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225571F651CD5DA803BE6422D9524D77 /* ServerTrustPolicy.swift */; };
+		63C576FD079ED3EB1A5092F6F39BDF28 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C562C3CE509FD95C00580B4D379EF41B /* Accelerate.framework */; };
+		6C1E56CFB256AF1C64069DA54167A8BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 986880C9EC5E5BF01DD96F0F38ACDA22 /* UIKit.framework */; };
+		72763BA40BBEB214F29FF33DE5FB907C /* CaptureQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76C0373C1104D4C06863182F23AB3BA /* CaptureQuality.swift */; };
+		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCF35FABDC2A7F9B9334AC8E6E7FB90 /* Foundation.framework */; };
+		7574068DC7DF96A4000C9EA154F42D38 /* SessionLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0AAA8FA062F45CC54D860812EFE02A /* SessionLocalStorage.swift */; };
+		7733044C15512D85F4263E2E4B9EFD63 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A84A2F58AAAEE366189B0090D5883C /* Constants.swift */; };
+		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DB15F39622246D28DA9F3BECA31EA8 /* SessionDelegate.swift */; };
+		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC86D21A923776CBB45C86A4C33AD5C6 /* Result.swift */; };
+		7F40C495292F99636104F7AD3EF07BBC /* SpotifyLogin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B3EBC2FB2D25D9905BF64D07CD6017 /* SpotifyLogin-dummy.m */; };
+		8271A3F8CE80025962141E5BFA3D397E /* SpotifyLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37B64F90DDDAA8F33E20A03BB6FDC54 /* SpotifyLogin.swift */; };
+		82BD34CDF279D0AC1810CDE02EF4C156 /* UIImage+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34F339913070DD8C91A43A6B307805B /* UIImage+Blur.swift */; };
+		8B63D3C3D0CDD84C60CE12C11DBF3C6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCF35FABDC2A7F9B9334AC8E6E7FB90 /* Foundation.framework */; };
+		907D7D5A7464441A44FD727C05070349 /* SpotifyLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977344BCF7EE24F8072D860F84396BF0 /* SpotifyLoginPresenter.swift */; };
+		9584B98DAE3E860B6AB5EA9781DC7057 /* BlurLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438477CFB5DC207F9BBB931250A4FDD /* BlurLayer.swift */; };
+		971D6FFF23A34C91323591DB2D18CFCA /* spotifylogo-32@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52EC1E0D4047BCB968052636454ADA8C /* spotifylogo-32@3x.png */; };
+		99DE2FCA69A0948A4DED6BB99E1B4013 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF7D43E9362F8AB5F9E7C3ED2765C51 /* Networking.swift */; };
+		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050C6002F815859CEAFC59D25073E4F5 /* AFError.swift */; };
+		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C57AF7ED384D3F5C839220D94B75FC /* NetworkReachabilityManager.swift */; };
+		A7D37F85E439AAAF4A36E419E4EB423B /* SpotifyLogin-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D89B1E73F6FB19007D49FCAC5240B14A /* SpotifyLogin-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0679F9C01A01D758BE16671B05B2537F /* Alamofire-dummy.m */; };
+		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1024483027E07C9B8081172CFE5DC355 /* SessionManager.swift */; };
+		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E224FF29FCB0B1072506FBE7DBF9B5 /* MultipartFormData.swift */; };
+		B96132605699F8621C0EB56EF27C3ED5 /* Pods-SeniorProject-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4F3F16F5F245AA8FB59231A3073877 /* Pods-SeniorProject-dummy.m */; };
+		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36B31246AFBA6E87EBB43C9EC87041 /* Validation.swift */; };
+		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A1C4A7472C4190A3031271A6704484 /* ParameterEncoding.swift */; };
+		BEEB66F788E1226B9A0920FEC311C998 /* SafariDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5089B9CC32840B1600B0BF4F0D727D6 /* SafariDelegate.swift */; };
+		C26BEF1D01AA971AD96CBD29D4BA3A58 /* SpotifyLogin.h in Headers */ = {isa = PBXBuildFile; fileRef = B9C596D21E7AFFF9842F4261422D4611 /* SpotifyLogin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2DB0E4B4EC4B4DF8EA4B96FB78FBA99 /* TrackingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B8158C4CF1ACCD62D32909E057BAB3 /* TrackingMode.swift */; };
+		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D672CE8720C8D9F2AE0B2B5EB24A1 /* Response.swift */; };
+		D2229411EEF26255CF593716D445B5C4 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CE9100A29513E00651F9236C46D227 /* Session.swift */; };
+		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC4251798D5884169E24C10A2B0CE46 /* Notifications.swift */; };
+		F609CB47ADBDD03AA1FE16A7D3CA65AE /* spotifylogo-32@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 118B672E2DBFA96101136721222165EB /* spotifylogo-32@2x.png */; };
+		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5819AF1F63485E89FBF10D9741742C0E /* ResponseSerialization.swift */; };
+		F8173D5668F3434D9EAA69D5AF094A8B /* Pods-SeniorProject-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4DBD5D576DF53C5D52035083E01DD4A /* Pods-SeniorProject-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5BDBB5B364CD89D6F726BB47A46502 /* Alamofire.swift */; };
+		FB5CECAD4729CF846E332E692D1673B1 /* CGContext+CGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D4476DD3533D19D05796B96575D98E /* CGContext+CGImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		23BD63A2529C11BFAD13C215BCFCE288 /* PBXContainerItemProxy */ = {
+		76897B754D4D9753A36E65F59A9F51B5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AEC1316B151555E3E05C09B3F1261D9B;
+			remoteGlobalIDString = 9AD6E417B292CCB529632F0FA6F2EFEC;
+			remoteInfo = DynamicBlurView;
+		};
+		C8DC371F4CC951C24A08124A6E5DD1B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65ECFACD7C5721CD71CB049D7CA5CCA2;
 			remoteInfo = SpotifyLogin;
 		};
-		7501C5E4B713677693B31DE06EAF7534 /* PBXContainerItemProxy */ = {
+		CEB449BEEB18D25F2D4421E3D19A3014 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -67,67 +87,110 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03FFCFD503BC5AE019C1C7D9B1A00357 /* SpotifyLogin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SpotifyLogin.modulemap; sourceTree = "<group>"; };
-		04FEA4AA2E96BCB1E9C783EFC30E6FFF /* SpotifyLogin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotifyLogin-umbrella.h"; sourceTree = "<group>"; };
-		10F9A8D998232AA61BB56E94A814B81D /* Scope.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scope.swift; path = Sources/Scope.swift; sourceTree = "<group>"; };
+		00DDF11E0A78F61DDE62B590BC29DCA6 /* SpotifyLogin-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotifyLogin-prefix.pch"; sourceTree = "<group>"; };
+		050C6002F815859CEAFC59D25073E4F5 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
+		0679F9C01A01D758BE16671B05B2537F /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		0AD66B64CD2C11604D3F1676902FA267 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		0D3097633C6DC51F59BFAAEDC478FDEC /* DynamicBlurView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DynamicBlurView-dummy.m"; sourceTree = "<group>"; };
+		1024483027E07C9B8081172CFE5DC355 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
+		118B672E2DBFA96101136721222165EB /* spotifylogo-32@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "spotifylogo-32@2x.png"; path = "SpotifyLogin/Resources/spotifylogo-32@2x.png"; sourceTree = "<group>"; };
 		1306ED3AB1D478DC8468755EBF81C143 /* Pods-SeniorProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeniorProject.debug.xcconfig"; sourceTree = "<group>"; };
-		1356EA5413DA4EDC1522513494BF8891 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		13A935648A3C160738137E4ED156EE57 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		1428695F1F1C334EDF75B64648927964 /* spotifylogo-32@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "spotifylogo-32@3x.png"; path = "SpotifyLogin/Resources/spotifylogo-32@3x.png"; sourceTree = "<group>"; };
-		243105A3D97B1F026F8714A6B96FB4B0 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		2572E7A045C744940124403DBF486D0E /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Sources/Internal/Session.swift; sourceTree = "<group>"; };
-		259704870329E7424A197A57196D0C1A /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		138D299E0A7BB55C639849DE99A1CB86 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14E224FF29FCB0B1072506FBE7DBF9B5 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		160D672CE8720C8D9F2AE0B2B5EB24A1 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		186FE629D00EA85328D5EDA8DCB0E6B1 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		18B8158C4CF1ACCD62D32909E057BAB3 /* TrackingMode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TrackingMode.swift; path = DynamicBlurView/TrackingMode.swift; sourceTree = "<group>"; };
+		1DEFC4B017C296BA31F77553ADAB2CBE /* CGImage+Accelerate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGImage+Accelerate.swift"; path = "DynamicBlurView/CGImage+Accelerate.swift"; sourceTree = "<group>"; };
+		20A84A2F58AAAEE366189B0090D5883C /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Internal/Constants.swift; sourceTree = "<group>"; };
+		225571F651CD5DA803BE6422D9524D77 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		2438477CFB5DC207F9BBB931250A4FDD /* BlurLayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlurLayer.swift; path = DynamicBlurView/BlurLayer.swift; sourceTree = "<group>"; };
 		25BD50C4BB7BCD3BA020DFEA2DAFE6FE /* Pods-SeniorProject.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SeniorProject.modulemap"; sourceTree = "<group>"; };
 		37A494CF8122F0F4E2CDC8EBCA302D55 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		40259B207EC40C985BBF2B8DA6C9BD22 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		40B3B91734588B8794289544F5B379D2 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		4BED269F37754EE8F2FA369DDFCD9360 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		42358E4F4FCE97B9CFE9798160F7E297 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
+		43D4476DD3533D19D05796B96575D98E /* CGContext+CGImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGContext+CGImage.swift"; path = "DynamicBlurView/CGContext+CGImage.swift"; sourceTree = "<group>"; };
+		46A510FE64F59EA0B29715ABE5D8973E /* DynamicBlurView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DynamicBlurView-prefix.pch"; sourceTree = "<group>"; };
+		48E365EA5B60ABAA9A65300168C8D65D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		494399E81FFF998219FD36BA6BB36698 /* Scope.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scope.swift; path = Sources/Scope.swift; sourceTree = "<group>"; };
 		4E65537C9028D91B2E793E8307716DE2 /* Pods-SeniorProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SeniorProject.release.xcconfig"; sourceTree = "<group>"; };
-		5B8C2563B1AC55D807CB6392363A823B /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		5C17C33BEA72E904E7F5CDA2A1B08861 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		5CA7E92C66997910DCC87E990AE65B90 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		663AA059F2EB31369D277202E943CD91 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		52EC1E0D4047BCB968052636454ADA8C /* spotifylogo-32@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "spotifylogo-32@3x.png"; path = "SpotifyLogin/Resources/spotifylogo-32@3x.png"; sourceTree = "<group>"; };
+		5819AF1F63485E89FBF10D9741742C0E /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		5991B980FB3CDB7D5340C52CA028DF98 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		648F737F2DBADDF24B2F010CFFA2FB63 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67C0E8F00E40406DB51AEEA49EBF4B47 /* Pods-SeniorProject-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeniorProject-resources.sh"; sourceTree = "<group>"; };
-		7350EA3F0A53472520B6E21FD08A445C /* SpotifyLogin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyLogin.swift; path = Sources/SpotifyLogin.swift; sourceTree = "<group>"; };
-		77F13F5735BD59B51E74CB0D1B560212 /* SpotifyLogin-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotifyLogin-prefix.pch"; sourceTree = "<group>"; };
-		8B09A07F97D335FF44150337777B4301 /* SafariDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SafariDelegate.swift; path = Sources/Internal/SafariDelegate.swift; sourceTree = "<group>"; };
-		8CB4989301D2FA3AB801A5974AA84427 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68CE9100A29513E00651F9236C46D227 /* Session.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Sources/Internal/Session.swift; sourceTree = "<group>"; };
+		68DA9D42E3361644E7F555649433147F /* DynamicBlurView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DynamicBlurView.xcconfig; sourceTree = "<group>"; };
+		73377E5978FE00930580577BDC1E62B9 /* DynamicBlurView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = DynamicBlurView.modulemap; sourceTree = "<group>"; };
+		74B96099B784CE572643663C4368A58E /* DynamicBlurView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DynamicBlurView.swift; path = DynamicBlurView/DynamicBlurView.swift; sourceTree = "<group>"; };
+		797F45DCFB1BC680D41DB3576E1205CC /* spotifylogo-32.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "spotifylogo-32.png"; path = "SpotifyLogin/Resources/spotifylogo-32.png"; sourceTree = "<group>"; };
+		7EB9E9B54BB9520EFC19643D10A0B210 /* SpotifyLoginButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyLoginButton.swift; path = Sources/SpotifyLoginButton.swift; sourceTree = "<group>"; };
+		7EF7D43E9362F8AB5F9E7C3ED2765C51 /* Networking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Sources/Internal/Networking.swift; sourceTree = "<group>"; };
+		80D11DF60E5E0B8C816D3506DF33CB9D /* Pods_SeniorProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SeniorProject.framework; path = "Pods-SeniorProject.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84598536AD6143F5002D0BB909DFA8FA /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SpotifyLogin.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88DB15F39622246D28DA9F3BECA31EA8 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
+		8C0AAA8FA062F45CC54D860812EFE02A /* SessionLocalStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionLocalStorage.swift; path = Sources/Internal/SessionLocalStorage.swift; sourceTree = "<group>"; };
+		8CCF35FABDC2A7F9B9334AC8E6E7FB90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8CE5897709FDA0DA3BC75A439769D2AC /* Pods-SeniorProject-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SeniorProject-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8DA00ADD427B8ABC178A890538CFE59C /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
-		90ADC9E1C3249217FF1EC93F51E690C2 /* Networking.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = Sources/Internal/Networking.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		942B147C32A39E450ECE5226A1B43B75 /* SpotifyLogin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SpotifyLogin.h; path = SpotifyLogin/SpotifyLogin.h; sourceTree = "<group>"; };
-		9757944B6417F8FBACDA0F3A15344F2F /* spotifylogo-32.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "spotifylogo-32.png"; path = "SpotifyLogin/Resources/spotifylogo-32.png"; sourceTree = "<group>"; };
-		9D9AF9AE5022F660D89C0205214D9DC0 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		9EC7DCA0C489A3D55CC886907DBE86F6 /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyLoginPresenter.swift; path = Sources/SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
-		A1607B26593BD96EF6275ACB2679700F /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Internal/Constants.swift; sourceTree = "<group>"; };
+		93C580EBDFA0D3A2B19C014EB6D7824E /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		959109E22112981AAFB08CDD94CBE20E /* DynamicBlurView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DynamicBlurView-umbrella.h"; sourceTree = "<group>"; };
+		977344BCF7EE24F8072D860F84396BF0 /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyLoginPresenter.swift; path = Sources/SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
+		986880C9EC5E5BF01DD96F0F38ACDA22 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		9BCD6D7F440D8F009CC7A8B903223ACF /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		9C661B10405DA384DAB010C27050EF01 /* DynamicBlurView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = DynamicBlurView.framework; path = DynamicBlurView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A214A9C66A978DE655B6ABE8E895779B /* Pods-SeniorProject-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SeniorProject-frameworks.sh"; sourceTree = "<group>"; };
-		A2518BAD7AA71F2378BA047CB5D4FA66 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		A29461847B7F5FF92F38F4D9CE73CFB7 /* URLBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLBuilder.swift; path = Sources/Internal/URLBuilder.swift; sourceTree = "<group>"; };
-		A51EB9C04036044AB06474EF3C24141A /* SpotifyLoginButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyLoginButton.swift; path = Sources/SpotifyLoginButton.swift; sourceTree = "<group>"; };
-		AFE634928F70BE0A92CC2084FF143A56 /* Pods_SeniorProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SeniorProject.framework; path = "Pods-SeniorProject.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B39BAE77EC6D04F3245DAB522A923A72 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6FE0CB326894CCF956E9933AFD283E2 /* SessionLocalStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionLocalStorage.swift; path = Sources/Internal/SessionLocalStorage.swift; sourceTree = "<group>"; };
+		A9A1C4A7472C4190A3031271A6704484 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		AC86D21A923776CBB45C86A4C33AD5C6 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		AD3FD16F2C0D438AD28A48C3A7769971 /* DynamicBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DynamicBlurView.h; path = DynamicBlurView/DynamicBlurView.h; sourceTree = "<group>"; };
+		B822D65C3C124AB6717DFB5253E3013C /* URLBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLBuilder.swift; path = Sources/Internal/URLBuilder.swift; sourceTree = "<group>"; };
+		B9C596D21E7AFFF9842F4261422D4611 /* SpotifyLogin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SpotifyLogin.h; path = SpotifyLogin/SpotifyLogin.h; sourceTree = "<group>"; };
 		BA4F3F16F5F245AA8FB59231A3073877 /* Pods-SeniorProject-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SeniorProject-dummy.m"; sourceTree = "<group>"; };
+		BDC4251798D5884169E24C10A2B0CE46 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
 		BE3A1D04364D72F0386BEDA92534FD93 /* Pods-SeniorProject-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SeniorProject-acknowledgements.plist"; sourceTree = "<group>"; };
-		C21969A0AD3BC5CA7DD80BE218E7AD2F /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		CA69D30EA412B2D2DC0C52A9321B80A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CFC60EA79170FFA19EBA3A3B8CE2FA03 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
-		D6C42EBD4FAC2B6273E98783A52172DC /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		DD899A845FD59757865BB0312967394D /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
-		DEE7E18750DB2DB8F28401708E233585 /* spotifylogo-32@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "spotifylogo-32@2x.png"; path = "SpotifyLogin/Resources/spotifylogo-32@2x.png"; sourceTree = "<group>"; };
-		E470B3B465CCDAA511E35666BCC20AAE /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SpotifyLogin.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C562C3CE509FD95C00580B4D379EF41B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		C8D9319780CF5E57177AF703E8D5E20C /* SpotifyLogin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SpotifyLogin.xcconfig; sourceTree = "<group>"; };
+		D1C57AF7ED384D3F5C839220D94B75FC /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		D34F339913070DD8C91A43A6B307805B /* UIImage+Blur.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+Blur.swift"; path = "DynamicBlurView/UIImage+Blur.swift"; sourceTree = "<group>"; };
+		D89B1E73F6FB19007D49FCAC5240B14A /* SpotifyLogin-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SpotifyLogin-umbrella.h"; sourceTree = "<group>"; };
+		D9B3EBC2FB2D25D9905BF64D07CD6017 /* SpotifyLogin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SpotifyLogin-dummy.m"; sourceTree = "<group>"; };
+		DC36B31246AFBA6E87EBB43C9EC87041 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		E10E8782FBFB537388A8846937517FED /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		E2CF882E6A8767267E285661160ECB61 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E37B64F90DDDAA8F33E20A03BB6FDC54 /* SpotifyLogin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SpotifyLogin.swift; path = Sources/SpotifyLogin.swift; sourceTree = "<group>"; };
 		E4DBD5D576DF53C5D52035083E01DD4A /* Pods-SeniorProject-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SeniorProject-umbrella.h"; sourceTree = "<group>"; };
-		E545DD7920C23BD3729087974DAD674A /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		E756ABFEBBC6E632BA70D3AF2382C6BE /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		E93785B021C110BE5EC4D800A9CDC80A /* SpotifyLogin.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SpotifyLogin.xcconfig; sourceTree = "<group>"; };
-		ED1FE4CB451AD5D46A931281A73BFE4A /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		F7BF983A3F57C32E2452B311B2006DD6 /* SpotifyLogin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SpotifyLogin-dummy.m"; sourceTree = "<group>"; };
-		FEAFF97B99450F41B35500FD6A41754E /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		F489A9928DD4451407DC3C98F54DF5FB /* SpotifyLogin.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SpotifyLogin.modulemap; sourceTree = "<group>"; };
+		F5089B9CC32840B1600B0BF4F0D727D6 /* SafariDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SafariDelegate.swift; path = Sources/Internal/SafariDelegate.swift; sourceTree = "<group>"; };
+		F76C0373C1104D4C06863182F23AB3BA /* CaptureQuality.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CaptureQuality.swift; path = DynamicBlurView/CaptureQuality.swift; sourceTree = "<group>"; };
+		FD49B25F7376057B44ADD80729C7E5C4 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
+		FE5BDBB5B364CD89D6F726BB47A46502 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1A14024DC600C996F7E5008339783C8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B63D3C3D0CDD84C60CE12C11DBF3C6F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BDE637ED26839DBD7B8919220E5749 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D195701C54A2BCA2B81E4ACE10F360E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81668173AE602C46A6D214E9B4F84F91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63C576FD079ED3EB1A5092F6F39BDF28 /* Accelerate.framework in Frameworks */,
+				46948DAFC76CE60532EB6D1C3D4D06EE /* Foundation.framework in Frameworks */,
+				6C1E56CFB256AF1C64069DA54167A8BB /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99195E4207764744AEC07ECCBCD550EB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -136,25 +199,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AB40A96CE15FA21DB1742A7B90E7C762 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3B694A59E7C96FEA0EDC560B6E8787C2 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C342303F4349CD614AFEEC179A1AA94F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E04B4F08413961B03E42CB51251FCF3B /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04002D32529FE4EA6C39407494E3C496 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				73377E5978FE00930580577BDC1E62B9 /* DynamicBlurView.modulemap */,
+				68DA9D42E3361644E7F555649433147F /* DynamicBlurView.xcconfig */,
+				0D3097633C6DC51F59BFAAEDC478FDEC /* DynamicBlurView-dummy.m */,
+				46A510FE64F59EA0B29715ABE5D8973E /* DynamicBlurView-prefix.pch */,
+				959109E22112981AAFB08CDD94CBE20E /* DynamicBlurView-umbrella.h */,
+				E2CF882E6A8767267E285661160ECB61 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/DynamicBlurView";
+			sourceTree = "<group>";
+		};
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D205EF510E7A49186D7F418939F15B4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		182935272025D01265014973683A0C56 /* DynamicBlurView */ = {
+			isa = PBXGroup;
+			children = (
+				2438477CFB5DC207F9BBB931250A4FDD /* BlurLayer.swift */,
+				F76C0373C1104D4C06863182F23AB3BA /* CaptureQuality.swift */,
+				43D4476DD3533D19D05796B96575D98E /* CGContext+CGImage.swift */,
+				1DEFC4B017C296BA31F77553ADAB2CBE /* CGImage+Accelerate.swift */,
+				AD3FD16F2C0D438AD28A48C3A7769971 /* DynamicBlurView.h */,
+				74B96099B784CE572643663C4368A58E /* DynamicBlurView.swift */,
+				18B8158C4CF1ACCD62D32909E057BAB3 /* TrackingMode.swift */,
+				D34F339913070DD8C91A43A6B307805B /* UIImage+Blur.swift */,
+				04002D32529FE4EA6C39407494E3C496 /* Support Files */,
+			);
+			name = DynamicBlurView;
+			path = DynamicBlurView;
+			sourceTree = "<group>";
+		};
+		1D205EF510E7A49186D7F418939F15B4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C562C3CE509FD95C00580B4D379EF41B /* Accelerate.framework */,
+				8CCF35FABDC2A7F9B9334AC8E6E7FB90 /* Foundation.framework */,
+				986880C9EC5E5BF01DD96F0F38ACDA22 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		2BC9E8FAD2A2B0A322A84A412AC17A70 /* Pods-SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,71 +269,118 @@
 			path = "Target Support Files/Pods-SeniorProject";
 			sourceTree = "<group>";
 		};
-		427B5C44BA6F9C5343E657D47CF52E17 /* Support Files */ = {
+		34176C739B8D91964BB0455AE7CC82E9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				8CB4989301D2FA3AB801A5974AA84427 /* Info.plist */,
-				03FFCFD503BC5AE019C1C7D9B1A00357 /* SpotifyLogin.modulemap */,
-				E93785B021C110BE5EC4D800A9CDC80A /* SpotifyLogin.xcconfig */,
-				F7BF983A3F57C32E2452B311B2006DD6 /* SpotifyLogin-dummy.m */,
-				77F13F5735BD59B51E74CB0D1B560212 /* SpotifyLogin-prefix.pch */,
-				04FEA4AA2E96BCB1E9C783EFC30E6FFF /* SpotifyLogin-umbrella.h */,
+				5991B980FB3CDB7D5340C52CA028DF98 /* Alamofire.modulemap */,
+				93C580EBDFA0D3A2B19C014EB6D7824E /* Alamofire.xcconfig */,
+				0679F9C01A01D758BE16671B05B2537F /* Alamofire-dummy.m */,
+				9BCD6D7F440D8F009CC7A8B903223ACF /* Alamofire-prefix.pch */,
+				0AD66B64CD2C11604D3F1676902FA267 /* Alamofire-umbrella.h */,
+				648F737F2DBADDF24B2F010CFFA2FB63 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		36F409508009AF406BAD47A6D9E09C19 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				48E365EA5B60ABAA9A65300168C8D65D /* Info.plist */,
+				F489A9928DD4451407DC3C98F54DF5FB /* SpotifyLogin.modulemap */,
+				C8D9319780CF5E57177AF703E8D5E20C /* SpotifyLogin.xcconfig */,
+				D9B3EBC2FB2D25D9905BF64D07CD6017 /* SpotifyLogin-dummy.m */,
+				00DDF11E0A78F61DDE62B590BC29DCA6 /* SpotifyLogin-prefix.pch */,
+				D89B1E73F6FB19007D49FCAC5240B14A /* SpotifyLogin-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SpotifyLogin";
+			sourceTree = "<group>";
+		};
+		3BC7BACEF8B5F269799AAC78F7BA7D2F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				138D299E0A7BB55C639849DE99A1CB86 /* Alamofire.framework */,
+				9C661B10405DA384DAB010C27050EF01 /* DynamicBlurView.framework */,
+				80D11DF60E5E0B8C816D3506DF33CB9D /* Pods_SeniorProject.framework */,
+				84598536AD6143F5002D0BB909DFA8FA /* SpotifyLogin.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43A11A2D533F63DA05E3A3508CDFE748 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				797F45DCFB1BC680D41DB3576E1205CC /* spotifylogo-32.png */,
+				118B672E2DBFA96101136721222165EB /* spotifylogo-32@2x.png */,
+				52EC1E0D4047BCB968052636454ADA8C /* spotifylogo-32@3x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		48A9D8CFCE353BD542F1199ED716032F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C22594E140E8E3F4B710160A0F318DC /* Alamofire */,
+				182935272025D01265014973683A0C56 /* DynamicBlurView */,
+				8979AFB2D27E7D4C3DB1BD598D0E2C84 /* SpotifyLogin */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7C22594E140E8E3F4B710160A0F318DC /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				050C6002F815859CEAFC59D25073E4F5 /* AFError.swift */,
+				FE5BDBB5B364CD89D6F726BB47A46502 /* Alamofire.swift */,
+				42358E4F4FCE97B9CFE9798160F7E297 /* DispatchQueue+Alamofire.swift */,
+				14E224FF29FCB0B1072506FBE7DBF9B5 /* MultipartFormData.swift */,
+				D1C57AF7ED384D3F5C839220D94B75FC /* NetworkReachabilityManager.swift */,
+				BDC4251798D5884169E24C10A2B0CE46 /* Notifications.swift */,
+				A9A1C4A7472C4190A3031271A6704484 /* ParameterEncoding.swift */,
+				E10E8782FBFB537388A8846937517FED /* Request.swift */,
+				160D672CE8720C8D9F2AE0B2B5EB24A1 /* Response.swift */,
+				5819AF1F63485E89FBF10D9741742C0E /* ResponseSerialization.swift */,
+				AC86D21A923776CBB45C86A4C33AD5C6 /* Result.swift */,
+				225571F651CD5DA803BE6422D9524D77 /* ServerTrustPolicy.swift */,
+				88DB15F39622246D28DA9F3BECA31EA8 /* SessionDelegate.swift */,
+				1024483027E07C9B8081172CFE5DC355 /* SessionManager.swift */,
+				FD49B25F7376057B44ADD80729C7E5C4 /* TaskDelegate.swift */,
+				186FE629D00EA85328D5EDA8DCB0E6B1 /* Timeline.swift */,
+				DC36B31246AFBA6E87EBB43C9EC87041 /* Validation.swift */,
+				34176C739B8D91964BB0455AE7CC82E9 /* Support Files */,
+			);
+			name = Alamofire;
+			path = Alamofire;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				B00158B55BECD5748110A116B9B28EA2 /* Pods */,
-				D44D43E6E61460BAD383DF0879D6574A /* Products */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				48A9D8CFCE353BD542F1199ED716032F /* Pods */,
+				3BC7BACEF8B5F269799AAC78F7BA7D2F /* Products */,
 				8A5382CEEA974BEC3D1B7EE07FE56CD1 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7E66646D66E3655E73E77086535FA8AB /* Resources */ = {
+		8979AFB2D27E7D4C3DB1BD598D0E2C84 /* SpotifyLogin */ = {
 			isa = PBXGroup;
 			children = (
-				9757944B6417F8FBACDA0F3A15344F2F /* spotifylogo-32.png */,
-				DEE7E18750DB2DB8F28401708E233585 /* spotifylogo-32@2x.png */,
-				1428695F1F1C334EDF75B64648927964 /* spotifylogo-32@3x.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		838115497E904FC134C5A8A68ECFF9EE /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				40B3B91734588B8794289544F5B379D2 /* Alamofire.modulemap */,
-				C21969A0AD3BC5CA7DD80BE218E7AD2F /* Alamofire.xcconfig */,
-				243105A3D97B1F026F8714A6B96FB4B0 /* Alamofire-dummy.m */,
-				663AA059F2EB31369D277202E943CD91 /* Alamofire-prefix.pch */,
-				CFC60EA79170FFA19EBA3A3B8CE2FA03 /* Alamofire-umbrella.h */,
-				CA69D30EA412B2D2DC0C52A9321B80A8 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Alamofire";
-			sourceTree = "<group>";
-		};
-		881CC5ECDE7B5114D7E9BD4E0857264A /* SpotifyLogin */ = {
-			isa = PBXGroup;
-			children = (
-				A1607B26593BD96EF6275ACB2679700F /* Constants.swift */,
-				90ADC9E1C3249217FF1EC93F51E690C2 /* Networking.swift */,
-				8B09A07F97D335FF44150337777B4301 /* SafariDelegate.swift */,
-				10F9A8D998232AA61BB56E94A814B81D /* Scope.swift */,
-				2572E7A045C744940124403DBF486D0E /* Session.swift */,
-				B6FE0CB326894CCF956E9933AFD283E2 /* SessionLocalStorage.swift */,
-				942B147C32A39E450ECE5226A1B43B75 /* SpotifyLogin.h */,
-				7350EA3F0A53472520B6E21FD08A445C /* SpotifyLogin.swift */,
-				A51EB9C04036044AB06474EF3C24141A /* SpotifyLoginButton.swift */,
-				9EC7DCA0C489A3D55CC886907DBE86F6 /* SpotifyLoginPresenter.swift */,
-				A29461847B7F5FF92F38F4D9CE73CFB7 /* URLBuilder.swift */,
-				7E66646D66E3655E73E77086535FA8AB /* Resources */,
-				427B5C44BA6F9C5343E657D47CF52E17 /* Support Files */,
+				20A84A2F58AAAEE366189B0090D5883C /* Constants.swift */,
+				7EF7D43E9362F8AB5F9E7C3ED2765C51 /* Networking.swift */,
+				F5089B9CC32840B1600B0BF4F0D727D6 /* SafariDelegate.swift */,
+				494399E81FFF998219FD36BA6BB36698 /* Scope.swift */,
+				68CE9100A29513E00651F9236C46D227 /* Session.swift */,
+				8C0AAA8FA062F45CC54D860812EFE02A /* SessionLocalStorage.swift */,
+				B9C596D21E7AFFF9842F4261422D4611 /* SpotifyLogin.h */,
+				E37B64F90DDDAA8F33E20A03BB6FDC54 /* SpotifyLogin.swift */,
+				7EB9E9B54BB9520EFC19643D10A0B210 /* SpotifyLoginButton.swift */,
+				977344BCF7EE24F8072D860F84396BF0 /* SpotifyLoginPresenter.swift */,
+				B822D65C3C124AB6717DFB5253E3013C /* URLBuilder.swift */,
+				43A11A2D533F63DA05E3A3508CDFE748 /* Resources */,
+				36F409508009AF406BAD47A6D9E09C19 /* Support Files */,
 			);
 			name = SpotifyLogin;
 			path = SpotifyLogin;
@@ -251,75 +394,32 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B00158B55BECD5748110A116B9B28EA2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DD334300BF0B5DB7F91ACD83A4E4ED3C /* Alamofire */,
-				881CC5ECDE7B5114D7E9BD4E0857264A /* SpotifyLogin */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		D44D43E6E61460BAD383DF0879D6574A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B39BAE77EC6D04F3245DAB522A923A72 /* Alamofire.framework */,
-				AFE634928F70BE0A92CC2084FF143A56 /* Pods_SeniorProject.framework */,
-				E470B3B465CCDAA511E35666BCC20AAE /* SpotifyLogin.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		DD334300BF0B5DB7F91ACD83A4E4ED3C /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				40259B207EC40C985BBF2B8DA6C9BD22 /* AFError.swift */,
-				13A935648A3C160738137E4ED156EE57 /* Alamofire.swift */,
-				5C17C33BEA72E904E7F5CDA2A1B08861 /* DispatchQueue+Alamofire.swift */,
-				5B8C2563B1AC55D807CB6392363A823B /* MultipartFormData.swift */,
-				4BED269F37754EE8F2FA369DDFCD9360 /* NetworkReachabilityManager.swift */,
-				D6C42EBD4FAC2B6273E98783A52172DC /* Notifications.swift */,
-				E545DD7920C23BD3729087974DAD674A /* ParameterEncoding.swift */,
-				FEAFF97B99450F41B35500FD6A41754E /* Request.swift */,
-				8DA00ADD427B8ABC178A890538CFE59C /* Response.swift */,
-				259704870329E7424A197A57196D0C1A /* ResponseSerialization.swift */,
-				9D9AF9AE5022F660D89C0205214D9DC0 /* Result.swift */,
-				5CA7E92C66997910DCC87E990AE65B90 /* ServerTrustPolicy.swift */,
-				1356EA5413DA4EDC1522513494BF8891 /* SessionDelegate.swift */,
-				DD899A845FD59757865BB0312967394D /* SessionManager.swift */,
-				E756ABFEBBC6E632BA70D3AF2382C6BE /* TaskDelegate.swift */,
-				A2518BAD7AA71F2378BA047CB5D4FA66 /* Timeline.swift */,
-				ED1FE4CB451AD5D46A931281A73BFE4A /* Validation.swift */,
-				838115497E904FC134C5A8A68ECFF9EE /* Support Files */,
-			);
-			name = Alamofire;
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5D7D3FE317CEFC20BDDF33354F5599C9 /* Headers */ = {
+		5587A6861EBE0B76E0EB64A79BBE4CBA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8D84B7EA750CA71D970F3758BFD2B05 /* Pods-SeniorProject-umbrella.h in Headers */,
+				A7D37F85E439AAAF4A36E419E4EB423B /* SpotifyLogin-umbrella.h in Headers */,
+				C26BEF1D01AA971AD96CBD29D4BA3A58 /* SpotifyLogin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5780D23677E756CCB12940F250B0F6FD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BD95819A67825305691F9D03A1477E3 /* DynamicBlurView-umbrella.h in Headers */,
+				2F6D143061A37F1799C4E9E70178679C /* DynamicBlurView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BFF144BDBF3A323F155EF371F7AE0F3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8173D5668F3434D9EAA69D5AF094A8B /* Pods-SeniorProject-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,18 +431,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BC37EF311096291EDFA44ECBD765D650 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				586EA688CE9C578AB8101CB66EFA52EC /* SpotifyLogin-umbrella.h in Headers */,
-				438DF5AE1AA4D32F14BD1CA142567285 /* SpotifyLogin.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		65ECFACD7C5721CD71CB049D7CA5CCA2 /* SpotifyLogin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28060662DF332DBCDBE229219D4C840B /* Build configuration list for PBXNativeTarget "SpotifyLogin" */;
+			buildPhases = (
+				73776D5D0E51D5237CCA0E0F18D1A8D7 /* Sources */,
+				36BDE637ED26839DBD7B8919220E5749 /* Frameworks */,
+				5587A6861EBE0B76E0EB64A79BBE4CBA /* Headers */,
+				FD7189AE20D1B1BF611D38F8DA05224F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpotifyLogin;
+			productName = SpotifyLogin;
+			productReference = 84598536AD6143F5002D0BB909DFA8FA /* SpotifyLogin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 419E5D95491847CD79841B971A8A3277 /* Build configuration list for PBXNativeTarget "Alamofire" */;
@@ -357,44 +466,44 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = B39BAE77EC6D04F3245DAB522A923A72 /* Alamofire.framework */;
+			productReference = 138D299E0A7BB55C639849DE99A1CB86 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		AEC1316B151555E3E05C09B3F1261D9B /* SpotifyLogin */ = {
+		9AD6E417B292CCB529632F0FA6F2EFEC /* DynamicBlurView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E88C10494F9B2D8CE5F1AF23EC7B8CE5 /* Build configuration list for PBXNativeTarget "SpotifyLogin" */;
+			buildConfigurationList = DF1B3C8A74EE5F0BA8EEA33D98DC56D1 /* Build configuration list for PBXNativeTarget "DynamicBlurView" */;
 			buildPhases = (
-				098A2FAE33D90C6D810EFFD3DA89F337 /* Sources */,
-				AB40A96CE15FA21DB1742A7B90E7C762 /* Frameworks */,
-				BC37EF311096291EDFA44ECBD765D650 /* Headers */,
-				2DAF47A8402E17F2E173ED28CB61DD24 /* Resources */,
+				2343253744ADE559BBDEC4EC41F51B6D /* Sources */,
+				81668173AE602C46A6D214E9B4F84F91 /* Frameworks */,
+				5780D23677E756CCB12940F250B0F6FD /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SpotifyLogin;
-			productName = SpotifyLogin;
-			productReference = E470B3B465CCDAA511E35666BCC20AAE /* SpotifyLogin.framework */;
+			name = DynamicBlurView;
+			productName = DynamicBlurView;
+			productReference = 9C661B10405DA384DAB010C27050EF01 /* DynamicBlurView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EE316115460FCB02E8F219B7862337D6 /* Pods-SeniorProject */ = {
+		D0FD4EBDE6021E0B8BCD68DB1E56C75F /* Pods-SeniorProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 17F26588E506B64E0C4F5C4901E948E5 /* Build configuration list for PBXNativeTarget "Pods-SeniorProject" */;
+			buildConfigurationList = B04C63621A6F0DDD1B440A43EBE48522 /* Build configuration list for PBXNativeTarget "Pods-SeniorProject" */;
 			buildPhases = (
-				F67472E9D1607950CFC91C8A2F4ECD1F /* Sources */,
-				C342303F4349CD614AFEEC179A1AA94F /* Frameworks */,
-				5D7D3FE317CEFC20BDDF33354F5599C9 /* Headers */,
+				77865D3635F55EBDEC934C4516E2C4D0 /* Sources */,
+				1A14024DC600C996F7E5008339783C8C /* Frameworks */,
+				7BFF144BDBF3A323F155EF371F7AE0F3 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FEE5CAF97938CC0C7DEC0AE1D1F01FBA /* PBXTargetDependency */,
-				E0EB959C9FB4DE7624E6D0266E7529DD /* PBXTargetDependency */,
+				9F98EB6CFFB1296FC66C0FF995931C7C /* PBXTargetDependency */,
+				499C0CB770E642D73546C5EE067858F2 /* PBXTargetDependency */,
+				B9B22838504614B77E6932FF654B9DC3 /* PBXTargetDependency */,
 			);
 			name = "Pods-SeniorProject";
 			productName = "Pods-SeniorProject";
-			productReference = AFE634928F70BE0A92CC2084FF143A56 /* Pods_SeniorProject.framework */;
+			productReference = 80D11DF60E5E0B8C816D3506DF33CB9D /* Pods_SeniorProject.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -414,46 +523,44 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = D44D43E6E61460BAD383DF0879D6574A /* Products */;
+			productRefGroup = 3BC7BACEF8B5F269799AAC78F7BA7D2F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */,
-				EE316115460FCB02E8F219B7862337D6 /* Pods-SeniorProject */,
-				AEC1316B151555E3E05C09B3F1261D9B /* SpotifyLogin */,
+				9AD6E417B292CCB529632F0FA6F2EFEC /* DynamicBlurView */,
+				D0FD4EBDE6021E0B8BCD68DB1E56C75F /* Pods-SeniorProject */,
+				65ECFACD7C5721CD71CB049D7CA5CCA2 /* SpotifyLogin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2DAF47A8402E17F2E173ED28CB61DD24 /* Resources */ = {
+		FD7189AE20D1B1BF611D38F8DA05224F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5668B5CC5B1ED2F49083F02125809C3C /* spotifylogo-32.png in Resources */,
-				E0B096CE567AADA3B1E41C4F5C9CDCE5 /* spotifylogo-32@2x.png in Resources */,
-				98E0A250218E0261B712AB5CC4728030 /* spotifylogo-32@3x.png in Resources */,
+				0E6EB1C14562B176F77FE7743AB4F87E /* spotifylogo-32.png in Resources */,
+				F609CB47ADBDD03AA1FE16A7D3CA65AE /* spotifylogo-32@2x.png in Resources */,
+				971D6FFF23A34C91323591DB2D18CFCA /* spotifylogo-32@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		098A2FAE33D90C6D810EFFD3DA89F337 /* Sources */ = {
+		2343253744ADE559BBDEC4EC41F51B6D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B716DCFFF3FFBF35D4471A50D4AFE213 /* Constants.swift in Sources */,
-				D94D641B5DDED25B5E4D8E2C6EF27A73 /* Networking.swift in Sources */,
-				569DF1C0EE1678CF0BD0D30E85A94706 /* SafariDelegate.swift in Sources */,
-				6CE4D61D5EC70BDD55EAA06501592D4B /* Scope.swift in Sources */,
-				C07C6D6C20AE994A7A5CFE0500CF0C6E /* Session.swift in Sources */,
-				0F3877B11F692EF0C087F443F96EFDC2 /* SessionLocalStorage.swift in Sources */,
-				3339881D1C2AAC75FBDA8901631F0A4B /* SpotifyLogin-dummy.m in Sources */,
-				935148E7F52B6C212340DB6D3B0A5C16 /* SpotifyLogin.swift in Sources */,
-				318E19601595842A3BFE99E5B8B5C577 /* SpotifyLoginButton.swift in Sources */,
-				624538B48867A4CBB603518D71E889EC /* SpotifyLoginPresenter.swift in Sources */,
-				1891D94BE183D863A06201B124B7167F /* URLBuilder.swift in Sources */,
+				9584B98DAE3E860B6AB5EA9781DC7057 /* BlurLayer.swift in Sources */,
+				72763BA40BBEB214F29FF33DE5FB907C /* CaptureQuality.swift in Sources */,
+				FB5CECAD4729CF846E332E692D1673B1 /* CGContext+CGImage.swift in Sources */,
+				5D19BAE8B0155836806C26876E2F812A /* CGImage+Accelerate.swift in Sources */,
+				0F979D0A878062EA1DFD82B4ACE22C01 /* DynamicBlurView-dummy.m in Sources */,
+				608FF6E4BCB0660D1D6D9DB0FF6B22FC /* DynamicBlurView.swift in Sources */,
+				C2DB0E4B4EC4B4DF8EA4B96FB78FBA99 /* TrackingMode.swift in Sources */,
+				82BD34CDF279D0AC1810CDE02EF4C156 /* UIImage+Blur.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,35 +589,59 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F67472E9D1607950CFC91C8A2F4ECD1F /* Sources */ = {
+		73776D5D0E51D5237CCA0E0F18D1A8D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D85445DE49C3FEAFC814B952B8A16977 /* Pods-SeniorProject-dummy.m in Sources */,
+				7733044C15512D85F4263E2E4B9EFD63 /* Constants.swift in Sources */,
+				99DE2FCA69A0948A4DED6BB99E1B4013 /* Networking.swift in Sources */,
+				BEEB66F788E1226B9A0920FEC311C998 /* SafariDelegate.swift in Sources */,
+				16D0AA472153A7F71E9C84C066732E37 /* Scope.swift in Sources */,
+				D2229411EEF26255CF593716D445B5C4 /* Session.swift in Sources */,
+				7574068DC7DF96A4000C9EA154F42D38 /* SessionLocalStorage.swift in Sources */,
+				7F40C495292F99636104F7AD3EF07BBC /* SpotifyLogin-dummy.m in Sources */,
+				8271A3F8CE80025962141E5BFA3D397E /* SpotifyLogin.swift in Sources */,
+				3CB62F74528372E0BB9EA437FE8147DB /* SpotifyLoginButton.swift in Sources */,
+				907D7D5A7464441A44FD727C05070349 /* SpotifyLoginPresenter.swift in Sources */,
+				3E5F27F8A0BF78E9BEC061DD4D29688F /* URLBuilder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		77865D3635F55EBDEC934C4516E2C4D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B96132605699F8621C0EB56EF27C3ED5 /* Pods-SeniorProject-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E0EB959C9FB4DE7624E6D0266E7529DD /* PBXTargetDependency */ = {
+		499C0CB770E642D73546C5EE067858F2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SpotifyLogin;
-			target = AEC1316B151555E3E05C09B3F1261D9B /* SpotifyLogin */;
-			targetProxy = 23BD63A2529C11BFAD13C215BCFCE288 /* PBXContainerItemProxy */;
+			name = DynamicBlurView;
+			target = 9AD6E417B292CCB529632F0FA6F2EFEC /* DynamicBlurView */;
+			targetProxy = 76897B754D4D9753A36E65F59A9F51B5 /* PBXContainerItemProxy */;
 		};
-		FEE5CAF97938CC0C7DEC0AE1D1F01FBA /* PBXTargetDependency */ = {
+		9F98EB6CFFB1296FC66C0FF995931C7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
 			target = 88E9EC28B8B46C3631E6B242B50F4442 /* Alamofire */;
-			targetProxy = 7501C5E4B713677693B31DE06EAF7534 /* PBXContainerItemProxy */;
+			targetProxy = CEB449BEEB18D25F2D4421E3D19A3014 /* PBXContainerItemProxy */;
+		};
+		B9B22838504614B77E6932FF654B9DC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SpotifyLogin;
+			target = 65ECFACD7C5721CD71CB049D7CA5CCA2 /* SpotifyLogin */;
+			targetProxy = C8DC371F4CC951C24A08124A6E5DD1B9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		03E96B65EE7FE812448AD8B98A9BB2FB /* Debug */ = {
+		0BC7908DD34ACBD07B972C1E82AC4191 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E93785B021C110BE5EC4D800A9CDC80A /* SpotifyLogin.xcconfig */;
+			baseConfigurationReference = 68DA9D42E3361644E7F555649433147F /* DynamicBlurView.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -521,14 +652,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SpotifyLogin/SpotifyLogin-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SpotifyLogin/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/DynamicBlurView/DynamicBlurView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DynamicBlurView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SpotifyLogin/SpotifyLogin.modulemap";
-				PRODUCT_MODULE_NAME = SpotifyLogin;
-				PRODUCT_NAME = SpotifyLogin;
+				MODULEMAP_FILE = "Target Support Files/DynamicBlurView/DynamicBlurView.modulemap";
+				PRODUCT_MODULE_NAME = DynamicBlurView;
+				PRODUCT_NAME = DynamicBlurView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -540,9 +671,9 @@
 			};
 			name = Debug;
 		};
-		096F69D9E8067140E530C9A440E21B5C /* Release */ = {
+		1AB4B5935F581C0608A5445E244F7DC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E65537C9028D91B2E793E8307716DE2 /* Pods-SeniorProject.release.xcconfig */;
+			baseConfigurationReference = 1306ED3AB1D478DC8468755EBF81C143 /* Pods-SeniorProject.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -568,7 +699,40 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2F18AB70B4BC9E708B9E9F259501A306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68DA9D42E3361644E7F555649433147F /* DynamicBlurView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/DynamicBlurView/DynamicBlurView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DynamicBlurView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DynamicBlurView/DynamicBlurView.modulemap";
+				PRODUCT_MODULE_NAME = DynamicBlurView;
+				PRODUCT_NAME = DynamicBlurView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -697,9 +861,142 @@
 			};
 			name = Release;
 		};
-		794B5CB8D1AF22FC4AFC7300DC4B6C59 /* Release */ = {
+		798E7730F7367A34D78900D720468BE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E93785B021C110BE5EC4D800A9CDC80A /* SpotifyLogin.xcconfig */;
+			baseConfigurationReference = C8D9319780CF5E57177AF703E8D5E20C /* SpotifyLogin.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SpotifyLogin/SpotifyLogin-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SpotifyLogin/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SpotifyLogin/SpotifyLogin.modulemap";
+				PRODUCT_MODULE_NAME = SpotifyLogin;
+				PRODUCT_NAME = SpotifyLogin;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A18C9CC7E37563F2891E7DC87F2DE6CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93C580EBDFA0D3A2B19C014EB6D7824E /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				PRODUCT_MODULE_NAME = Alamofire;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE73B622CA799066A51AAB630ACD5254 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E65537C9028D91B2E793E8307716DE2 /* Pods-SeniorProject.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SeniorProject/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SeniorProject/Pods-SeniorProject.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EA0ADC75B20BB62958101306980460E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93C580EBDFA0D3A2B19C014EB6D7824E /* Alamofire.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				PRODUCT_MODULE_NAME = Alamofire;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F5C6FB3CB5E0E41339E6CC524840B3A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8D9319780CF5E57177AF703E8D5E20C /* SpotifyLogin.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -730,115 +1027,14 @@
 			};
 			name = Release;
 		};
-		A18C9CC7E37563F2891E7DC87F2DE6CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C21969A0AD3BC5CA7DD80BE218E7AD2F /* Alamofire.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
-				PRODUCT_MODULE_NAME = Alamofire;
-				PRODUCT_NAME = Alamofire;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		C2D60956ACFE966DC2E00A62989396A2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1306ED3AB1D478DC8468755EBF81C143 /* Pods-SeniorProject.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-SeniorProject/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-SeniorProject/Pods-SeniorProject.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		EA0ADC75B20BB62958101306980460E6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C21969A0AD3BC5CA7DD80BE218E7AD2F /* Alamofire.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
-				PRODUCT_MODULE_NAME = Alamofire;
-				PRODUCT_NAME = Alamofire;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		17F26588E506B64E0C4F5C4901E948E5 /* Build configuration list for PBXNativeTarget "Pods-SeniorProject" */ = {
+		28060662DF332DBCDBE229219D4C840B /* Build configuration list for PBXNativeTarget "SpotifyLogin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C2D60956ACFE966DC2E00A62989396A2 /* Debug */,
-				096F69D9E8067140E530C9A440E21B5C /* Release */,
+				798E7730F7367A34D78900D720468BE3 /* Debug */,
+				F5C6FB3CB5E0E41339E6CC524840B3A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -861,11 +1057,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E88C10494F9B2D8CE5F1AF23EC7B8CE5 /* Build configuration list for PBXNativeTarget "SpotifyLogin" */ = {
+		B04C63621A6F0DDD1B440A43EBE48522 /* Build configuration list for PBXNativeTarget "Pods-SeniorProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				03E96B65EE7FE812448AD8B98A9BB2FB /* Debug */,
-				794B5CB8D1AF22FC4AFC7300DC4B6C59 /* Release */,
+				1AB4B5935F581C0608A5445E244F7DC8 /* Debug */,
+				DE73B622CA799066A51AAB630ACD5254 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF1B3C8A74EE5F0BA8EEA33D98DC56D1 /* Build configuration list for PBXNativeTarget "DynamicBlurView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0BC7908DD34ACBD07B972C1E82AC4191 /* Debug */,
+				2F18AB70B4BC9E708B9E9F259501A306 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

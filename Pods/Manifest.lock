@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.7.2)
+  - DynamicBlurView (2.0.2)
   - SpotifyLogin (0.1.6)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - DynamicBlurView
   - SpotifyLogin (~> 0.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - DynamicBlurView
     - SpotifyLogin
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   SpotifyLogin: 9cdf82ff13e5f37e5ddc7fd07cf9793a9ebd1124
 
-PODFILE CHECKSUM: c65f58ef11642e624f85f217eef31d57704e9610
+PODFILE CHECKSUM: ea8910eb2f139b4568cbd10119fd4597253e2d97
 
 COCOAPODS: 1.5.0

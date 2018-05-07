@@ -6,5 +6,6 @@ target 'SeniorProject' do
 
   pod 'Alamofire', '~> 4.7'
   pod 'SpotifyLogin', '~> 0.1'
+  pod "DynamicBlurView"
 end
 

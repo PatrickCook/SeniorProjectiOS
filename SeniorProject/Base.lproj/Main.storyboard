@@ -87,7 +87,7 @@
                                     <color key="titleColor" red="0.1647058824" green="0.72156862749999995" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelTapped:" destination="Log-Lb-Y0q" eventType="touchUpInside" id="vRr-gz-GXJ"/>
+                                    <action selector="cancelTapped:" destination="Log-Lb-Y0q" eventType="touchUpInside" id="l4P-eE-rBd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -108,7 +108,7 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="cancelButton" destination="Aj1-hW-Qg8" id="aUZ-8y-bqE"/>
+                        <outlet property="cancelButton" destination="Aj1-hW-Qg8" id="k7l-Ls-LJj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VsE-Ha-KMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
