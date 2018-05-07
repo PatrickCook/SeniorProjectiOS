@@ -60,7 +60,6 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    
     /* Helpers */
     func showLoginFlow() {
         //self.performSegue(withIdentifier: "home_to_login", sender: self)
@@ -71,7 +70,11 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.showLoginFlow()
     }
     
-    @IBAction func unwindToQueuesView(segue:UIStoryboardSegue) {
-        
+    @IBAction func unwindToQueuesView(sender:UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? CreateQueueViewController {
+            //Create queue unwind
+        } else if let sourceViewController = sender.source as? JoinQueueViewController {
+            //Create queue unwind
+        }
     }
 }

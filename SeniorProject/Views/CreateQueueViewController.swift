@@ -8,49 +8,100 @@
 
 import UIKit
 
-class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+    
     var searchController: UISearchController!
+    var selectedMembers: Set<String> = []
+    var membersFromQuery: [String] = ["userA", "userB", "userC", "userD"]
     
+    @IBOutlet weak var selectedMembersLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var queueNameInput: UITextField!
-    @IBOutlet weak var queuePasswordInput: UITextField!
-    
-    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
-        
-    }
     
     @IBAction func createQueueTapped(_ sender: UIButton) {
-        
+        print("Create queue tapped")
+        print("Add members: " + selectedMembers.joined(separator: ", "))
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.black
+        refreshAddedMembers()
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Add members"
         searchController.searchBar.barStyle = .black
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        
         tableView.tableHeaderView = searchController.searchBar
         tableView.reloadData()
+        tableView.allowsMultipleSelection = true
         
         definesPresentationContext = true
     }
-
-    /* TABLE DELEGATE METHODS */
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    
+    /* Search View Delegate Methods */
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text)
     }
+    
+    /* Search Bar Delegate Methods */
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        print("Search")
+    }
+
+    /* Table View Delegate Methods */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return membersFromQuery.count
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell
         
-        userCell?.userNameLabel.text = "default_user"
+        userCell?.userNameLabel.text = membersFromQuery[indexPath.row]
+        userCell?.tintColor = .white
+        userCell?.selectionStyle = .none
+
+        /* Make sure another search will persist users previously added */
+        if (selectedMembers.contains(membersFromQuery[indexPath.row])) {
+            userCell?.accessoryType = .checkmark
+        } else {
+            userCell?.accessoryType = .none
+        }
         
         return userCell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userCell = tableView.cellForRow(at: indexPath) as! UserCell
+        
+        selectedMembers.insert(userCell.userNameLabel.text!)
+        userCell.accessoryType = .checkmark
+        refreshAddedMembers()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let userCell = tableView.cellForRow(at: indexPath) as! UserCell
+        
+        selectedMembers.remove(userCell.userNameLabel.text!)
+        userCell.accessoryType = .none
+        refreshAddedMembers()
+    }
+    
+    func refreshAddedMembers() {
+        if (selectedMembers.count == 0) {
+            selectedMembersLabel.text = "none"
+        } else {
+            selectedMembersLabel.text = selectedMembers.joined(separator: ", ")
+        }
     }
 }

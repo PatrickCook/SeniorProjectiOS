@@ -215,6 +215,7 @@
 		3AA9D6CF208E479F009F24F4 /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
+				3AC1CD3F209BAC6700C2D154 /* Misc */,
 				3AC4A89C208EDC10006D9B2B /* Cells */,
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
@@ -245,13 +246,20 @@
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
 		};
+		3AC1CD3F209BAC6700C2D154 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */,
 				3A191BD1208E57C500734405 /* LoginViewController.swift */,
 				3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */,
 				3ACF780820914DC3000A025C /* QueueViewController.swift */,
+				3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */,
 				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
 				3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */,
 				3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */,
