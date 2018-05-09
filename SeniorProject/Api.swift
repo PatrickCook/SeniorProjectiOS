@@ -23,7 +23,6 @@ class Api {
                 switch response.result {
                 case .success:
                     print("Validation Successful")
-                    print(response.data)
                 case .failure(let error):
                     print(error)
                 }
