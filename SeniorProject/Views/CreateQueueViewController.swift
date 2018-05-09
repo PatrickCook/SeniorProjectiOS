@@ -12,13 +12,14 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     var searchController: UISearchController!
     var selectedMembers: Set<String> = []
+    var queueName: String!
     var membersFromQuery: [String] = ["userA", "userB", "userC", "userD"]
     
     @IBOutlet weak var selectedMembersLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func createQueueTapped(_ sender: UIButton) {
-        print("Create queue tapped")
+        print("Create queue: " + queueName)
         print("Add members: " + selectedMembers.joined(separator: ", "))
     }
     
@@ -46,13 +47,14 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     /* Search View Delegate Methods */
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
+        print(searchController.searchBar.text!)
     }
     
     /* Search Bar Delegate Methods */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        print("Search")
+        print("Search: " + searchBar.text!)
+        //TODO: Search members using text and API
     }
 
     /* Table View Delegate Methods */

@@ -37,6 +37,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     /* Search View Delegate Methods */
     func updateSearchResults(for searchController: UISearchController) {
         print(searchController.searchBar.text)
+        // TODO: Search queues using name
     }
     
     /* Search Bar Delegate Methods */
@@ -62,7 +63,20 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
         let joinQueueCell = tableView.cellForRow(at: indexPath!) as! JoinQueueCell
+        let queueAlertTitle = "Join queue " + joinQueueCell.queueNameLabel.text! + "?"
+        let alertController = UIAlertController(title: queueAlertTitle, message: "", preferredStyle: UIAlertControllerStyle.alert)
         
-        print(joinQueueCell.queueNameLabel.text)
+        let saveAction = UIAlertAction(title: "Join", style: UIAlertActionStyle.default, handler: { alert -> Void in
+            print("Joining queue: " + joinQueueCell.queueNameLabel.text!)
+            //TODO: Join queue using API
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }

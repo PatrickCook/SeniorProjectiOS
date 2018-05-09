@@ -54,6 +54,7 @@
                                         </constraints>
                                         <state key="normal" title="Create a queue"/>
                                         <connections>
+                                            <action selector="createQueueTapped:" destination="Log-Lb-Y0q" eventType="touchUpInside" id="RhQ-3d-6IX"/>
                                             <segue destination="ydq-LT-0WT" kind="presentation" identifier="show_create_queue" id="RrM-wX-Nna"/>
                                         </connections>
                                     </button>
@@ -65,6 +66,7 @@
                                         </constraints>
                                         <state key="normal" title="Join a queue"/>
                                         <connections>
+                                            <action selector="joinQueueTapped:" destination="Log-Lb-Y0q" eventType="touchUpInside" id="UJc-IH-zO6"/>
                                             <segue destination="2NO-I5-JmF" kind="presentation" identifier="show_join_queue" id="04i-Jo-lju"/>
                                         </connections>
                                     </button>
