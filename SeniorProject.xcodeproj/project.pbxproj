@@ -222,6 +222,7 @@
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
+				3A15A59120A276D5006E24C5 /* Api.swift */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
@@ -263,7 +264,6 @@
 				3ACF780820914DC3000A025C /* QueueViewController.swift */,
 				3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */,
 				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
-				3A15A59120A276D5006E24C5 /* Api.swift */,
 				3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */,
 				3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */,
 			);

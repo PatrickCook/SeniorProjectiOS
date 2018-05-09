@@ -9,9 +9,12 @@ protocol PopoverDelegate {
 
 class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
+    var api = Api.api
+    
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +29,10 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self?.showLoginFlow()
             }
         }
+        
+        api.login(username: "admin", password: "password", completion: { [weak self] response in
+            print("API LOGIN: in response - " + response.description)
+        })
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
