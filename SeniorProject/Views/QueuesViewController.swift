@@ -13,6 +13,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
+    var queues: [Queue] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,8 +33,10 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         api.login(username: "admin", password: "password", completion: { [weak self] response in
             print("API LOGIN: in response - " + response.description)
-            self?.api.getQueues(completion: { response in
+            self?.api.getQueues(completion: { [weak self] response in
                 print("API QUEUES GET")
+                self?.queues = response
+                self?.tableView.reloadData()
             })
         })
         
@@ -65,7 +68,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return queues.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -73,7 +76,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let queueCell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath) as? QueueCell
         
-        queueCell?.queueNameLabel.text = "Default Queue Name"
+        queueCell?.queueNameLabel.text = queues[indexPath.row].name
         queueCell?.currentSongLabel.text = "Default Song Name"
         
         return queueCell!

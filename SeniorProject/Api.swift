@@ -29,7 +29,7 @@ class Api {
         }
     }
     
-    func getQueues(completion: @escaping (Bool) -> Void) {
+    func getQueues(completion: @escaping ([Queue]) -> Void) {
         
         Alamofire.request(baseURL + "/queue", method: .get)
             .validate(statusCode: 200..<300)
@@ -50,10 +50,10 @@ class Api {
                                 queueArray.append(queue)
                             }
                         }
+                        completion(queueArray)
                     }
-                    completion(true)
                 case .failure(let error):
-                    completion(false)
+                    completion([])
                     print(error)
                 }
         }
