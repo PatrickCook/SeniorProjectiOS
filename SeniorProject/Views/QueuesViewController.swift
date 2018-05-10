@@ -32,6 +32,9 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         api.login(username: "admin", password: "password", completion: { [weak self] response in
             print("API LOGIN: in response - " + response.description)
+            self?.api.getQueues(completion: { response in
+                print("API QUEUES GET")
+            })
         })
         
         searchController = UISearchController(searchResultsController: nil)

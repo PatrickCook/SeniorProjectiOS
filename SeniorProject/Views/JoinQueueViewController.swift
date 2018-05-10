@@ -36,7 +36,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     
     /* Search View Delegate Methods */
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
+        print(searchController.searchBar.text!)
         // TODO: Search queues using name
     }
     

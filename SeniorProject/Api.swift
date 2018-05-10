@@ -1,7 +1,6 @@
-
 import Foundation
 import Alamofire
-
+import SwiftyJSON
 
 class Api {
     
@@ -16,20 +15,50 @@ class Api {
             "password_hash": password
         ]
         
-       Alamofire.request(baseURL + "/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        Alamofire.request(baseURL + "/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
             .responseData { response in
                 switch response.result {
                 case .success:
                     print("Validation Successful")
+                    completion(true)
                 case .failure(let error):
+                    completion(false)
+                    print(error)
+                }
+        }
+    }
+    
+    func getQueues(completion: @escaping (Bool) -> Void) {
+        
+        Alamofire.request(baseURL + "/queue", method: .get)
+            .validate(statusCode: 200..<300)
+            .responseData { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("Received Queues: \(json)")
+                    
+                    if let array = json["data"].array {
+                        var queueArray: [Queue] = []
+                        for item in array {
+                            guard let dictionary = item.dictionaryObject else {
+                                continue
+                            }
+                            if let queue = Queue(data: dictionary) {
+                                print(queue.description)
+                                queueArray.append(queue)
+                            }
+                        }
+                    }
+                    completion(true)
+                case .failure(let error):
+                    completion(false)
                     print(error)
                 }
         }
     }
 }
-
 
 /*
  * TEMPLATES:
