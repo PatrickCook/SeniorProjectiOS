@@ -278,7 +278,7 @@
             </objects>
             <point key="canvasLocation" x="1084" y="4.9475262368815596"/>
         </scene>
-        <!--Queue Name-->
+        <!--Queue View Controller-->
         <scene sceneID="GLW-Ce-64z">
             <objects>
                 <viewController id="L1w-q5-Uih" customClass="QueueViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -394,7 +394,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="eNa-rM-x0Z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Queue Name" id="tuM-X2-afb">
+                    <navigationItem key="navigationItem" id="tuM-X2-afb">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZE0-lX-qN6">
                             <color key="tintColor" red="0.1647058824" green="0.72156862749999995" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -402,6 +402,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="currentSongLabel" destination="DU6-wF-F2I" id="ud2-Hr-byB"/>
+                        <outlet property="queuedByLabel" destination="dFD-j6-Yq6" id="KeN-uF-7LY"/>
+                        <outlet property="tableView" destination="y3z-ht-tBM" id="aBq-0L-vGx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-Ch-Rrt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

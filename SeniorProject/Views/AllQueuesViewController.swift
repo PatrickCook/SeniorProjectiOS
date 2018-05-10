@@ -2,6 +2,7 @@
 import UIKit
 import SpotifyLogin
 import DynamicBlurView
+import PromiseKit
 
 protocol PopoverDelegate {
     func popoverDismissed()
@@ -10,15 +11,15 @@ protocol PopoverDelegate {
 class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
     
     var api = Api.api
-    
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
-    var queues: [Queue] = []
+    var queues: [Queue] = Store.currentQueues
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -31,30 +32,46 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
-        api.login(username: "admin", password: "password", completion: { [weak self] response in
-            print("API LOGIN: in response - " + response.description)
-            self?.api.getQueues(completion: { [weak self] response in
-                print("API QUEUES GET")
-                self?.queues = response
-                self?.tableView.reloadData()
-            })
-        })
+        initializeSearch()
+        initializeTable()
         
+        
+        definesPresentationContext = true
+    }
+    
+    func initializeSearch() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search queues"
         searchController.searchBar.barStyle = .black
+    }
+    
+    func initializeTable() {
         tableView.tableHeaderView = searchController.searchBar
         tableView.contentOffset = CGPoint(x: 0.0, y: 60.0)
         tableView.reloadData()
-        
-        definesPresentationContext = true
+    }
+    
+    func initializeData() {
+        showLoadingAlert()
+        firstly {
+            self.api.login(username: "admin", password: "password")
+        }.then { (result) -> Promise<[Queue]> in
+            self.api.getAllQueues()
+        }.then { (result) -> Void in
+            self.dismissLoadingAlert()
+            self.tableView.reloadData()
+            print("finished initializing data")
+        }.catch { (error) in
+            print(error)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
-            if identifier == "showPopoverView" {
+            switch identifier {
+            case "showPopoverView":
                 if let viewController = segue.destination as? PopoverViewController {
                     blurView = DynamicBlurView(frame: view.bounds)
                     viewController.modalPresentationStyle = .overFullScreen
@@ -62,13 +79,17 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     blurView.blurRadius = 10
                     view.addSubview(blurView)
                 }
+            case "show_queue_from_row", "show_queue_from_accessory":
+                Store.setSelectedQueue(index: (tableView.indexPathForSelectedRow?.row)!)
+            default:
+                break
             }
         }
     }
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return queues.count
+        return Store.currentQueues.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -76,7 +97,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let queueCell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath) as? QueueCell
         
-        queueCell?.queueNameLabel.text = queues[indexPath.row].name
+        queueCell?.queueNameLabel.text = Store.currentQueues[indexPath.row].name
         queueCell?.currentSongLabel.text = "Default Song Name"
         
         return queueCell!

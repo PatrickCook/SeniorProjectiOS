@@ -15,9 +15,10 @@
 		3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4E31862091668200D5A870 /* PopoverViewController.swift */; };
 		3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */; };
 		3A581BA92092A72B00E2E872 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A581BA82092A72B00E2E872 /* UserCell.swift */; };
-		3A83FDFF20A3CE6D001C359A /* AlamofireSerializationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FDFE20A3CE6D001C359A /* AlamofireSerializationExtensions.swift */; };
 		3A83FE0120A3CF75001C359A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0020A3CF75001C359A /* User.swift */; };
 		3A83FE0320A3CF87001C359A /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0220A3CF87001C359A /* Song.swift */; };
+		3A83FE0820A4B528001C359A /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0720A4B528001C359A /* Store.swift */; };
+		3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */; };
 		3A9E2FCB208E54F200A975E7 /* SpotifyLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */; };
 		3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */; };
 		3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D4208E479F009F24F4 /* Main.storyboard */; };
@@ -27,7 +28,7 @@
 		3AA9D6F1208E47A0009F24F4 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */; };
 		3AC1CD3C209BA30A00C2D154 /* JoinQueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */; };
 		3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */; };
-		3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */; };
+		3AC4A899208ECAE9006D9B2B /* AllQueuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */; };
 		3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */; };
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
 		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
@@ -78,9 +79,10 @@
 		3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQueueViewController.swift; sourceTree = "<group>"; };
 		3A581BA82092A72B00E2E872 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3A667329208E502F0005940A /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A83FDFE20A3CE6D001C359A /* AlamofireSerializationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireSerializationExtensions.swift; sourceTree = "<group>"; };
 		3A83FE0020A3CF75001C359A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A83FE0220A3CF87001C359A /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		3A83FE0720A4B528001C359A /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA9D6CD208E479F009F24F4 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		3AA9D6F2208E47A0009F24F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueCell.swift; sourceTree = "<group>"; };
 		3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueViewController.swift; sourceTree = "<group>"; };
-		3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuesViewController.swift; sourceTree = "<group>"; };
+		3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQueuesViewController.swift; sourceTree = "<group>"; };
 		3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3AC4A89F208EDCBF006D9B2B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = ../QueueViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +231,7 @@
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
 				3A15A59120A276D5006E24C5 /* Api.swift */,
-				3A83FDFE20A3CE6D001C359A /* AlamofireSerializationExtensions.swift */,
+				3A83FE0720A4B528001C359A /* Store.swift */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
@@ -266,8 +268,9 @@
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */,
 				3A191BD1208E57C500734405 /* LoginViewController.swift */,
-				3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */,
+				3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */,
 				3ACF780820914DC3000A025C /* QueueViewController.swift */,
 				3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */,
 				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
@@ -465,6 +468,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SpotifyLogin/SpotifyLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -472,6 +476,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpotifyLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -488,11 +493,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */,
-				3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */,
+				3AC4A899208ECAE9006D9B2B /* AllQueuesViewController.swift in Sources */,
 				3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */,
+				3A83FE0820A4B528001C359A /* Store.swift in Sources */,
 				3A15A59220A276D5006E24C5 /* Api.swift in Sources */,
 				3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */,
 				3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */,
+				3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */,
 				3A83FE0320A3CF87001C359A /* Song.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,
 				3A1538EC2099154F0083EA18 /* SongSearchViewController.swift in Sources */,
@@ -504,7 +511,6 @@
 				3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */,
 				3A1538EA2099152A0083EA18 /* SongSearchCell.swift in Sources */,
 				3A1538E8209911210083EA18 /* Queue.swift in Sources */,
-				3A83FDFF20A3CE6D001C359A /* AlamofireSerializationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +692,10 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -706,7 +715,10 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -723,7 +735,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -740,7 +756,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -756,7 +776,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -772,7 +796,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

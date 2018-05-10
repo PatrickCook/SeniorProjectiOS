@@ -10,12 +10,12 @@ import Foundation
 
 class User {
     
-    let id: Int
-    let username: String
-    let firstName: String
-    let lastName: String
-    let queues: [Queue]
-    let songs: [Song]
+    var id: Int
+    var username: String
+    var firstName: String
+    var lastName: String
+    var queues: [Queue]
+    var songs: [Song]
     
     var description: String {
         return "User: { id: \(id), username: \(username), firstName: \(firstName), lastName: \(lastName)}"

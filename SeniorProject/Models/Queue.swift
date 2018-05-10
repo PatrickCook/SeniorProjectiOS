@@ -10,15 +10,20 @@ import Foundation
 
 class Queue {
     
-    let id: Int
-    let name: String
-    let curMembers: Int
-    let maxMembers: Int
-    let curSongs: Int
-    let maxSongs: Int
-    let isPrivate: Bool
-    let owner: Int
-    let songs: [Song]
+    var id: Int
+    var name: String
+    var curMembers: Int
+    var maxMembers: Int
+    var curSongs: Int
+    var maxSongs: Int
+    var isPrivate: Bool
+    var owner: Int
+    var songs: [Song]
+    
+    var currentSong: Song? {
+        set (newSong) { newSong }
+        get { return songs.first }
+    }
     
     var description: String {
         return "Queue: { id: \(id), name: \(name), curMember: \(curMembers), maxMember: \(maxMembers), curSongs: \(curSongs), maxSongs: \(curSongs), isPrivate: \(isPrivate), owner: \(owner)}"
@@ -48,5 +53,14 @@ class Queue {
         self.maxSongs = maxSongs
         self.isPrivate = isPrivate
         self.songs = []
+        self.currentSong = nil
+    }
+    
+    func queue(song: Song) {
+        songs.append(song)
+    }
+    
+    func dequeue() {
+        songs.removeFirst()
     }
 }
