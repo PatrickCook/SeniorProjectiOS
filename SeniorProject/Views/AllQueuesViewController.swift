@@ -8,7 +8,7 @@ protocol PopoverDelegate {
     func popoverDismissed()
 }
 
-class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
+class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
     
     var api = Api.api
     var searchController: UISearchController!

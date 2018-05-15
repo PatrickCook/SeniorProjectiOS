@@ -33,7 +33,6 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.black
-        
         updateAddedMembers()
         initializeSearch()
         initializeTable()
@@ -115,6 +114,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
         selectedMembers.insert(membersFromQuery[indexPath.row])
         userCell.accessoryType = .checkmark
         updateAddedMembers()
+        searchController.searchBar.resignFirstResponder()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

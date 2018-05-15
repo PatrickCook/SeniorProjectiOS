@@ -21,7 +21,6 @@
 		3A9E2FCB208E54F200A975E7 /* SpotifyLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */; };
 		3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */; };
 		3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D4208E479F009F24F4 /* Main.storyboard */; };
-		3AA9D6D8208E47A0009F24F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */; };
 		3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */; };
 		3AA9D6E6208E47A0009F24F4 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6E5208E47A0009F24F4 /* SeniorProjectTests.swift */; };
 		3AA9D6F1208E47A0009F24F4 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */; };
@@ -31,6 +30,9 @@
 		3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */; };
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
 		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
+		3AD7B16B20AB81FA00C34E66 /* MusicPlayerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7B16A20AB81FA00C34E66 /* MusicPlayerUIView.swift */; };
+		3AD7B16F20AB87EE00C34E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD7B16E20AB84D700C34E66 /* Assets.xcassets */; };
+		3AD7B17120AB952D00C34E66 /* MusicPlayerUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AD7B17020AB952D00C34E66 /* MusicPlayerUIView.xib */; };
 		7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +87,6 @@
 		3AA9D6CD208E479F009F24F4 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA9D6D5208E479F009F24F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA9D6DA208E47A0009F24F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA9D6DC208E47A0009F24F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AA9D6E1208E47A0009F24F4 /* SeniorProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +101,9 @@
 		3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3AC4A89F208EDCBF006D9B2B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = ../QueueViewController.swift; sourceTree = "<group>"; };
+		3AD7B16A20AB81FA00C34E66 /* MusicPlayerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerUIView.swift; sourceTree = "<group>"; };
+		3AD7B16E20AB84D700C34E66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "/Users/patrickcook/Library/Mobile Documents/com~apple~CloudDocs/Programming/Senior Project/iOS/SeniorProject/Assets.xcassets"; sourceTree = "<absolute>"; };
+		3AD7B17020AB952D00C34E66 /* MusicPlayerUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MusicPlayerUIView.xib; sourceTree = "<group>"; };
 		B0719795B4E98A388B401D4B /* Pods-SeniorProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FC3F3586F5EF532343A3FF /* Pods-SeniorProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,14 +227,14 @@
 		3AA9D6CF208E479F009F24F4 /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
-				3AC1CD3F209BAC6700C2D154 /* Misc */,
+				3AC1CD3F209BAC6700C2D154 /* CustomViews */,
 				3AC4A89C208EDC10006D9B2B /* Cells */,
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
 				3A15A59120A276D5006E24C5 /* Api.swift */,
+				3AD7B16E20AB84D700C34E66 /* Assets.xcassets */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
-				3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
 				3AA9D6DC208E47A0009F24F4 /* Info.plist */,
 			);
@@ -255,11 +259,13 @@
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
 		};
-		3AC1CD3F209BAC6700C2D154 /* Misc */ = {
+		3AC1CD3F209BAC6700C2D154 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3AD7B17020AB952D00C34E66 /* MusicPlayerUIView.xib */,
+				3AD7B16A20AB81FA00C34E66 /* MusicPlayerUIView.swift */,
 			);
-			path = Misc;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
@@ -416,7 +422,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */,
-				3AA9D6D8208E47A0009F24F4 /* Assets.xcassets in Resources */,
+				3AD7B17120AB952D00C34E66 /* MusicPlayerUIView.xib in Resources */,
+				3AD7B16F20AB87EE00C34E66 /* Assets.xcassets in Resources */,
 				3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +502,7 @@
 				3A15A59220A276D5006E24C5 /* Api.swift in Sources */,
 				3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */,
 				3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */,
+				3AD7B16B20AB81FA00C34E66 /* MusicPlayerUIView.swift in Sources */,
 				3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */,
 				3A83FE0320A3CF87001C359A /* Song.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,

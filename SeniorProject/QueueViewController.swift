@@ -15,7 +15,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.title = queue.name
         initializeData()
     }
