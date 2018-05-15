@@ -17,11 +17,11 @@ class Queue {
     var curSongs: Int
     var maxSongs: Int
     var isPrivate: Bool
-    var owner: Int
+    var owner: String
     var songs: [Song]
     
     var currentSong: Song? {
-        set (newSong) { newSong }
+        set {}
         get { return songs.first }
     }
     
@@ -32,7 +32,7 @@ class Queue {
     public required init?(data: [String: Any]) {
         guard
             let id = data["id"] as? Int,
-            let owner = data["owner"] as? Int,
+            let owner = data["ownerUsername"] as? String,
             let name = data["name"] as? String,
             let curMembers = data["cur_members"] as? Int,
             let maxMembers = data["max_members"] as? Int,
@@ -56,7 +56,7 @@ class Queue {
         self.currentSong = nil
     }
     
-    func queue(song: Song) {
+    func enqueue(song: Song) {
         songs.append(song)
     }
     

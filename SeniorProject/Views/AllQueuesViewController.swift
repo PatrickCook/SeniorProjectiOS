@@ -13,13 +13,13 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var api = Api.api
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
-    var queues: [Queue] = Store.currentQueues
+    var queues: [Queue] = []
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeData()
+        fetchQueues()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,8 +34,6 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         initializeSearch()
         initializeTable()
-        
-        
         definesPresentationContext = true
     }
     
@@ -53,16 +51,16 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.reloadData()
     }
     
-    func initializeData() {
+    func fetchQueues() {
         showLoadingAlert()
         firstly {
             self.api.login(username: "admin", password: "password")
         }.then { (result) -> Promise<[Queue]> in
-            self.api.getAllQueues()
+            self.api.getAllQueues(with: nil)
         }.then { (result) -> Void in
+            self.queues = result
             self.dismissLoadingAlert()
             self.tableView.reloadData()
-            print("finished initializing data")
         }.catch { (error) in
             print(error)
         }
@@ -80,7 +78,9 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     view.addSubview(blurView)
                 }
             case "show_queue_from_row", "show_queue_from_accessory":
-                Store.setSelectedQueue(index: (tableView.indexPathForSelectedRow?.row)!)
+                if let viewController = segue.destination as? QueueViewController {
+                    viewController.queue = queues[(tableView.indexPathForSelectedRow?.row)!]
+                }
             default:
                 break
             }
@@ -89,7 +89,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Store.currentQueues.count
+        return queues.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -97,7 +97,7 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let queueCell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath) as? QueueCell
         
-        queueCell?.queueNameLabel.text = Store.currentQueues[indexPath.row].name
+        queueCell?.queueNameLabel.text = queues[indexPath.row].name
         queueCell?.currentSongLabel.text = "Default Song Name"
         
         return queueCell!
@@ -120,12 +120,8 @@ class QueuesViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func unwindToQueuesView(sender:UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? CreateQueueViewController {
-            //Create queue unwind
-        } else if let sourceViewController = sender.source as? JoinQueueViewController {
-            //Create queue unwind
-        }
         blurView.blurRadius = 0
         blurView.remove()
+        fetchQueues()
     }
 }

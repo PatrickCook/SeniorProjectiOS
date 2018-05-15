@@ -30,10 +30,16 @@ class Api {
         }
     }
     
-    func getAllQueues() -> Promise<[Queue]> {
-        Store.currentQueues = []
+    func getAllQueues(with: String!) -> Promise<[Queue]> {
+        let parameters: [String: Any] = [
+            "name": with ?? ""
+        ]
+        
         return Promise { fulfill, reject in
-            Alamofire.request(baseURL + "/queue", method: .get)
+            Alamofire.request(baseURL + "/queue",
+                              method: .get,
+                              parameters: parameters,
+                              encoding: URLEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
@@ -41,16 +47,17 @@ class Api {
                         let json = JSON(value)
        
                         if let array = json["data"].array {
+                            var queues: [Queue] = []
                             for item in array {
                                 guard let dictionary = item.dictionaryObject else {
                                     continue
                                 }
                                 if let queue = Queue(data: dictionary) {
                                     print(queue.description)
-                                    Store.currentQueues.append(queue)
+                                    queues.append(queue)
                                 }
                             }
-                            fulfill(Store.currentQueues)
+                            fulfill(queues)
                         }
                     case .failure(let error):
                         reject(error)
@@ -60,12 +67,9 @@ class Api {
         }
     }
     
-    func getSelectedQueue() -> Promise<Queue> {
-        let queueId = Store.selectedQueue?.id
-        Store.selectedQueue?.songs.removeAll()
-        
+    func getSelectedQueue(queue: Queue) -> Promise<Queue> {
         return Promise { fulfill, reject in
-            Alamofire.request(baseURL + "/queue/\(queueId ?? -1)", method: .get)
+            Alamofire.request(baseURL + "/queue/\(queue.id)", method: .get)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
@@ -73,17 +77,17 @@ class Api {
                         let json = JSON(value)
                         print(json["data"]["Songs"])
                         if let array = json["data"]["Songs"].array {
-                            print(array.count)
+                            var songs: [Song] = []
                             for item in array {
                                 guard let dictionary = item.dictionaryObject else {
                                     continue
                                 }
                                 if let song = Song(data: dictionary) {
                                     print(song.description)
-                                    Store.selectedQueue?.queue(song: song)
+                                    queue.enqueue(song: song)
                                 }
                             }
-                            fulfill(Store.selectedQueue!)
+                            fulfill(queue)
                         }
                     case .failure(let error):
                         reject(error)
@@ -92,28 +96,86 @@ class Api {
             }
         }
     }
+    
+    func searchUsers(query: String) -> Promise<[User]> {
+        let parameters: [String: Any] = [
+            "search": query
+        ]
+        
+        return Promise { fulfill, reject in
+            Alamofire.request(baseURL + "/user",
+                              method: .get,
+                              parameters: parameters,
+                              encoding: URLEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        if let array = json["data"].array {
+                            var users: [User] = []
+                            for item in array {
+                                guard let dictionary = item.dictionaryObject else {
+                                    continue
+                                }
+                                if let user = User(data: dictionary) {
+                                    users.append(user)
+                                }
+                            }
+                            fulfill(users)
+                        }
+                    case .failure(let error):
+                        reject(error)
+                        print(error)
+                    }
+            }
+        }
+    }
+    
+    func createQueue(name: String, isPrivate: Bool, password: String, members: [User]) -> Promise<Bool> {
+        
+        let parameters: [String : Any] = [
+            "name": name,
+            "private": isPrivate,
+            "password": password,
+            "members": members.map { $0.id }
+        ]
+        
+        return Promise { fulfill, reject in
+            Alamofire.request(baseURL + "/queue", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    fulfill(true)
+                case .failure(let error):
+                    reject(error)
+                }
+            }
+        }
+    }
+    
+    func joinQueue(queueId: Int, password: String!) -> Promise<Bool> {
+        
+        var parameters: [String : Any] = [:]
+        
+        if password != nil {
+            parameters["password"] = password!
+        }
+        
+        return Promise{ fulfill, reject in
+            Alamofire.request(baseURL + "/queue/\(queueId)/join", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                        print(error)
+                    }
+            }
+        }
+    }
 }
-
-/*
- * TEMPLATES:
- *
- * Add this in the Api.swift file
- * func apiAction(completion: @escaping (RETURN_TYPE) -> Void) {
- *        Alamofire.request(baseURL + "ENDPOINT_URL").responseJSON { response in
- *            guard let value = response.result.value as? [String : Any], let status = value["status"] as? String, let data = value["data"] as? [Any] else {
- *                print("Invalid response")
- *                return
- *            }
- *            if status == "success" {
- *                completion(RETURN_TYPE)
- *            } else {
- *                completion(RETURN_TYPE)
- *            }
- *        }
- *    }
- *
- * Call this new Api function in a ViewControler by doing this
- * api.ENDPOINT_ACTION(PARAMETERS, completion: { [weak self] response in
- *    //Use response
- * })
- */

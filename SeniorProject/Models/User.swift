@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class User: Hashable, Equatable {
     
     var id: Int
     var username: String
@@ -38,5 +38,15 @@ class User {
         self.lastName = lastName
         self.queues = []
         self.songs = []
+    }
+    
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    var hashValue: Int {
+        get {
+            return id.hashValue << 15 + username.hashValue
+        }
     }
 }

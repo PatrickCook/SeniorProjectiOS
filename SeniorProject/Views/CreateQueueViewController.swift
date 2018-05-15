@@ -7,27 +7,41 @@
 //
 
 import UIKit
+import PromiseKit
 
 class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
+    var api = Api.api
     var searchController: UISearchController!
-    var selectedMembers: Set<String> = []
+    var selectedMembers: Set<User> = []
     var queueName: String!
-    var membersFromQuery: [String] = ["userA", "userB", "userC", "userD"]
+    var membersFromQuery: [User] = []
     
     @IBOutlet weak var selectedMembersLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func createQueueTapped(_ sender: UIButton) {
-        print("Create queue: " + queueName)
-        print("Add members: " + selectedMembers.joined(separator: ", "))
+        firstly {
+            api.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))
+        }.then { (result) in
+            print("Created queue.")
+        }.catch { (error) in
+            print(error)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor.black
-        refreshAddedMembers()
         
+        updateAddedMembers()
+        initializeSearch()
+        initializeTable()
+        
+        definesPresentationContext = true
+    }
+    
+    func initializeSearch() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
         searchController.dimsBackgroundDuringPresentation = false
@@ -37,17 +51,29 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
-        
+    }
+    
+    func initializeTable() {
         tableView.tableHeaderView = searchController.searchBar
         tableView.reloadData()
         tableView.allowsMultipleSelection = true
-        
-        definesPresentationContext = true
+    }
+    
+    func fetchData(query: String) {
+        firstly {
+            self.api.searchUsers(query: query)
+        }.then { (result) -> Void in
+            self.membersFromQuery = result
+            self.tableView.reloadData()
+        }.catch { (error) in
+            print(error)
+        }
     }
     
     /* Search View Delegate Methods */
     func updateSearchResults(for searchController: UISearchController) {
         print(searchController.searchBar.text!)
+        fetchData(query: searchController.searchBar.text!)
     }
     
     /* Search Bar Delegate Methods */
@@ -69,7 +95,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "userCell", for: indexPath) as? UserCell
         
-        userCell?.userNameLabel.text = membersFromQuery[indexPath.row]
+        userCell?.userNameLabel.text = membersFromQuery[indexPath.row].username
         userCell?.tintColor = .white
         userCell?.selectionStyle = .none
 
@@ -86,24 +112,25 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let userCell = tableView.cellForRow(at: indexPath) as! UserCell
         
-        selectedMembers.insert(userCell.userNameLabel.text!)
+        selectedMembers.insert(membersFromQuery[indexPath.row])
         userCell.accessoryType = .checkmark
-        refreshAddedMembers()
+        updateAddedMembers()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let userCell = tableView.cellForRow(at: indexPath) as! UserCell
         
-        selectedMembers.remove(userCell.userNameLabel.text!)
+        selectedMembers.remove(membersFromQuery[indexPath.row])
         userCell.accessoryType = .none
-        refreshAddedMembers()
+        updateAddedMembers()
     }
     
-    func refreshAddedMembers() {
+    func updateAddedMembers() {
         if (selectedMembers.count == 0) {
             selectedMembersLabel.text = "none"
         } else {
-            selectedMembersLabel.text = selectedMembers.joined(separator: ", ")
+            let extracted = selectedMembers.map { $0.username }
+            selectedMembersLabel.text = extracted.joined(separator: ", ")
         }
     }
 }

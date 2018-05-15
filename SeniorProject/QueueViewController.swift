@@ -7,6 +7,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let api = Api.api
     var songs: [Song] = []
+    var queue: Queue!
     
     @IBOutlet weak var queuedByLabel: UILabel!
     @IBOutlet weak var currentSongLabel: UILabel!
@@ -15,21 +16,20 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.title = Store.selectedQueue?.name
+        self.title = queue.name
         initializeData()
     }
     
     func initializeData() {
         self.showLoadingAlert()
         firstly {
-            self.api.getSelectedQueue()
+            self.api.getSelectedQueue(queue: queue)
         }.then { (result) -> Void in
             self.dismissLoadingAlert()
-            self.songs = (Store.selectedQueue?.songs)!
-            self.queuedByLabel.text = Store.selectedQueue?.currentSong?.userId.description
-            self.currentSongLabel.text = Store.selectedQueue?.currentSong?.spotifyURI
+            self.songs = self.queue.songs
+            self.queuedByLabel.text = self.queue.currentSong?.userId.description
+            self.currentSongLabel.text = self.queue.currentSong?.spotifyURI
             self.tableView.reloadData()
-            print("finished initializing songs")
         }.catch { (error) in
             print(error)
         }

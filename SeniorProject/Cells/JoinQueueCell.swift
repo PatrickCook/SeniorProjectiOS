@@ -11,6 +11,7 @@ import UIKit
 class JoinQueueCell: UITableViewCell {
 
     @IBOutlet weak var queueNameLabel: UILabel!
+    @IBOutlet weak var queueOwnerLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
