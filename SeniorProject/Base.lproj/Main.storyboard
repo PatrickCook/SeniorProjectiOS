@@ -267,13 +267,17 @@
                                     <outlet property="delegate" destination="aKo-B7-gg7" id="8rj-Tt-EqB"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKu-rT-I5J" customClass="MusicPlayerUIView" customModule="SeniorProject" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKu-rT-I5J" customClass="MiniMusicPlayerView" customModule="SeniorProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="612" width="375" height="55"/>
                                 <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Aac-kB-61R"/>
                                     <constraint firstAttribute="width" constant="375" id="hS7-19-Rud"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Czy-JQ-QS2" appends="YES" id="Vb0-mO-LL7"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -310,6 +314,11 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="kly-SV-8Xb"/>
                 </view>
+                <tapGestureRecognizer id="Czy-JQ-QS2">
+                    <connections>
+                        <action selector="openMusicPlayerTapped:" destination="aKo-B7-gg7" id="57i-lW-Biq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1084" y="4.9475262368815596"/>
         </scene>
@@ -389,13 +398,17 @@
                                     <outlet property="delegate" destination="L1w-q5-Uih" id="3Y8-3z-6LR"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-V7-yFm" customClass="MusicPlayerUIView" customModule="SeniorProject" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5g-V7-yFm" customClass="MiniMusicPlayerView" customModule="SeniorProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="612" width="375" height="55"/>
                                 <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="bIQ-bb-QvP"/>
                                     <constraint firstAttribute="width" constant="375" id="j3g-Jn-1lF"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Mr3-iS-gqy" appends="YES" id="nKa-ZD-MOh"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69V-DI-qgq">
                                 <rect key="frame" x="0.0" y="64" width="375" height="187"/>
@@ -491,6 +504,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pxp-Ch-Rrt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Mr3-iS-gqy">
+                    <connections>
+                        <action selector="openMusicPlayerTapped:" destination="L1w-q5-Uih" id="BOC-Pg-tyE"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1908" y="4.9475262368815596"/>
         </scene>
@@ -559,6 +577,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Q7-o1-01K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="796"/>
+        </scene>
+        <!--Music Player View Controller-->
+        <scene sceneID="RjT-RZ-zsA">
+            <objects>
+                <viewController storyboardIdentifier="MusicPlayerViewController" id="PKo-Lp-u78" customClass="MusicPlayerViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xuV-m9-x3w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Y5-2o-7J8">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="paracosm" translatesAutoresizingMaskIntoConstraints="NO" id="wc1-ak-BTy">
+                                        <rect key="frame" x="37" y="53" width="300" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X2-ki-iOl">
+                                        <rect key="frame" x="37" y="378" width="300" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chu-BV-WGw">
+                                        <rect key="frame" x="37" y="406" width="300" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzO-co-Afx">
+                                        <rect key="frame" x="155" y="509" width="64" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="pause-icon"/>
+                                        <connections>
+                                            <action selector="playbackToggleTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="rbK-nW-9VK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XvN-4B-onp">
+                                        <rect key="frame" x="243" y="529" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="next-icon"/>
+                                        <connections>
+                                            <action selector="nextTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="uwm-vY-rqT"/>
+                                        </connections>
+                                    </button>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="anu-Ue-Xqh">
+                                        <rect key="frame" x="35" y="454" width="304" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.1647058824" green="0.72156862749999995" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </slider>
+                                    <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjy-Jg-Jjo">
+                                        <rect key="frame" x="13" y="21" width="15" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="down-arrow-icon"/>
+                                        <connections>
+                                            <action selector="closeMusicPlayerTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="leX-fS-YLb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="PzM-fH-xmL" appends="YES" id="UxQ-zt-8vx"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KV8-96-WDa"/>
+                    </view>
+                    <connections>
+                        <outlet property="artistNameLabel" destination="chu-BV-WGw" id="TCC-7f-bL0"/>
+                        <outlet property="songNameLabel" destination="1X2-ki-iOl" id="0NQ-Vh-585"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eKw-9T-xeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="down" id="PzM-fH-xmL">
+                    <connections>
+                        <action selector="closeMusicPlayerSwiped:" destination="PKo-Lp-u78" id="eaP-r0-h2J"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1908" y="795.6521739130435"/>
         </scene>
         <!--Create Queue-->
         <scene sceneID="0ic-c8-Dav">
@@ -661,6 +764,10 @@
     </scenes>
     <resources>
         <image name="cancel-icon" width="720" height="720"/>
+        <image name="down-arrow-icon" width="24" height="24"/>
+        <image name="next-icon" width="128" height="128"/>
+        <image name="paracosm" width="300" height="300"/>
+        <image name="pause-icon" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="u04-bl-t8o"/>

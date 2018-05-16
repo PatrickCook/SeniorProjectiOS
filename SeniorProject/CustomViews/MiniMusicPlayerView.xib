@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MusicPlayerUIView" customModule="SeniorProject" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MiniMusicPlayerView" customModule="SeniorProject" customModuleProvider="target">
             <connections>
                 <outlet property="artistNameLabel" destination="Gl6-Fr-B8E" id="zmo-4Q-CiF"/>
                 <outlet property="playbackButton" destination="wUN-Db-sbl" id="FHO-55-WAw"/>
@@ -66,23 +66,22 @@
                         <action selector="togglePlayback:" destination="-1" eventType="touchUpInside" id="yHf-mR-Dc1"/>
                     </connections>
                 </button>
+                <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hvc-BN-qb9">
+                    <rect key="frame" x="16" y="11" width="15" height="15"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" image="up-arrow-icon"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <gestureRecognizers/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="x9X-kU-A5U"/>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="i1h-eN-Yvm" appends="YES" id="M1D-0R-Lgc"/>
-            </connections>
             <point key="canvasLocation" x="-508.5" y="-170.5"/>
         </view>
-        <tapGestureRecognizer id="i1h-eN-Yvm">
-            <connections>
-                <action selector="openMusicPlayerTapped:" destination="-1" id="Vm1-f1-FXD"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="play-icon" width="128" height="128"/>
+        <image name="up-arrow-icon" width="24" height="24"/>
     </resources>
 </document>

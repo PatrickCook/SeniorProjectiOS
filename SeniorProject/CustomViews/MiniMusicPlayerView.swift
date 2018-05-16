@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MusicPlayerUIView: UIView {
+class MiniMusicPlayerView: UIView {
     var isPlaying: Bool = false
-    var nibName = "MusicPlayerUIView"
+    var nibName = "MiniMusicPlayerView"
     var playButton = UIImage(named: "play-icon")
     var pauseButton = UIImage(named: "pause-icon")
     var view: UIView!
@@ -25,9 +25,6 @@ class MusicPlayerUIView: UIView {
         isPlaying = !isPlaying
     }
     
-    @IBAction func openMusicPlayerTapped(_ sender: Any) {
-        print("beers")
-    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetUp()
