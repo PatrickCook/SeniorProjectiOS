@@ -28,7 +28,7 @@ class SongSearchViewController: UIViewController, UITableViewDelegate, UITableVi
         let word = searchBar.text
         let modifiedWord = word?.replacingOccurrences(of: " ", with: "+")
         searchURL = "https://api.spotify.com/v1/search?q=\(modifiedWord!)&type=track"
-        print(searchURL)
+        //print(searchURL)
         parseWithAlamo(url: searchURL)
         self.view.endEditing(true)
     }

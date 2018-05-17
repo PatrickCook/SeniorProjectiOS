@@ -13,12 +13,12 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var currentSongLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func openMusicPlayerTapped(_ sender: Any) {
+    /*@IBAction func openMusicPlayerTapped(_ sender: Any) {
         print("open music player")
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
             self.present(mvc, animated: true, completion: nil)
         }
-    }
+    }*/
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

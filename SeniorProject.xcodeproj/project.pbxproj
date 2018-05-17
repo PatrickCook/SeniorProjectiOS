@@ -30,10 +30,10 @@
 		3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */; };
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
 		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
-		3AD7B16B20AB81FA00C34E66 /* MiniMusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7B16A20AB81FA00C34E66 /* MiniMusicPlayerView.swift */; };
-		3AD7B16F20AB87EE00C34E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD7B16E20AB84D700C34E66 /* Assets.xcassets */; };
-		3AD7B17120AB952D00C34E66 /* MiniMusicPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AD7B17020AB952D00C34E66 /* MiniMusicPlayerView.xib */; };
-		3AD7B17320ABAA6900C34E66 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7B17220ABAA6900C34E66 /* MusicPlayerViewController.swift */; };
+		3AD7B16B20AB81FA00C34E66 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		3AD7B16F20AB87EE00C34E66 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		3AD7B17120AB952D00C34E66 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		3AD7B17320ABAA6900C34E66 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */; };
 		965D9F3E20ACFE2D0094FEC6 /* SongInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965D9F3D20ACFE2D0094FEC6 /* SongInfoCell.swift */; };
 /* End PBXBuildFile section */
@@ -233,7 +233,6 @@
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
 				3A15A59120A276D5006E24C5 /* Api.swift */,
-				3AD7B16E20AB84D700C34E66 /* Assets.xcassets */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
 				3AA9D6DC208E47A0009F24F4 /* Info.plist */,
@@ -263,8 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
-				3AD7B17020AB952D00C34E66 /* MiniMusicPlayerView.xib */,
-				3AD7B16A20AB81FA00C34E66 /* MiniMusicPlayerView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 				3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */,
 				3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */,
 				3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */,
-				3AD7B17220ABAA6900C34E66 /* MusicPlayerViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -424,8 +420,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */,
-				3AD7B17120AB952D00C34E66 /* MiniMusicPlayerView.xib in Resources */,
-				3AD7B16F20AB87EE00C34E66 /* Assets.xcassets in Resources */,
+				3AD7B17120AB952D00C34E66 /* (null) in Resources */,
+				3AD7B16F20AB87EE00C34E66 /* (null) in Resources */,
 				3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,8 +501,8 @@
 				3A15A59220A276D5006E24C5 /* Api.swift in Sources */,
 				3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */,
 				3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */,
-				3AD7B16B20AB81FA00C34E66 /* MiniMusicPlayerView.swift in Sources */,
-				3AD7B17320ABAA6900C34E66 /* MusicPlayerViewController.swift in Sources */,
+				3AD7B16B20AB81FA00C34E66 /* (null) in Sources */,
+				3AD7B17320ABAA6900C34E66 /* (null) in Sources */,
 				3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */,
 				3A83FE0320A3CF87001C359A /* Song.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,
