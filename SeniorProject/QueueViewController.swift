@@ -8,6 +8,13 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidAppear(animated)
     }
     
+    /* Segue in order to search for songs */
+    @IBAction func addSongSegue(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "moveToSearch", sender: self)
+    }
+    
+    
+    
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5

@@ -29,6 +29,7 @@
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
 		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
 		7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */; };
+		965D9F3E20ACFE2D0094FEC6 /* SongInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965D9F3D20ACFE2D0094FEC6 /* SongInfoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3AC4A89F208EDCBF006D9B2B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = ../QueueViewController.swift; sourceTree = "<group>"; };
+		965D9F3D20ACFE2D0094FEC6 /* SongInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoCell.swift; sourceTree = "<group>"; };
 		B0719795B4E98A388B401D4B /* Pods-SeniorProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.debug.xcconfig"; sourceTree = "<group>"; };
 		B6FC3F3586F5EF532343A3FF /* Pods-SeniorProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeniorProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -287,6 +289,7 @@
 				3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */,
 				3A581BA82092A72B00E2E872 /* UserCell.swift */,
 				3AC4A89F208EDCBF006D9B2B /* SongCell.swift */,
+				965D9F3D20ACFE2D0094FEC6 /* SongInfoCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				965D9F3E20ACFE2D0094FEC6 /* SongInfoCell.swift in Sources */,
 				3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */,
 				3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */,
 				3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */,

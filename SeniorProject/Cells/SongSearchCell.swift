@@ -10,6 +10,10 @@ import UIKit
 
 class SongSearchCell: UITableViewCell {
 
+    @IBOutlet weak var songTitleLabel: UILabel!
+    @IBOutlet weak var songArtistLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
