@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A1538E8209911210083EA18 /* QueueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538E7209911210083EA18 /* QueueModel.swift */; };
+		3A1538E8209911210083EA18 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538E7209911210083EA18 /* Queue.swift */; };
 		3A1538EA2099152A0083EA18 /* SongSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538E92099152A0083EA18 /* SongSearchCell.swift */; };
 		3A1538EC2099154F0083EA18 /* SongSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */; };
 		3A15A59220A276D5006E24C5 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15A59120A276D5006E24C5 /* Api.swift */; };
@@ -15,19 +15,25 @@
 		3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4E31862091668200D5A870 /* PopoverViewController.swift */; };
 		3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */; };
 		3A581BA92092A72B00E2E872 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A581BA82092A72B00E2E872 /* UserCell.swift */; };
+		3A83FE0120A3CF75001C359A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0020A3CF75001C359A /* User.swift */; };
+		3A83FE0320A3CF87001C359A /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0220A3CF87001C359A /* Song.swift */; };
+		3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */; };
 		3A9E2FCB208E54F200A975E7 /* SpotifyLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */; };
 		3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */; };
 		3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D4208E479F009F24F4 /* Main.storyboard */; };
-		3AA9D6D8208E47A0009F24F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */; };
 		3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */; };
 		3AA9D6E6208E47A0009F24F4 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6E5208E47A0009F24F4 /* SeniorProjectTests.swift */; };
 		3AA9D6F1208E47A0009F24F4 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */; };
 		3AC1CD3C209BA30A00C2D154 /* JoinQueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */; };
 		3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */; };
-		3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */; };
+		3AC4A899208ECAE9006D9B2B /* AllQueuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */; };
 		3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */; };
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
 		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
+		3AD7B16B20AB81FA00C34E66 /* MiniMusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7B16A20AB81FA00C34E66 /* MiniMusicPlayerView.swift */; };
+		3AD7B16F20AB87EE00C34E66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AD7B16E20AB84D700C34E66 /* Assets.xcassets */; };
+		3AD7B17120AB952D00C34E66 /* MiniMusicPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AD7B17020AB952D00C34E66 /* MiniMusicPlayerView.xib */; };
+		3AD7B17320ABAA6900C34E66 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7B17220ABAA6900C34E66 /* MusicPlayerViewController.swift */; };
 		7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */; };
 		965D9F3E20ACFE2D0094FEC6 /* SongInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965D9F3D20ACFE2D0094FEC6 /* SongInfoCell.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeniorProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A1538E7209911210083EA18 /* QueueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueModel.swift; sourceTree = "<group>"; };
+		3A1538E7209911210083EA18 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		3A1538E92099152A0083EA18 /* SongSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchCell.swift; sourceTree = "<group>"; };
 		3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSearchViewController.swift; sourceTree = "<group>"; };
 		3A15A59120A276D5006E24C5 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -72,15 +78,17 @@
 		3A18A9C6208E4F9900DE098C /* SpotifyLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
 		3A18A9C7208E4F9900DE098C /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
 		3A191BD1208E57C500734405 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3A4E31862091668200D5A870 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopoverViewController.swift; path = ../PopoverViewController.swift; sourceTree = "<group>"; };
+		3A4E31862091668200D5A870 /* PopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQueueViewController.swift; sourceTree = "<group>"; };
 		3A581BA82092A72B00E2E872 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3A667329208E502F0005940A /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A83FE0020A3CF75001C359A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3A83FE0220A3CF87001C359A /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA9D6CD208E479F009F24F4 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA9D6D5208E479F009F24F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AA9D6DA208E47A0009F24F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AA9D6DC208E47A0009F24F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AA9D6E1208E47A0009F24F4 /* SeniorProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +99,7 @@
 		3AA9D6F2208E47A0009F24F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueCell.swift; sourceTree = "<group>"; };
 		3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueViewController.swift; sourceTree = "<group>"; };
-		3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueuesViewController.swift; sourceTree = "<group>"; };
+		3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQueuesViewController.swift; sourceTree = "<group>"; };
 		3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3AC4A89F208EDCBF006D9B2B /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		3ACF780820914DC3000A025C /* QueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QueueViewController.swift; path = ../QueueViewController.swift; sourceTree = "<group>"; };
@@ -219,14 +227,14 @@
 		3AA9D6CF208E479F009F24F4 /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
-				3AC1CD3F209BAC6700C2D154 /* Misc */,
+				3AC1CD3F209BAC6700C2D154 /* CustomViews */,
 				3AC4A89C208EDC10006D9B2B /* Cells */,
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
 				3A15A59120A276D5006E24C5 /* Api.swift */,
+				3AD7B16E20AB84D700C34E66 /* Assets.xcassets */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
-				3AA9D6D7208E47A0009F24F4 /* Assets.xcassets */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
 				3AA9D6DC208E47A0009F24F4 /* Info.plist */,
 			);
@@ -251,23 +259,27 @@
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
 		};
-		3AC1CD3F209BAC6700C2D154 /* Misc */ = {
+		3AC1CD3F209BAC6700C2D154 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
+				3AD7B17020AB952D00C34E66 /* MiniMusicPlayerView.xib */,
+				3AD7B16A20AB81FA00C34E66 /* MiniMusicPlayerView.swift */,
 			);
-			path = Misc;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */,
 				3A191BD1208E57C500734405 /* LoginViewController.swift */,
-				3AC4A898208ECAE9006D9B2B /* QueuesViewController.swift */,
+				3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */,
 				3ACF780820914DC3000A025C /* QueueViewController.swift */,
 				3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */,
-				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
 				3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */,
 				3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */,
+				3AD7B17220ABAA6900C34E66 /* MusicPlayerViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,7 +287,9 @@
 		3AC4A89B208EDC0D006D9B2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3A1538E7209911210083EA18 /* QueueModel.swift */,
+				3A83FE0020A3CF75001C359A /* User.swift */,
+				3A1538E7209911210083EA18 /* Queue.swift */,
+				3A83FE0220A3CF87001C359A /* Song.swift */,
 			);
 			name = Models;
 			path = SeniorProject/Models;
@@ -410,7 +424,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */,
-				3AA9D6D8208E47A0009F24F4 /* Assets.xcassets in Resources */,
+				3AD7B17120AB952D00C34E66 /* MiniMusicPlayerView.xib in Resources */,
+				3AD7B16F20AB87EE00C34E66 /* Assets.xcassets in Resources */,
 				3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,13 +474,17 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SpotifyLogin/SpotifyLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpotifyLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -481,20 +500,25 @@
 			files = (
 				965D9F3E20ACFE2D0094FEC6 /* SongInfoCell.swift in Sources */,
 				3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */,
-				3AC4A899208ECAE9006D9B2B /* QueuesViewController.swift in Sources */,
+				3AC4A899208ECAE9006D9B2B /* AllQueuesViewController.swift in Sources */,
 				3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */,
 				3A15A59220A276D5006E24C5 /* Api.swift in Sources */,
 				3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */,
 				3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */,
+				3AD7B16B20AB81FA00C34E66 /* MiniMusicPlayerView.swift in Sources */,
+				3AD7B17320ABAA6900C34E66 /* MusicPlayerViewController.swift in Sources */,
+				3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */,
+				3A83FE0320A3CF87001C359A /* Song.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,
 				3A1538EC2099154F0083EA18 /* SongSearchViewController.swift in Sources */,
+				3A83FE0120A3CF75001C359A /* User.swift in Sources */,
 				3A581BA92092A72B00E2E872 /* UserCell.swift in Sources */,
 				3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */,
 				3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */,
 				3AC1CD3C209BA30A00C2D154 /* JoinQueueCell.swift in Sources */,
 				3AA9D6D1208E479F009F24F4 /* AppDelegate.swift in Sources */,
 				3A1538EA2099152A0083EA18 /* SongSearchCell.swift in Sources */,
-				3A1538E8209911210083EA18 /* QueueModel.swift in Sources */,
+				3A1538E8209911210083EA18 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
