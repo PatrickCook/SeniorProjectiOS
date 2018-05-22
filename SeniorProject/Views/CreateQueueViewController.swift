@@ -78,8 +78,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     /* Search Bar Delegate Methods */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        print("Search: " + searchBar.text!)
-        //TODO: Search members using text and API
+        fetchData(query: searchController.searchBar.text!)
     }
 
     /* Table View Delegate Methods */

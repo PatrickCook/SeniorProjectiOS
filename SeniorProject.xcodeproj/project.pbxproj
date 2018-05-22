@@ -12,7 +12,6 @@
 		3A1538EC2099154F0083EA18 /* SongSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */; };
 		3A15A59220A276D5006E24C5 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15A59120A276D5006E24C5 /* Api.swift */; };
 		3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A191BD1208E57C500734405 /* LoginViewController.swift */; };
-		3A23600320B398460054698D /* MusicPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A23600020B398450054698D /* MusicPlayerView.xib */; };
 		3A23600420B398460054698D /* MiniMusicPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A23600120B398450054698D /* MiniMusicPlayerView.xib */; };
 		3A23600520B398460054698D /* MiniMusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23600220B398460054698D /* MiniMusicPlayerView.swift */; };
 		3A23600720B3984D0054698D /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23600620B3984D0054698D /* MusicPlayerViewController.swift */; };
@@ -83,7 +82,6 @@
 		3A18A9C6208E4F9900DE098C /* SpotifyLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
 		3A18A9C7208E4F9900DE098C /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
 		3A191BD1208E57C500734405 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3A23600020B398450054698D /* MusicPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicPlayerView.xib; sourceTree = "<group>"; };
 		3A23600120B398450054698D /* MiniMusicPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniMusicPlayerView.xib; sourceTree = "<group>"; };
 		3A23600220B398460054698D /* MiniMusicPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniMusicPlayerView.swift; sourceTree = "<group>"; };
 		3A23600620B3984D0054698D /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 			children = (
 				3A23600220B398460054698D /* MiniMusicPlayerView.swift */,
 				3A23600120B398450054698D /* MiniMusicPlayerView.xib */,
-				3A23600020B398450054698D /* MusicPlayerView.xib */,
 				3A4E31862091668200D5A870 /* PopoverViewController.swift */,
 			);
 			path = CustomViews;
@@ -439,7 +436,6 @@
 				3AD7B17120AB952D00C34E66 /* (null) in Resources */,
 				3AD7B16F20AB87EE00C34E66 /* (null) in Resources */,
 				3A23600920B398A50054698D /* Assets.xcassets in Resources */,
-				3A23600320B398460054698D /* MusicPlayerView.xib in Resources */,
 				3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
