@@ -6,12 +6,14 @@
 //  Copyright © 2018 Patrick Cook. All rights reserved.
 //
 
+import SpotifyLogin
 import UIKit
 import Alamofire
 import AVFoundation
 
-class SongSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,20 +26,33 @@ class SongSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     
     /* When you use the search bar */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        print("HERE")
         listofSearch = [SongInfoCell]()
         let word = searchBar.text
         let modifiedWord = word?.replacingOccurrences(of: " ", with: "+")
         searchURL = "https://api.spotify.com/v1/search?q=\(modifiedWord!)&type=track"
-        //print(searchURL)
+        print(searchURL)
         parseWithAlamo(url: searchURL)
         self.view.endEditing(true)
     }
     
     func parseWithAlamo(url: String){
-        Alamofire.request(url).responseJSON(completionHandler: {
-            response in
-            self.parseData(JSONData: response.data!)
-        })
+        
+        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
+            if error != nil, token == nil {
+                print(error.debugDescription)
+            }
+            print(token!)
+            let headers: HTTPHeaders = [
+                "Authorization": "Bearer \(token!)"
+            ]
+            
+            Alamofire.request(url, headers: headers).responseJSON(completionHandler: {
+                response in
+                self?.parseData(JSONData: response.data!)
+            })
+        }
+        
     }
     
     func parseData(JSONData : Data){
@@ -87,7 +102,7 @@ class SongSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchBar.delegate = self
         // Do any additional setup after loading the view.
     }
 

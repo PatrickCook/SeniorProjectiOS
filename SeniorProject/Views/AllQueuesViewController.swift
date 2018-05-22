@@ -106,7 +106,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     /* Helpers */
     func showLoginFlow() {
-        //self.performSegue(withIdentifier: "home_to_login", sender: self)
+        self.performSegue(withIdentifier: "home_to_login", sender: self)
     }
     
     func popoverDismissed() {
