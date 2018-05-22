@@ -12,7 +12,8 @@ class SongSearchCell: UITableViewCell {
 
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songArtistLabel: UILabel!
-    
+    @IBOutlet weak var songImageLabel: UIImageView!
+    @IBOutlet weak var songPreviewLabel: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

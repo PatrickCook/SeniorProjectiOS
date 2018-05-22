@@ -57,11 +57,11 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     func parseData(JSONData : Data){
         do{
-            print("HELLO")
+            //print("HELLO")
             
             var readableJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as! [String : AnyObject]
             
-            print(readableJSON)
+            //print(readableJSON)
             
             if let tracks = readableJSON["tracks"] as? [String: AnyObject]{
                 if let items = tracks["items"] as? [[String: AnyObject]]{
@@ -72,7 +72,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
                         let title = item["name"] as! String
                         let previewURL = item["preview_url"] as! String
                         let songURL = item["uri"] as! String
-                        print(previewURL)
+                        //print(previewURL)
                         
                         if let album = item["album"] as? [String: AnyObject]{
                             if let artistInfo = album["artists"] as? [[String: AnyObject]]{
@@ -113,18 +113,76 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return listofSearch.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let searchCell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as? SongSearchCell
         
-        searchCell?.songTitleLabel.text = "DEFAULT TITLE NAME"
-        searchCell?.songArtistLabel.text = "DEFAULT ARITST LABEL"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SongSearchCell
+        let mainImageURL = URL(string: listofSearch[indexPath.row].image)
+        let mainImageData = NSData(contentsOf: mainImageURL!)
+        let mainImage = UIImage(data: mainImageData! as Data)
         
-        return searchCell!
+        cell.songPreviewLabel.tag = indexPath.row
+        cell.songImageLabel.image = mainImage
+        cell.songTitleLabel.text = listofSearch[indexPath.row].title
+        cell.songArtistLabel.text = listofSearch[indexPath.row].artist
+        
+        return cell
     }
-
+    
+    @IBAction func playPressed(_ sender: UIButton) {
+        //print("Sender Tag: \(sender)")
+        if (num != sender.tag){
+            num = sender.tag
+            flag = 0
+        }
+        if (flag == 0){
+            let preview = listofSearch[sender.tag].previewURL
+            //print("SONG PREVIEW: \(preview)")
+            self.downloadSong(url: URL(string: preview)!)
+        }
+        else if (flag == 1){
+            sound.pause()
+            flag = 0;
+        }
+    }
+    func downloadSong(url: URL)
+    {
+        var downloadTask = URLSessionDownloadTask()
+        downloadTask = URLSession.shared.downloadTask(with: url, completionHandler: {
+            customURL, response, error in
+            self.play(url: customURL!)
+        })
+        downloadTask.resume()
+    }
+    
+    func play(url: URL)
+    {
+        do{
+            sound = try AVAudioPlayer(contentsOf: url)
+            sound.prepareToPlay()
+            sound.play()
+            flag = 1
+        }
+        catch{
+            print(error)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "goBack"{
+            print("BEEP BOOP UNWINDING SEGUE")
+            //let now = NSDate()
+            //let nowTime = String(now.timeIntervalSince1970)
+            //listofSearch[((self.tableView .indexPathForSelectedRow)?.row)!].time = nowTime.replacingOccurrences(of: ".", with: "0")
+            let dest = segue.destination as? QueueViewController
+            
+            dest?.addSong(newSong: listofSearch[((self.tableView .indexPathForSelectedRow)?.row)!])
+        }
+    }
 }

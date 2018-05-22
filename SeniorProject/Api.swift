@@ -7,7 +7,7 @@ class Api {
     
     static let api: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.202:3000/api"
+    let baseURL: String = "http://192.168.1.71:3000/api"
     
     func login(username: String, password: String) -> Promise<Bool> {
         let parameters: [String: Any] = [

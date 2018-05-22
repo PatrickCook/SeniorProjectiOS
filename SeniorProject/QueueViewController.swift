@@ -66,4 +66,18 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return songCell!
     }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        tableView.reloadData()
+    }
+    
+    func addSong(newSong: SongInfoCell)
+    {
+        //let newSongRef = hotSong?.child(newSong.time)
+        //newSongRef?.setValue(newSong.toAnyObject())
+        print("-----SONGINFO-----")
+        print(newSong.title)
+        print(newSong.artist)
+        self.tableView.reloadData()
+    }
 }
