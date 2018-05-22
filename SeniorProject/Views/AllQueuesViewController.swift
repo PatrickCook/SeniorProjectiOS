@@ -62,7 +62,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
             self.dismissLoadingAlert()
             self.tableView.reloadData()
         }.catch { (error) in
-            print(error)
+            self.dismissLoadingAlert()
+            self.showErrorAlert(error: error)
         }
     }
     

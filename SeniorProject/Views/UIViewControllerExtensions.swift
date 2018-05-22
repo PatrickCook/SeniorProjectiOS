@@ -25,4 +25,14 @@ extension UIViewController {
     func dismissLoadingAlert() {
         dismiss(animated: false, completion: nil)
     }
+    
+    func showErrorAlert(error: Error) {
+        if error._code == NSURLErrorTimedOut {
+            let alertController = UIAlertController(title: "Connection Timeout", message: "Sorry about that, someone must have spilled coffee on our servers..", preferredStyle: .alert)
+            let actionOk = UIAlertAction(title: "OK", style: .default, handler: nil) 
+            
+            alertController.addAction(actionOk)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }

@@ -280,8 +280,8 @@
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3A23600620B3984D0054698D /* MusicPlayerViewController.swift */,
 				3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */,
+				3A23600620B3984D0054698D /* MusicPlayerViewController.swift */,
 				3A191BD1208E57C500734405 /* LoginViewController.swift */,
 				3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */,
 				3ACF780820914DC3000A025C /* QueueViewController.swift */,

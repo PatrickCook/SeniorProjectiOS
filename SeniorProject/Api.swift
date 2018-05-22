@@ -7,7 +7,15 @@ class Api {
     
     static let api: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.71:3000/api"
+    let baseURL: String = "http://192.168.1.200:3000/api"
+    var sessionManager: SessionManager
+    
+    init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 4 // seconds
+        configuration.timeoutIntervalForResource = 4
+        sessionManager = Alamofire.SessionManager(configuration: configuration)
+    }
     
     func login(username: String, password: String) -> Promise<Bool> {
         let parameters: [String: Any] = [
@@ -16,7 +24,7 @@ class Api {
         ]
         
         return Promise{ fulfill, reject in
-            Alamofire.request(baseURL + "/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            sessionManager.request(baseURL + "/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
@@ -24,7 +32,6 @@ class Api {
                         fulfill(true)
                     case .failure(let error):
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -36,7 +43,7 @@ class Api {
         ]
         
         return Promise { fulfill, reject in
-            Alamofire.request(baseURL + "/queue",
+            sessionManager.request(baseURL + "/queue",
                               method: .get,
                               parameters: parameters,
                               encoding: URLEncoding.default)
@@ -61,7 +68,6 @@ class Api {
                         }
                     case .failure(let error):
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -69,7 +75,7 @@ class Api {
     
     func getSelectedQueue(queue: Queue) -> Promise<Queue> {
         return Promise { fulfill, reject in
-            Alamofire.request(baseURL + "/queue/\(queue.id)", method: .get)
+            sessionManager.request(baseURL + "/queue/\(queue.id)", method: .get)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
@@ -103,7 +109,7 @@ class Api {
         ]
         
         return Promise { fulfill, reject in
-            Alamofire.request(baseURL + "/user",
+            sessionManager.request(baseURL + "/user",
                               method: .get,
                               parameters: parameters,
                               encoding: URLEncoding.default)
@@ -143,7 +149,7 @@ class Api {
         ]
         
         return Promise { fulfill, reject in
-            Alamofire.request(baseURL + "/queue", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            sessionManager.request(baseURL + "/queue", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .responseData { response in
                 switch response.result {
@@ -165,7 +171,7 @@ class Api {
         }
         
         return Promise{ fulfill, reject in
-            Alamofire.request(baseURL + "/queue/\(queueId)/join", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            sessionManager.request(baseURL + "/queue/\(queueId)/join", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {

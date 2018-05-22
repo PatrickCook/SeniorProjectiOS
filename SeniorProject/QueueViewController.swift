@@ -37,6 +37,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.currentSongLabel.text = self.queue.currentSong?.spotifyURI
             self.tableView.reloadData()
         }.catch { (error) in
+            self.showErrorAlert(error: error)
             print(error)
         }
     }
