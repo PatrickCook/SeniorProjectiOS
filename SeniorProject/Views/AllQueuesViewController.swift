@@ -125,10 +125,10 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         fetchQueues()
     }
     
-    /*@IBAction func openMusicPlayerTapped(_ sender: Any) {
+    @IBAction func openMusicPlayerTapped(_ sender: Any) {
         print("open music player")
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
             self.present(mvc, animated: true, completion: nil)
         }
-    }*/
+    }
 }
