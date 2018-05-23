@@ -12,6 +12,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var currentSongLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var resumeQueueButton: UIButton!
     @IBAction func openMusicPlayerTapped(_ sender: Any) {
         print("open music player")
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
@@ -19,11 +20,19 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    convenience init() {
+        self.init(nibName:nil, bundle:nil)
         self.title = queue.name
-        initializeData()
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initializeData()
+        resumeQueueButton.layer.cornerRadius = 20
+        resumeQueueButton.clipsToBounds = true
+    }
+    
     
     func initializeData() {
         showLoadingAlert(uiView: self.view)
@@ -54,10 +63,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return songs.count
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as? SongCell
         
@@ -66,6 +71,29 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"
         
         return songCell!
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Next up:"
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        
+        headerView.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1)
+        
+        let headerLabel = UILabel(frame: CGRect(x: 25, y: 0, width:
+            tableView.bounds.size.width, height:30))
+
+        headerLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        headerLabel.text = "Next Up"
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){

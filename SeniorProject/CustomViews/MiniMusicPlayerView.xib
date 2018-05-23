@@ -53,7 +53,6 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl6-Fr-B8E">
                     <rect key="frame" x="201" y="11" width="121" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="121" id="Hfh-lZ-UPU"/>
                         <constraint firstAttribute="height" constant="21" id="JWh-fy-uSq"/>
                     </constraints>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
