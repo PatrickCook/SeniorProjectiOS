@@ -560,7 +560,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PK6-GX-RIk">
-                                                    <rect key="frame" x="92" y="20" width="36" height="28"/>
+                                                    <rect key="frame" x="92" y="20" width="220" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="YN4-CU-USH"/>
                                                     </constraints>
@@ -588,7 +588,7 @@
                                                 <constraint firstItem="AuL-f0-H3Q" firstAttribute="leading" secondItem="rl5-at-rlQ" secondAttribute="leading" constant="15" id="oSS-Ez-d5B"/>
                                                 <constraint firstItem="a9X-Ig-cVQ" firstAttribute="trailing" secondItem="rl5-at-rlQ" secondAttribute="trailingMargin" id="pK2-SD-hOd"/>
                                                 <constraint firstItem="PK6-GX-RIk" firstAttribute="leading" secondItem="AuL-f0-H3Q" secondAttribute="trailing" constant="16" id="uBH-19-dAX"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PK6-GX-RIk" secondAttribute="trailing" constant="20" symbolic="YES" id="uc1-xF-zv3"/>
+                                                <constraint firstAttribute="trailing" secondItem="PK6-GX-RIk" secondAttribute="trailing" constant="63" id="uc1-xF-zv3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

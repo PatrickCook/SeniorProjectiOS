@@ -78,6 +78,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         // Pass the selected object to the new view controller.
         if segue.identifier == "goBack"{
             print("BEEP BOOP UNWINDING SEGUE")
+            MusicPlayer.shared.stopPreviewURL()
         }
     }
 }

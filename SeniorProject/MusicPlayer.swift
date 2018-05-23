@@ -7,7 +7,7 @@ class MusicPlayer {
     
     var audioStream = AVAudioPlayer()
     
-    func downloadSong(url: URL) {
+    func downloadAndPlayPreviewURL(url: URL) {
         var downloadTask = URLSessionDownloadTask()
         downloadTask = URLSession.shared.downloadTask(with: url, completionHandler: {
             customURL, response, error in
@@ -23,6 +23,12 @@ class MusicPlayer {
             audioStream.play()
         } catch {
             print(error)
+        }
+    }
+    
+    func stopPreviewURL() {
+        if (audioStream.isPlaying) {
+            audioStream.pause()
         }
     }
 }

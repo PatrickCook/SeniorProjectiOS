@@ -32,10 +32,12 @@ class SongSearchCell: UITableViewCell {
         
         if spotifySong.previewURL == "null" {
             playButton.isEnabled = false
+        } else {
+            playButton.isEnabled = true
         }
     }
 
     @IBAction func playPressed(_ sender: UIButton) {
-        MusicPlayer.shared.downloadSong(url: URL(string: spotifySong.previewURL)!)
+        MusicPlayer.shared.downloadAndPlayPreviewURL(url: URL(string: spotifySong.previewURL)!)
     }
 }
