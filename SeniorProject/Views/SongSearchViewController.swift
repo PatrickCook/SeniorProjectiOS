@@ -13,17 +13,12 @@ import AVFoundation
 import PromiseKit
 
 class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
-    let api: Api = Api.api
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-    var searchURL = String()
+
     var searchResults: [SpotifySong] = []
-    var sound = AVAudioPlayer()
-    /* DO I NEED THESE */
-    var flag = 0
-    var num = -1
     
     /* When you use the search bar */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
@@ -31,9 +26,9 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         showLoadingAlert(uiView: self.view)
         
         firstly {
-            self.api.getSpotifyAccessToken()
+           Api.shared.getSpotifyAccessToken()
         }.then { (token) -> Promise<[SpotifySong]> in
-            self.api.searchSpotify(query: searchBar.text!, spotifyToken: token)
+            Api.shared.searchSpotify(query: searchBar.text!, spotifyToken: token)
         }.then { (songs) -> Void in
             self.searchResults = songs
             self.tableView.reloadData()
@@ -68,50 +63,15 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         let mainImageURL = URL(string: searchResults[indexPath.row].image)
         let mainImageData = NSData(contentsOf: mainImageURL!)
         let mainImage = UIImage(data: mainImageData! as Data)
-        
-        cell.songPreviewLabel.tag = indexPath.row
+
         cell.songImageLabel.image = mainImage
         cell.songTitleLabel.text = searchResults[indexPath.row].title
         cell.songArtistLabel.text = searchResults[indexPath.row].artist
+        cell.setSongForCell(spotifySong: searchResults[indexPath.row]) 
         
         return cell
     }
-    
-    @IBAction func playPressed(_ sender: UIButton) {
-        //print("Sender Tag: \(sender)")
-        if (num != sender.tag){
-            num = sender.tag
-            flag = 0
-        }
-        if (flag == 0){
-            let preview = searchResults[sender.tag].previewURL
-            //print("SONG PREVIEW: \(preview)")
-            self.downloadSong(url: URL(string: preview)!)
-        }
-        else if (flag == 1){
-            sound.pause()
-            flag = 0;
-        }
-    }
-    func downloadSong(url: URL) {
-        var downloadTask = URLSessionDownloadTask()
-        downloadTask = URLSession.shared.downloadTask(with: url, completionHandler: {
-            customURL, response, error in
-            self.play(url: customURL!)
-        })
-        downloadTask.resume()
-    }
-    
-    func play(url: URL) {
-        do {
-            sound = try AVAudioPlayer(contentsOf: url)
-            sound.prepareToPlay()
-            sound.play()
-            flag = 1
-        } catch {
-            print(error)
-        }
-    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.

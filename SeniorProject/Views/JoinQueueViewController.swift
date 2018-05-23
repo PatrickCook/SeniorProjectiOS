@@ -12,8 +12,7 @@ import PromiseKit
 class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var api = Api.api
+
     var searchController: UISearchController!
     var queues: [Queue] = []
     var selectedQueue: Queue!
@@ -50,7 +49,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func fetchQueues(query: String) {
         firstly {
-            self.api.getAllQueues(with: query)
+            Api.shared.getAllQueues(with: query)
         }.then { (result) -> Void in
             self.queues = result
             self.tableView.reloadData()
@@ -61,7 +60,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func joinQueue(withPassword: String!) {
         firstly {
-            self.api.joinQueue(queueId: self.selectedQueue.id, password: withPassword)
+            Api.shared.joinQueue(queueId: self.selectedQueue.id, password: withPassword)
         }.then { (result) -> Void in
             self.performSegue(withIdentifier: "unwind_to_all_queues", sender: self)
         }.catch { (error) in

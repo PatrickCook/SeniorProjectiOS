@@ -5,7 +5,6 @@ import PromiseKit
 
 class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let api = Api.api
     var songs: [Song] = []
     var queue: Queue!
     
@@ -27,9 +26,10 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func initializeData() {
-        self.showLoadingAlert(uiView: self.view)
+        showLoadingAlert(uiView: self.view)
+        
         firstly {
-            self.api.getSelectedQueue(queue: queue)
+            Api.shared.getSelectedQueue(queue: queue)
         }.then { (result) -> Void in
             self.dismissLoadingAlert(uiView: self.view)
             self.songs = self.queue.songs

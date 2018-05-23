@@ -29,6 +29,7 @@
 		3AA9D6E6208E47A0009F24F4 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6E5208E47A0009F24F4 /* SeniorProjectTests.swift */; };
 		3AA9D6F1208E47A0009F24F4 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */; };
 		3AB989F820B4F07D00E26583 /* SpotifySong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB989F720B4F07D00E26583 /* SpotifySong.swift */; };
+		3AB989FA20B4FD9A00E26583 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */; };
 		3AC1CD3C209BA30A00C2D154 /* JoinQueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */; };
 		3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */; };
 		3AC4A899208ECAE9006D9B2B /* AllQueuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */; };
@@ -106,6 +107,7 @@
 		3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		3AA9D6F2208E47A0009F24F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AB989F720B4F07D00E26583 /* SpotifySong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySong.swift; sourceTree = "<group>"; };
+		3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueCell.swift; sourceTree = "<group>"; };
 		3AC1CD3D209BA34C00C2D154 /* JoinQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueViewController.swift; sourceTree = "<group>"; };
 		3AC4A898208ECAE9006D9B2B /* AllQueuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllQueuesViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
 				3A15A59120A276D5006E24C5 /* Api.swift */,
+				3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
 				3AA9D6DC208E47A0009F24F4 /* Info.plist */,
@@ -510,6 +513,7 @@
 			files = (
 				3AB989F820B4F07D00E26583 /* SpotifySong.swift in Sources */,
 				3AC1CD3E209BA34C00C2D154 /* JoinQueueViewController.swift in Sources */,
+				3AB989FA20B4FD9A00E26583 /* MusicPlayer.swift in Sources */,
 				3AC4A899208ECAE9006D9B2B /* AllQueuesViewController.swift in Sources */,
 				3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */,
 				3A15A59220A276D5006E24C5 /* Api.swift in Sources */,

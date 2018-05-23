@@ -10,8 +10,7 @@ import UIKit
 import PromiseKit
 
 class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
-    
-    var api = Api.api
+
     var searchController: UISearchController!
     var selectedMembers: Set<User> = []
     var queueName: String!
@@ -22,7 +21,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBAction func createQueueTapped(_ sender: UIButton) {
         firstly {
-            api.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))
+            Api.shared.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))
         }.then { (result) in
             print("Created queue.")
         }.catch { (error) in
@@ -60,7 +59,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     func fetchData(query: String) {
         firstly {
-            self.api.searchUsers(query: query)
+            Api.shared.searchUsers(query: query)
         }.then { (result) -> Void in
             self.membersFromQuery = result
             self.tableView.reloadData()

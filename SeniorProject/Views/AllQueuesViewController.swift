@@ -10,7 +10,6 @@ protocol PopoverDelegate {
 
 class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
     
-    var api = Api.api
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
     var queues: [Queue] = []
@@ -54,9 +53,9 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     func fetchQueues() {
         showLoadingAlert(uiView: self.view)
         firstly {
-            self.api.login(username: "admin", password: "password")
+            Api.shared.login(username: "admin", password: "password")
         }.then { (result) -> Promise<[Queue]> in
-            self.api.getAllQueues(with: nil)
+            Api.shared.getAllQueues(with: nil)
         }.then { (result) -> Void in
             self.queues = result
             self.dismissLoadingAlert(uiView: self.view)

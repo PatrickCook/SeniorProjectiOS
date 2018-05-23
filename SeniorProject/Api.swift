@@ -6,7 +6,7 @@ import SpotifyLogin
 
 class Api {
     
-    static let api: Api = Api()
+    static let shared: Api = Api()
     let localStorage = UserDefaults.standard
     let baseURL: String = "http://192.168.1.202:3000/api"
     var sessionManager: SessionManager
@@ -211,22 +211,26 @@ class Api {
                     case .success(let value):
                         let json = JSON(value)
                         let tracks = json["tracks"]
-                        print(tracks)
+                        
                         if let items = tracks["items"].array {
                             var songs: [SpotifySong] = []
                             for item in items {
                                 guard item.dictionaryObject != nil else {
                                     continue
                                 }
-                                
+                                let previewURL: String
                                 let title = item["name"].stringValue
-                                let previewURL = item["preview_url"].stringValue
                                 let songURL = item["uri"].stringValue
                                 let artistName = item["album"]["artists"][0]["name"].stringValue
                                 let imageString = item["album"]["images"][0]["url"].stringValue
                                 
-                                let song = SpotifySong(title: title, image: imageString, artist: artistName, songURL: songURL, previewURL: previewURL, time: "" )
+                                if (item["preview_url"] == JSON.null) {
+                                    previewURL = "null"
+                                } else {
+                                    previewURL = item["preview_url"].stringValue
+                                }
                                 
+                                let song = SpotifySong(title: title, image: imageString, artist: artistName, songURL: songURL, previewURL: previewURL, time: "" )
                                 songs.append(song)
                             }  
                             fulfill(songs)

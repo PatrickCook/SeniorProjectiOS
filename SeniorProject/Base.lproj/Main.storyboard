@@ -527,7 +527,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdM-w5-KKg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mdM-w5-KKg">
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -556,7 +556,7 @@
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="playPressed:" destination="8WT-Qf-qPQ" eventType="touchUpInside" id="z6L-72-yUD"/>
+                                                        <action selector="playPressed:" destination="nKn-Cb-hT8" eventType="touchUpInside" id="W3R-tX-Ki4"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PK6-GX-RIk">
@@ -593,9 +593,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="playButton" destination="a9X-Ig-cVQ" id="ulh-ZV-LaZ"/>
                                             <outlet property="songArtistLabel" destination="hC1-b2-fe5" id="CSP-el-kcZ"/>
                                             <outlet property="songImageLabel" destination="AuL-f0-H3Q" id="S2h-Iu-a0o"/>
-                                            <outlet property="songPreviewLabel" destination="a9X-Ig-cVQ" id="usq-ox-Gs8"/>
                                             <outlet property="songTitleLabel" destination="PK6-GX-RIk" id="4IN-J6-4un"/>
                                             <segue destination="EXh-e0-Baa" kind="unwind" identifier="goBack" unwindAction="prepareForUnwindWithSegue:" id="JOd-oV-hRy"/>
                                         </connections>
