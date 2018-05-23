@@ -63,4 +63,8 @@ class Queue {
     func dequeue() {
         songs.removeFirst()
     }
+    
+    func clearQueue() {
+        songs.removeAll()
+    }
 }

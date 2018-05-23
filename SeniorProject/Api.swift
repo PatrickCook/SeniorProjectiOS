@@ -2,12 +2,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import PromiseKit
+import SpotifyLogin
 
 class Api {
     
     static let api: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.200:3000/api"
+    let baseURL: String = "http://192.168.1.202:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -44,15 +45,15 @@ class Api {
         
         return Promise { fulfill, reject in
             sessionManager.request(baseURL + "/queue",
-                              method: .get,
-                              parameters: parameters,
-                              encoding: URLEncoding.default)
+                                   method: .get,
+                                   parameters: parameters,
+                                   encoding: URLEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-       
+                        
                         if let array = json["data"].array {
                             var queues: [Queue] = []
                             for item in array {
@@ -74,6 +75,8 @@ class Api {
     }
     
     func getSelectedQueue(queue: Queue) -> Promise<Queue> {
+        queue.clearQueue()
+        
         return Promise { fulfill, reject in
             sessionManager.request(baseURL + "/queue/\(queue.id)", method: .get)
                 .validate(statusCode: 200..<300)
@@ -81,9 +84,7 @@ class Api {
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-                        print(json["data"]["Songs"])
                         if let array = json["data"]["Songs"].array {
-                            var songs: [Song] = []
                             for item in array {
                                 guard let dictionary = item.dictionaryObject else {
                                     continue
@@ -110,9 +111,9 @@ class Api {
         
         return Promise { fulfill, reject in
             sessionManager.request(baseURL + "/user",
-                              method: .get,
-                              parameters: parameters,
-                              encoding: URLEncoding.default)
+                                   method: .get,
+                                   parameters: parameters,
+                                   encoding: URLEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
@@ -150,14 +151,14 @@ class Api {
         
         return Promise { fulfill, reject in
             sessionManager.request(baseURL + "/queue", method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(statusCode: 200..<300)
-            .responseData { response in
-                switch response.result {
-                case .success:
-                    fulfill(true)
-                case .failure(let error):
-                    reject(error)
-                }
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                    }
             }
         }
     }
@@ -177,6 +178,59 @@ class Api {
                     switch response.result {
                     case .success:
                         fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                        print(error)
+                    }
+            }
+        }
+    }
+    
+    func getSpotifyAccessToken() -> Promise<String> {
+        return Promise { fulfill, reject in
+            SpotifyLogin.shared.getAccessToken { (token, error) in
+                if error != nil, token == nil {
+                    print(error.debugDescription)
+                    reject(error!)
+                }
+                fulfill(token!)
+            }
+        }
+    }
+    
+    func searchSpotify(query: String, spotifyToken: String) -> Promise<[SpotifySong]> {
+        let modifiedWord = query.replacingOccurrences(of: " ", with: "+")
+        let searchURL = "https://api.spotify.com/v1/search?q=\(modifiedWord)&type=track"
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(spotifyToken)"]
+        
+        return Promise { fulfill, reject in
+            sessionManager.request(searchURL, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        let tracks = json["tracks"]
+                        print(tracks)
+                        if let items = tracks["items"].array {
+                            var songs: [SpotifySong] = []
+                            for item in items {
+                                guard item.dictionaryObject != nil else {
+                                    continue
+                                }
+                                
+                                let title = item["name"].stringValue
+                                let previewURL = item["preview_url"].stringValue
+                                let songURL = item["uri"].stringValue
+                                let artistName = item["album"]["artists"][0]["name"].stringValue
+                                let imageString = item["album"]["images"][0]["url"].stringValue
+                                
+                                let song = SpotifySong(title: title, image: imageString, artist: artistName, songURL: songURL, previewURL: previewURL, time: "" )
+                                
+                                songs.append(song)
+                            }  
+                            fulfill(songs)
+                        }
                     case .failure(let error):
                         reject(error)
                         print(error)

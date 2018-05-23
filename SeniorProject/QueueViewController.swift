@@ -27,18 +27,18 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func initializeData() {
-        self.showLoadingAlert()
+        self.showLoadingAlert(uiView: self.view)
         firstly {
             self.api.getSelectedQueue(queue: queue)
         }.then { (result) -> Void in
-            self.dismissLoadingAlert()
+            self.dismissLoadingAlert(uiView: self.view)
             self.songs = self.queue.songs
             self.queuedByLabel.text = self.queue.currentSong?.userId.description
             self.currentSongLabel.text = self.queue.currentSong?.spotifyURI
             self.tableView.reloadData()
         }.catch { (error) in
+            self.dismissLoadingAlert(uiView: self.view)
             self.showErrorAlert(error: error)
-            print(error)
         }
     }
     
@@ -70,15 +70,5 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
         tableView.reloadData()
-    }
-    
-    func addSong(newSong: SongInfoCell)
-    {
-        //let newSongRef = hotSong?.child(newSong.time)
-        //newSongRef?.setValue(newSong.toAnyObject())
-        print("-----SONGINFO-----")
-        print(newSong.title)
-        print(newSong.artist)
-        self.tableView.reloadData()
     }
 }

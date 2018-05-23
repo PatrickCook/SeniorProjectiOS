@@ -52,17 +52,17 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func fetchQueues() {
-        showLoadingAlert()
+        showLoadingAlert(uiView: self.view)
         firstly {
             self.api.login(username: "admin", password: "password")
         }.then { (result) -> Promise<[Queue]> in
             self.api.getAllQueues(with: nil)
         }.then { (result) -> Void in
             self.queues = result
-            self.dismissLoadingAlert()
+            self.dismissLoadingAlert(uiView: self.view)
             self.tableView.reloadData()
         }.catch { (error) in
-            self.dismissLoadingAlert()
+            self.dismissLoadingAlert(uiView: self.view)
             self.showErrorAlert(error: error)
         }
     }
