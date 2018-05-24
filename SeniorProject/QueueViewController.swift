@@ -3,15 +3,15 @@ import UIKit
 import SpotifyLogin
 import PromiseKit
 
-class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
-    var songs: [SpotifySong] = []
+    var songs: [Song] = []
     var queue: Queue!
     
     @IBOutlet weak var queuedByLabel: UILabel!
     @IBOutlet weak var currentSongLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var queueDetailView: UIView!
     @IBOutlet weak var resumeQueueButton: UIButton!
     
     @IBAction func openMusicPlayerTapped(_ sender: Any) {
@@ -31,7 +31,9 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         initializeData()
+        
         resumeQueueButton.layer.cornerRadius = 20
         resumeQueueButton.clipsToBounds = true
     }
@@ -60,7 +62,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
@@ -69,6 +70,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as? SongCell
         
+        songCell?.song = songs[indexPath.row]
         songCell?.songNameLabel.text = songs[indexPath.row].title
         songCell?.queuedByLabel.text = "\(songs[indexPath.row].userId)"
         songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"

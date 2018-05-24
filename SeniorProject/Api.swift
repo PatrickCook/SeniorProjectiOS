@@ -88,10 +88,11 @@ class Api {
                                 guard let dictionary = item.dictionaryObject else {
                                     continue
                                 }
-                                if let song = SpotifySong(data: dictionary) {
+                                if let song = Song(data: dictionary) {
                                     queue.enqueue(song: song)
                                 }
                             }
+                            queue.sort()
                             fulfill(queue)
                         }
                     case .failure(let error):
@@ -195,6 +196,38 @@ class Api {
         
         return Promise{ fulfill, reject in
             sessionManager.request(baseURL + "/queue/\(queueId)/songs", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                        print(error)
+                    }
+            }
+        }
+    }
+    
+    func voteSong(song: Song) -> Promise<Bool> {
+        return Promise{ fulfill, reject in
+            sessionManager.request(baseURL + "/song/\(song.id)/vote", method: .put)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                        print(error)
+                    }
+            }
+        }
+    }
+    
+    func unvoteSong(song: Song) -> Promise<Bool> {
+        return Promise{ fulfill, reject in
+            sessionManager.request(baseURL + "/song/\(song.id)/unvote", method: .put)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {

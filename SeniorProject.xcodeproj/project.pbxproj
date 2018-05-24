@@ -27,6 +27,8 @@
 		3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */; };
 		3AA9D6E6208E47A0009F24F4 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6E5208E47A0009F24F4 /* SeniorProjectTests.swift */; };
 		3AA9D6F1208E47A0009F24F4 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */; };
+		3AB46EEA20B778C90007081B /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB46EE920B778C90007081B /* Song.swift */; };
+		3AB46EED20B77A360007081B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB46EEC20B77A360007081B /* Utils.swift */; };
 		3AB989F820B4F07D00E26583 /* SpotifySong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB989F720B4F07D00E26583 /* SpotifySong.swift */; };
 		3AB989FA20B4FD9A00E26583 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */; };
 		3AC1CD3C209BA30A00C2D154 /* JoinQueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */; };
@@ -104,6 +106,8 @@
 		3AA9D6EC208E47A0009F24F4 /* SeniorProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA9D6F0208E47A0009F24F4 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		3AA9D6F2208E47A0009F24F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AB46EE920B778C90007081B /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		3AB46EEC20B77A360007081B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3AB989F720B4F07D00E26583 /* SpotifySong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySong.swift; sourceTree = "<group>"; };
 		3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		3AC1CD3B209BA30A00C2D154 /* JoinQueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinQueueCell.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 		3AA9D6CF208E479F009F24F4 /* SeniorProject */ = {
 			isa = PBXGroup;
 			children = (
+				3AB46EEB20B77A270007081B /* Utils */,
 				3AC1CD3F209BAC6700C2D154 /* CustomViews */,
 				3AC4A89C208EDC10006D9B2B /* Cells */,
 				3AC4A89B208EDC0D006D9B2B /* Models */,
@@ -268,6 +273,14 @@
 			path = SeniorProjectUITests;
 			sourceTree = "<group>";
 		};
+		3AB46EEB20B77A270007081B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3AB46EEC20B77A360007081B /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		3AC1CD3F209BAC6700C2D154 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +312,7 @@
 				3A83FE0020A3CF75001C359A /* User.swift */,
 				3A1538E7209911210083EA18 /* Queue.swift */,
 				3AB989F720B4F07D00E26583 /* SpotifySong.swift */,
+				3AB46EE920B778C90007081B /* Song.swift */,
 			);
 			name = Models;
 			path = SeniorProject/Models;
@@ -520,7 +534,9 @@
 				3AD7B17320ABAA6900C34E66 /* (null) in Sources */,
 				3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,
+				3AB46EEA20B778C90007081B /* Song.swift in Sources */,
 				3A1538EC2099154F0083EA18 /* SongSearchViewController.swift in Sources */,
+				3AB46EED20B77A360007081B /* Utils.swift in Sources */,
 				3A83FE0120A3CF75001C359A /* User.swift in Sources */,
 				3A581BA92092A72B00E2E872 /* UserCell.swift in Sources */,
 				3A23600720B3984D0054698D /* MusicPlayerViewController.swift in Sources */,

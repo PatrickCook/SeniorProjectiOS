@@ -7,17 +7,15 @@
 //
 
 import Foundation
+import PromiseKit
 
 class SpotifySong {
-    
-    let queueId: Int
-    let userId: Int
+
     let title: String
     let artist: String
     let imageURI: String
     let spotifyURI: String
     let previewURI: String
-    let votes: Int
     
     var description: String {
         return "SpotifySong: { title: \(title), image: \(imageURI), artist: \(artist), songURL: \(spotifyURI), previewURL: \(previewURI)}"
@@ -40,8 +38,6 @@ class SpotifySong {
         self.imageURI = imageURI
         self.spotifyURI = spotifyURI
         self.previewURI = previewURI
-        self.votes = (data["votes"] != nil) ? data["votes"] as! Int: -1
-        self.queueId = (data["queueId"] != nil) ? data["queueId"] as! Int: -1
-        self.userId = (data["userId"] != nil) ? data["userId"] as! Int: -1
     }
 }
+

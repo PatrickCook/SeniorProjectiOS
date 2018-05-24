@@ -84,7 +84,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         let actionOk = UIAlertAction(title: "OK", style: .default, handler: { alert -> Void in
             firstly {
-                Api.shared.queueSong(queueId: 1, song: song)
+                Api.shared.queueSong(queueId: self.queueToAddTo.id, song: song)
             }.then { (result) -> Void in
                 //self.performSegue(withIdentifier: "goBack", sender: self)
             }.catch { (error) in
