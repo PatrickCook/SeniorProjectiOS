@@ -61,7 +61,6 @@ class Api {
                                     continue
                                 }
                                 if let queue = Queue(data: dictionary) {
-                                    print(queue.description)
                                     queues.append(queue)
                                 }
                             }
@@ -89,8 +88,7 @@ class Api {
                                 guard let dictionary = item.dictionaryObject else {
                                     continue
                                 }
-                                if let song = Song(data: dictionary) {
-                                    print(song.description)
+                                if let song = SpotifySong(data: dictionary) {
                                     queue.enqueue(song: song)
                                 }
                             }
@@ -186,6 +184,30 @@ class Api {
         }
     }
     
+    func queueSong(queueId: Int, song: SpotifySong) -> Promise<Bool> {
+        let parameters: [String : Any] = [
+            "title": song.title,
+            "artist": song.artist,
+            "album_uri": song.imageURI,
+            "preview_uri": song.previewURI,
+            "spotify_uri": song.spotifyURI
+        ]
+        
+        return Promise{ fulfill, reject in
+            sessionManager.request(baseURL + "/queue/\(queueId)/songs", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                        print(error)
+                    }
+            }
+        }
+    }
+    
     func getSpotifyAccessToken() -> Promise<String> {
         return Promise { fulfill, reject in
             SpotifyLogin.shared.getAccessToken { (token, error) in
@@ -218,20 +240,21 @@ class Api {
                                 guard item.dictionaryObject != nil else {
                                     continue
                                 }
-                                let previewURL: String
                                 let title = item["name"].stringValue
-                                let songURL = item["uri"].stringValue
-                                let artistName = item["album"]["artists"][0]["name"].stringValue
-                                let imageString = item["album"]["images"][0]["url"].stringValue
+                                let artist = item["album"]["artists"][0]["name"].stringValue
+                                let previewURI: String
+                                let songURI = item["uri"].stringValue
+                                let albumURI = item["album"]["images"][0]["url"].stringValue
                                 
                                 if (item["preview_url"] == JSON.null) {
-                                    previewURL = "null"
+                                    previewURI = "null"
                                 } else {
-                                    previewURL = item["preview_url"].stringValue
+                                    previewURI = item["preview_url"].stringValue
                                 }
+
+                                let song = SpotifySong(data: ["title": title, "artist": artist, "album_uri": albumURI, "spotify_uri": songURI, "preview_uri": previewURI])
                                 
-                                let song = SpotifySong(title: title, image: imageString, artist: artistName, songURL: songURL, previewURL: previewURL, time: "" )
-                                songs.append(song)
+                                songs.append(song!)
                             }  
                             fulfill(songs)
                         }

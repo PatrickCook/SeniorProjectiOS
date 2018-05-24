@@ -5,7 +5,11 @@ import AVFoundation
 class MusicPlayer {
     static let shared: MusicPlayer = MusicPlayer()
     
-    var audioStream = AVAudioPlayer()
+    var audioStream: AVAudioPlayer
+    
+    init() {
+        audioStream = AVAudioPlayer()
+    }
     
     func downloadAndPlayPreviewURL(url: URL) {
         var downloadTask = URLSessionDownloadTask()

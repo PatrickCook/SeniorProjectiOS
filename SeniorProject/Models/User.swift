@@ -15,7 +15,7 @@ class User: Hashable, Equatable {
     var firstName: String
     var lastName: String
     var queues: [Queue]
-    var songs: [Song]
+    var songs: [SpotifySong]
     
     var description: String {
         return "User: { id: \(id), username: \(username), firstName: \(firstName), lastName: \(lastName)}"

@@ -5,7 +5,7 @@ import PromiseKit
 
 class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var songs: [Song] = []
+    var songs: [SpotifySong] = []
     var queue: Queue!
     
     @IBOutlet weak var queuedByLabel: UILabel!
@@ -13,17 +13,20 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var resumeQueueButton: UIButton!
+    
     @IBAction func openMusicPlayerTapped(_ sender: Any) {
-        print("open music player")
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
             self.present(mvc, animated: true, completion: nil)
         }
     }
     
+    @IBAction func resumeQueueTapped(_ sender: UIButton) {
+        print("Resume queue handler")
+    }
+    
     convenience init() {
         self.init(nibName:nil, bundle:nil)
         self.title = queue.name
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +46,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.dismissLoadingAlert(uiView: self.view)
             self.songs = self.queue.songs
             self.queuedByLabel.text = self.queue.currentSong?.userId.description
-            self.currentSongLabel.text = self.queue.currentSong?.spotifyURI
+            self.currentSongLabel.text = self.queue.currentSong?.title
             self.tableView.reloadData()
         }.catch { (error) in
             self.dismissLoadingAlert(uiView: self.view)
@@ -66,7 +69,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as? SongCell
         
-        songCell?.songNameLabel.text = songs[indexPath.row].spotifyURI
+        songCell?.songNameLabel.text = songs[indexPath.row].title
         songCell?.queuedByLabel.text = "\(songs[indexPath.row].userId)"
         songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"
         
@@ -96,7 +99,21 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return 1
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "moveToSearch":
+                if let viewController = segue.destination as? SongSearchViewController {
+                    viewController.queueToAddTo = queue
+                }
+            default:
+                break
+            }
+        }
+    }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        initializeData()
         tableView.reloadData()
     }
 }

@@ -30,7 +30,7 @@ class SongSearchCell: UITableViewCell {
     func setSongForCell(spotifySong: SpotifySong) {
         self.spotifySong = spotifySong
         
-        if spotifySong.previewURL == "null" {
+        if spotifySong.previewURI == "null" {
             playButton.isEnabled = false
         } else {
             playButton.isEnabled = true
@@ -38,6 +38,6 @@ class SongSearchCell: UITableViewCell {
     }
 
     @IBAction func playPressed(_ sender: UIButton) {
-        MusicPlayer.shared.downloadAndPlayPreviewURL(url: URL(string: spotifySong.previewURL)!)
+        MusicPlayer.shared.downloadAndPlayPreviewURL(url: URL(string: spotifySong.previewURI)!)
     }
 }

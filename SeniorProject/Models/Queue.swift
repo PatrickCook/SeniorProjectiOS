@@ -18,9 +18,9 @@ class Queue {
     var maxSongs: Int
     var isPrivate: Bool
     var owner: String
-    var songs: [Song]
+    var songs: [SpotifySong]
     
-    var currentSong: Song? {
+    var currentSong: SpotifySong? {
         set {}
         get { return songs.first }
     }
@@ -56,7 +56,7 @@ class Queue {
         self.currentSong = nil
     }
     
-    func enqueue(song: Song) {
+    func enqueue(song: SpotifySong) {
         songs.append(song)
     }
     

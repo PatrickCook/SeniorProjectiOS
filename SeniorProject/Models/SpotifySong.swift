@@ -10,25 +10,38 @@ import Foundation
 
 class SpotifySong {
     
+    let queueId: Int
+    let userId: Int
     let title: String
-    let image: String
     let artist: String
-    let songURL: String
-    let previewURL: String
-    let time: String
+    let imageURI: String
+    let spotifyURI: String
+    let previewURI: String
+    let votes: Int
     
     var description: String {
-        return "SpotifySong: { title: \(title), image: \(image), artist: \(artist), songURL: \(songURL), previewURL: \(previewURL), time: \(time) }"
+        return "SpotifySong: { title: \(title), image: \(imageURI), artist: \(artist), songURL: \(spotifyURI), previewURL: \(previewURI)}"
     }
     
-    public init(title: String, image: String, artist: String, songURL: String, previewURL: String, time: String) {
+    public required init?(data: [String: Any]) {
+        guard
+            let title = data["title"] as? String,
+            let artist = data["artist"] as? String,
+            let imageURI = data["album_uri"] as? String,
+            let spotifyURI = data["spotify_uri"] as? String,
+            let previewURI = data["preview_uri"] as? String
+        else {
+            print("Error serializing Song.")
+            return nil
+        }
+        
         self.title = title
-        self.image = image
         self.artist = artist
-        self.songURL = songURL
-        self.previewURL = previewURL
-        self.time = time
+        self.imageURI = imageURI
+        self.spotifyURI = spotifyURI
+        self.previewURI = previewURI
+        self.votes = (data["votes"] != nil) ? data["votes"] as! Int: -1
+        self.queueId = (data["queueId"] != nil) ? data["queueId"] as! Int: -1
+        self.userId = (data["userId"] != nil) ? data["userId"] as! Int: -1
     }
-    
-    
 }

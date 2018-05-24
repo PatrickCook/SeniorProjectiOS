@@ -17,8 +17,9 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
-
+    var queueToAddTo: Queue!
     var searchResults: [SpotifySong] = []
+    
     
     /* When you use the search bar */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
@@ -60,10 +61,11 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SongSearchCell
-        let mainImageURL = URL(string: searchResults[indexPath.row].image)
+        let mainImageURL = URL(string: searchResults[indexPath.row].imageURI)
         let mainImageData = NSData(contentsOf: mainImageURL!)
         let mainImage = UIImage(data: mainImageData! as Data)
 
+        cell.selectionStyle = .none
         cell.songImageLabel.image = mainImage
         cell.songTitleLabel.text = searchResults[indexPath.row].title
         cell.songArtistLabel.text = searchResults[indexPath.row].artist
@@ -71,14 +73,35 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        addSongToQueue(song: searchResults[indexPath.row])
+    }
+
+    func addSongToQueue(song: SpotifySong) {
+        let alertController = UIAlertController(title: "Add song to queue", message: "Add \(song.title) to queue?", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let actionOk = UIAlertAction(title: "OK", style: .default, handler: { alert -> Void in
+            firstly {
+                Api.shared.queueSong(queueId: 1, song: song)
+            }.then { (result) -> Void in
+                //self.performSegue(withIdentifier: "goBack", sender: self)
+            }.catch { (error) in
+                print(error)
+            }
+        })
+        alertController.addAction(actionCancel)
+        alertController.addAction(actionOk)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "goBack"{
             print("BEEP BOOP UNWINDING SEGUE")
-            MusicPlayer.shared.stopPreviewURL()
+            //MusicPlayer.shared.stopPreviewURL()
         }
     }
 }
