@@ -245,8 +245,6 @@
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
-				3A15A59120A276D5006E24C5 /* Api.swift */,
-				3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
 				3AA9D6DC208E47A0009F24F4 /* Info.plist */,
@@ -276,7 +274,9 @@
 		3AB46EEB20B77A270007081B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3A15A59120A276D5006E24C5 /* Api.swift */,
 				3AB46EEC20B77A360007081B /* Utils.swift */,
+				3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
