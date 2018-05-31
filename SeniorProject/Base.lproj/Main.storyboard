@@ -447,7 +447,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnD-1b-VmR">
-                                                    <rect key="frame" x="21" y="11" width="92" height="21"/>
+                                                    <rect key="frame" x="21" y="11" width="320" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
@@ -485,18 +485,18 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstItem="tnD-1b-VmR" firstAttribute="top" secondItem="idB-tM-VyF" secondAttribute="top" constant="11" id="Cxx-Wo-JWd"/>
                                                 <constraint firstItem="tnD-1b-VmR" firstAttribute="leading" secondItem="idB-tM-VyF" secondAttribute="leadingMargin" constant="1" id="EbN-OX-f5F"/>
                                                 <constraint firstItem="Zg7-qx-QFZ" firstAttribute="leading" secondItem="9Hd-4D-Yda" secondAttribute="trailing" constant="8" id="FpE-pa-I4u"/>
                                                 <constraint firstItem="t7A-Vr-4Io" firstAttribute="leading" secondItem="9vO-la-fBi" secondAttribute="trailing" constant="8" id="IFn-lw-cxN"/>
                                                 <constraint firstItem="t7A-Vr-4Io" firstAttribute="top" secondItem="idB-tM-VyF" secondAttribute="top" constant="40" id="KWx-EL-Ix4"/>
                                                 <constraint firstAttribute="trailing" secondItem="Zg7-qx-QFZ" secondAttribute="trailing" constant="13" id="L7S-WV-5oq"/>
                                                 <constraint firstItem="9vO-la-fBi" firstAttribute="leading" secondItem="idB-tM-VyF" secondAttribute="leadingMargin" constant="1" id="Mjy-cv-zcO"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tnD-1b-VmR" secondAttribute="trailingMargin" id="NFd-hJ-V81"/>
                                                 <constraint firstItem="t7A-Vr-4Io" firstAttribute="centerY" secondItem="9vO-la-fBi" secondAttribute="centerY" id="Q4q-KO-Kut"/>
                                                 <constraint firstItem="Zg7-qx-QFZ" firstAttribute="top" secondItem="idB-tM-VyF" secondAttribute="top" constant="20" id="Zzo-YN-d38"/>
+                                                <constraint firstAttribute="trailing" secondItem="tnD-1b-VmR" secondAttribute="trailing" constant="73" id="aAM-90-86a"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="9Hd-4D-Yda" secondAttribute="trailing" constant="26" id="bNj-gT-UkR"/>
                                                 <constraint firstItem="9vO-la-fBi" firstAttribute="top" secondItem="tnD-1b-VmR" secondAttribute="bottom" constant="8" id="ecy-a2-ySQ"/>
-                                                <constraint firstItem="tnD-1b-VmR" firstAttribute="top" secondItem="idB-tM-VyF" secondAttribute="topMargin" id="o0I-yf-1oL"/>
                                                 <constraint firstItem="9Hd-4D-Yda" firstAttribute="top" secondItem="idB-tM-VyF" secondAttribute="topMargin" constant="19" id="sns-Df-7Pl"/>
                                                 <constraint firstItem="9Hd-4D-Yda" firstAttribute="leading" secondItem="t7A-Vr-4Io" secondAttribute="trailing" constant="-16" id="v60-VE-8pz"/>
                                             </constraints>
