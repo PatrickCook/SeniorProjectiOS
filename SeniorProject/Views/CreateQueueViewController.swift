@@ -8,8 +8,9 @@
 
 import UIKit
 import PromiseKit
+import ReSwift
 
-class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, StoreSubscriber {
 
     var searchController: UISearchController!
     var selectedMembers: Set<User> = []
@@ -31,12 +32,18 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainStore.subscribe(self)
+        
         navigationController?.navigationBar.barTintColor = UIColor.black
         updateAddedMembers()
         initializeSearch()
         initializeTable()
         
         definesPresentationContext = true
+    }
+    
+    func newState(state: AppState) {
+        
     }
     
     func initializeSearch() {

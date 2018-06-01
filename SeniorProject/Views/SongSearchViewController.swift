@@ -11,8 +11,9 @@ import UIKit
 import Alamofire
 import AVFoundation
 import PromiseKit
+import ReSwift
 
-class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -21,34 +22,33 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     var searchResults: [SpotifySong] = []
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mainStore.subscribe(self)
+        searchBar.delegate = self
+    }
+    
+    func newState(state: AppState) {
+        searchResults = state.spotifySearchResults
+        tableView.reloadData()
+    }
+    
     /* When you use the search bar */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         self.view.endEditing(true)
         showLoadingAlert(uiView: self.view)
         
         firstly {
-           Api.shared.getSpotifyAccessToken()
+            Api.shared.getSpotifyAccessToken()
         }.then { (token) -> Promise<[SpotifySong]> in
             Api.shared.searchSpotify(query: searchBar.text!, spotifyToken: token)
         }.then { (songs) -> Void in
-            self.searchResults = songs
-            self.tableView.reloadData()
+            mainStore.dispatch(FetchedSpotifySearchResultsAction(spotifySearchResults: songs))
             self.dismissLoadingAlert(uiView: self.view)
         }.catch { (error) in
             self.dismissLoadingAlert(uiView: self.view)
             print(error)
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        searchBar.delegate = self
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     /* TABLE DELEGATE METHODS */
@@ -75,7 +75,6 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         addSongToQueue(song: searchResults[indexPath.row])
     }
 
@@ -84,9 +83,9 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         let actionOk = UIAlertAction(title: "OK", style: .default, handler: { alert -> Void in
             firstly {
-                Api.shared.queueSong(queueId: self.queueToAddTo.id, song: song)
+                Api.shared.queueSong(queueId: (mainStore.state.selectedQueue?.id)!, song: song)
             }.then { (result) -> Void in
-                //self.performSegue(withIdentifier: "goBack", sender: self)
+                
             }.catch { (error) in
                 print(error)
             }

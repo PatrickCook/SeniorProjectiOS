@@ -1,32 +1,41 @@
 import ReSwift
 
-//struct AppState: StateType {
-//    var spotifySearchResults: [Song] = []
-//    var joinedQueues: [Queue] = []
-//    var selectedQueue: Queue
-//    var playingQueue: Queue
-//    var currentSong: Song
-//}
-
 func reducer(action: Action, state: AppState?) -> AppState {
     // if no state has been provided, create the default state
     var state = state ?? AppState()
     
     switch action {
     case let action as FetchedJoinedQueuesAction:
+        print("In Reducers - Fetched Joined Queues Action")
         state.joinedQueues = action.joinedQueues
+        
     case let action as FetchedSelectedQueueAction:
+        print("In Reducers - FetchedSelectedQueueAction")
         state.selectedQueue = action.selectedQueue
+        
+    case let action as SetSelectedQueueAction:
+        print("In Reducers - SetSelectedQueueAction")
+        state.selectedQueue = action.selectedQueue
+        
+    case let action as SetSelectedQueueCurrentSong:
+        state.selectedQueueCurrentSong = state.selectedQueue?.currentSong
+        
     case let action as FetchedSpotifySearchResultsAction:
+        print("In Reducers - FetchedSpotifySearchResultsAction")
         state.spotifySearchResults = action.spotifySearchResults
+        
     case let action as AddSongToSelectedQueueAction:
         state.selectedQueue?.enqueue(song: action.songToAdd)
-    case let _ as SkipCurrentSongAction:
+        
+    case _ as SkipCurrentSongAction:
         MusicPlayer.shared.skip()
-    case let _ as PlayCurrentSongAction:
+        
+    case _ as PlayCurrentSongAction:
         MusicPlayer.shared.play()
-    case let _ as PauseCurrentSongAction:
+        
+    case _ as PauseCurrentSongAction:
         MusicPlayer.shared.pause()
+        
     default:
         break
     }

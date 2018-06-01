@@ -273,7 +273,6 @@
 				3A4994DA20C1F06800DEFEA3 /* Reducers */,
 				3A4994DD20C1F07300DEFEA3 /* State */,
 				3AB46EEB20B77A270007081B /* Utils */,
-				3AC1CD3F209BAC6700C2D154 /* CustomViews */,
 				3AC4A89C208EDC10006D9B2B /* Cells */,
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
@@ -327,6 +326,7 @@
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3AC1CD3F209BAC6700C2D154 /* CustomViews */,
 				3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */,
 				3A23600620B3984D0054698D /* MusicPlayerViewController.swift */,
 				3A191BD1208E57C500734405 /* LoginViewController.swift */,

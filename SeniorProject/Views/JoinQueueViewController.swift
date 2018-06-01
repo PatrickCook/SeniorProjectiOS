@@ -8,8 +8,9 @@
 
 import UIKit
 import PromiseKit
+import ReSwift
 
-class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate, StoreSubscriber {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -19,6 +20,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainStore.subscribe(self)
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
@@ -35,6 +37,10 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.reloadData()
         
         definesPresentationContext = true
+    }
+    
+    func newState(state: AppState) {
+        
     }
     
     /* Search View Delegate Methods */

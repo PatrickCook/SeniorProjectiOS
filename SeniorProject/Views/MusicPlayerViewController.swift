@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ReSwift
 
-class MusicPlayerViewController: UIViewController {
+class MusicPlayerViewController: UIViewController, StoreSubscriber {
 
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var songNameLabel: UILabel!
@@ -31,10 +32,11 @@ class MusicPlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainStore.subscribe(self)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func newState(state: AppState) {
+        songNameLabel.text = state.playingSong.title
+        artistNameLabel.text = state.playingSong.artist
     }
 }

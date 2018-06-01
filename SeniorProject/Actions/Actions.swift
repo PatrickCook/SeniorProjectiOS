@@ -9,6 +9,12 @@ struct FetchedSelectedQueueAction: Action {
     let selectedQueue: Queue
 }
 
+struct SetSelectedQueueAction: Action {
+    let selectedQueue: Queue
+}
+
+struct SetSelectedQueueCurrentSong: Action {}
+
 struct FetchedSpotifySearchResultsAction: Action {
     let spotifySearchResults: [SpotifySong]
 }

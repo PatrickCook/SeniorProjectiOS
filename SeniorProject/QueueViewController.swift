@@ -2,8 +2,9 @@
 import UIKit
 import SpotifyLogin
 import PromiseKit
+import ReSwift
 
-class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, StoreSubscriber {
     
     var songs: [Song] = []
     var queue: Queue!
@@ -31,11 +32,19 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        mainStore.subscribe(self)
         initializeData()
         
         resumeQueueButton.layer.cornerRadius = 20
         resumeQueueButton.clipsToBounds = true
+    }
+    
+    func newState(state: AppState) {
+        queue = state.selectedQueue
+        songs = (state.selectedQueue?.songs)!
+        queuedByLabel.text = state.selectedQueueCurrentSong?.queuedBy
+        currentSongLabel.text = state.selectedQueueCurrentSong?.title
+        tableView.reloadData()
     }
     
     
@@ -45,11 +54,9 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         firstly {
             Api.shared.getSelectedQueue(queue: queue)
         }.then { (result) -> Void in
+            mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
+            mainStore.dispatch(SetSelectedQueueCurrentSong())
             self.dismissLoadingAlert(uiView: self.view)
-            self.songs = self.queue.songs
-            self.queuedByLabel.text = self.queue.currentSong?.queuedBy
-            self.currentSongLabel.text = self.queue.currentSong?.title
-            self.tableView.reloadData()
         }.catch { (error) in
             self.dismissLoadingAlert(uiView: self.view)
             self.showErrorAlert(error: error)
@@ -76,29 +83,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"
         
         return songCell!
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Next up:"
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        
-        headerView.backgroundColor = #colorLiteral(red: 0.07058823529, green: 0.07058823529, blue: 0.07058823529, alpha: 1)
-        
-        let headerLabel = UILabel(frame: CGRect(x: 25, y: 0, width:
-            tableView.bounds.size.width, height:30))
-
-        headerLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        headerLabel.text = "Next Up"
-        headerView.addSubview(headerLabel)
-        
-        return headerView
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

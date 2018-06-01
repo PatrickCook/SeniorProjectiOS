@@ -28,6 +28,18 @@ class Queue {
     var description: String {
         return "Queue: { id: \(id), name: \(name), curMember: \(curMembers), maxMember: \(maxMembers), curSongs: \(curSongs), maxSongs: \(curSongs), isPrivate: \(isPrivate), owner: \(owner)}"
     }
+    public init() {
+        self.id = 0
+        self.name = "--"
+        self.owner = "--"
+        self.curMembers = 0
+        self.maxMembers = 0
+        self.curSongs = 0
+        self.maxSongs = 0
+        self.isPrivate = false
+        self.songs = []
+        self.currentSong = nil
+    }
     
     public required init?(data: [String: Any]) {
         guard

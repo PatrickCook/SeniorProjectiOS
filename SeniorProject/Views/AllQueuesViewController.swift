@@ -3,12 +3,13 @@ import SpotifyLogin
 import DynamicBlurView
 import PromiseKit
 import UIKit
+import ReSwift
 
 protocol PopoverDelegate {
     func popoverDismissed()
 }
 
-class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate {
+class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate, StoreSubscriber {
     
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
@@ -18,6 +19,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainStore.subscribe(self)
         fetchQueues()
     }
     
@@ -34,6 +36,11 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         initializeSearch()
         initializeTable()
         definesPresentationContext = true
+    }
+    
+    func newState(state: AppState) {
+       queues = state.joinedQueues
+       tableView.reloadData()
     }
     
     func initializeSearch() {
@@ -57,9 +64,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         }.then { (result) -> Promise<[Queue]> in
             Api.shared.getAllQueues(with: nil)
         }.then { (result) -> Void in
-            self.queues = result
+            mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result)) 
             self.dismissLoadingAlert(uiView: self.view)
-            self.tableView.reloadData()
         }.catch { (error) in
             self.dismissLoadingAlert(uiView: self.view)
             self.showErrorAlert(error: error)
@@ -79,7 +85,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             case "show_queue_from_row", "show_queue_from_accessory":
                 if let viewController = segue.destination as? QueueViewController {
-                    viewController.queue = queues[(tableView.indexPathForSelectedRow?.row)!]
+                    let queue = queues[(tableView.indexPathForSelectedRow?.row)!]
+                    mainStore.dispatch(SetSelectedQueueAction(selectedQueue: queue))
                 }
             default:
                 break

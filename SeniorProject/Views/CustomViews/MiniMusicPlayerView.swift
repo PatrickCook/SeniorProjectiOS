@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ReSwift
 
-class MiniMusicPlayerView: UIView {
+class MiniMusicPlayerView: UIView, StoreSubscriber {
     var isPlaying: Bool = false
     var nibName = "MiniMusicPlayerView"
     var playButton = UIImage(named: "play-icon")
@@ -28,7 +29,6 @@ class MiniMusicPlayerView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         xibSetUp()
-        
     }
     
     override init(frame: CGRect) {
@@ -48,5 +48,12 @@ class MiniMusicPlayerView: UIView {
         view.frame = self.bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        mainStore.subscribe(self)
+    }
+    
+    func newState(state: AppState) {
+        songNameLabel.text = state.playingSong.title
+        queueNameLabel.text =  state.playingQueue.name
+        artistNameLabel.text = state.playingSong.artist
     }
 }
