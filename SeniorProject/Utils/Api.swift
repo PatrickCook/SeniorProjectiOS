@@ -8,7 +8,7 @@ class Api {
     
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.202:3000/api"
+    let baseURL: String = "http://192.168.1.2:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -85,10 +85,11 @@ class Api {
                         let json = JSON(value)
                         if let array = json["data"]["Songs"].array {
                             for item in array {
-                                guard let dictionary = item.dictionaryObject else {
+                                guard var dict = item.dictionaryObject else {
                                     continue
                                 }
-                                if let song = Song(data: dictionary) {
+                                dict["votes"] = item["votes"].array?.count
+                                if let song = Song(data: dict) {
                                     queue.enqueue(song: song)
                                 }
                             }
@@ -209,7 +210,7 @@ class Api {
         }
     }
     
-    func voteSong(song: Song) -> Promise<Bool> {
+    func voteSong(song: Song) -> Promise<Any> {
         return Promise{ fulfill, reject in
             sessionManager.request(baseURL + "/song/\(song.id)/vote", method: .put)
                 .validate(statusCode: 200..<300)

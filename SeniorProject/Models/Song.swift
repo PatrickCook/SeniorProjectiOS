@@ -12,13 +12,13 @@ import PromiseKit
 class Song {
     let id: Int
     let queueId: Int
-    let userId: Int
+    let queuedBy: String
     let title: String
     let artist: String
     let imageURI: String
     let spotifyURI: String
     let previewURI: String
-    let votes: Int
+    var votes: Int
     let createdAt: Double
     let updatedAt: Double
     
@@ -36,7 +36,7 @@ class Song {
             let previewURI = data["preview_uri"] as? String,
             let votes = data["votes"] as? Int,
             let queueId = data["queueId"] as? Int,
-            let userId = data["userId"] as? Int,
+            let user = data["queuedBy"] as? [String : String],
             let createdAt = data["createdAt"] as? String,
             let updatedAt = data["updatedAt"] as? String
         else {
@@ -52,7 +52,7 @@ class Song {
         self.previewURI = previewURI
         self.votes = votes
         self.queueId = queueId
-        self.userId = userId
+        self.queuedBy = user["username"]!
         self.createdAt = Utils.shared.convertDateToEpoch(dateString: createdAt)
         self.updatedAt = Utils.shared.convertDateToEpoch(dateString: updatedAt)
     }
@@ -68,8 +68,8 @@ class Song {
     func unvote () {
         firstly {
             Api.shared.unvoteSong(song: self)
-            }.catch { (error) in
-                print(error)
+        }.catch { (error) in
+            print(error)
         }
     }
 }

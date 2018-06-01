@@ -47,7 +47,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }.then { (result) -> Void in
             self.dismissLoadingAlert(uiView: self.view)
             self.songs = self.queue.songs
-            self.queuedByLabel.text = self.queue.currentSong?.userId.description
+            self.queuedByLabel.text = self.queue.currentSong?.queuedBy
             self.currentSongLabel.text = self.queue.currentSong?.title
             self.tableView.reloadData()
         }.catch { (error) in
@@ -72,7 +72,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         songCell?.song = songs[indexPath.row]
         songCell?.songNameLabel.text = songs[indexPath.row].title
-        songCell?.queuedByLabel.text = "\(songs[indexPath.row].userId)"
+        songCell?.queuedByLabel.text = songs[indexPath.row].queuedBy
         songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"
         
         return songCell!
