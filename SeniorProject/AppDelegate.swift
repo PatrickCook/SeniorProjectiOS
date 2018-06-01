@@ -1,5 +1,11 @@
 import UIKit
 import SpotifyLogin
+import ReSwift
+
+let mainStore = Store<AppState>(
+    reducer: reducer,
+    state: nil
+)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -9,6 +9,7 @@ target 'SeniorProject' do
   pod "DynamicBlurView"
   pod 'SwiftyJSON', '~> 4.0'
   pod "PromiseKit", "~> 4.0"
+  pod 'ReSwift'
   
 end
 

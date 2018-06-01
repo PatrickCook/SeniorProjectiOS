@@ -12,6 +12,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.5.2):
     - PromiseKit/CorePromise
+  - ReSwift (4.0.1)
   - SpotifyLogin (0.1.6)
   - SwiftyJSON (4.1.0)
 
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - DynamicBlurView
   - PromiseKit (~> 4.0)
+  - ReSwift
   - SpotifyLogin (~> 0.1)
   - SwiftyJSON (~> 4.0)
 
@@ -27,6 +29,7 @@ SPEC REPOS:
     - Alamofire
     - DynamicBlurView
     - PromiseKit
+    - ReSwift
     - SpotifyLogin
     - SwiftyJSON
 
@@ -34,9 +37,10 @@ SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
+  ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
   SpotifyLogin: 9cdf82ff13e5f37e5ddc7fd07cf9793a9ebd1124
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 9876f6f98226f37427b807c3597c07687ac0646b
+PODFILE CHECKSUM: 244c7f028ccace76e71bf43478f648fd3e5dbd46
 
 COCOAPODS: 1.5.0

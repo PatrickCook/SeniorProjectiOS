@@ -35,4 +35,16 @@ class MusicPlayer {
             audioStream.pause()
         }
     }
+    
+    func skip() {
+        print("Music Player - Skip song")
+    }
+    
+    func play() {
+        print("Music Player - Play song")
+    }
+    
+    func pause() {
+        print("Music Player - Pause song")
+    }
 }
