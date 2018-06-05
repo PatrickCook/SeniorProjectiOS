@@ -12,6 +12,9 @@
 		3A1538EC2099154F0083EA18 /* SongSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538EB2099154F0083EA18 /* SongSearchViewController.swift */; };
 		3A15A59220A276D5006E24C5 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15A59120A276D5006E24C5 /* Api.swift */; };
 		3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A191BD1208E57C500734405 /* LoginViewController.swift */; };
+		3A1D358C20C736DD004852F7 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1D358B20C736DD004852F7 /* SpotifyAudioPlayback.framework */; };
+		3A1D358E20C73703004852F7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1D358D20C73703004852F7 /* AVFoundation.framework */; };
+		3A1D359020C73714004852F7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A1D358F20C73714004852F7 /* SystemConfiguration.framework */; };
 		3A23600420B398460054698D /* MiniMusicPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A23600120B398450054698D /* MiniMusicPlayerView.xib */; };
 		3A23600520B398460054698D /* MiniMusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23600220B398460054698D /* MiniMusicPlayerView.swift */; };
 		3A23600720B3984D0054698D /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23600620B3984D0054698D /* MusicPlayerViewController.swift */; };
@@ -87,6 +90,9 @@
 		3A18A9C6208E4F9900DE098C /* SpotifyLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLogin.swift; sourceTree = "<group>"; };
 		3A18A9C7208E4F9900DE098C /* SpotifyLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginPresenter.swift; sourceTree = "<group>"; };
 		3A191BD1208E57C500734405 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3A1D358B20C736DD004852F7 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		3A1D358D20C73703004852F7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3A1D358F20C73714004852F7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3A23600120B398450054698D /* MiniMusicPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MiniMusicPlayerView.xib; sourceTree = "<group>"; };
 		3A23600220B398460054698D /* MiniMusicPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniMusicPlayerView.swift; sourceTree = "<group>"; };
 		3A23600620B3984D0054698D /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 		3A581BA62092A3E900E2E872 /* CreateQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQueueViewController.swift; sourceTree = "<group>"; };
 		3A581BA82092A72B00E2E872 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		3A667329208E502F0005940A /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A667CF420C73F7300C8DF0F /* SpotifyMusicQueue-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpotifyMusicQueue-Bridging-Header.h"; sourceTree = "<group>"; };
 		3A83FE0020A3CF75001C359A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A83FE0920A4C742001C359A /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SpotifyLogin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,8 +138,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A1D359020C73714004852F7 /* SystemConfiguration.framework in Frameworks */,
+				3A1D358E20C73703004852F7 /* AVFoundation.framework in Frameworks */,
 				3A9E2FCB208E54F200A975E7 /* SpotifyLogin.framework in Frameworks */,
 				7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */,
+				3A1D358C20C736DD004852F7 /* SpotifyAudioPlayback.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +166,9 @@
 		3A18A9B2208E4F9900DE098C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A1D358F20C73714004852F7 /* SystemConfiguration.framework */,
+				3A1D358D20C73703004852F7 /* AVFoundation.framework */,
+				3A1D358B20C736DD004852F7 /* SpotifyAudioPlayback.framework */,
 				3A9E2FCA208E54F200A975E7 /* SpotifyLogin.framework */,
 				3A667329208E502F0005940A /* SpotifyLogin.framework */,
 				3A18A9B3208E4F9900DE098C /* SpotifyLogin */,
@@ -277,6 +290,7 @@
 				3AC4A89B208EDC0D006D9B2B /* Models */,
 				3AC4A89A208EDC05006D9B2B /* Views */,
 				3AA9D6D0208E479F009F24F4 /* AppDelegate.swift */,
+				3A667CF420C73F7300C8DF0F /* SpotifyMusicQueue-Bridging-Header.h */,
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
 				3AA9D6DC208E47A0009F24F4 /* Info.plist */,
@@ -765,16 +779,38 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"DynamicBlurView\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"PromiseKit\"",
+					"-framework",
+					"\"ReSwift\"",
+					"-framework",
+					"\"SpotifyLogin\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SpotifyMusicQueue-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -788,16 +824,38 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"DynamicBlurView\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"PromiseKit\"",
+					"-framework",
+					"\"ReSwift\"",
+					"-framework",
+					"\"SpotifyLogin\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SpotifyMusicQueue-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
