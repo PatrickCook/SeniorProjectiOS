@@ -5,11 +5,16 @@ import AVFoundation
 class MusicPlayer {
     static let shared: MusicPlayer = MusicPlayer()
     
+    var isPreviewPlaying = false
     var isPlaying = false
     var audioStream: AVAudioPlayer
     
     init() {
         audioStream = AVAudioPlayer()
+    }
+    
+    func newState(state: AppState) {
+        
     }
     
     func downloadAndPlayPreviewURL(url: URL) {

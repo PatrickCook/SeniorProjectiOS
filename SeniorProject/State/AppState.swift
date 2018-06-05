@@ -8,3 +8,4 @@ struct AppState: StateType {
     var playingQueue: Queue = Queue()
     var playingSong: Song = Song()
 }
+
