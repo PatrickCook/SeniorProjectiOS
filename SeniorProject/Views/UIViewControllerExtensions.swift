@@ -52,6 +52,12 @@ extension UIViewController {
             
             alertController.addAction(actionOk)
             self.present(alertController, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: "Oops, something happened", message: "Sorry about that, someone must have spilled coffee on our servers.. (wasn't a 401)", preferredStyle: .alert)
+            let actionOk = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alertController.addAction(actionOk)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

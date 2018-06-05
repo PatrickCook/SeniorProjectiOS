@@ -88,6 +88,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
                 
             }.catch { (error) in
                 print(error)
+                self.showErrorAlert(error: error)
             }
         })
         alertController.addAction(actionCancel)

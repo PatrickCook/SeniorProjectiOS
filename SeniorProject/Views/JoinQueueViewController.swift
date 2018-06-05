@@ -60,6 +60,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
             self.queues = result
             self.tableView.reloadData()
         }.catch { (error) in
+            self.showErrorAlert(error: error)
             print(error)
         }
     }
@@ -70,6 +71,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
         }.then { (result) -> Void in
             self.performSegue(withIdentifier: "unwind_to_all_queues", sender: self)
         }.catch { (error) in
+            self.showErrorAlert(error: error)
             print(error)
         }
     }

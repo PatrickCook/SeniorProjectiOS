@@ -73,6 +73,40 @@ class Api {
         }
     }
     
+    func getMyQueues() -> Promise<[Queue]> {
+        
+        return Promise { fulfill, reject in
+            sessionManager.request(baseURL + "/queue/my",
+                                   method: .get,
+                                   encoding: URLEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        if let array = json["data"][0]["Queues"].array {
+                            var queues: [Queue] = []
+                            for item in array {
+                                guard var dictionary = item.dictionaryObject else {
+                                    continue
+                                }
+                                
+                                dictionary["ownerUsername"] = "--"
+                                if let queue = Queue(data: dictionary) {
+                                    queues.append(queue)
+                                }
+                            }
+                            fulfill(queues)
+                        }
+                        fulfill([])
+                    case .failure(let error):
+                        reject(error)
+                    }
+            }
+        }
+    }
+    
     func getSelectedQueue(queue: Queue) -> Promise<Queue> {
         queue.clearQueue()
         
@@ -180,7 +214,6 @@ class Api {
                         fulfill(true)
                     case .failure(let error):
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -204,7 +237,6 @@ class Api {
                         fulfill(true)
                     case .failure(let error):
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -220,7 +252,6 @@ class Api {
                         fulfill(true)
                     case .failure(let error):
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -236,7 +267,6 @@ class Api {
                         fulfill(true)
                     case .failure(let error):
                         reject(error)
-                        print(error)
                     }
             }
         }
