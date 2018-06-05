@@ -30,6 +30,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
             if error != nil, token == nil {
                 print(error.debugDescription)
                 self?.showLoginFlow()
+            } else {
+                MusicPlayer.shared.player?.login(withAccessToken: token)
             }
         }
         

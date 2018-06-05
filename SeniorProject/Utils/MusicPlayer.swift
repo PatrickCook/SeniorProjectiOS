@@ -2,15 +2,42 @@ import Foundation
 import SpotifyLogin
 import AVFoundation
 
-class MusicPlayer {
+class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     static let shared: MusicPlayer = MusicPlayer()
-    var player: SPTAudioStreamingController?
+    
     var isPreviewPlaying = false
     var isPlaying = false
     var audioStream: AVAudioPlayer
+    var player: SPTAudioStreamingController?
     
-    init() {
+    override init() {
         audioStream = AVAudioPlayer()
+        super.init()
+        
+        player = SPTAudioStreamingController.sharedInstance()
+        player?.playbackDelegate = self
+        player?.delegate = self
+        try! player?.start(withClientId: SpotifyCredentials.clientID)
+    }
+    
+    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
+         print("Successful Login")
+        player!.playSpotifyURI("spotify:track:7jZHUhAmW5oq1cq6s8IxmK", startingWith: 0, startingWithPosition: 0, callback: { error in
+            if error != nil {
+                print("*** failed to play: \(error)")
+                return
+            } else {
+                print("play")
+            }
+        })
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
+        print("Music Player - Audio Streaming Error: \(error)")
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
+        print("Music Player - No idea what this does")
     }
     
     func downloadAndPlayPreviewURL(url: URL) {
