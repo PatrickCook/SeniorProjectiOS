@@ -22,8 +22,7 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
     @IBOutlet weak var playbackButton: UIButton!
     
     @IBAction func togglePlayback(_ sender: Any) {
-        playbackButton.setImage(isPlaying ? playButton : pauseButton, for: UIControlState.normal)
-        isPlaying = !isPlaying
+        mainStore.dispatch(ToggleCurrentSongAction())
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,5 +54,6 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
         songNameLabel.text = state.playingSong.title
         queueNameLabel.text =  state.playingQueue.name
         artistNameLabel.text = state.playingSong.artist
+        playbackButton.setImage(MusicPlayer.shared.isPlaying ? pauseButton : playButton, for: UIControlState.normal)
     }
 }

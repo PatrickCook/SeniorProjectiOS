@@ -40,10 +40,10 @@
 		3AC4A89E208EDC3A006D9B2B /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89D208EDC3A006D9B2B /* QueueCell.swift */; };
 		3AC4A8A0208EDCBF006D9B2B /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC4A89F208EDCBF006D9B2B /* SongCell.swift */; };
 		3ACF780920914DC3000A025C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACF780820914DC3000A025C /* QueueViewController.swift */; };
-		3AD7B16B20AB81FA00C34E66 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		3AD7B16F20AB87EE00C34E66 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		3AD7B17120AB952D00C34E66 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		3AD7B17320ABAA6900C34E66 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		3AD7B16B20AB81FA00C34E66 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		3AD7B16F20AB87EE00C34E66 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		3AD7B17120AB952D00C34E66 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		3AD7B17320ABAA6900C34E66 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		7AB17B78AACDC8812D04CD35 /* Pods_SeniorProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -480,8 +480,8 @@
 			files = (
 				3A23600420B398460054698D /* MiniMusicPlayerView.xib in Resources */,
 				3AA9D6DB208E47A0009F24F4 /* LaunchScreen.storyboard in Resources */,
-				3AD7B17120AB952D00C34E66 /* (null) in Resources */,
-				3AD7B16F20AB87EE00C34E66 /* (null) in Resources */,
+				3AD7B17120AB952D00C34E66 /* BuildFile in Resources */,
+				3AD7B16F20AB87EE00C34E66 /* BuildFile in Resources */,
 				3A23600920B398A50054698D /* Assets.xcassets in Resources */,
 				3AA9D6D6208E479F009F24F4 /* Main.storyboard in Resources */,
 			);
@@ -531,6 +531,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SeniorProject/Pods-SeniorProject-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SpotifyLogin/SpotifyLogin.framework",
@@ -540,6 +541,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SpotifyLogin.framework",
@@ -566,8 +568,8 @@
 				3A15A59220A276D5006E24C5 /* Api.swift in Sources */,
 				3A581BA72092A3E900E2E872 /* CreateQueueViewController.swift in Sources */,
 				3A4E31872091668200D5A870 /* PopoverViewController.swift in Sources */,
-				3AD7B16B20AB81FA00C34E66 /* (null) in Sources */,
-				3AD7B17320ABAA6900C34E66 /* (null) in Sources */,
+				3AD7B16B20AB81FA00C34E66 /* BuildFile in Sources */,
+				3AD7B17320ABAA6900C34E66 /* BuildFile in Sources */,
 				3A83FE0A20A4C742001C359A /* UIViewControllerExtensions.swift in Sources */,
 				3A191BD2208E57C500734405 /* LoginViewController.swift in Sources */,
 				3AB46EEA20B778C90007081B /* Song.swift in Sources */,
@@ -766,10 +768,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -789,10 +788,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SeniorProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -809,11 +805,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -830,11 +822,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -850,11 +838,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -870,11 +854,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JFPTT2HRK6;
 				INFOPLIST_FILE = SeniorProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

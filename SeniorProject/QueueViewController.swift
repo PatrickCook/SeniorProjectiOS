@@ -14,6 +14,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var queueDetailView: UIView!
     @IBOutlet weak var resumeQueueButton: UIButton!
+    @IBOutlet weak var currentSongAlbumImage: UIImageView!
     
     @IBAction func openMusicPlayerTapped(_ sender: Any) {
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
@@ -22,7 +23,8 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func resumeQueueTapped(_ sender: UIButton) {
-        print("Resume queue handler")
+        mainStore.dispatch(ToggleCurrentSongAction())
+        mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
     }
     
     convenience init() {
@@ -40,13 +42,23 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func newState(state: AppState) {
+        let url = URL(string: state.playingSong.imageURI)!
+        
         queue = state.selectedQueue
         songs = (state.selectedQueue?.songs)!
         queuedByLabel.text = state.selectedQueueCurrentSong?.queuedBy
         currentSongLabel.text = state.selectedQueueCurrentSong?.title
+        
+        currentSongAlbumImage.kf.indicatorType = .activity
+        currentSongAlbumImage.kf.setImage(with: url, completionHandler: {
+            (image, error, cacheType, imageUrl) in
+            if (image == nil) {
+                self.currentSongAlbumImage.image = UIImage(named: "default-album-cover")
+            }
+        })
+        
         tableView.reloadData()
     }
-    
     
     func initializeData() {
         showLoadingAlert(uiView: self.view)

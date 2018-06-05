@@ -17,8 +17,14 @@ func reducer(action: Action, state: AppState?) -> AppState {
         print("In Reducers - SetSelectedQueueAction")
         state.selectedQueue = action.selectedQueue
         
-    case let action as SetSelectedQueueCurrentSong:
+    case _ as SetSelectedQueueCurrentSong:
+        print("In Reducers - SetSelectedQueueCurrentSong")
         state.selectedQueueCurrentSong = state.selectedQueue?.currentSong
+        
+    case _ as SetSelectedQueueAsPlayingQueue:
+        print("In Reducers - SetSelectedQueueAsPlayingQueue")
+        state.playingQueue = state.selectedQueue!
+        state.playingSong = state.playingQueue.currentSong!
         
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
@@ -30,15 +36,40 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case _ as SkipCurrentSongAction:
         MusicPlayer.shared.skip()
         
-    case _ as PlayCurrentSongAction:
-        MusicPlayer.shared.play()
+    case _ as RestartCurrentSongAction:
+        MusicPlayer.shared.restart()
         
-    case _ as PauseCurrentSongAction:
-        MusicPlayer.shared.pause()
-        
+    case _ as ToggleCurrentSongAction:
+        MusicPlayer.shared.togglePlayback()
+    
     default:
         break
     }
     
+    printState(state: state)
+    
     return state
+}
+
+func printState(state: AppState) {
+    print("------------ Printing State ------------")
+    
+    print("Joined Queues:")
+    for queue in state.joinedQueues {
+        print(queue.description)
+    }
+    
+    print("\nSelected Queue:")
+    print(state.selectedQueue?.description ?? "No selected queue.")
+    
+    print("\nSelected Queue Current Song:")
+    print(state.selectedQueueCurrentSong?.description ?? "No current song.")
+    
+    print("\nPlaying Queue:")
+    print(state.playingQueue.description)
+    
+    print("\nPlaying Song:")
+    print(state.playingSong.description)
+    
+    print("---------------------------------------")
 }

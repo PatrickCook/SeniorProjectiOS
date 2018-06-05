@@ -10,6 +10,7 @@ target 'SeniorProject' do
   pod 'SwiftyJSON', '~> 4.0'
   pod "PromiseKit", "~> 4.0"
   pod 'ReSwift'
+  pod 'Kingfisher', '~> 4.0'
   
 end
 

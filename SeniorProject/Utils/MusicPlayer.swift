@@ -5,6 +5,7 @@ import AVFoundation
 class MusicPlayer {
     static let shared: MusicPlayer = MusicPlayer()
     
+    var isPlaying = false
     var audioStream: AVAudioPlayer
     
     init() {
@@ -36,6 +37,11 @@ class MusicPlayer {
         }
     }
     
+    func togglePlayback () {
+        isPlaying = !isPlaying
+        print("Music Player is \(isPlaying ? "playing" : "paused")")
+    }
+    
     func skip() {
         print("Music Player - Skip song")
     }
@@ -46,5 +52,9 @@ class MusicPlayer {
     
     func pause() {
         print("Music Player - Pause song")
+    }
+    
+    func restart() {
+        print("Music Player - Restart Song")
     }
 }

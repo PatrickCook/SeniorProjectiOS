@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                       clientSecret: "ef9e181e33254d96a6e895ee03527cac",
                                       redirectURL: redirectURL)
         
-        
         return true
     }
     

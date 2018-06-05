@@ -87,6 +87,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                 if let viewController = segue.destination as? QueueViewController {
                     let queue = queues[(tableView.indexPathForSelectedRow?.row)!]
                     mainStore.dispatch(SetSelectedQueueAction(selectedQueue: queue))
+                    mainStore.dispatch(SetSelectedQueueCurrentSong())
                 }
             default:
                 break

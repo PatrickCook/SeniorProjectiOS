@@ -18,7 +18,7 @@ class Song {
     let imageURI: String
     let spotifyURI: String
     let previewURI: String
-    var votes: Int
+    let votes: Int
     let createdAt: Double
     let updatedAt: Double
     
