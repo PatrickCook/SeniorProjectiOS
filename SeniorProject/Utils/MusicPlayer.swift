@@ -27,6 +27,7 @@ class MusicPlayer {
     }
     
     func playPreviewURL(url: URL) {
+        isPreviewPlaying = !isPreviewPlaying
         do {
             audioStream = try AVAudioPlayer(contentsOf: url)
             audioStream.prepareToPlay()
@@ -37,6 +38,7 @@ class MusicPlayer {
     }
     
     func stopPreviewURL() {
+        isPreviewPlaying = !isPreviewPlaying
         if (audioStream.isPlaying) {
             audioStream.pause()
         }

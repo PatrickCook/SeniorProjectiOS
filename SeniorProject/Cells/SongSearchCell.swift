@@ -38,7 +38,7 @@ class SongSearchCell: UITableViewCell {
     }
 
     @IBAction func playPressed(_ sender: UIButton) {
-        if (MusicPlayer.shared.isPreviewPlaying) {
+        if (!MusicPlayer.shared.isPreviewPlaying) {
             MusicPlayer.shared.downloadAndPlayPreviewURL(url: URL(string: spotifySong.previewURI)!)
         } else {
             MusicPlayer.shared.stopPreviewURL()
