@@ -17,15 +17,14 @@ func reducer(action: Action, state: AppState?) -> AppState {
         print("In Reducers - SetSelectedQueueAction")
         state.selectedQueue = action.selectedQueue
         
-    case _ as SetSelectedQueueCurrentSong:
-        print("In Reducers - SetSelectedQueueCurrentSong")
-        state.selectedQueueCurrentSong = state.selectedQueue?.currentSong
-        
     case _ as SetSelectedQueueAsPlayingQueue:
         print("In Reducers - SetSelectedQueueAsPlayingQueue")
         state.playingQueue = state.selectedQueue!
-        state.playingSong = state.playingQueue.currentSong!
-        
+        if (state.playingQueue.songs.count > 0) {
+            state.playingSong = state.playingQueue.songs.first!
+        }
+        MusicPlayer.shared.playback = .INIT
+       
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
         state.spotifySearchResults = action.spotifySearchResults
@@ -35,18 +34,21 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case _ as SkipCurrentSongAction:
         MusicPlayer.shared.skip()
+        if (state.playingQueue.songs.count > 0) {
+            state.playingSong = state.playingQueue.songs.first!
+        }
         
     case _ as RestartCurrentSongAction:
         MusicPlayer.shared.restart()
         
-    case _ as ToggleCurrentSongAction:
+    case _ as TogglePlaybackAction:
         MusicPlayer.shared.togglePlayback()
     
     default:
         break
     }
     
-    //printState(state: state)
+    printState(state: state)
     
     return state
 }

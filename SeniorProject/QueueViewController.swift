@@ -23,8 +23,8 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func resumeQueueTapped(_ sender: UIButton) {
-        mainStore.dispatch(ToggleCurrentSongAction())
         mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+        mainStore.dispatch(TogglePlaybackAction())
     }
     
     convenience init() {
@@ -67,7 +67,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             Api.shared.getSelectedQueue(queue: queue)
         }.then { (result) -> Void in
             mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
-            mainStore.dispatch(SetSelectedQueueCurrentSong())
             self.dismissLoadingAlert(uiView: self.view)
         }.catch { (error) in
             self.dismissLoadingAlert(uiView: self.view)

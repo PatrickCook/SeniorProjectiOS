@@ -20,11 +20,6 @@ class Queue {
     var owner: String
     var songs: [Song]
     
-    var currentSong: Song? {
-        set {}
-        get { return songs.first }
-    }
-    
     var description: String {
         return "Queue: { id: \(id), name: \(name), curMember: \(curMembers), maxMember: \(maxMembers), curSongs: \(curSongs), maxSongs: \(curSongs), isPrivate: \(isPrivate), owner: \(owner)}"
     }
@@ -38,7 +33,6 @@ class Queue {
         self.maxSongs = 0
         self.isPrivate = false
         self.songs = []
-        self.currentSong = nil
     }
     
     public required init?(data: [String: Any]) {
@@ -65,7 +59,6 @@ class Queue {
         self.maxSongs = maxSongs
         self.isPrivate = isPrivate
         self.songs = []
-        self.currentSong = nil
     }
     
     func sort() {
@@ -83,7 +76,9 @@ class Queue {
     }
     
     func dequeue() {
-        songs.removeFirst()
+        if (songs.count > 0) {
+            songs.removeFirst()
+        }
     }
     
     func clearQueue() {

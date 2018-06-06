@@ -96,12 +96,9 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         self.present(alertController, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "goBack"{
-            print("BEEP BOOP UNWINDING SEGUE")
-            //MusicPlayer.shared.stopPreviewURL()
+    override func viewWillDisappear(_ animated: Bool) {
+        if (self.isMovingFromParentViewController) {
+            MusicPlayer.shared.stopPreviewURL()
         }
     }
 }

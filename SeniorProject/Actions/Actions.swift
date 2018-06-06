@@ -13,8 +13,6 @@ struct SetSelectedQueueAction: Action {
     let selectedQueue: Queue
 }
 
-struct SetSelectedQueueCurrentSong: Action {}
-
 struct SetSelectedQueueAsPlayingQueue: Action {}
 
 struct FetchedSpotifySearchResultsAction: Action {
@@ -25,14 +23,8 @@ struct AddSongToSelectedQueueAction: Action {
     let songToAdd: Song
 }
 
-struct RestartCurrentSongAction: Action {
-    
-}
+struct RestartCurrentSongAction: Action {}
 
-struct SkipCurrentSongAction: Action {
-    
-}
+struct SkipCurrentSongAction: Action {}
 
-struct ToggleCurrentSongAction: Action {
-    
-}
+struct TogglePlaybackAction: Action {}

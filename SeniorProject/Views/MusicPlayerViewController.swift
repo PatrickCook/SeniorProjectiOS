@@ -24,7 +24,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     @IBOutlet weak var playbackButton: UIButton!
     
     @IBAction func playbackToggleTapped(_ sender: Any) {
-        mainStore.dispatch(ToggleCurrentSongAction())
+        mainStore.dispatch(TogglePlaybackAction())
     }
     
     @IBAction func previousTapped(_ sender: Any) {
@@ -46,12 +46,11 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainStore.subscribe(self)
-        
-        playbackButton.setImage(MusicPlayer.shared.isPlaying ? playButton : pauseButton, for: UIControlState.normal)
     }
     
     func newState(state: AppState) {
         let url = URL(string: state.playingSong.imageURI)!
+        let newImage: UIImage
         
         songNameLabel.text = state.playingSong.title
         artistNameLabel.text = state.playingSong.artist
@@ -64,6 +63,12 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
             }
         })
         
-        playbackButton.setImage(MusicPlayer.shared.isPlaying ? pauseButton : playButton, for: UIControlState.normal)
+        if (MusicPlayer.shared.playback == .PLAYING) {
+            newImage = pauseButton!
+        } else {
+            newImage = playButton!
+        }
+        
+        playbackButton.setImage(newImage, for: UIControlState.normal)
     }
 }

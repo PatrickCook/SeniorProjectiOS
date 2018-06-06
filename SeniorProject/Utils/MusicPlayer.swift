@@ -6,9 +6,13 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     static let shared: MusicPlayer = MusicPlayer()
     
     var isPreviewPlaying = false
-    var isPlaying = false
     var audioStream: AVAudioPlayer
     var player: SPTAudioStreamingController?
+    var playback: PlaybackState = .INIT
+    
+    enum PlaybackState {
+        case INIT, PLAYING, PAUSED
+    }
     
     override init() {
         audioStream = AVAudioPlayer()
@@ -20,24 +24,20 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         try! player?.start(withClientId: SpotifyCredentials.clientID)
     }
     
-    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-         print("Successful Login")
-        player!.playSpotifyURI("spotify:track:7jZHUhAmW5oq1cq6s8IxmK", startingWith: 0, startingWithPosition: 0, callback: { error in
-            if error != nil {
-                print("*** failed to play: \(error)")
-                return
-            } else {
-                print("play")
-            }
-        })
-    }
-    
-    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
-        print("Music Player - Audio Streaming Error: \(error)")
-    }
-    
-    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
-        print("Music Player - No idea what this does")
+    func togglePlayback() {
+        switch (playback) {
+        case .INIT:
+            print("MusicPlayer - INIT")
+            initPlayback()
+        case .PLAYING:
+            print("MusicPlayer - PLAY")
+            pausePlayback()
+        case .PAUSED:
+            print("MusicPlayer - PAUSE")
+            playPlayback()
+        default:
+            print("Music Player - ERROR STATE")
+        }
     }
     
     func downloadAndPlayPreviewURL(url: URL) {
@@ -50,6 +50,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func playPreviewURL(url: URL) {
+        pausePlayback()
         isPreviewPlaying = !isPreviewPlaying
         do {
             audioStream = try AVAudioPlayer(contentsOf: url)
@@ -65,37 +66,77 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         if (audioStream.isPlaying) {
             audioStream.pause()
         }
+        playPlayback()
     }
     
-    func togglePlayback () {
-        isPlaying = !isPlaying
-        print("Music Player is \(isPlaying ? "playing" : "paused")")
+    /* PLAY BUTTON STATE METHODS */
+    
+    func initPlayback() {
+        let queue = mainStore.state.playingQueue
+        
+        if (queue.songs.count > 0) {
+            let songURL = queue.songs.first?.spotifyURI
+            player!.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: 0, callback: { error in
+                if error != nil {
+                    print("*** failed to play: \(error)")
+                    return
+                } else {
+                    self.playback = .PLAYING
+                    print("play")
+                }
+            })
+        }
     }
     
-    func skip() {
-        print("Music Player - Skip song")
+    func playPlayback() {
+        player?.setIsPlaying(true, callback: nil)
+        playback = .PLAYING
     }
     
-    /*
-     * NOT_LOADED_PLAY_PRESSED
-     * LOADED_PLAY_PRESSED - was paused
-     */
-    func play() {
-        print("Music Player - Play song")
-    }
-    
-    /*  LOADED_PAUSE - was playing */
-    func pause() {
-        print("Music Player - Pause song")
+    func pausePlayback() {
+        player?.setIsPlaying(false, callback: nil)
+        playback = .PAUSED
     }
     
     func restart() {
-        print("Music Player - Restart Song")
+        initPlayback()
     }
     
-//
-//    LOADED_PAUSE - was playing
-//    EMPTY_QUEUE
+    func skip() {
+        mainStore.state.playingQueue.dequeue()
+        initPlayback()
+    }
+
+    /*  SPOTIFY DELEGATE METHODS */
     
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        if isPlaying {
+            self.activateAudioSession()
+        } else {
+            self.deactivateAudioSession()
+        }
+    }
+    
+    // MARK: Activate audio session
+    
+    func activateAudioSession() {
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        try? AVAudioSession.sharedInstance().setActive(true)
+    }
+    
+    // MARK: Deactivate audio session
+    
+    func deactivateAudioSession() {
+        try? AVAudioSession.sharedInstance().setActive(false)
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
+        print("Music Player - Audio Streaming Error: \(error)")
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
+        print("Music Player - Move to next Song")
+        mainStore.dispatch(SkipCurrentSongAction())
+    }
     
 }

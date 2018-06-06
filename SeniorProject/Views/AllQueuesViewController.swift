@@ -21,10 +21,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         mainStore.subscribe(self)
         fetchQueues()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
             if error != nil, token == nil {
@@ -34,6 +30,10 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                 MusicPlayer.shared.player?.login(withAccessToken: token)
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         initializeSearch()
         initializeTable()
@@ -89,7 +89,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                 if segue.destination is QueueViewController {
                     let queue = queues[(tableView.indexPathForSelectedRow?.row)!]
                     mainStore.dispatch(SetSelectedQueueAction(selectedQueue: queue))
-                    mainStore.dispatch(SetSelectedQueueCurrentSong())
                 }
             default:
                 break
