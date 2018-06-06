@@ -28,3 +28,20 @@ struct RestartCurrentSongAction: Action {}
 struct SkipCurrentSongAction: Action {}
 
 struct TogglePlaybackAction: Action {}
+
+struct UpdateCurrentSongPositionAction: Action {
+    let updatedTime: Double
+}
+
+struct UpdateCurrentSongDurationAction: Action {
+    let updatedDuration: Double
+}
+
+struct UpdateSliderPositionAction: Action {
+    let sliderValue: Double
+}
+
+struct SetHasSliderChangedAction: Action {
+    let hasSliderChanged: Bool
+}
+

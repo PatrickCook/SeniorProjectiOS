@@ -43,7 +43,22 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case _ as TogglePlaybackAction:
         MusicPlayer.shared.togglePlayback()
+        
+    case let action as UpdateCurrentSongPositionAction:
+        state.playingSongCurrentTime = action.updatedTime
     
+    case let action as UpdateCurrentSongDurationAction:
+        state.playingSongDuration = action.updatedDuration
+        
+    case let action as UpdateSliderPositionAction:
+        state.playingSongCurrentTime = (action.sliderValue/100) * state.playingSongDuration
+        print("Reducer: \(state.playingSongCurrentTime)")
+        print("Reduration: \(state.playingSongDuration)")
+        MusicPlayer.shared.seektoCurrentTime()
+        
+    case let action as SetHasSliderChangedAction:
+        state.hasSliderChanged = action.hasSliderChanged
+        
     default:
         break
     }

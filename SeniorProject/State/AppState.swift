@@ -7,5 +7,8 @@ struct AppState: StateType {
     var selectedQueueCurrentSong: Song?
     var playingQueue: Queue = Queue()
     var playingSong: Song = Song()
+    var playingSongCurrentTime: Double = 0.0
+    var playingSongDuration: Double = 0.0
+    var hasSliderChanged: Bool = false
 }
 

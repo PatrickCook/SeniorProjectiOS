@@ -25,19 +25,21 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     
-    func toggleSlider(value: Float){
+    func seektoCurrentTime(){
         let songURL = mainStore.state.playingQueue.songs.first?.spotifyURI
-        let timeValue = TimeInterval(value)
+        let timeValue = mainStore.state.playingSongCurrentTime
         player!.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: timeValue, callback: { error in
             if error != nil {
                 print("*** failed to play: \(String(describing: error))")
                 return
             } else {
                 self.playback = .PLAYING
-                print("play")
+                print("musicplayer - seeked to \(timeValue)")
+                mainStore.dispatch(SetHasSliderChangedAction(hasSliderChanged: false))
             }
         })
     }
+    
     
     func togglePlayback() {
         switch (playback) {
@@ -96,6 +98,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
                     return
                 } else {
                     self.playback = .PLAYING
+                mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
                 }
             })
         }
@@ -170,6 +173,17 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     
     // MARK: Deactivate audio session
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
+
+        if (!mainStore.state.hasSliderChanged) {
+            mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
+        }
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChange metadata: SPTPlaybackMetadata!) {
+    mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
+    }
     
     func deactivateAudioSession() {
         try? AVAudioSession.sharedInstance().setActive(false)

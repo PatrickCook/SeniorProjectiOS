@@ -32,7 +32,9 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         //TODO: set maximum of musicSlider here
         musicSlider.isContinuous = false
         print(musicSlider.value)
-        MusicPlayer.shared.toggleSlider(value: musicSlider.value)
+        mainStore.dispatch(SetHasSliderChangedAction(hasSliderChanged: true))
+        mainStore.dispatch(UpdateSliderPositionAction(sliderValue: Double(musicSlider.value)))
+        
     }
     
     
@@ -58,12 +60,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
         mainStore.subscribe(self)
-    }
-    
-    @objc func updateSlider() {
-        musicSlider.value = Float((MusicPlayer.shared.player?.playbackState.position)!)
     }
     
     func newState(state: AppState) {
@@ -73,9 +70,9 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         queueNameLabel.text = state.playingQueue.name
         songNameLabel.text = state.playingSong.title
         artistNameLabel.text = state.playingSong.artist
+        
         // Change this as state changes...?
-        musicSlider.maximumValue = 180.0
-        musicSlider.value = Float((MusicPlayer.shared.player?.playbackState.position)!)
+        musicSlider.value = Float(state.playingSongCurrentTime/state.playingSongDuration)
         
         albumImage.kf.indicatorType = .activity
         albumImage.kf.setImage(with: url, completionHandler: {
