@@ -42,13 +42,13 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     func togglePlayback() {
         switch (playback) {
         case .INIT:
-            print("MusicPlayer - INIT")
+            print("MusicPlayer: INIT -> PLAYING")
             initPlayback()
         case .PLAYING:
-            print("MusicPlayer - PLAY")
+            print("MusicPlayer: PLAYING -> PAUSED")
             pausePlayback()
         case .PAUSED:
-            print("MusicPlayer - PAUSE")
+            print("MusicPlayer: PAUSED -> PLAYING")
             playPlayback()
         }
     }
@@ -96,7 +96,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
                     return
                 } else {
                     self.playback = .PLAYING
-                    print("play")
                 }
             })
         }
@@ -122,21 +121,53 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
 
     /*  SPOTIFY DELEGATE METHODS */
+    func setupNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleInterruption),
+                                       name: .AVAudioSessionInterruption,
+                                       object: nil)
+    }
+    
+    @objc func handleInterruption(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSessionInterruptionType(rawValue: typeValue) else {
+                return
+        }
+        if type == .began {
+            print("Music Player: Interuption begain")
+        }
+        else if type == .ended {
+            if let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
+                let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
+                if options.contains(.shouldResume) {
+                    // Interruption Ended - playback should resume
+                    print("Music Player: Interruption - playback should resume")
+                } else {
+                    // Interruption Ended - playback should NOT resume
+                    print("Music Player: Interruption - playback should NOT resume")
+                }
+            }
+        }
+    }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         if isPlaying {
             self.activateAudioSession()
         } else {
-            self.deactivateAudioSession()
+           // self.deactivateAudioSession()
         }
     }
     
     // MARK: Activate audio session
     
     func activateAudioSession() {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        try? AVAudioSession.sharedInstance().setActive(true)
+        let session = AVAudioSession.sharedInstance()
+        try? session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try? session.setActive(true)
     }
+    
     
     // MARK: Deactivate audio session
     
