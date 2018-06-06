@@ -19,6 +19,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         super.init()
         
         player = SPTAudioStreamingController.sharedInstance()
+        //player?.setVolume(1.0, callback: nil)
         player?.playbackDelegate = self
         player?.delegate = self
         try! player?.start(withClientId: SpotifyCredentials.clientID)
@@ -27,16 +28,16 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     func togglePlayback() {
         switch (playback) {
         case .INIT:
-            print("MusicPlayer - INIT")
+            print("MusicPlayer: INIT -> PLAYING")
             initPlayback()
         case .PLAYING:
-            print("MusicPlayer - PLAY")
+            print("MusicPlayer: PLAYING -> PAUSED")
             pausePlayback()
         case .PAUSED:
-            print("MusicPlayer - PAUSE")
+            print("MusicPlayer: PAUSED -> PLAYING")
             playPlayback()
         default:
-            print("Music Player - ERROR STATE")
+            print("Music Player: ERROR STATE")
         }
     }
     
@@ -83,7 +84,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
                     return
                 } else {
                     self.playback = .PLAYING
-                    print("play")
                 }
             })
         }
@@ -114,16 +114,18 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         if isPlaying {
             self.activateAudioSession()
         } else {
-            self.deactivateAudioSession()
+           // self.deactivateAudioSession()
         }
     }
     
     // MARK: Activate audio session
     
     func activateAudioSession() {
-        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-        try? AVAudioSession.sharedInstance().setActive(true)
+        let session = AVAudioSession.sharedInstance()
+        try? session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try? session.setActive(true)
     }
+    
     
     // MARK: Deactivate audio session
     
