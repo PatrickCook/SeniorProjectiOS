@@ -62,10 +62,11 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func stopPreviewURL() {
-        isPreviewPlaying = !isPreviewPlaying
-        if (audioStream.isPlaying) {
+        if (isPreviewPlaying) {
+            isPreviewPlaying = !isPreviewPlaying
             audioStream.pause()
         }
+        
         playPlayback()
     }
     

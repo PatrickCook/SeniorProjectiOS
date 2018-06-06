@@ -18,6 +18,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         return true
     }
     
+    @IBOutlet weak var queueNameLabel: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var songNameLabel: UILabel!
@@ -52,6 +53,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         let url = URL(string: state.playingSong.imageURI)!
         let newImage: UIImage
         
+        queueNameLabel.text = state.playingQueue.name
         songNameLabel.text = state.playingSong.title
         artistNameLabel.text = state.playingSong.artist
         
