@@ -19,7 +19,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         super.init()
         
         player = SPTAudioStreamingController.sharedInstance()
-        //player?.setVolume(1.0, callback: nil)
         player?.playbackDelegate = self
         player?.delegate = self
         try! player?.start(withClientId: SpotifyCredentials.clientID)
@@ -109,6 +108,36 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
 
     /*  SPOTIFY DELEGATE METHODS */
+    func setupNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(handleInterruption),
+                                       name: .AVAudioSessionInterruption,
+                                       object: nil)
+    }
+    
+    @objc func handleInterruption(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSessionInterruptionType(rawValue: typeValue) else {
+                return
+        }
+        if type == .began {
+            print("Music Player: Interuption begain")
+        }
+        else if type == .ended {
+            if let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
+                let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
+                if options.contains(.shouldResume) {
+                    // Interruption Ended - playback should resume
+                    print("Music Player: Interruption - playback should resume")
+                } else {
+                    // Interruption Ended - playback should NOT resume
+                    print("Music Player: Interruption - playback should NOT resume")
+                }
+            }
+        }
+    }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
         if isPlaying {
