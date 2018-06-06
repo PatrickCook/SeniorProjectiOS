@@ -24,6 +24,21 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         try! player?.start(withClientId: SpotifyCredentials.clientID)
     }
     
+    
+    func toggleSlider(value: Float){
+        let songURL = mainStore.state.playingQueue.songs.first?.spotifyURI
+        let timeValue = TimeInterval(value)
+        player!.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: timeValue, callback: { error in
+            if error != nil {
+                print("*** failed to play: \(String(describing: error))")
+                return
+            } else {
+                self.playback = .PLAYING
+                print("play")
+            }
+        })
+    }
+    
     func togglePlayback() {
         switch (playback) {
         case .INIT:
@@ -35,8 +50,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         case .PAUSED:
             print("MusicPlayer - PAUSE")
             playPlayback()
-        default:
-            print("Music Player - ERROR STATE")
         }
     }
     
@@ -79,7 +92,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             let songURL = queue.songs.first?.spotifyURI
             player!.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: 0, callback: { error in
                 if error != nil {
-                    print("*** failed to play: \(error)")
+                    print("*** failed to play: \(String(describing: error))")
                     return
                 } else {
                     self.playback = .PLAYING

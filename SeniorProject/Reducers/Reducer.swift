@@ -48,7 +48,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
         break
     }
     
-    printState(state: state)
+    //printState(state: state)
     
     return state
 }
