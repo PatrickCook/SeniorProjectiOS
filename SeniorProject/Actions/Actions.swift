@@ -45,3 +45,4 @@ struct SetHasSliderChangedAction: Action {
     let hasSliderChanged: Bool
 }
 
+

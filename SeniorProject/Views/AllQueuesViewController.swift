@@ -19,8 +19,16 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Check if user is logged in
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        if (!isUserLoggedIn) {
+            makeUserLogin()
+        }
+        
         mainStore.subscribe(self)
         fetchQueues()
+        
         
         SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
             if error != nil, token == nil {
@@ -114,6 +122,10 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     /* Helpers */
+    func makeUserLogin() {
+        self.performSegue(withIdentifier: "makeUserLogin", sender: self)
+    }
+    
     func showLoginFlow() {
         self.performSegue(withIdentifier: "home_to_login", sender: self)
     }
@@ -124,6 +136,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func didTapLogout(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        makeUserLogin()
         SpotifyLogin.shared.logout()
         self.showLoginFlow()
     }

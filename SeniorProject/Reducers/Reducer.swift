@@ -57,6 +57,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as SetHasSliderChangedAction:
         state.hasSliderChanged = action.hasSliderChanged
         
+        
     default:
         break
     }
