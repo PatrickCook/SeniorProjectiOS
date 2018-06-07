@@ -24,7 +24,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func resumeQueueTapped(_ sender: UIButton) {
         mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-        mainStore.dispatch(TogglePlaybackAction())
+        handlePlaybackOwnership()  
     }
     
     convenience init() {
@@ -32,10 +32,13 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.title = queue.name
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
         mainStore.subscribe(self)
         initializeData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         resumeQueueButton.layer.cornerRadius = 20
         resumeQueueButton.clipsToBounds = true
@@ -43,6 +46,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func newState(state: AppState) {
         let url = URL(string: state.playingSong.imageURI)!
+        let isPlaying = (mainStore.state.selectedQueue?.isPlaying)!
         
         queue = state.selectedQueue
         songs = (state.selectedQueue?.songs)!
@@ -57,7 +61,29 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         })
         
+        self.resumeQueueButton.setTitle(isPlaying ? "Stop Queue" : "Start Queue", for: .normal)
+        
         tableView.reloadData()
+    }
+    
+    func handlePlaybackOwnership() {
+        let queueId = mainStore.state.playingQueue.id
+        let isPlaying = mainStore.state.playingQueue.isPlaying
+        
+        firstly {
+            Api.shared.setQueueIsPlaying(queueId: queueId, isPlaying: !isPlaying)
+            }.then { (result) -> Void in
+                mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: !isPlaying))
+                
+                if (isPlaying) {
+                    mainStore.dispatch(StopPlaybackAction())
+                } else {
+                    mainStore.dispatch(TogglePlaybackAction())
+                }
+            }.catch { (error) in
+                print(error)
+                self.showErrorAlert(error: error)
+        }
     }
     
     func initializeData() {

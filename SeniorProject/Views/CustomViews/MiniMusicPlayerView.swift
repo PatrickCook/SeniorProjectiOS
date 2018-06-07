@@ -47,16 +47,27 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
         view.frame = self.bounds
         view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
         addSubview(view)
+        
         mainStore.subscribe(self)
     }
     
     func newState(state: AppState) {
         let newImage: UIImage
+        let userId = state.loggedInUser?.id
+        let isPlaying = state.playingQueue.isPlaying
+        let playingUserId = state.playingQueue.playingUserId
         
         if (MusicPlayer.shared.playback == .PLAYING) {
             newImage = pauseButton!
         } else {
             newImage = playButton!
+        }
+        
+        print("MiniMusicPlayer - isPlaying: \(isPlaying), playingUseId: \(playingUserId), loggedInUser: \(userId)")
+        if (isPlaying && playingUserId == userId) {
+            playbackButton.isHidden = false;
+        } else {
+            playbackButton.isHidden = true;
         }
         
         songNameLabel.text = state.playingSong.title

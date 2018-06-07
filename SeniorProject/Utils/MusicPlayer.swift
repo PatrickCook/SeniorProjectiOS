@@ -1,6 +1,7 @@
 import Foundation
 import SpotifyLogin
 import AVFoundation
+import PromiseKit
 
 class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     static let shared: MusicPlayer = MusicPlayer()
@@ -102,13 +103,13 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func skip() {
-        mainStore.state.playingQueue.dequeue()
-        initPlayback()
+        // Delete currently playing song from queue
+        Api.shared.dequeueSong(queueId: mainStore.state.playingQueue.id, songId: mainStore.state.playingSong.id)
+        
+        mainStore.state.playingQueue.skip()
     }
     
     func seektoCurrentTime(timeValue: Double){
-        let songURL = mainStore.state.playingQueue.songs.first?.spotifyURI
-
         player?.seek(to: timeValue, callback: { error in
             if error != nil {
                 print("*** failed to play: \(String(describing: error))")
@@ -163,7 +164,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     func activateAudioSession() {
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try? session.setCategory(AVAudioSessionCategoryPlayback)
         try? session.setActive(true)
     }
     
@@ -190,7 +191,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
-        print("Music Player - Move to next Song")
         mainStore.dispatch(SkipCurrentSongAction())
     }
     

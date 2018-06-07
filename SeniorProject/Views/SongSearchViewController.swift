@@ -37,7 +37,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         self.view.endEditing(true)
         showLoadingAlert(uiView: self.view)
-        
+        searchBar.resignFirstResponder()
         firstly {
             Api.shared.getSpotifyAccessToken()
         }.then { (token) -> Promise<[SpotifySong]> in
@@ -55,18 +55,17 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SongSearchCell
-        let mainImageURL = URL(string: searchResults[indexPath.row].imageURI)
-        let mainImageData = NSData(contentsOf: mainImageURL!)
-        let mainImage = UIImage(data: mainImageData! as Data)
 
         cell.selectionStyle = .none
-        cell.songImageLabel.image = mainImage
+        cell.songImageLabel.image = searchResults[indexPath.row].albumImage
         cell.songTitleLabel.text = searchResults[indexPath.row].title
         cell.songArtistLabel.text = searchResults[indexPath.row].artist
         cell.setSongForCell(spotifySong: searchResults[indexPath.row]) 

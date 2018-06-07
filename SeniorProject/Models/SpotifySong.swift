@@ -16,6 +16,7 @@ class SpotifySong {
     let imageURI: String
     let spotifyURI: String
     let previewURI: String
+    let albumImage: UIImage
     
     var description: String {
         return "SpotifySong: { title: \(title), image: \(imageURI), artist: \(artist), songURL: \(spotifyURI), previewURL: \(previewURI)}"
@@ -38,6 +39,10 @@ class SpotifySong {
         self.imageURI = imageURI
         self.spotifyURI = spotifyURI
         self.previewURI = previewURI
+        
+        let mainImageURL = URL(string: imageURI)
+        let mainImageData = NSData(contentsOf: mainImageURL!)
+        self.albumImage = UIImage(data: mainImageData! as Data)!
     }
 }
 
