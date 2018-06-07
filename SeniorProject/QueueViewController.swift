@@ -23,7 +23,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func resumeQueueTapped(_ sender: UIButton) {
-        mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
         handlePlaybackOwnership()  
     }
     
@@ -34,56 +33,82 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         mainStore.subscribe(self)
-        initializeData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        initializeData()
+        refreshResumeButton()
         resumeQueueButton.layer.cornerRadius = 20
         resumeQueueButton.clipsToBounds = true
     }
     
     func newState(state: AppState) {
-        let url = URL(string: state.playingSong.imageURI)!
-        let isPlaying = (mainStore.state.selectedQueue?.isPlaying)!
+        let url: URL
         
         queue = state.selectedQueue
         songs = (state.selectedQueue?.songs)!
         queuedByLabel.text = state.selectedQueueCurrentSong?.queuedBy
         currentSongLabel.text = state.selectedQueueCurrentSong?.title
         
-        currentSongAlbumImage.kf.indicatorType = .activity
-        currentSongAlbumImage.kf.setImage(with: url, completionHandler: {
-            (image, error, cacheType, imageUrl) in
-            if (image == nil) {
-                self.currentSongAlbumImage.image = UIImage(named: "default-album-cover")
-            }
-        })
+        if (songs.count > 0) {
+            url = URL(string: (songs.first?.imageURI)!)!
+            currentSongAlbumImage.kf.indicatorType = .activity
+            currentSongAlbumImage.kf.setImage(with: url, completionHandler: {
+                (image, error, cacheType, imageUrl) in
+                if (image == nil) {
+                    self.currentSongAlbumImage.image = UIImage(named: "default-album-cover")
+                }
+            })
+        }
         
-        self.resumeQueueButton.setTitle(isPlaying ? "Stop Queue" : "Start Queue", for: .normal)
+        refreshResumeButton()
         
         tableView.reloadData()
     }
     
-    func handlePlaybackOwnership() {
-        let queueId = mainStore.state.playingQueue.id
-        let isPlaying = mainStore.state.playingQueue.isPlaying
+    func refreshResumeButton() {
+        let userId = mainStore.state.loggedInUser?.id
+        let playingUserId = mainStore.state.playingQueue.playingUserId
+        let isPlaying = (mainStore.state.selectedQueue?.isPlaying)!
         
-        firstly {
-            Api.shared.setQueueIsPlaying(queueId: queueId, isPlaying: !isPlaying)
-            }.then { (result) -> Void in
-                mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: !isPlaying))
-                
-                if (isPlaying) {
-                    mainStore.dispatch(StopPlaybackAction())
-                } else {
-                    mainStore.dispatch(TogglePlaybackAction())
-                }
-            }.catch { (error) in
-                print(error)
-                self.showErrorAlert(error: error)
+        if (playingUserId == userId) {
+            resumeQueueButton.isEnabled = true
+            resumeQueueButton.setTitle(isPlaying ? "Stop Queue" : "Start Queue", for: .normal)
+        } else if (isPlaying) {
+            resumeQueueButton.isEnabled = false
+            resumeQueueButton.setTitle("Playing...", for: .normal)
+        } else {
+            resumeQueueButton.setTitle("Start Queue", for: .normal)
         }
+    }
+    
+    func handlePlaybackOwnership() {
+        var playingQueueId = mainStore.state.playingQueue.id
+        let selectedQueueId = mainStore.state.selectedQueue?.id
+        let isPlaying = mainStore.state.playingQueue.isPlaying
+
+        if (isPlaying && playingQueueId != selectedQueueId) {
+            Api.shared.setQueueIsPlaying(queueId: playingQueueId, isPlaying: false)
+            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: false))
+            mainStore.dispatch(StopPlaybackAction())
+            mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+            mainStore.dispatch(TogglePlaybackAction())
+            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: true))
+            Api.shared.setQueueIsPlaying(queueId: selectedQueueId!, isPlaying: true)
+        } else if (isPlaying) {
+            mainStore.dispatch(StopPlaybackAction())
+            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: false))
+            Api.shared.setQueueIsPlaying(queueId: playingQueueId, isPlaying: false)
+        } else {
+            mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+            mainStore.dispatch(TogglePlaybackAction())
+            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: true))
+            playingQueueId = mainStore.state.playingQueue.id
+            Api.shared.setQueueIsPlaying(queueId: playingQueueId, isPlaying: true)
+        }
+        
     }
     
     func initializeData() {

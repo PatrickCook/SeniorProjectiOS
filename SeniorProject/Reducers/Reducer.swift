@@ -31,6 +31,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as SetQueueIsPlayingAction:
         print("In Reducers - SetQueueIsPlayingAction: \(action.isPlaying)")
         state.playingQueue.isPlaying = action.isPlaying
+        state.playingQueue.playingUserId = (mainStore.state.loggedInUser?.id)!
         
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
