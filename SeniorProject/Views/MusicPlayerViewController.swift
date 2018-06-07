@@ -28,15 +28,17 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     // TODO: Need to update state to obtain song length
     // Right now this will fail if song over 3:00 is played
     // and you toggle over it
-    @IBAction func sliderToggled(_ sender: Any) {
-        //TODO: set maximum of musicSlider here
-        musicSlider.isContinuous = false
-        print(musicSlider.value)
+    
+    @IBAction func finishEditingSlider(_ sender: Any) {
+        mainStore.dispatch(SetHasSliderChangedAction(hasSliderChanged: false))
+    }
+    @IBAction func startEditingSlider(_ sender: Any) {
         mainStore.dispatch(SetHasSliderChangedAction(hasSliderChanged: true))
-        mainStore.dispatch(UpdateSliderPositionAction(sliderValue: Double(musicSlider.value)))
-        
     }
     
+    @IBAction func sliderValueChanged(_ sender: Any) {
+        mainStore.dispatch(UpdateSliderPositionAction(sliderValue: Double(musicSlider.value)))
+    }
     
     @IBAction func playbackToggleTapped(_ sender: Any) {
         mainStore.dispatch(TogglePlaybackAction())
@@ -61,6 +63,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainStore.subscribe(self)
+        musicSlider.isContinuous = false
     }
     
     func newState(state: AppState) {
@@ -72,7 +75,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         artistNameLabel.text = state.playingSong.artist
         
         // Change this as state changes...?
-        musicSlider.value = Float(state.playingSongCurrentTime/state.playingSongDuration)
+        musicSlider.value = Float(state.playingSongCurrentTime/state.playingSongDuration) * 100
         
         albumImage.kf.indicatorType = .activity
         albumImage.kf.setImage(with: url, completionHandler: {

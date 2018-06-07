@@ -24,23 +24,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         try! player?.start(withClientId: SpotifyCredentials.clientID)
     }
     
-    
-    func seektoCurrentTime(){
-        let songURL = mainStore.state.playingQueue.songs.first?.spotifyURI
-        let timeValue = mainStore.state.playingSongCurrentTime
-        player!.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: timeValue, callback: { error in
-            if error != nil {
-                print("*** failed to play: \(String(describing: error))")
-                return
-            } else {
-                self.playback = .PLAYING
-                print("musicplayer - seeked to \(timeValue)")
-                mainStore.dispatch(SetHasSliderChangedAction(hasSliderChanged: false))
-            }
-        })
-    }
-    
-    
     func togglePlayback() {
         switch (playback) {
         case .INIT:
@@ -98,7 +81,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
                     return
                 } else {
                     self.playback = .PLAYING
-                mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
+                    mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
                 }
             })
         }
@@ -121,6 +104,19 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     func skip() {
         mainStore.state.playingQueue.dequeue()
         initPlayback()
+    }
+    
+    func seektoCurrentTime(timeValue: Double){
+        let songURL = mainStore.state.playingQueue.songs.first?.spotifyURI
+
+        player?.seek(to: timeValue, callback: { error in
+            if error != nil {
+                print("*** failed to play: \(String(describing: error))")
+                return
+            } else {
+                self.playback = .PLAYING
+            }
+        })
     }
 
     /*  SPOTIFY DELEGATE METHODS */
@@ -175,14 +171,14 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     // MARK: Deactivate audio session
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
-
+        
         if (!mainStore.state.hasSliderChanged) {
             mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
         }
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChange metadata: SPTPlaybackMetadata!) {
-    mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
+        mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
     }
     
     func deactivateAudioSession() {
