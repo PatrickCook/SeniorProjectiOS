@@ -18,7 +18,7 @@ class Api {
         sessionManager = Alamofire.SessionManager(configuration: configuration)
     }
     
-    func login(username: String, password: String) -> Promise<Bool> {
+    func login(username: String, password: String) -> Promise<User> {
         let parameters: [String: Any] = [
             "username": username,
             "password_hash": password
@@ -29,8 +29,14 @@ class Api {
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
-                    case .success:
-                        fulfill(true)
+                    case .success(let value):
+                        let json = JSON(value)
+                        guard let dictionary = json["data"].dictionaryObject else {
+                            return
+                        }
+                        if let user = User(data: dictionary) {
+                            fulfill(user)
+                        }
                     case .failure(let error):
                         reject(error)
                     }
@@ -219,6 +225,26 @@ class Api {
         }
     }
     
+    func setQueueIsPlaying(queueId: Int, isPlaying: Bool) -> Promise<Bool> {
+        
+        let parameters: [String : Any] = [
+            "isPlaying": isPlaying
+        ]
+        
+        return Promise{ fulfill, reject in
+            sessionManager.request(baseURL + "/queue/\(queueId)/playing", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                    }
+            }
+        }
+    }
+    
     func queueSong(queueId: Int, song: SpotifySong) -> Promise<Bool> {
         let parameters: [String : Any] = [
             "title": song.title,
@@ -230,6 +256,21 @@ class Api {
         
         return Promise{ fulfill, reject in
             sessionManager.request(baseURL + "/queue/\(queueId)/songs", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        fulfill(true)
+                    case .failure(let error):
+                        reject(error)
+                    }
+            }
+        }
+    }
+    
+    func dequeueSong(queueId: Int, songId: Int) -> Promise<Bool> {
+        return Promise{ fulfill, reject in
+            sessionManager.request(baseURL + "/queue/\(queueId)/songs/\(songId)", method: .delete, encoding: JSONEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {

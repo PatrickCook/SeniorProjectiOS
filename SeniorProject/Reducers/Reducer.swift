@@ -5,6 +5,9 @@ func reducer(action: Action, state: AppState?) -> AppState {
     var state = state ?? AppState()
     
     switch action {
+    case let action as SetLoggedInUserAction:
+        state.loggedInUser = action.user
+        
     case let action as FetchedJoinedQueuesAction:
         print("In Reducers - Fetched Joined Queues Action")
         state.joinedQueues = action.joinedQueues
@@ -24,7 +27,11 @@ func reducer(action: Action, state: AppState?) -> AppState {
             state.playingSong = state.playingQueue.songs.first!
         }
         MusicPlayer.shared.playback = .INIT
-       
+        
+    case let action as SetQueueIsPlayingAction:
+        print("In Reducers - SetQueueIsPlayingAction: \(action.isPlaying)")
+        state.playingQueue.isPlaying = action.isPlaying
+        
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
         state.spotifySearchResults = action.spotifySearchResults
@@ -34,8 +41,10 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case _ as SkipCurrentSongAction:
         MusicPlayer.shared.skip()
+        MusicPlayer.shared.playback = .INIT
         if (state.playingQueue.songs.count > 0) {
             state.playingSong = state.playingQueue.songs.first!
+            MusicPlayer.shared.togglePlayback()
         }
         
     case _ as RestartCurrentSongAction:
@@ -43,6 +52,9 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case _ as TogglePlaybackAction:
         MusicPlayer.shared.togglePlayback()
+        
+    case _ as StopPlaybackAction:
+        MusicPlayer.shared.pausePlayback()
         
     case let action as UpdateCurrentSongPositionAction:
         state.playingSongCurrentTime = action.updatedTime

@@ -72,7 +72,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         firstly {
             Api.shared.login(username: "pcook", password: "password")
         }.then { (result) -> Promise<[Queue]> in
-            Api.shared.getMyQueues()
+            mainStore.dispatch(SetLoggedInUserAction(user: result))
+            return Api.shared.getMyQueues()
         }.then { (result) -> Void in
             mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result)) 
             self.dismissLoadingAlert(uiView: self.view)

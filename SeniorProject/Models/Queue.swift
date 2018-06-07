@@ -11,6 +11,8 @@ import Foundation
 class Queue {
     
     var id: Int
+    var isPlaying: Bool
+    var playingUserId: Int
     var name: String
     var curMembers: Int
     var maxMembers: Int
@@ -32,6 +34,8 @@ class Queue {
         self.curSongs = 0
         self.maxSongs = 0
         self.isPrivate = false
+        self.isPlaying = false
+        self.playingUserId = -1
         self.songs = []
     }
     
@@ -44,7 +48,9 @@ class Queue {
             let maxMembers = data["max_members"] as? Int,
             let curSongs = data["cur_songs"] as? Int,
             let maxSongs = data["max_songs"] as? Int,
-            let isPrivate = data["private"] as? Bool
+            let isPrivate = data["private"] as? Bool,
+            let isPlaying = data["isPlaying"] as? Bool,
+            let playingUserId = data["playingUserId"] as? Int
         else {
             print("Error serializing Queue.")
             return nil
@@ -58,6 +64,8 @@ class Queue {
         self.curSongs = curSongs
         self.maxSongs = maxSongs
         self.isPrivate = isPrivate
+        self.isPlaying = isPlaying
+        self.playingUserId = playingUserId
         self.songs = []
     }
     
@@ -79,6 +87,10 @@ class Queue {
         if (songs.count > 0) {
             songs.removeFirst()
         }
+    }
+    
+    func skip() {
+        dequeue()
     }
     
     func clearQueue() {
