@@ -11,6 +11,10 @@ import Foundation
 import SpotifyLogin
 
 class UserLoginViewController: UIViewController {
-    
-    
+    @IBOutlet weak var testButton: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        
+    }
 }

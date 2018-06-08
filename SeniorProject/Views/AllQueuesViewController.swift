@@ -167,4 +167,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
             self.present(mvc, animated: true, completion: nil)
         }
     }
+    
+    @IBAction func unwindToAllQueues(segue: UIStoryboardSegue) {
+        popoverDismissed() 
+    }
 }
