@@ -1,0 +1,6 @@
+framework module Pods_PusherSwiftPlayground {
+  umbrella header "Pods-PusherSwiftPlayground-umbrella.h"
+
+  export *
+  module * { export * }
+}

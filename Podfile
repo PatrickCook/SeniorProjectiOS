@@ -11,6 +11,7 @@ target 'SeniorProject' do
   pod "PromiseKit", "~> 4.0"
   pod 'ReSwift'
   pod 'Kingfisher', '~> 4.0'
+  pod 'PusherSwift'
   
 end
 

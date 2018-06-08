@@ -63,7 +63,6 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
             newImage = playButton!
         }
         
-        print("MiniMusicPlayer - isPlaying: \(isPlaying), playingUseId: \(playingUserId), loggedInUser: \(userId)")
         if (isPlaying && playingUserId == userId) {
             playbackButton.isHidden = false;
         } else {
