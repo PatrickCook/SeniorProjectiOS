@@ -29,7 +29,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         mainStore.subscribe(self)
         fetchQueues()
         
-        
         SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
             if error != nil, token == nil {
                 print(error.debugDescription)
@@ -70,7 +69,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     func fetchQueues() {
         showLoadingAlert(uiView: self.view)
         firstly {
-            Api.shared.login(username: "pcook", password: "password")
+            Api.shared.login(username: "admin", password: "password")
         }.then { (result) -> Promise<[Queue]> in
             mainStore.dispatch(SetLoggedInUserAction(user: result))
             return Api.shared.getMyQueues()
@@ -124,7 +123,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     /* Helpers */
     func makeUserLogin() {
-        self.performSegue(withIdentifier: "makeUserLogin", sender: self)
+        self.performSegue(withIdentifier: "moveToLogin", sender: self)
     }
     
     func showLoginFlow() {
@@ -138,15 +137,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func didTapLogout(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
-        makeUserLogin()
         SpotifyLogin.shared.logout()
-        self.showLoginFlow()
-    }
-    
-    @IBAction func unwindToQueuesView(sender:UIStoryboardSegue) {
-        blurView.blurRadius = 0
-        blurView.remove()
-        fetchQueues()
+        makeUserLogin()
     }
     
     @IBAction func openMusicPlayerTapped(_ sender: Any) {

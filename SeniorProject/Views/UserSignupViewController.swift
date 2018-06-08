@@ -18,8 +18,5 @@ class UserSignupViewController: UIViewController {
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
         
     }
-    @IBAction func test1Button(_ sender: Any) {
-        self.performSegue(withIdentifier: "loggedIn", sender: self)
-    }
     
 }
