@@ -225,23 +225,20 @@ class Api {
         }
     }
     
-    func setQueueIsPlaying(queueId: Int, isPlaying: Bool) -> Promise<Bool> {
-        
+    func setQueueIsPlaying(queueId: Int, isPlaying: Bool) {
         let parameters: [String : Any] = [
             "isPlaying": isPlaying
         ]
         
-        return Promise{ fulfill, reject in
-            sessionManager.request(baseURL + "/queue/\(queueId)/playing", method: .post, parameters: parameters, encoding: JSONEncoding.default)
-                .validate(statusCode: 200..<300)
-                .responseData { response in
-                    switch response.result {
-                    case .success:
-                        fulfill(true)
-                    case .failure(let error):
-                        reject(error)
-                    }
-            }
+        sessionManager.request(baseURL + "/queue/\(queueId)/playing", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<300)
+            .responseData { response in
+                switch response.result {
+                case .success:
+                    print("Set is playing: \(isPlaying)")
+                case .failure(let error):
+                    print(error)
+                }
         }
     }
     
