@@ -1,11 +1,13 @@
 import UIKit
 import SpotifyLogin
 import ReSwift
+import PusherSwift
 
 let mainStore = Store<AppState>(
     reducer: reducer,
     state: nil
 )
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
