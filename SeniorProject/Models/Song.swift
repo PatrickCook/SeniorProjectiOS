@@ -26,20 +26,6 @@ class Song {
         return "SpotifySong: { title: \(title), image: \(imageURI), artist: \(artist), songURL: \(spotifyURI), previewURL: \(previewURI)}"
     }
     
-    public init() {
-        self.id = 0
-        self.title = "--"
-        self.artist = "--"
-        self.imageURI = "--"
-        self.spotifyURI = "--"
-        self.previewURI = "--"
-        self.votes = 0
-        self.queueId = -1
-        self.queuedBy = "--"
-        self.createdAt = 0
-        self.updatedAt = 0
-    }
-    
     public required init?(data: [String: Any]) {
         guard
             let id = data["id"] as? Int,

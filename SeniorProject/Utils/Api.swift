@@ -123,17 +123,7 @@ class Api {
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-                        if let array = json["data"]["Songs"].array {
-                            for item in array {
-                                guard var dict = item.dictionaryObject else {
-                                    continue
-                                }
-                                dict["votes"] = item["votes"].array?.count
-                                if let song = Song(data: dict) {
-                                    queue.enqueue(song: song)
-                                }
-                            }
-                            queue.sort()
+                        if let queue = self.instantiateQueueFromData(json: json) {
                             fulfill(queue)
                         }
                     case .failure(let error):
@@ -366,5 +356,32 @@ class Api {
                     }
             }
         }
+    }
+    
+    func instantiateQueueFromData(json: JSON) -> Queue? {
+        guard var dictionary = json["data"].dictionaryObject else {
+            print("Error: cannot instantiate queue from data")
+            return nil
+        }
+        
+        dictionary["ownerUsername"] = "--"
+        if let queue = Queue(data: dictionary) {
+            if let array = json["data"]["Songs"].array {
+                for item in array {
+                    guard var dict = item.dictionaryObject else {
+                        print("Error: cannot instantiate song from data")
+                        continue
+                    }
+                    dict["votes"] = item["votes"].array?.count
+                    if let song = Song(data: dict) {
+                        queue.enqueue(song: song)
+                    }
+                }
+                queue.sort()
+                return queue
+            }
+        }
+        
+        return nil
     }
 }

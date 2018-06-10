@@ -11,7 +11,8 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as FetchedJoinedQueuesAction:
         print("In Reducers - Fetched Joined Queues Action")
         state.joinedQueues = action.joinedQueues
-        
+     
+    /* Modify Selected Queue */
     case let action as FetchedSelectedQueueAction:
         print("In Reducers - FetchedSelectedQueueAction")
         state.selectedQueue = action.selectedQueue
@@ -19,32 +20,47 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as SetSelectedQueueAction:
         print("In Reducers - SetSelectedQueueAction")
         state.selectedQueue = action.selectedQueue
+    
+    case let action as AddSongToSelectedQueueAction:
+        print("In Reducers - AddSongToSelectedQueueAction")
+        state.selectedQueue?.enqueue(song: action.songToAdd)
+    
+    case let action as UpdateSelectedQueueAction:
+        print("In Reducers - UpdateQueueAction")
+        state.selectedQueue = action.queue
+        state.joinedQueues = state.joinedQueues.map {
+            return $0.id == action.queue.id ? action.queue : $0
+        }
+       
+    /* Modify Playing Queue */
+    case let action as FetchedPlayingQueueAction:
+        print("In Reducers - FetchedPlayingQueueAction")
+        state.playingQueue = action.playingQueue
         
     case _ as SetSelectedQueueAsPlayingQueue:
         print("In Reducers - SetSelectedQueueAsPlayingQueue")
         state.playingQueue = state.selectedQueue!
-        if (state.playingQueue.songs.count > 0) {
-            state.playingSong = state.playingQueue.songs.first!
+        if (state.playingQueue!.songs.count > 0) {
+            state.playingSong = state.playingQueue!.songs.first
         }
-        MusicPlayer.shared.playback = .INIT
         
-    case let action as SetQueueIsPlayingAction:
-        print("In Reducers - SetQueueIsPlayingAction: \(action.isPlaying)")
-        state.playingQueue.isPlaying = action.isPlaying
-        state.playingQueue.playingUserId = (mainStore.state.loggedInUser?.id)!
-        
+    case _ as SetPlayingQueueToNilAction:
+        print("In Reducers - SetPlayingQueueToNilAction")
+        state.playingQueue = nil
+        state.playingSong = nil
+      
+    /* Modify Spotify Search Results */
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
         state.spotifySearchResults = action.spotifySearchResults
         
-    case let action as AddSongToSelectedQueueAction:
-        state.selectedQueue?.enqueue(song: action.songToAdd)
-        
+    /* Music Player Actions */
     case _ as SkipCurrentSongAction:
+        print("In Reducers - SkipCurrentSongAction")
         MusicPlayer.shared.skip()
         MusicPlayer.shared.playback = .INIT
-        if (state.playingQueue.songs.count > 0) {
-            state.playingSong = state.playingQueue.songs.first!
+        if (state.playingQueue!.songs.count > 0) {
+            state.playingSong = state.playingQueue!.songs.first
             MusicPlayer.shared.togglePlayback()
         }
         
@@ -57,6 +73,10 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case _ as StopPlaybackAction:
         MusicPlayer.shared.pausePlayback()
         
+    case _ as ResetMusicPlayerStateAction:
+        MusicPlayer.shared.playback = .INIT
+        
+    /* Playing Song Action */
     case let action as UpdateCurrentSongPositionAction:
         state.playingSongCurrentTime = action.updatedTime
     
@@ -70,8 +90,8 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as SetHasSliderChangedAction:
         state.hasSliderChanged = action.hasSliderChanged
         
-        
     default:
+        print("Reducer - Unexpected Action")
         break
     }
     
@@ -95,10 +115,10 @@ func printState(state: AppState) {
     print(state.selectedQueueCurrentSong?.description ?? "No current song.")
     
     print("\nPlaying Queue:")
-    print(state.playingQueue.description)
+    print(state.playingQueue?.description ?? "Not set")
     
     print("\nPlaying Song:")
-    print(state.playingSong.description)
+    print(state.playingSong?.description ?? "Not set")
     
     print("---------------------------------------")
 }

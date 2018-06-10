@@ -72,7 +72,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     /* PLAY BUTTON STATE METHODS */
     
     func initPlayback() {
-        let queue = mainStore.state.playingQueue
+        let queue = mainStore.state.playingQueue!
         
         if (queue.songs.count > 0) {
             let songURL = queue.songs.first?.spotifyURI
@@ -104,9 +104,9 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     func skip() {
         // Delete currently playing song from queue
-        Api.shared.dequeueSong(queueId: mainStore.state.playingQueue.id, songId: mainStore.state.playingSong.id)
+        Api.shared.dequeueSong(queueId: mainStore.state.playingQueue!.id, songId: mainStore.state.playingSong!.id)
         
-        mainStore.state.playingQueue.skip()
+        mainStore.state.playingQueue!.skip()
     }
     
     func seektoCurrentTime(timeValue: Double){
@@ -174,7 +174,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
         
         if (!mainStore.state.hasSliderChanged) {
-            mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
+            //mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
         }
     }
     

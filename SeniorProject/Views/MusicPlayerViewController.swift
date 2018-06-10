@@ -67,12 +67,12 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: AppState) {
-        let url = URL(string: state.playingSong.imageURI)!
+        let url = URL(string: (state.playingSong?.imageURI)!)!
         let newImage: UIImage
         
-        queueNameLabel.text = state.playingQueue.name
-        songNameLabel.text = state.playingSong.title
-        artistNameLabel.text = state.playingSong.artist
+        queueNameLabel.text = state.playingQueue?.name ?? "--"
+        songNameLabel.text = state.playingSong?.title ?? "--"
+        artistNameLabel.text = state.playingSong?.artist ?? "--"
         
         // Change this as state changes...?
         musicSlider.value = Float(state.playingSongCurrentTime/state.playingSongDuration) * 100

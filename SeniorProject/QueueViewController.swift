@@ -3,6 +3,7 @@ import UIKit
 import SpotifyLogin
 import PromiseKit
 import ReSwift
+import SwiftyJSON
 
 class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, StoreSubscriber {
     
@@ -33,12 +34,38 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         mainStore.subscribe(self)
+        refreshSelectedQueue()
+        
+        let channel = PusherUtil.shared.pusher.subscribe("my-channel")
+        
+        let _ = channel.bind(eventName: "queue-playback-changed", callback: { (data: Any?) -> Void in
+            print("Pusher: queue-playback-changed")
+            let json = JSON(data!)
+            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
+        })
+        
+        let _ = channel.bind(eventName: "song-upvoted", callback: { (data: Any?) -> Void in
+            print("Pusher: song-upvoted")
+            let json = JSON(data!)
+            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
+        })
+        
+        let _ = channel.bind(eventName: "song-added-to-queue", callback: { (data: Any?) -> Void in
+            print("Pusher: song-added-to-queue")
+            let json = JSON(data!)
+            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
+        })
+        
+        let _ = channel.bind(eventName: "song-deleted-from-queue", callback: { (data: Any?) -> Void in
+            print("Pusher: song-deleted-from-queue")
+            let json = JSON(data!)
+            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        initializeData()
         refreshResumeButton()
         resumeQueueButton.layer.cornerRadius = 20
         resumeQueueButton.clipsToBounds = true
@@ -48,7 +75,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let url: URL
         
         queue = state.selectedQueue
-        songs = (state.selectedQueue?.songs)!
+        songs = state.selectedQueue?.songs ?? []
         queuedByLabel.text = state.selectedQueueCurrentSong?.queuedBy
         currentSongLabel.text = state.selectedQueueCurrentSong?.title
         
@@ -68,11 +95,28 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.reloadData()
     }
     
+    func refreshSelectedAndPlayingQueueAfterTrigger(json: JSON) {
+        print("Refresh after trigger: \(json["queueId"].intValue) \(queue.id)")
+        if (json["queueId"].intValue == queue.id) {
+            firstly {
+                Api.shared.getSelectedQueue(queue: queue)
+            }.then { (result) -> Void in
+                mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
+                if (json["queueId"].intValue == mainStore.state.playingQueue?.id) {
+                    mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+                }
+            }.catch { (error) in
+                self.showErrorAlert(error: error)
+            }
+        }
+    }
+    
     func refreshResumeButton() {
-        let userId = mainStore.state.loggedInUser?.id
-        let playingUserId = mainStore.state.playingQueue.playingUserId
-        let isPlaying = (mainStore.state.selectedQueue?.isPlaying)!
+        let userId = mainStore.state.loggedInUser!.id
+        let playingUserId = mainStore.state.selectedQueue?.playingUserId ?? -1
+        let isPlaying = mainStore.state.selectedQueue?.isPlaying ?? false
         
+       // print("Refresh Resume Button: User:\(userId) PlayingUserId:\(playingUserId) isPlaying:\(isPlaying)")
         if (playingUserId == userId) {
             resumeQueueButton.isEnabled = true
             resumeQueueButton.setTitle(isPlaying ? "Stop Queue" : "Start Queue", for: .normal)
@@ -80,38 +124,61 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             resumeQueueButton.isEnabled = false
             resumeQueueButton.setTitle("Playing...", for: .normal)
         } else {
+            resumeQueueButton.isEnabled = true
             resumeQueueButton.setTitle("Start Queue", for: .normal)
         }
     }
     
     func handlePlaybackOwnership() {
-        var playingQueueId = mainStore.state.playingQueue.id
-        let selectedQueueId = mainStore.state.selectedQueue?.id
-        let isPlaying = mainStore.state.playingQueue.isPlaying
-
-        if (isPlaying && playingQueueId != selectedQueueId) {
-            Api.shared.setQueueIsPlaying(queueId: playingQueueId, isPlaying: false)
-            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: false))
-            mainStore.dispatch(StopPlaybackAction())
-            mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-            mainStore.dispatch(TogglePlaybackAction())
-            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: true))
-            Api.shared.setQueueIsPlaying(queueId: selectedQueueId!, isPlaying: true)
-        } else if (isPlaying) {
-            mainStore.dispatch(StopPlaybackAction())
-            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: false))
-            Api.shared.setQueueIsPlaying(queueId: playingQueueId, isPlaying: false)
-        } else {
-            mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-            mainStore.dispatch(TogglePlaybackAction())
-            mainStore.dispatch(SetQueueIsPlayingAction(isPlaying: true))
-            playingQueueId = mainStore.state.playingQueue.id
-            Api.shared.setQueueIsPlaying(queueId: playingQueueId, isPlaying: true)
-        }
+        print("\nHandle Playback Ownership")
+        let loggedInUserId = mainStore.state.loggedInUser!.id
+        let selectedQueue = mainStore.state.selectedQueue
+        let playingQueue = mainStore.state.playingQueue
+        let isSelectedQueuePlaying = mainStore.state.selectedQueue!.isPlaying
         
+        print("userId: \(loggedInUserId), selected: \(selectedQueue?.id), playing: \(playingQueue?.id), isSelectedPlaying: \(isSelectedQueuePlaying)")
+
+        /* Logged In User is Controlling Playback of a Queue
+         * Is it playing and the selected queue and playing queue are the same
+         */
+        if (loggedInUserId == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
+            mainStore.dispatch(StopPlaybackAction())
+            mainStore.dispatch(SetPlayingQueueToNilAction())
+            Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: false)
+        }
+        /*
+         * User is playing a queue but trying to swap
+         */
+        else if (playingQueue != nil && playingQueue!.id != selectedQueue!.id) {
+            print("Supposed to swap")
+            mainStore.dispatch(StopPlaybackAction())
+            Api.shared.setQueueIsPlaying(queueId: playingQueue!.id, isPlaying: false)
+            mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+            mainStore.dispatch(ResetMusicPlayerStateAction())
+            mainStore.dispatch(TogglePlaybackAction())
+            Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: true)
+        }
+        /*
+         * User is viewing a playing queue
+         */
+        else if (loggedInUserId != selectedQueue!.playingUserId && isSelectedQueuePlaying) {
+            print("This case should never happen")
+        }
+        /*
+         * PLAYING QUEUE IS NIL, PLAY SELECTED QUEUE
+         */
+        else if (selectedQueue!.playingUserId == -1){
+            mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+            mainStore.dispatch(TogglePlaybackAction())
+            Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: true)
+        }
+        else {
+            print("A case that was unexpected happened in handlePlaybackOwnership()")
+        }
     }
     
-    func initializeData() {
+    func refreshSelectedQueue() {
+        print("Refreshing Selected Queue....")
         showLoadingAlert(uiView: self.view)
         
         firstly {
@@ -161,7 +228,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
-        initializeData()
-        tableView.reloadData()
+        
     }
 }

@@ -10,12 +10,7 @@ protocol PopoverDelegate {
     func popoverDismissed()
 }
 
-class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate, StoreSubscriber {
-
-    let pusher: Pusher = Pusher(
-        key: "f24ae820c2a1b1Aacda",
-        options: PusherClientOptions(host: .cluster("us2"))
-    )
+class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate, StoreSubscriber, PusherDelegate {
     
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
@@ -25,20 +20,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        let channel = pusher.subscribe("my-channel")
-        
-        let _ = channel.bind(eventName: "my-event", callback: { (data: Any?) -> Void in
-            if let data = data as? [String : AnyObject] {
-                if let message = data["message"] as? String {
-                    print(message)
-                }
-            }
-            print("heereerer")
-        })
-        
-        pusher.connect()
         
         // Check if user is logged in
         let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
@@ -169,6 +150,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func unwindToAllQueues(segue: UIStoryboardSegue) {
-        popoverDismissed() 
+        popoverDismissed()
     }
 }

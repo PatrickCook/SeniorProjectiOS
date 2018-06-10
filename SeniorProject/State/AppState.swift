@@ -6,8 +6,8 @@ struct AppState: StateType {
     var joinedQueues: [Queue] = []
     var selectedQueue: Queue?
     var selectedQueueCurrentSong: Song?
-    var playingQueue: Queue = Queue()
-    var playingSong: Song = Song()
+    var playingQueue: Queue?
+    var playingSong: Song?
     var playingSongCurrentTime: Double = 0.0
     var playingSongDuration: Double = 0.0
     var hasSliderChanged: Bool = false
