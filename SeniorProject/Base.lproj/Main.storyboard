@@ -191,6 +191,9 @@
                                 <rect key="frame" x="16" y="21" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="eQy-3T-uEW" kind="unwind" unwindAction="unwindToAllQueuesWithSegue:" id="pmS-S6-afq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -327,7 +330,7 @@
             </objects>
             <point key="canvasLocation" x="1084" y="4.9475262368815596"/>
         </scene>
-        <!--Currently Playing-->
+        <!--Queue View Controller-->
         <scene sceneID="GLW-Ce-64z">
             <objects>
                 <viewController id="L1w-q5-Uih" customClass="QueueViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -499,7 +502,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eNa-rM-x0Z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Currently Playing" id="tuM-X2-afb">
+                    <navigationItem key="navigationItem" id="tuM-X2-afb">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZE0-lX-qN6">
                             <color key="tintColor" red="0.1647058824" green="0.72156862749999995" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -962,7 +965,7 @@
                                 <state key="normal" title="Create Group Queue"/>
                                 <connections>
                                     <action selector="createQueueTapped:" destination="ydq-LT-0WT" eventType="touchUpInside" id="yyC-cg-1tK"/>
-                                    <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToQueuesViewWithSender:" id="YiN-4l-tXS"/>
+                                    <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToAllQueuesWithSegue:" id="HGQ-C3-QQB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Members" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJK-uA-M6H">
@@ -991,7 +994,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="prepareForUnwindWithSegue:" id="7sO-Oc-hQs"/>
+                                    <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToAllQueuesWithSegue:" id="2zZ-dK-EvM"/>
                                 </connections>
                             </button>
                         </subviews>

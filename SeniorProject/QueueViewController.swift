@@ -29,7 +29,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     convenience init() {
         self.init(nibName:nil, bundle:nil)
-        self.title = queue.name
+        self.navigationItem.title = queue.name
     }
     
     override func viewDidLoad() {

@@ -151,5 +151,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBAction func unwindToAllQueues(segue: UIStoryboardSegue) {
         popoverDismissed()
+        fetchQueues()
     }
 }
