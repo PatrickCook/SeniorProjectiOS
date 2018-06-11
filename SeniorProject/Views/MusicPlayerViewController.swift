@@ -24,6 +24,8 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var playbackButton: UIButton!
     @IBOutlet weak var musicSlider: UISlider!
+    @IBOutlet weak var timeRemainingLabel: UILabel!
+    @IBOutlet weak var currentTimeLabel: UILabel!
     
     // TODO: Need to update state to obtain song length
     // Right now this will fail if song over 3:00 is played
@@ -64,6 +66,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         super.viewDidLoad()
         mainStore.subscribe(self)
         musicSlider.isContinuous = false
+        musicSlider.setThumbImage(UIImage(named:"sliderThumb"), for: .normal)
     }
     
     func newState(state: AppState) {
@@ -91,6 +94,8 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
             newImage = playButton!
         }
         
+        currentTimeLabel.text = Utils.shared.convertTimeInSecondsToString(seconds: state.playingSongCurrentTime)
+        timeRemainingLabel.text = Utils.shared.convertTimeInSecondsToString(seconds:state.playingSongDuration - state.playingSongCurrentTime)
         playbackButton.setImage(newImage, for: UIControlState.normal)
     }
 }

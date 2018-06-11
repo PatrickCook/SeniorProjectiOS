@@ -33,4 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return handled
     }
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        print("Here")
+        if (mainStore.state.playingQueue != nil) {
+            let id = mainStore.state.playingQueue!.id
+            Api.shared.setQueueIsPlaying(queueId: id, isPlaying: false)
+        }
+    }
 }
+

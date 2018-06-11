@@ -21,4 +21,15 @@ class Utils {
         }
         return 0.0
     }
+    
+    func convertTimeInSecondsToString(seconds: Double) -> String {
+        let intSeconds = Int(seconds)
+        let minutes = intSeconds / 60
+        let seconds = intSeconds % 60
+        var timestamp = "\(minutes):"
+        
+        timestamp.append(seconds < 10 ? "0\(seconds)" : "\(seconds)")
+        
+        return timestamp
+    }
 }

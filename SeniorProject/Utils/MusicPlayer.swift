@@ -174,7 +174,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
         
         if (!mainStore.state.hasSliderChanged) {
-            //mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
+            mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
         }
     }
     

@@ -76,8 +76,8 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         queue = state.selectedQueue
         songs = state.selectedQueue?.songs ?? []
-        queuedByLabel.text = state.selectedQueueCurrentSong?.queuedBy
-        currentSongLabel.text = state.selectedQueueCurrentSong?.title
+        queuedByLabel.text = state.selectedQueue?.songs.first?.queuedBy
+        currentSongLabel.text = state.selectedQueue?.songs.first?.title
         
         if (songs.count > 0) {
             url = URL(string: (songs.first?.imageURI)!)!

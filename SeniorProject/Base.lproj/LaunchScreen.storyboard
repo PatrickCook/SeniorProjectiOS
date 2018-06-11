@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,24 +18,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotifylogo-32.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qww-Wy-LNX">
-                                <rect key="frame" x="171" y="317.5" width="32" height="32"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senior Project" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnp-zz-9xa">
-                                <rect key="frame" x="0.0" y="270" width="375" height="32"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.16470588235294117" green="0.72156862745098038" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QueueIt!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnp-zz-9xa">
+                                <rect key="frame" x="0.0" y="270" width="375" height="66"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="48"/>
+                                <color key="textColor" red="0.38039215686274508" green="0.69803921568627447" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzZ-u2-JyW">
+                                <rect key="frame" x="68" y="332" width="239" height="3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="3" id="P1p-lP-cfV"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="qnp-zz-9xa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5AL-U2-Lfg"/>
-                            <constraint firstItem="Qww-Wy-LNX" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Bt4-jl-4lC"/>
-                            <constraint firstItem="qnp-zz-9xa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KYn-Kf-H2m"/>
-                            <constraint firstItem="qnp-zz-9xa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="XfJ-vQ-IJH"/>
-                            <constraint firstItem="Qww-Wy-LNX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="h6I-1v-qXY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qnp-zz-9xa" secondAttribute="trailing" id="hKe-bz-o19"/>
+                            <constraint firstItem="UzZ-u2-JyW" firstAttribute="top" secondItem="qnp-zz-9xa" secondAttribute="bottom" constant="-4" id="8T9-bH-c4U"/>
+                            <constraint firstItem="UzZ-u2-JyW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="DiC-23-BhV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UzZ-u2-JyW" secondAttribute="trailing" constant="68" id="NRb-ln-xR4"/>
+                            <constraint firstItem="UzZ-u2-JyW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="lGO-DX-ftr"/>
+                            <constraint firstItem="qnp-zz-9xa" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="ogW-ef-Ve5"/>
+                            <constraint firstItem="qnp-zz-9xa" firstAttribute="centerX" secondItem="UzZ-u2-JyW" secondAttribute="centerX" id="vO9-se-dIT"/>
+                            <constraint firstItem="UzZ-u2-JyW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="68" id="vs1-JU-OQN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -45,7 +50,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="spotifylogo-32.png" width="32" height="32"/>
-    </resources>
 </document>
