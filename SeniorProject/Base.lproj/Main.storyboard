@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UPp-eh-tyR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UPp-eh-tyR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -680,9 +680,23 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Zci-8a-HFR" kind="presentation" identifier="moveToSpotifyLoginFromLogin" id="GbP-IF-Vfp"/>
+                                    <action selector="submitButtonClicked:" destination="CxR-3d-Y3L" eventType="touchUpInside" id="CP5-ih-YkA"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q42-9w-iAd">
+                                <rect key="frame" x="125" y="218" width="124" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.46186852331606221" green="0.46186852331606221" blue="0.46186852331606221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jjZ-D5-TiI">
+                                <rect key="frame" x="125" y="286" width="124" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.46170660621761661" green="0.46170660621761661" blue="0.46170660621761661" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -691,7 +705,10 @@
                         <viewLayoutGuide key="safeArea" id="k0h-oZ-jgu"/>
                     </view>
                     <connections>
-                        <outlet property="testButton" destination="e0L-bJ-Dza" id="fFP-gq-niA"/>
+                        <outlet property="passwordTextBox" destination="jjZ-D5-TiI" id="W79-Ps-NMD"/>
+                        <outlet property="submitButton" destination="e0L-bJ-Dza" id="Ylg-Nf-fYa"/>
+                        <outlet property="userNameTextBox" destination="Q42-9w-iAd" id="5hf-um-pkC"/>
+                        <segue destination="Zci-8a-HFR" kind="presentation" identifier="moveToSpotifyLoginFromLogin" id="e6h-3A-3gx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D2s-Tc-ZQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -706,7 +723,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SINGUP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awm-nv-s8r">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="SIGN-UP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awm-nv-s8r">
                                 <rect key="frame" x="109" y="131" width="156" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -719,15 +736,39 @@
                                 <state key="normal" title="Log in">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="LdG-0g-ag0" eventType="touchUpInside" id="sfq-c8-Umj"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gpU-8M-6Gs">
+                                <rect key="frame" x="115" y="240" width="144" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zuT-eM-iXE">
+                                <rect key="frame" x="115" y="293" width="144" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2sR-Hv-huq">
+                                <rect key="frame" x="115" y="340" width="144" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vP-l9-fSx">
-                                <rect key="frame" x="134" y="337" width="107" height="50"/>
+                                <rect key="frame" x="134" y="409" width="107" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Zci-8a-HFR" kind="presentation" identifier="moveToSpotifyLoginFromSignUp" id="qck-cp-rDL"/>
+                                    <action selector="createUserClicked:" destination="LdG-0g-ag0" eventType="touchUpInside" id="Kso-M4-mZo"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -735,7 +776,10 @@
                         <viewLayoutGuide key="safeArea" id="ry0-rm-vNz"/>
                     </view>
                     <connections>
-                        <outlet property="testButton" destination="4vP-l9-fSx" id="PKN-2f-UIx"/>
+                        <outlet property="passwordInput" destination="zuT-eM-iXE" id="msV-LY-2jN"/>
+                        <outlet property="repeatpasswordInput" destination="2sR-Hv-huq" id="Nee-Jr-ulm"/>
+                        <outlet property="usernameInput" destination="gpU-8M-6Gs" id="dI1-NE-lPc"/>
+                        <segue destination="Zci-8a-HFR" kind="presentation" identifier="moveToSpotifyLoginFromSignUp" id="XwY-jW-GDq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0v-gc-UVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1029,7 +1073,7 @@
         <image name="up-arrow-2" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ScS-5B-HYI"/>
+        <segue reference="XwY-jW-GDq"/>
         <segue reference="ohD-mb-vh9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
