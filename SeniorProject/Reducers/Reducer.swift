@@ -49,6 +49,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case _ as SetPlayingQueueToNilAction:
         print("In Reducers - SetPlayingQueueToNilAction")
+        MusicPlayer.shared.playback = .INIT
         state.playingQueue = nil
         state.playingSong = nil
       

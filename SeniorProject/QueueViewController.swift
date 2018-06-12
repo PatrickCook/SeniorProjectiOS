@@ -154,6 +154,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("Supposed to swap")
             mainStore.dispatch(StopPlaybackAction())
             Api.shared.setQueueIsPlaying(queueId: playingQueue!.id, isPlaying: false)
+            mainStore.dispatch(SetPlayingQueueToNilAction())
             mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
             mainStore.dispatch(ResetMusicPlayerStateAction())
             mainStore.dispatch(TogglePlaybackAction())
