@@ -70,7 +70,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     func fetchQueues() {
         showLoadingAlert(uiView: self.view)
         firstly {
-            Api.shared.login(username: "admin", password: "password")
+            Api.shared.login(username: "pcook", password: "password")
         }.then { (result) -> Promise<[Queue]> in
             mainStore.dispatch(SetLoggedInUserAction(user: result))
             return Api.shared.getMyQueues()

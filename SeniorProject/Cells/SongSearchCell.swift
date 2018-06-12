@@ -31,17 +31,20 @@ class SongSearchCell: UITableViewCell {
         self.spotifySong = spotifySong
         
         if spotifySong.previewURI == "null" {
-            playButton.isEnabled = false
+            playButton.setImage(UIImage(), for: .normal)
         } else {
-            playButton.isEnabled = true
+            playButton.setImage(UIImage(named: "play-icon"), for: .normal)
         }
     }
 
     @IBAction func playPressed(_ sender: UIButton) {
         if (!MusicPlayer.shared.isPreviewPlaying) {
             MusicPlayer.shared.downloadAndPlayPreviewURL(url: URL(string: spotifySong.previewURI)!)
+            playButton.setImage(UIImage(named: "pause-icon"), for: .normal)
+            
         } else {
             MusicPlayer.shared.stopPreviewURL()
+            playButton.setImage(UIImage(named: "play-icon"), for: .normal)
         }
     }
 }
