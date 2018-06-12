@@ -8,7 +8,7 @@ class Api {
     
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.2:3000/api"
+    let baseURL: String = "http://192.168.1.20:3000/api"
     var sessionManager: SessionManager
     
     init() {
