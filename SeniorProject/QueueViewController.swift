@@ -116,7 +116,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let playingUserId = mainStore.state.selectedQueue?.playingUserId ?? -1
         let isPlaying = mainStore.state.selectedQueue?.isPlaying ?? false
         
-       // print("Refresh Resume Button: User:\(userId) PlayingUserId:\(playingUserId) isPlaying:\(isPlaying)")
         if (playingUserId == userId) {
             resumeQueueButton.isEnabled = true
             resumeQueueButton.setTitle(isPlaying ? "Stop Queue" : "Start Queue", for: .normal)

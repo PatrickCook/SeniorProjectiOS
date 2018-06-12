@@ -65,8 +65,6 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             isPreviewPlaying = !isPreviewPlaying
             audioStream.pause()
         }
-        
-        playPlayback()
     }
     
     /* PLAY BUTTON STATE METHODS */
