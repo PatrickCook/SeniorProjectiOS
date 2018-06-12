@@ -10,6 +10,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var songs: [Song] = []
     var queue: Queue!
     
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var queuedByLabel: UILabel!
     @IBOutlet weak var currentSongLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -29,11 +30,11 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     convenience init() {
         self.init(nibName:nil, bundle:nil)
-        self.navigationItem.title = queue.name
     }
     
     override func viewDidLoad() {
         mainStore.subscribe(self)
+        self.navigationItem.title = queue.name
         refreshSelectedQueue()
         
         let channel = PusherUtil.shared.pusher.subscribe("my-channel")
@@ -212,6 +213,20 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"
         
         return songCell!
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let songId = mainStore.state.selectedQueue?.songs[indexPath.row].id
+            mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
+            Api.shared.dequeueSong(queueId: self.queue.id, songId: songId!);
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+
+        
+        return [delete]
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

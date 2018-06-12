@@ -63,7 +63,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func initializeTable() {
         tableView.tableHeaderView = searchController.searchBar
-        tableView.contentOffset = CGPoint(x: 0.0, y: 60.0)
+        tableView.contentOffset = CGPoint(x: 0.0, y: -10.0)
         tableView.reloadData()
     }
     

@@ -44,6 +44,10 @@ struct AddSongToSelectedQueueAction: Action {
     let songToAdd: Song
 }
 
+struct RemoveSongFromSelectedQueueAction: Action {
+    let songId: Int
+}
+
 struct SetQueueIsPlayingAction: Action {
     let isPlaying: Bool
 }

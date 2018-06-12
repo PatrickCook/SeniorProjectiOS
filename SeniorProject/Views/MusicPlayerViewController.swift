@@ -27,6 +27,15 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     @IBOutlet weak var timeRemainingLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     
+    @IBAction func plusButtonTapped(_ sender: Any) {
+        print("Plus button tapped")
+        let url = URL(string: (mainStore.state.playingSong?.spotifyURI)!)!
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    @IBAction func moreButtonTapped(_ sender: Any) {
+        
+    }
     // TODO: Need to update state to obtain song length
     // Right now this will fail if song over 3:00 is played
     // and you toggle over it

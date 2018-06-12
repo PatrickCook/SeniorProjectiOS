@@ -31,6 +31,9 @@ func reducer(action: Action, state: AppState?) -> AppState {
         state.joinedQueues = state.joinedQueues.map {
             return $0.id == action.queue.id ? action.queue : $0
         }
+        
+    case let action as RemoveSongFromSelectedQueueAction:
+        state.selectedQueue!.songs = state.selectedQueue!.songs.filter { $0.id != action.songId }
        
     /* Modify Playing Queue */
     case let action as FetchedPlayingQueueAction:
