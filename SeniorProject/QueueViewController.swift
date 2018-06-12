@@ -35,7 +35,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         mainStore.subscribe(self)
         self.navigationItem.title = queue.name
-        refreshSelectedQueue()
+        fetchSelectedQueue()
         
         let channel = PusherUtil.shared.pusher.subscribe("my-channel")
         
@@ -97,7 +97,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func refreshSelectedAndPlayingQueueAfterTrigger(json: JSON) {
-        print("Refresh after trigger: \(json["queueId"].intValue) \(queue.id)")
         if (json["queueId"].intValue == queue.id) {
             firstly {
                 Api.shared.getSelectedQueue(queue: queue)
@@ -131,13 +130,10 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func handlePlaybackOwnership() {
-        print("\nHandle Playback Ownership")
         let loggedInUserId = mainStore.state.loggedInUser!.id
         let selectedQueue = mainStore.state.selectedQueue
         let playingQueue = mainStore.state.playingQueue
         let isSelectedQueuePlaying = mainStore.state.selectedQueue!.isPlaying
-        
-        print("userId: \(loggedInUserId), selected: \(selectedQueue?.id), playing: \(playingQueue?.id), isSelectedPlaying: \(isSelectedQueuePlaying)")
 
         /* Logged In User is Controlling Playback of a Queue
          * Is it playing and the selected queue and playing queue are the same
@@ -176,6 +172,23 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         else {
             print("A case that was unexpected happened in handlePlaybackOwnership()")
+        }
+    }
+    
+    func fetchSelectedQueue() {
+        showLoadingAlert(uiView: self.view)
+        
+        firstly {
+            Api.shared.getSelectedQueue(queue: queue)
+            }.then { (result) -> Void in
+                mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
+                if (self.queue.isPlaying && self.queue.playingUserId == mainStore.state.loggedInUser!.id) {
+                    mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+                }
+                self.dismissLoadingAlert(uiView: self.view)
+            }.catch { (error) in
+                self.dismissLoadingAlert(uiView: self.view)
+                self.showErrorAlert(error: error)
         }
     }
     

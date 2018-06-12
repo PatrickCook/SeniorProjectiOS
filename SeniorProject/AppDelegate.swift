@@ -2,6 +2,7 @@ import UIKit
 import SpotifyLogin
 import ReSwift
 import PusherSwift
+import PromiseKit
 
 let mainStore = Store<AppState>(
     reducer: reducer,
@@ -34,10 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        print("Here")
         if (mainStore.state.playingQueue != nil) {
             let id = mainStore.state.playingQueue!.id
-            Api.shared.setQueueIsPlaying(queueId: id, isPlaying: false)
+            //Api.shared.setQueueIsPlaying(queueId: id, isPlaying: false)
         }
     }
 }
