@@ -28,7 +28,7 @@ class PopoverViewController: UIViewController {
             textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: UIControlEvents.editingChanged)
         }
         
-        let saveAction = UIAlertAction(title: "Add Members", style: UIAlertActionStyle.default, handler: { alert -> Void in
+        let saveAction = UIAlertAction(title: "Next", style: UIAlertActionStyle.default, handler: { alert -> Void in
             let queueNameTextField = alertController.textFields![0] as UITextField
             self.queueName = queueNameTextField.text!
             self.performSegue(withIdentifier: "show_create_queue", sender: self)

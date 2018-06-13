@@ -9,37 +9,36 @@
 import UIKit
 import Foundation
 import SpotifyLogin
+import PromiseKit
 
 class UserLoginViewController: UIViewController {
-    lazy var loginManager = LoginManager.loginManager
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var userNameTextBox: UITextField!
     @IBOutlet weak var passwordTextBox: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     @IBAction func submitButtonClicked(_ sender: Any) {
         
         //Check if username or password are empty
         if (userNameTextBox.text?.isEmpty)! || (passwordTextBox.text?.isEmpty)! {
-            print("HERE PLEASE")
             displayAlertToUser(userMessage: "Please fill in the missing information before proceeding")
             return
         }
         
         if let username = userNameTextBox.text, let password = passwordTextBox.text {
-            loginManager.userAuthenticationInitializer(userEmail: username, userPassword: password, completion: { [weak self] response in
-                if response {
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    self?.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
-                } else {
-                    self?.displayAlertToUser(userMessage: "Incorrect user login information")
-                }
-            })
+            firstly {
+                 Api.shared.login(username: username, password: password)
+            }.then { (result) -> Void in
+                mainStore.dispatch(SetLoggedInUserAction(user: result))
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
+            }.catch { (error) in
+                self.displayAlertToUser(userMessage: "Incorrect user login information")
+                print(error)
+            }
         } else {
             print("Error: Login button pressed but user input is invalid")
         }

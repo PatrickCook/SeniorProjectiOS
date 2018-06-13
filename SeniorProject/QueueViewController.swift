@@ -234,7 +234,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let songId = mainStore.state.selectedQueue?.songs[indexPath.row].id
             mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
             Api.shared.dequeueSong(queueId: self.queue.id, songId: songId!);
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
         }
 
         

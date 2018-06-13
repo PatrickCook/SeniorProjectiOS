@@ -8,7 +8,7 @@ class Api {
     
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.20:3000/api"
+    let baseURL: String = "http://192.168.1.2:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -31,6 +31,34 @@ class Api {
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
+                        guard let dictionary = json["data"].dictionaryObject else {
+                            return
+                        }
+                        if let user = User(data: dictionary) {
+                            fulfill(user)
+                        }
+                    case .failure(let error):
+                        reject(error)
+                    }
+            }
+        }
+    }
+    
+    func createUser(username: String, password: String) -> Promise<User> {
+        let parameters: [String: Any] = [
+            "username": username,
+            "password_hash": password,
+            "role": "user"
+        ]
+        
+        return Promise{ fulfill, reject in
+            sessionManager.request(baseURL + "/user", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        print(json)
                         guard let dictionary = json["data"].dictionaryObject else {
                             return
                         }

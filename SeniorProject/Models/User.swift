@@ -12,21 +12,19 @@ class User: Hashable, Equatable {
     
     var id: Int
     var username: String
-    var firstName: String
-    var lastName: String
+    var role: String
     var queues: [Queue]
     var songs: [SpotifySong]
     
     var description: String {
-        return "User: { id: \(id), username: \(username), firstName: \(firstName), lastName: \(lastName)}"
+        return "User: { id: \(id), username: \(username)}"
     }
     
     public required init?(data: [String: Any]) {
         guard
             let id = data["id"] as? Int,
             let username = data["username"] as? String,
-            let firstName = data["first_name"] as? String,
-            let lastName = data["last_name"] as? String
+            let role = data["role"] as? String
         else {
             print("Error serializing User.")
             return nil
@@ -34,8 +32,7 @@ class User: Hashable, Equatable {
         
         self.id = id
         self.username = username
-        self.firstName = firstName
-        self.lastName = lastName
+        self.role = role
         self.queues = []
         self.songs = []
     }

@@ -9,9 +9,9 @@
 import UIKit
 import Foundation
 import SpotifyLogin
+import PromiseKit
 
 class UserSignupViewController: UIViewController {
-    let loginManager = LoginManager.loginManager
 
     @IBOutlet weak var usernameInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
@@ -36,16 +36,17 @@ class UserSignupViewController: UIViewController {
         }
         
         if let username = usernameInput.text, let password = passwordInput.text {
-            loginManager.userCreationInitializer(userEmail: username, userPassword: password, completion: { [weak self] response in
-                if response {
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    self?.performSegue(withIdentifier: "moveToSpotifyLoginFromSignUp", sender: self)
-                } else {
-                    self?.displayAlertToUser(userMessage: "Error creating a new user")
-                }
-            })
+            firstly {
+                Api.shared.createUser(username: username, password: password)
+            }.then { (result) -> Void in
+                mainStore.dispatch(SetLoggedInUserAction(user: result))
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                self.performSegue(withIdentifier: "moveToSpotifyLoginFromSignUp", sender: self)
+            }.catch { (error) in
+                self.displayAlertToUser(userMessage: "Error creating a new user")
+                print(error)
+            }
         }
-        
     }
     
     /*

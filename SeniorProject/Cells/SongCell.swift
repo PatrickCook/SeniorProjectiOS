@@ -26,7 +26,6 @@ class SongCell: UITableViewCell {
         }
         
         checked = !checked
-        voteButton.tintColor = checked ? #colorLiteral(red: 0.1647058824, green: 0.7215686275, blue: 0.3450980392, alpha: 1) : #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
     }
     
     override func awakeFromNib() {
@@ -35,7 +34,7 @@ class SongCell: UITableViewCell {
         let origImage = UIImage(named: "up-arrow-2")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         voteButton.setImage(tintedImage, for: .normal)
-        voteButton.tintColor = checked ? #colorLiteral(red: 0.1647058824, green: 0.7215686275, blue: 0.3450980392, alpha: 1) : #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
+        voteButton.tintColor = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

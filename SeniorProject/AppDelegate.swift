@@ -33,12 +33,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let handled = SpotifyLogin.shared.applicationOpenURL(url) { _ in }
         return handled
     }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        if (mainStore.state.playingQueue != nil) {
-            let id = mainStore.state.playingQueue!.id
-            //Api.shared.setQueueIsPlaying(queueId: id, isPlaying: false)
-        }
-    }
 }
 
