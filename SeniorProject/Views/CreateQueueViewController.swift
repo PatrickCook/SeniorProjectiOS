@@ -23,7 +23,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     @IBAction func createQueueTapped(_ sender: UIButton) {
         firstly {
             Api.shared.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))
-        }.then { (result) in
+        }.then { (result) -> Promise<[Queue]> in
             print("Created queue.")
             return Api.shared.getMyQueues()
         }.then { (result) -> Void in
@@ -53,7 +53,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.sizeToFit()
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Next"
+        searchController.searchBar.placeholder = "Search users..."
         searchController.searchBar.barStyle = .black
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self

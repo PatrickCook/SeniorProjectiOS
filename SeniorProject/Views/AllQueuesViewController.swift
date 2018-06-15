@@ -21,24 +21,14 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Check if user is logged in
-        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-        if (!isUserLoggedIn) {
-            makeUserLogin()
-        }
+        self.tableView.addSubview(self.refreshControl)
         
         mainStore.subscribe(self)
+        validateUserAuthenticated()
+        validateSpotifyAuthenticated()
         fetchQueues()
-        
-        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
-            if error != nil, token == nil {
-                print(error.debugDescription)
-                self?.showLoginFlow()
-            } else {
-                MusicPlayer.shared.player?.login(withAccessToken: token)
-            }
-        }
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -46,6 +36,32 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         initializeSearch()
         initializeTable()
         definesPresentationContext = true
+    }
+    
+    func validateSpotifyAuthenticated() {
+        SpotifyLogin.shared.getAccessToken { [weak self] (token, error) in
+            if error != nil, token == nil {
+                print(error.debugDescription)
+                self?.makeUserLogin()
+            } else {
+                MusicPlayer.shared.player?.login(withAccessToken: token)
+            }
+        }
+    }
+    
+    func validateUserAuthenticated() {
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        if (isUserLoggedIn) {
+            if let data = UserDefaults.standard.data(forKey: "loggedInUser"),
+                let loggedInUser = NSKeyedUnarchiver.unarchiveObject(with: data) as? User {
+                mainStore.dispatch(SetLoggedInUserAction(user: loggedInUser))
+                print("Logged In User: \(loggedInUser.username)")
+            } else {
+                print("User is logged in but was not saved in UserDefaults correctly")
+            }
+        } else {
+            makeUserLogin()
+        }
     }
     
     func newState(state: AppState) {
@@ -70,16 +86,14 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     func fetchQueues() {
         showLoadingAlert(uiView: self.view)
         firstly {
-            Api.shared.login(username: "pcook", password: "password")
-        }.then { (result) -> Promise<[Queue]> in
-            mainStore.dispatch(SetLoggedInUserAction(user: result))
-            return Api.shared.getMyQueues()
+            Api.shared.getMyQueues()
         }.then { (result) -> Void in
             mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result)) 
             self.dismissLoadingAlert(uiView: self.view)
         }.catch { (error) in
             self.dismissLoadingAlert(uiView: self.view)
-            self.showErrorAlert(error: error)
+            self.makeUserLogin()
+            //self.showErrorAlert(error: error)
         }
     }
     
@@ -136,8 +150,42 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         blurView.remove()
     }
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(self.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        firstly {
+            Api.shared.getMyQueues()
+            }.then { (result) -> Void in
+                mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result))
+                self.tableView.reloadData()
+                refreshControl.endRefreshing()
+            }.catch { (error) in
+                self.makeUserLogin()
+                //self.showErrorAlert(error: error)
+        }
+    }
+    
+    
     @IBAction func didTapLogout(_ sender: Any) {
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        UserDefaults.standard.removeObject(forKey: "loggedInUser")
+        
+        if (mainStore.state.playingQueue != nil) {
+            let id = mainStore.state.playingQueue!.id
+            mainStore.dispatch(StopPlaybackAction())
+            mainStore.dispatch(SetPlayingQueueToNilAction())
+            Api.shared.setQueueIsPlaying(queueId: id, isPlaying: false)
+        }
+        
+        
         SpotifyLogin.shared.logout()
         makeUserLogin()
     }

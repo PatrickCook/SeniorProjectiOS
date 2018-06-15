@@ -27,18 +27,12 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     @IBOutlet weak var timeRemainingLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
     
-    @IBAction func plusButtonTapped(_ sender: Any) {
-        print("Plus button tapped")
-        let url = URL(string: (mainStore.state.playingSong?.spotifyURI)!)!
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    }
-
     @IBAction func moreButtonTapped(_ sender: Any) {
-        
+        if (mainStore.state.playingSong != nil) {
+            let url = URL(string: (mainStore.state.playingSong?.spotifyURI)!)!
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
-    // TODO: Need to update state to obtain song length
-    // Right now this will fail if song over 3:00 is played
-    // and you toggle over it
     
     @IBAction func finishEditingSlider(_ sender: Any) {
         mainStore.dispatch(SetHasSliderChangedAction(hasSliderChanged: false))
@@ -52,15 +46,21 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     }
     
     @IBAction func playbackToggleTapped(_ sender: Any) {
-        mainStore.dispatch(TogglePlaybackAction())
+        if ((mainStore.state.playingQueue) != nil) {
+            mainStore.dispatch(TogglePlaybackAction())
+        }
     }
     
     @IBAction func previousTapped(_ sender: Any) {
-        mainStore.dispatch(RestartCurrentSongAction())
+        if ((mainStore.state.playingQueue) != nil) {
+            mainStore.dispatch(RestartCurrentSongAction())
+        }
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        mainStore.dispatch(SkipCurrentSongAction())
+        if ((mainStore.state.playingQueue) != nil) {
+            mainStore.dispatch(SkipCurrentSongAction())
+        }
     }
     
     @IBAction func closeMusicPlayerSwiped(_ sender: Any) {
@@ -79,12 +79,18 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     }
     
     func newState(state: AppState) {
-        let url = URL(string: (state.playingSong?.imageURI)!)!
+        
         let newImage: UIImage
         
-        queueNameLabel.text = state.playingQueue?.name ?? "--"
-        songNameLabel.text = state.playingSong?.title ?? "--"
-        artistNameLabel.text = state.playingSong?.artist ?? "--"
+        if state.playingSong == nil {
+            initMusicPlayerViewToDefault(state: state)
+            return
+        }
+        
+        let url = URL(string: state.playingSong!.imageURI)!
+        queueNameLabel.text = state.playingQueue!.name
+        songNameLabel.text = state.playingSong!.title
+        artistNameLabel.text = state.playingSong!.artist
         
         // Change this as state changes...?
         musicSlider.value = Float(state.playingSongCurrentTime/state.playingSongDuration) * 100
@@ -106,5 +112,15 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         currentTimeLabel.text = Utils.shared.convertTimeInSecondsToString(seconds: state.playingSongCurrentTime)
         timeRemainingLabel.text = Utils.shared.convertTimeInSecondsToString(seconds:state.playingSongDuration - state.playingSongCurrentTime)
         playbackButton.setImage(newImage, for: UIControlState.normal)
+    }
+    
+    func initMusicPlayerViewToDefault (state: AppState) {
+        queueNameLabel.text = "--"
+        songNameLabel.text = "--"
+        artistNameLabel.text = "--"
+        albumImage.image = UIImage(named: "default-album-cover")
+        
+        currentTimeLabel.text = "0:00"
+        timeRemainingLabel.text = "0:00"
     }
 }

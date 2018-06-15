@@ -102,9 +102,11 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     func skip() {
         // Delete currently playing song from queue
-        Api.shared.dequeueSong(queueId: mainStore.state.playingQueue!.id, songId: mainStore.state.playingSong!.id)
-        
-        mainStore.state.playingQueue!.skip()
+        if (mainStore.state.playingSong != nil) {
+            Api.shared.dequeueSong(queueId: mainStore.state.playingQueue!.id, songId: mainStore.state.playingSong!.id)
+            
+            mainStore.state.playingQueue!.skip()
+        }
     }
     
     func seektoCurrentTime(timeValue: Double){

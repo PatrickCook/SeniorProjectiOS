@@ -8,16 +8,22 @@
 
 import Foundation
 
-class User: Hashable, Equatable {
+class User: NSObject, NSCoding {
     
     var id: Int
     var username: String
     var role: String
-    var queues: [Queue]
-    var songs: [SpotifySong]
     
-    var description: String {
-        return "User: { id: \(id), username: \(username)}"
+    required init(coder decoder: NSCoder) {
+        self.id = decoder.decodeInteger(forKey: "id")
+        self.username = decoder.decodeObject(forKey: "username") as! String
+        self.role = decoder.decodeObject(forKey: "role") as! String
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(id, forKey: "id")
+        coder.encode(username, forKey: "username")
+        coder.encode(role, forKey: "role")
     }
     
     public required init?(data: [String: Any]) {
@@ -33,15 +39,13 @@ class User: Hashable, Equatable {
         self.id = id
         self.username = username
         self.role = role
-        self.queues = []
-        self.songs = []
     }
     
     static func == (lhs: User, rhs: User) -> Bool {
         return lhs.id == rhs.id
     }
     
-    var hashValue: Int {
+    override var hashValue: Int {
         get {
             return id.hashValue << 15 + username.hashValue
         }

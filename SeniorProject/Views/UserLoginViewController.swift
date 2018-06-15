@@ -32,8 +32,11 @@ class UserLoginViewController: UIViewController {
             firstly {
                  Api.shared.login(username: username, password: password)
             }.then { (result) -> Void in
-                mainStore.dispatch(SetLoggedInUserAction(user: result))
+                let encodedData = NSKeyedArchiver.archivedData(withRootObject: result)
+                UserDefaults.standard.set(encodedData, forKey: "loggedInUser")
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                mainStore.dispatch(SetLoggedInUserAction(user: result))
+                
                 self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
             }.catch { (error) in
                 self.displayAlertToUser(userMessage: "Incorrect user login information")

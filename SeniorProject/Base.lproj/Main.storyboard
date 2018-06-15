@@ -279,7 +279,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="hKu-rT-I5J" firstAttribute="leading" secondItem="kTu-DQ-pEI" secondAttribute="leading" id="0wp-hc-CW1"/>
                             <constraint firstItem="3yx-OC-7Lz" firstAttribute="top" secondItem="L4i-EL-7gK" secondAttribute="top" id="5tP-AE-hGl"/>
@@ -694,7 +694,7 @@
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jjZ-D5-TiI">
                                 <rect key="frame" x="77" y="286" width="220" height="30"/>
@@ -704,7 +704,7 @@
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loB-dA-EzF">
                                 <rect key="frame" x="282" y="20" width="93" height="43"/>
@@ -767,7 +767,7 @@
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zuT-eM-iXE">
                                 <rect key="frame" x="77" y="289" width="220" height="30"/>
@@ -775,7 +775,7 @@
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2sR-Hv-huq">
                                 <rect key="frame" x="77" y="336" width="220" height="30"/>
@@ -783,7 +783,7 @@
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.32549019610000002" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vP-l9-fSx">
                                 <rect key="frame" x="77" y="392" width="220" height="30"/>
@@ -892,18 +892,6 @@
                                             <action selector="closeMusicPlayerTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="leX-fS-YLb"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X2-ki-iOl">
-                                        <rect key="frame" x="133.5" y="403" width="109" height="24"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chu-BV-WGw">
-                                        <rect key="frame" x="144.5" y="431" width="87" height="19"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-album-cover" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-P8-i3L">
                                         <rect key="frame" x="38" y="78" width="300" height="300"/>
                                         <constraints>
@@ -949,35 +937,33 @@
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" image="share"/>
                                         <connections>
-                                            <action selector="moreButtonTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="V31-zS-Jag"/>
+                                            <action selector="moreButtonTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="b3m-F7-4o3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-oB-ybn">
-                                        <rect key="frame" x="21" y="416" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="Vvy-Vn-vop"/>
-                                            <constraint firstAttribute="width" constant="25" id="h4S-XS-0pM"/>
-                                        </constraints>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" image="plus-icon-white"/>
-                                        <connections>
-                                            <action selector="plusButtonTapped:" destination="PKo-Lp-u78" eventType="touchUpInside" id="ecA-BP-Vli"/>
-                                        </connections>
-                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X2-ki-iOl">
+                                        <rect key="frame" x="38" y="386" width="299" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chu-BV-WGw">
+                                        <rect key="frame" x="144" y="414" width="87" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="chu-BV-WGw" firstAttribute="top" secondItem="1X2-ki-iOl" secondAttribute="bottom" constant="4" id="2QW-mu-dFk"/>
-                                    <constraint firstItem="anu-Ue-Xqh" firstAttribute="top" secondItem="chu-BV-WGw" secondAttribute="bottom" constant="28.5" id="5WJ-1s-vnS"/>
                                     <constraint firstItem="HzO-co-Afx" firstAttribute="top" secondItem="anu-Ue-Xqh" secondAttribute="bottom" constant="32" id="5s5-K1-wF2"/>
                                     <constraint firstItem="XvN-4B-onp" firstAttribute="top" secondItem="anu-Ue-Xqh" secondAttribute="bottom" constant="52" id="6hH-uK-HLW"/>
+                                    <constraint firstItem="1X2-ki-iOl" firstAttribute="leading" secondItem="9Y5-2o-7J8" secondAttribute="leading" constant="38" id="9aL-PY-stf"/>
                                     <constraint firstItem="XvN-4B-onp" firstAttribute="leading" secondItem="HzO-co-Afx" secondAttribute="trailing" constant="24" id="AJK-qB-bWG"/>
                                     <constraint firstItem="nMc-xK-6PF" firstAttribute="top" secondItem="anu-Ue-Xqh" secondAttribute="bottom" constant="52" id="Fsg-12-Dfo"/>
                                     <constraint firstItem="anu-Ue-Xqh" firstAttribute="leading" secondItem="9Y5-2o-7J8" secondAttribute="leading" constant="20" id="Irc-9L-r1U"/>
-                                    <constraint firstItem="1X2-ki-iOl" firstAttribute="centerX" secondItem="9Y5-2o-7J8" secondAttribute="centerX" id="Kpa-wC-0Cb"/>
                                     <constraint firstAttribute="bottom" secondItem="HzO-co-Afx" secondAttribute="bottom" constant="43" id="OIb-og-W7O"/>
-                                    <constraint firstItem="fCo-oB-ybn" firstAttribute="leading" secondItem="9Y5-2o-7J8" secondAttribute="leading" constant="21" id="OcT-A5-6xO"/>
                                     <constraint firstItem="chu-BV-WGw" firstAttribute="centerX" secondItem="9Y5-2o-7J8" secondAttribute="centerX" id="UXa-HM-dLC"/>
                                     <constraint firstAttribute="trailing" secondItem="WAf-u7-Pgx" secondAttribute="trailing" constant="20" id="VLb-Tb-QTu"/>
                                     <constraint firstItem="XvN-4B-onp" firstAttribute="centerY" secondItem="HzO-co-Afx" secondAttribute="centerY" id="Vj6-cM-FfV"/>
@@ -988,11 +974,12 @@
                                     <constraint firstItem="Yyb-rZ-wY8" firstAttribute="top" secondItem="WAf-u7-Pgx" secondAttribute="bottom" constant="21" id="bpL-wy-F6B"/>
                                     <constraint firstAttribute="trailing" secondItem="anu-Ue-Xqh" secondAttribute="trailing" constant="17" id="ehW-o7-UaS"/>
                                     <constraint firstItem="anu-Ue-Xqh" firstAttribute="top" secondItem="VOX-jL-pTA" secondAttribute="bottom" constant="1" id="fdF-TO-fSP"/>
+                                    <constraint firstAttribute="trailing" secondItem="1X2-ki-iOl" secondAttribute="trailing" constant="38" id="gsV-qF-2dF"/>
                                     <constraint firstItem="VOX-jL-pTA" firstAttribute="leading" secondItem="9Y5-2o-7J8" secondAttribute="leading" constant="20" id="hH0-lQ-Xke"/>
                                     <constraint firstAttribute="trailing" secondItem="Yyb-rZ-wY8" secondAttribute="trailing" constant="17" id="kxX-je-mYr"/>
+                                    <constraint firstItem="1X2-ki-iOl" firstAttribute="top" secondItem="gB7-P8-i3L" secondAttribute="bottom" constant="8" id="lvF-ho-G0p"/>
                                     <constraint firstItem="gB7-P8-i3L" firstAttribute="centerX" secondItem="9Y5-2o-7J8" secondAttribute="centerX" id="mUX-Mw-ChB"/>
                                     <constraint firstItem="gB7-P8-i3L" firstAttribute="top" secondItem="yfw-iV-h2M" secondAttribute="bottom" constant="34" id="mbd-q3-Ln3"/>
-                                    <constraint firstItem="VOX-jL-pTA" firstAttribute="top" secondItem="fCo-oB-ybn" secondAttribute="bottom" constant="21" id="oZr-HK-6Yj"/>
                                     <constraint firstItem="anu-Ue-Xqh" firstAttribute="top" secondItem="Yyb-rZ-wY8" secondAttribute="bottom" constant="1" id="saR-AI-c7v"/>
                                     <constraint firstItem="cjy-Jg-Jjo" firstAttribute="top" secondItem="9Y5-2o-7J8" secondAttribute="top" constant="20" id="wcc-h6-qpO"/>
                                     <constraint firstItem="anu-Ue-Xqh" firstAttribute="centerX" secondItem="9Y5-2o-7J8" secondAttribute="centerX" constant="1.5" id="xHa-qO-wOY"/>
@@ -1147,13 +1134,12 @@
         <image name="next-icon" width="128" height="128"/>
         <image name="pause-icon" width="128" height="128"/>
         <image name="play-icon" width="128" height="128"/>
-        <image name="plus-icon-white" width="512" height="512"/>
         <image name="previous-icon" width="128" height="128"/>
         <image name="share" width="24" height="24"/>
         <image name="up-arrow-2" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ScS-5B-HYI"/>
+        <segue reference="XwY-jW-GDq"/>
         <segue reference="ohD-mb-vh9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

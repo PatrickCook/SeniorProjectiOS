@@ -39,9 +39,7 @@ class UserSignupViewController: UIViewController {
             firstly {
                 Api.shared.createUser(username: username, password: password)
             }.then { (result) -> Void in
-                mainStore.dispatch(SetLoggedInUserAction(user: result))
-                UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                self.performSegue(withIdentifier: "moveToSpotifyLoginFromSignUp", sender: self)
+                self.dismiss(animated: true, completion: nil)
             }.catch { (error) in
                 self.displayAlertToUser(userMessage: "Error creating a new user")
                 print(error)

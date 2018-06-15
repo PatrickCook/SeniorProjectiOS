@@ -8,7 +8,7 @@ class Api {
     
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
-    let baseURL: String = "http://192.168.1.2:3000/api"
+    let baseURL: String = "http://207.62.162.105:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -31,6 +31,7 @@ class Api {
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
+                        print(json)
                         guard let dictionary = json["data"].dictionaryObject else {
                             return
                         }
@@ -38,6 +39,7 @@ class Api {
                             fulfill(user)
                         }
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -58,7 +60,7 @@ class Api {
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-                        print(json)
+
                         guard let dictionary = json["data"].dictionaryObject else {
                             return
                         }
@@ -66,6 +68,7 @@ class Api {
                             fulfill(user)
                         }
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -101,6 +104,7 @@ class Api {
                             fulfill(queues)
                         }
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -135,6 +139,7 @@ class Api {
                         }
                         fulfill([])
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -154,9 +159,10 @@ class Api {
                         if let queue = self.instantiateQueueFromData(json: json) {
                             fulfill(queue)
                         }
+                        queue.sort()
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -191,8 +197,8 @@ class Api {
                             fulfill(users)
                         }
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -215,6 +221,7 @@ class Api {
                     case .success:
                         fulfill(true)
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -237,6 +244,7 @@ class Api {
                     case .success:
                         fulfill(true)
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -255,6 +263,7 @@ class Api {
                 case .success:
                     print("Set is playing: \(isPlaying)")
                 case .failure(let error):
+                    self.requestErrorHandler(response: response)
                     print(error)
                 }
         }
@@ -277,6 +286,7 @@ class Api {
                     case .success:
                         fulfill(true)
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -292,6 +302,7 @@ class Api {
                     case .success:
                         fulfill(true)
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -307,6 +318,7 @@ class Api {
                     case .success:
                         fulfill(true)
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -322,6 +334,7 @@ class Api {
                     case .success:
                         fulfill(true)
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
                     }
             }
@@ -379,8 +392,8 @@ class Api {
                             fulfill(songs)
                         }
                     case .failure(let error):
+                        self.requestErrorHandler(response: response)
                         reject(error)
-                        print(error)
                     }
             }
         }
@@ -411,5 +424,64 @@ class Api {
         }
         
         return nil
+    }
+    
+    func requestErrorHandler(response: DataResponse<Data>) {
+        print("Success: \(response.result.isSuccess)")
+        print("Response String: \(String(describing: response.result.value))")
+        
+        var statusCode = response.response?.statusCode
+        if let error = response.result.error as? AFError {
+            statusCode = error._code // statusCode private
+            switch error {
+            case .invalidURL(let url):
+                print("Invalid URL: \(url) - \(error.localizedDescription)")
+            case .parameterEncodingFailed(let reason):
+                print("Parameter encoding failed: \(error.localizedDescription)")
+                print("Failure Reason: \(reason)")
+            case .multipartEncodingFailed(let reason):
+                print("Multipart encoding failed: \(error.localizedDescription)")
+                print("Failure Reason: \(reason)")
+            case .responseValidationFailed(let reason):
+                print("Response validation failed: \(error.localizedDescription)")
+                print("Failure Reason: \(reason)")
+                
+                switch reason {
+                case .dataFileNil, .dataFileReadFailed:
+                    print("Downloaded file could not be read")
+                case .missingContentType(let acceptableContentTypes):
+                    print("Content Type Missing: \(acceptableContentTypes)")
+                case .unacceptableContentType(let acceptableContentTypes, let responseContentType):
+                    print("Response content type: \(responseContentType) was unacceptable: \(acceptableContentTypes)")
+                case .unacceptableStatusCode(let code):
+                    print("Response status code was unacceptable: \(code)")
+                    statusCode = code
+                }
+            case .responseSerializationFailed(let reason):
+                print("Response serialization failed: \(error.localizedDescription)")
+                print("Failure Reason: \(reason)")
+            }
+            
+            print("Underlying error: \(String(describing: error.underlyingError))")
+        } else if let error = response.result.error as? URLError {
+            print("URLError occurred: \(error)")
+        } else {
+            print("Unknown error: \(String(describing: response.result.error))")
+        }
+    }
+    
+    func refreshUserSession () {
+        print("refresh user session")
+        let username = UserDefaults.standard.value(forKey: "username") as! String
+        let password = UserDefaults.standard.value(forKey: "password") as! String
+        
+        firstly {
+            login(username: username, password: password)
+            }.then { (result) -> Void in
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                mainStore.dispatch(SetLoggedInUserAction(user: result))
+            }.catch { (error) in
+                print(error)
+        }
     }
 }
