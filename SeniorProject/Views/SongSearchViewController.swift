@@ -77,6 +77,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
         addSongToQueue(song: searchResults[indexPath.row])
     }
 
+    /* When user clicks on a song, give user the option to add the song onto the current queue */
     func addSongToQueue(song: SpotifySong) {
         let alertController = UIAlertController(title: "Add song to queue", message: "Add \(song.title) to queue?", preferredStyle: .alert)
         let actionCancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)

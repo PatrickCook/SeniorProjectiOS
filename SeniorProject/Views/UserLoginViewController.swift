@@ -22,12 +22,13 @@ class UserLoginViewController: UIViewController {
     
     @IBAction func submitButtonClicked(_ sender: Any) {
         
-        //Check if username or password are empty
+        // Check if username or password are empty
         if (userNameTextBox.text?.isEmpty)! || (passwordTextBox.text?.isEmpty)! {
             displayAlertToUser(userMessage: "Please fill in the missing information before proceeding")
             return
         }
         
+        // Check against server and move onto spotify authentication
         if let username = userNameTextBox.text, let password = passwordTextBox.text {
             firstly {
                  Api.shared.login(username: username, password: password)

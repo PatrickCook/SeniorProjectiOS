@@ -24,17 +24,26 @@ class UserSignupViewController: UIViewController {
     @IBAction func loginButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    /*
+     * Used for signing up. Checks that the username doesn't already exist in the system
+     * and that both the passwords match and are valid.
+     */
     @IBAction func createUserClicked(_ sender: Any) {
+        
+        // Check that passwords match
         if passwordInput.text != repeatpasswordInput.text {
             displayAlertToUser(userMessage: "Please make sure passwords match.")
             return
         }
         
+        // Check all fields are filled out
         if (usernameInput.text?.isEmpty)! || (passwordInput.text?.isEmpty)! || (repeatpasswordInput.text?.isEmpty)! {
             displayAlertToUser(userMessage: "Some fields are missing information")
             return
         }
         
+        // Verify with server and move to spotify authentication
         if let username = usernameInput.text, let password = passwordInput.text {
             firstly {
                 Api.shared.createUser(username: username, password: password)
@@ -50,7 +59,6 @@ class UserSignupViewController: UIViewController {
     }
     
     /*
-     * DISPLAY ALERT TO USER
      * Used to display an alert to the user. User has option to press ok
      */
     func displayAlertToUser(userMessage: String) {

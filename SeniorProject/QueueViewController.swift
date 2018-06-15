@@ -18,12 +18,14 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var resumeQueueButton: UIButton!
     @IBOutlet weak var currentSongAlbumImage: UIImageView!
     
+    /* Opens the music player */
     @IBAction func openMusicPlayerTapped(_ sender: Any) {
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
             self.present(mvc, animated: true, completion: nil)
         }
     }
     
+    /* Button associated with the play button on the bottom of the screen */
     @IBAction func resumeQueueTapped(_ sender: UIButton) {
         handlePlaybackOwnership()  
     }
@@ -111,6 +113,10 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    /*
+     * Responsible with updating what the play button looks like
+     * depending on the state of the music playback
+     */
     func refreshResumeButton() {
         let userId = mainStore.state.loggedInUser!.id
         let playingUserId = mainStore.state.selectedQueue?.playingUserId ?? -1
@@ -128,6 +134,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    /* Handles who owns which queue */
     func handlePlaybackOwnership() {
         let loggedInUserId = mainStore.state.loggedInUser!.id
         let selectedQueue = mainStore.state.selectedQueue

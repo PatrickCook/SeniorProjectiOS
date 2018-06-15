@@ -20,6 +20,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var selectedMembersLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    /* Triggered when the create queue button is pressed */
     @IBAction func createQueueTapped(_ sender: UIButton) {
         firstly {
             Api.shared.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))

@@ -53,6 +53,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
         fetchQueues(query: searchController.searchBar.text!)
     }
     
+    /* Fetch all the queues from the database */
     func fetchQueues(query: String) {
         firstly {
             Api.shared.getAllQueues(with: query)
@@ -65,6 +66,7 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    /* Join a queue that exists in the database */
     func joinQueue(withPassword: String!) {
         firstly {
             Api.shared.joinQueue(queueId: self.selectedQueue.id, password: withPassword)
