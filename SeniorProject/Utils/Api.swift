@@ -9,7 +9,7 @@ class Api {
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
 
-    let baseURL: String = "http://129.65.251.54:3001/api"
+    let baseURL: String = "http://192.168.1.11:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -22,7 +22,7 @@ class Api {
     func login(username: String, password: String) -> Promise<User> {
         let parameters: [String: Any] = [
             "username": username,
-            "password_hash": password
+            "passwordHash": password
         ]
         
         return Promise{ fulfill, reject in
@@ -50,7 +50,7 @@ class Api {
     func createUser(username: String, password: String) -> Promise<User> {
         let parameters: [String: Any] = [
             "username": username,
-            "password_hash": password,
+            "passwordHash": password,
             "role": "user"
         ]
         
@@ -274,9 +274,9 @@ class Api {
         let parameters: [String : Any] = [
             "title": song.title,
             "artist": song.artist,
-            "album_uri": song.imageURI,
-            "preview_uri": song.previewURI,
-            "spotify_uri": song.spotifyURI
+            "albumURI": song.imageURI,
+            "previewURI": song.previewURI,
+            "spotifyURI": song.spotifyURI
         ]
         
         return Promise{ fulfill, reject in

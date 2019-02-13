@@ -99,14 +99,14 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let joinQueueCell = tableView.cellForRow(at: indexPath) as! JoinQueueCell
         let queueAlertTitle = "Join queue " + joinQueueCell.queueNameLabel.text! + "?"
-        let alertController = UIAlertController(title: queueAlertTitle, message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: queueAlertTitle, message: "", preferredStyle: UIAlertController.Style.alert)
         
-        let saveAction = UIAlertAction(title: "Join", style: UIAlertActionStyle.default, handler: { alert -> Void in
+        let saveAction = UIAlertAction(title: "Join", style: UIAlertAction.Style.default, handler: { alert -> Void in
             print("Joining queue: " + joinQueueCell.queueNameLabel.text!)
             self.joinQueue(withPassword: nil)
         })
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
             (action : UIAlertAction!) -> Void in
         })
         

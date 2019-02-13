@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UPp-eh-tyR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UPp-eh-tyR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -893,7 +892,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-album-cover" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-P8-i3L">
-                                        <rect key="frame" x="38" y="78" width="300" height="300"/>
+                                        <rect key="frame" x="37.5" y="78" width="300" height="300"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="7TA-Zh-8dA"/>
                                             <constraint firstAttribute="width" constant="300" id="IrG-yY-43h"/>
@@ -1130,16 +1129,16 @@
     <resources>
         <image name="cancel-icon" width="720" height="720"/>
         <image name="default-album-cover" width="626" height="626"/>
-        <image name="down-arrow-icon" width="24" height="24"/>
-        <image name="next-icon" width="128" height="128"/>
-        <image name="pause-icon" width="128" height="128"/>
-        <image name="play-icon" width="128" height="128"/>
-        <image name="previous-icon" width="128" height="128"/>
-        <image name="share" width="24" height="24"/>
-        <image name="up-arrow-2" width="64" height="64"/>
+        <image name="down-arrow-icon" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="next-icon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="pause-icon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="play-icon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="previous-icon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="share" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="up-arrow-2" width="51.200000762939453" height="51.200000762939453"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XwY-jW-GDq"/>
+        <segue reference="ScS-5B-HYI"/>
         <segue reference="ohD-mb-vh9"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

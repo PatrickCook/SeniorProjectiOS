@@ -26,8 +26,8 @@ extension UIViewController {
 
         let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
         actInd.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        actInd.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.whiteLarge
+        actInd.style =
+            UIActivityIndicatorView.Style.whiteLarge
         actInd.center = CGPoint(x: loadingView.frame.size.width / 2,
                                 y: loadingView.frame.size.height / 2);
         

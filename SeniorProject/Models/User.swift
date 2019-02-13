@@ -45,7 +45,7 @@ class User: NSObject, NSCoding {
         return lhs.id == rhs.id
     }
     
-    override var hashValue: Int {
+    override var hash: Int {
         get {
             return id.hashValue << 15 + username.hashValue
         }

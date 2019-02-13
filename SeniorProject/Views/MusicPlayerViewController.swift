@@ -30,7 +30,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     @IBAction func moreButtonTapped(_ sender: Any) {
         if (mainStore.state.playingSong != nil) {
             let url = URL(string: (mainStore.state.playingSong?.spotifyURI)!)!
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
     }
     
@@ -111,7 +111,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         
         currentTimeLabel.text = Utils.shared.convertTimeInSecondsToString(seconds: state.playingSongCurrentTime)
         timeRemainingLabel.text = Utils.shared.convertTimeInSecondsToString(seconds:state.playingSongDuration - state.playingSongCurrentTime)
-        playbackButton.setImage(newImage, for: UIControlState.normal)
+        playbackButton.setImage(newImage, for: UIControl.State.normal)
     }
     
     func initMusicPlayerViewToDefault (state: AppState) {
@@ -123,4 +123,9 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         currentTimeLabel.text = "0:00"
         timeRemainingLabel.text = "0:00"
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

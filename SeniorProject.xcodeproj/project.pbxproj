@@ -468,6 +468,7 @@
 				TargetAttributes = {
 					3AA9D6CC208E479F009F24F4 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -476,10 +477,12 @@
 					};
 					3AA9D6E0208E47A0009F24F4 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						TestTargetID = 3AA9D6CC208E479F009F24F4;
 					};
 					3AA9D6EB208E47A0009F24F4 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						TestTargetID = 3AA9D6CC208E479F009F24F4;
 					};
 				};
@@ -815,7 +818,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SeniorProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -842,7 +845,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SpotifyMusicQueue-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -860,7 +863,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SeniorProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -887,7 +890,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SeniorProject/SpotifyMusicQueue-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -907,7 +910,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeniorProject.app/SeniorProject";
 			};
@@ -928,7 +931,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SeniorProject.app/SeniorProject";
 			};
@@ -948,7 +951,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SeniorProject;
 			};
@@ -968,7 +971,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pcook.SeniorProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SeniorProject;
 			};

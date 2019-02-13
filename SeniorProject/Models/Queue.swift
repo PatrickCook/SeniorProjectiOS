@@ -31,11 +31,11 @@ class Queue {
             let id = data["id"] as? Int,
             let owner = data["ownerUsername"] as? String,
             let name = data["name"] as? String,
-            let curMembers = data["cur_members"] as? Int,
-            let maxMembers = data["max_members"] as? Int,
-            let curSongs = data["cur_songs"] as? Int,
-            let maxSongs = data["max_songs"] as? Int,
-            let isPrivate = data["private"] as? Bool,
+            let curMembers = data["curMembers"] as? Int,
+            let maxMembers = data["maxMembers"] as? Int,
+            let curSongs = data["curSongs"] as? Int,
+            let maxSongs = data["maxSongs"] as? Int,
+            let isPrivate = data["isPrivate"] as? Bool,
             let isPlaying = data["isPlaying"] as? Bool,
             let playingUserId = data["playingUserId"] as? Int
         else {

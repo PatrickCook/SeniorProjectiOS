@@ -21,21 +21,21 @@ class PopoverViewController: UIViewController {
     }
     
     @IBAction func createQueueTapped(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Enter Queue Name", message: "", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Enter Queue Name", message: "", preferredStyle: UIAlertController.Style.alert)
         
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Awesome queue name"
-            textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: UIControlEvents.editingChanged)
+            textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: UIControl.Event.editingChanged)
         }
         
-        let saveAction = UIAlertAction(title: "Next", style: UIAlertActionStyle.default, handler: { alert -> Void in
+        let saveAction = UIAlertAction(title: "Next", style: UIAlertAction.Style.default, handler: { alert -> Void in
             let queueNameTextField = alertController.textFields![0] as UITextField
             self.queueName = queueNameTextField.text!
             self.performSegue(withIdentifier: "show_create_queue", sender: self)
         })
         saveAction.isEnabled = false
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
             (action : UIAlertAction!) -> Void in })
         
         alertController.addAction(cancelAction)

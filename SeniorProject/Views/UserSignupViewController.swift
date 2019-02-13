@@ -61,8 +61,8 @@ class UserSignupViewController: UIViewController {
      */
     func displayAlertToUser(userMessage: String) {
         // Create and Allert
-        let myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil)
+        let myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler:nil)
         
         // Add action to the alert
         myAlert.addAction(okAction)

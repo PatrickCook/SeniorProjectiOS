@@ -154,7 +154,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(self.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.white
         
         return refreshControl

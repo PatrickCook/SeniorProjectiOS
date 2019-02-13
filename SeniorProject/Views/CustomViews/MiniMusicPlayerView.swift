@@ -45,7 +45,7 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
     func xibSetUp() {
         view = loadViewFromNib()
         view.frame = self.bounds
-        view.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         addSubview(view)
         
         mainStore.subscribe(self)
@@ -72,6 +72,6 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
         songNameLabel.text = state.playingSong?.title ?? "--"
         queueNameLabel.text =  state.playingQueue?.name ?? "--"
         artistNameLabel.text = state.playingSong?.artist ?? "--"
-        playbackButton.setImage(newImage, for: UIControlState.normal)
+        playbackButton.setImage(newImage, for: UIControl.State.normal)
     }
 }

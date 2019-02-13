@@ -97,7 +97,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if (self.isMovingFromParentViewController) {
+        if (self.isMovingFromParent) {
             MusicPlayer.shared.stopPreviewURL()
         }
     }
