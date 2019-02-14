@@ -70,7 +70,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewWillAppear(animated)
         
         refreshResumeButton()
-        resumeQueueButton.layer.cornerRadius = 20
+        resumeQueueButton.layer.cornerRadius = resumeQueueButton.frame.height*0.4
         resumeQueueButton.clipsToBounds = true
     }
     
