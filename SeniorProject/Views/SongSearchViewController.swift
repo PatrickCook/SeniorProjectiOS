@@ -35,9 +35,8 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     /* When you use the search bar */
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        self.view.endEditing(true)
         showLoadingAlert(uiView: self.view)
-        searchBar.resignFirstResponder()
+
         firstly {
             Api.shared.getSpotifyAccessToken()
         }.then { (token) -> Promise<[SpotifySong]> in
@@ -49,6 +48,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
             self.dismissLoadingAlert(uiView: self.view)
             print(error)
         }
+        self.searchBar.endEditing(true)
     }
     
     /* TABLE DELEGATE METHODS */
@@ -74,7 +74,11 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        addSongToQueue(song: searchResults[indexPath.row])
+        DispatchQueue.main.async {
+            self.addSongToQueue(song: self.searchResults[indexPath.row])
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /* When user clicks on a song, give user the option to add the song onto the current queue */
