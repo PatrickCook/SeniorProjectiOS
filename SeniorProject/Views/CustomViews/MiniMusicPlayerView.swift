@@ -18,7 +18,6 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
     
     @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var queueNameLabel: UILabel!
-    @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var playbackButton: UIButton!
     
     @IBAction func togglePlayback(_ sender: Any) {
@@ -69,9 +68,17 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
             playbackButton.isHidden = true;
         }
         
-        songNameLabel.text = state.playingSong?.title ?? "--"
-        queueNameLabel.text =  state.playingQueue?.name ?? "--"
-        artistNameLabel.text = state.playingSong?.artist ?? "--"
+        songNameLabel.text = "-- • --"
+        queueNameLabel.text = "--"
+        
+        if let songName = state.playingSong?.title,
+            let artistName = state.playingSong?.artist,
+            let queueName = state.playingQueue?.name  {
+            
+            songNameLabel.text = "\(songName) • \(artistName)"
+            queueNameLabel.text = queueName
+        }
+        
         playbackButton.setImage(newImage, for: UIControl.State.normal)
     }
 }

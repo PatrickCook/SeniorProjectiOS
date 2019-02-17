@@ -130,7 +130,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         let queueCell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath) as? QueueCell
         
         queueCell?.queueNameLabel.text = queues[indexPath.row].name
-        queueCell?.currentSongLabel.text = "Default Song Name"
+        queueCell?.currentSongLabel.text = "\(queues[indexPath.row].songs.count) Songs"
         
         return queueCell!
     }
@@ -168,8 +168,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.tableView.reloadData()
                 refreshControl.endRefreshing()
             }.catch { (error) in
-                self.makeUserLogin()
-                //self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error)
         }
     }
     

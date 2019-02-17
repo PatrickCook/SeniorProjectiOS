@@ -9,7 +9,7 @@ class Api {
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
 
-    let baseURL: String = "http://192.168.1.10:3000/api"
+    let baseURL: String = "http://192.168.1.34:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -431,9 +431,7 @@ class Api {
         print("Success: \(response.result.isSuccess)")
         print("Response String: \(String(describing: response.result.value))")
         
-        var statusCode = response.response?.statusCode
         if let error = response.result.error as? AFError {
-            statusCode = error._code // statusCode private
             switch error {
             case .invalidURL(let url):
                 print("Invalid URL: \(url) - \(error.localizedDescription)")
@@ -456,7 +454,6 @@ class Api {
                     print("Response content type: \(responseContentType) was unacceptable: \(acceptableContentTypes)")
                 case .unacceptableStatusCode(let code):
                     print("Response status code was unacceptable: \(code)")
-                    statusCode = code
                 }
             case .responseSerializationFailed(let reason):
                 print("Response serialization failed: \(error.localizedDescription)")

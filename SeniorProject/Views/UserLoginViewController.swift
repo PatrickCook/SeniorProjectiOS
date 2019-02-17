@@ -20,6 +20,9 @@ class UserLoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+    }
     @IBAction func submitButtonClicked(_ sender: Any) {
         
         // Check if username or password are empty
@@ -40,27 +43,11 @@ class UserLoginViewController: UIViewController {
                 
                 self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
             }.catch { (error) in
-                self.displayAlertToUser(userMessage: "Incorrect user login information")
+                self.displayAlertToUser(userMessage: "Incorrect user login information/Could not connect to server")
                 print(error)
             }
         } else {
             print("Error: Login button pressed but user input is invalid")
         }
-    }
-    
-    /*
-     * DISPLAY ALERT TO USER
-     * Used to display an alert to the user. User has option to press ok
-     */
-    func displayAlertToUser(userMessage: String) {
-        // Create and Allert
-        let myAlert = UIAlertController(title: "Alert", message: userMessage, preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler:nil)
-        
-        // Add action to the alert
-        myAlert.addAction(okAction)
-        
-        // Present the alert to the user
-        self.present(myAlert, animated: true, completion: nil)
     }
 }

@@ -239,8 +239,15 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let songId = mainStore.state.selectedQueue?.songs[indexPath.row].id
-            mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
-            Api.shared.dequeueSong(queueId: self.queue.id, songId: songId!);
+            
+            firstly {
+                Api.shared.dequeueSong(queueId: self.queue.id, songId: songId!)
+            }.then { (result) -> Void in
+                mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
+            }.catch { (error) in
+                self.showErrorAlert(error: error)
+            }
+            
             tableView.reloadData()
         }
 
