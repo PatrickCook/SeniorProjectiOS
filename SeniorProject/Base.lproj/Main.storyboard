@@ -957,7 +957,7 @@
                                 <rect key="frame" x="0.0" y="97.000000000000028" width="414" height="435.66666666666674"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-album-cover" translatesAutoresizingMaskIntoConstraints="NO" id="gB7-P8-i3L">
-                                        <rect key="frame" x="-1" y="10" width="416" height="415.66666666666669"/>
+                                        <rect key="frame" x="4" y="15" width="406" height="405.66666666666669"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="gB7-P8-i3L" secondAttribute="height" multiplier="1:1" id="PD1-Bf-YdR"/>
                                         </constraints>
@@ -966,7 +966,7 @@
                                 <constraints>
                                     <constraint firstItem="gB7-P8-i3L" firstAttribute="centerX" secondItem="vZm-Z0-7DY" secondAttribute="centerX" id="PAA-2v-dDR"/>
                                     <constraint firstItem="gB7-P8-i3L" firstAttribute="centerY" secondItem="vZm-Z0-7DY" secondAttribute="centerY" id="oES-fI-0xG"/>
-                                    <constraint firstItem="gB7-P8-i3L" firstAttribute="top" secondItem="vZm-Z0-7DY" secondAttribute="top" constant="10" id="obd-Hv-YKZ"/>
+                                    <constraint firstItem="gB7-P8-i3L" firstAttribute="top" secondItem="vZm-Z0-7DY" secondAttribute="top" constant="15" id="obd-Hv-YKZ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKx-vf-6Zu">
