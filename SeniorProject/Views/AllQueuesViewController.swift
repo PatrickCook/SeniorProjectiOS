@@ -32,10 +32,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //initializeSearch()
-        initializeTable()
-        definesPresentationContext = true
+    
     }
     
     func validateSpotifyAuthenticated() {
@@ -67,20 +64,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     func newState(state: AppState) {
        queues = state.joinedQueues
        tableView.reloadData()
-    }
-    
-//    func initializeSearch() {
-//        searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchBar.sizeToFit()
-//        searchController.dimsBackgroundDuringPresentation = false
-//        searchController.searchBar.placeholder = "Search queues"
-//        searchController.searchBar.barStyle = .black
-//    }
-    
-    func initializeTable() {
-        //tableView.tableHeaderView = searchController.searchBar
-        //tableView.contentOffset = CGPoint(x: 0.0, y: -10.0)
-        tableView.reloadData()
     }
     
     func fetchQueues() {

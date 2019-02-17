@@ -209,7 +209,7 @@ class Api {
         
         let parameters: [String : Any] = [
             "name": name,
-            "private": isPrivate,
+            "isPrivate": isPrivate,
             "password": password,
             "members": members.map { $0.id }
         ]

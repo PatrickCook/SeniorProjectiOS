@@ -25,4 +25,16 @@ extension UIViewController {
         // Present the alert to the user
         self.present(myAlert, animated: true, completion: nil)
     }
+    
+    func displayAlertToUserWithHandler(title: String, userMessage: String, handler: @escaping ((UIAlertAction) -> Void)) {
+        print("Display Alert to User")
+        // Create and Allert
+        let myAlert = UIAlertController(title: title, message: userMessage, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: handler)
+        
+        // Add action to the alert
+        myAlert.addAction(okAction)
+        // Present the alert to the user
+        self.present(myAlert, animated: true, completion: nil)
+    }
 }

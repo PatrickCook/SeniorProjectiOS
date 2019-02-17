@@ -52,7 +52,14 @@ class UserSignupViewController: UIViewController {
             firstly {
                 Api.shared.createUser(username: username, password: password)
             }.then { (result) -> Void in
-                self.dismiss(animated: true, completion: nil)
+                self.displayAlertToUserWithHandler(
+                    title: "Welcome to QueueIt!",
+                    userMessage: "Go ahead and sign in now",
+                    handler: { (action) in
+                        
+                        self.dismiss(animated: true, completion: nil)
+                })
+                
             }.catch { (error) in
                 self.displayAlertToUser(userMessage: "Error creating a new user")
                 print(error)
