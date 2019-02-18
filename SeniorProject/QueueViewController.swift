@@ -7,10 +7,12 @@ import SwiftyJSON
 
 class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, StoreSubscriber {
     
-    var songs: [Song] = []
     var queue: Queue!
+    var songs: [Song] = []
+  
+    @IBOutlet var miniMusicPlayerView: MiniMusicPlayerView!
+    @IBOutlet var miniMusicPlayerHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var queuedByLabel: UILabel!
     @IBOutlet weak var currentSongLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -25,19 +27,18 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    /* Button associated with the play button on the bottom of the screen */
-    @IBAction func resumeQueueTapped(_ sender: UIButton) {
-        handlePlaybackOwnership()  
-    }
-    
     convenience init() {
         self.init(nibName:nil, bundle:nil)
+    }
+    
+    /* Button associated with the play button on the bottom of the screen */
+    @IBAction func changePlaybackButtonPressed(_ sender: UIButton) {
+        handlePlaybackOwnership()
     }
     
     override func viewDidLoad() {
         mainStore.subscribe(self)
         self.navigationItem.title = queue.name
-        fetchSelectedQueue()
         
         let channel = PusherUtil.shared.pusher.subscribe("my-channel")
         
@@ -69,21 +70,29 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        refreshResumeButton()
-        resumeQueueButton.layer.cornerRadius = resumeQueueButton.frame.height*0.4
+        fetchSelectedQueue()
+        updatePlaybackButtonText()
+        
+        resumeQueueButton.layer.cornerRadius = resumeQueueButton.frame.height*0.5
         resumeQueueButton.clipsToBounds = true
     }
     
     func newState(state: AppState) {
         let url: URL
         
-        queue = state.selectedQueue
-        songs = state.selectedQueue?.songs ?? []
-        queuedByLabel.text = state.selectedQueue?.songs.first?.queuedBy
-        currentSongLabel.text = state.selectedQueue?.songs.first?.title
+        guard let stateSelectedQueue = state.selectedQueue else {
+            print("QueueViewController: Selected Queue not set, cannot accept new state")
+            return
+        }
         
-        if (songs.count > 0) {
-            url = URL(string: (songs.first?.imageURI)!)!
+        queue = stateSelectedQueue
+        songs = queue.songs
+        
+        if let currentSong = songs.first {
+            queuedByLabel.text = currentSong.queuedBy
+            currentSongLabel.text = currentSong.title
+            
+            url = URL(string: currentSong.imageURI)!
             currentSongAlbumImage.kf.indicatorType = .activity
             currentSongAlbumImage.kf.setImage(with: url, completionHandler: {
                 (image, error, cacheType, imageUrl) in
@@ -93,7 +102,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             })
         }
         
-        refreshResumeButton()
+        updatePlaybackButtonText()
         
         tableView.reloadData()
     }
@@ -113,27 +122,44 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    func toggleMiniMusicPlayerVisibility(show: Bool) {
+        
+        if show {
+            print("Show player")
+            miniMusicPlayerHeightConstraint.isActive = false
+            miniMusicPlayerHeightConstraint.constant = 55
+            miniMusicPlayerView.isHidden = false
+            view.layoutIfNeeded()
+        } else {
+            print("Hide player")
+            miniMusicPlayerHeightConstraint.isActive = true
+            miniMusicPlayerHeightConstraint.constant = 0
+            miniMusicPlayerView.isHidden = true
+            view.layoutIfNeeded()
+        }
+    }
+    
     /*
      * Responsible with updating what the play button looks like
      * depending on the state of the music playback
      */
-    func refreshResumeButton() {
+    func updatePlaybackButtonText() {
         guard let loggedInUser = mainStore.state.loggedInUser else {
             print("QueueViewController: User not logged in")
             return
         }
         
         let userId = loggedInUser.id
-        let playingUserId = mainStore.state.selectedQueue?.playingUserId ?? -1
-        let isPlaying = mainStore.state.selectedQueue?.isPlaying ?? false
+        let playingUserId = queue.playingUserId
+        let isPlaying = queue.isPlaying
         
-        if (playingUserId == userId) {
+        if (playingUserId == userId) { /* User is playing queue */
             resumeQueueButton.isEnabled = true
-            resumeQueueButton.setTitle(isPlaying ? "Stop Queue" : "Start Queue", for: .normal)
-        } else if (isPlaying) {
+            resumeQueueButton.setTitle("Stop Queue", for: .normal)
+        } else if (isPlaying) {        /* Another user is playing queue */
             resumeQueueButton.isEnabled = false
             resumeQueueButton.setTitle("Playing...", for: .normal)
-        } else {
+        } else {                       /* Queue is not being played  */
             resumeQueueButton.isEnabled = true
             resumeQueueButton.setTitle("Start Queue", for: .normal)
         }
@@ -151,6 +177,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
          */
         if (loggedInUserId == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
             MusicPlayer.shared.pausePlayback()
+            toggleMiniMusicPlayerVisibility(show: false)
             mainStore.dispatch(SetPlayingQueueToNilAction())
             
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: false)
@@ -183,6 +210,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else if (selectedQueue!.playingUserId == -1){
             mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
             MusicPlayer.shared.togglePlayback()
+            toggleMiniMusicPlayerVisibility(show: true)
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: true)
         }
         else {

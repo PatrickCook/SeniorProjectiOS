@@ -26,7 +26,7 @@ struct FetchedSpotifySearchResultsAction: Action {
 
 /* Updated which Queue is being VIEWED */
 struct SetSelectedQueueAction: Action {
-    let selectedQueue: Queue
+    let selectedQueueId: Int
 }
 
 struct UpdateSelectedQueueAction: Action {

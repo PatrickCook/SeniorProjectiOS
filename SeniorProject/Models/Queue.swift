@@ -23,7 +23,7 @@ class Queue {
     var songs: [Song]
     
     var description: String {
-        return "Queue: { id: \(id), name: \(name), isPlaying: \(isPlaying), playingUserId: \(playingUserId)}"
+        return "Queue: { id: \(id), name: \(name), isPlaying: \(isPlaying), playingUserId: \(playingUserId) songs: \(songs.count)}"
     }
     
     public required init?(data: [String: Any]) {

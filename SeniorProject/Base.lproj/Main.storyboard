@@ -371,7 +371,7 @@
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <state key="normal" title="Start Queue"/>
                                                 <connections>
-                                                    <action selector="resumeQueueTapped:" destination="L1w-q5-Uih" eventType="touchUpInside" id="lea-l5-ZIT"/>
+                                                    <action selector="changePlaybackButtonPressed:" destination="L1w-q5-Uih" eventType="touchUpInside" id="lea-l5-ZIT"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -541,6 +541,8 @@
                     <connections>
                         <outlet property="currentSongAlbumImage" destination="T2n-eY-QYx" id="Ulq-ad-gxQ"/>
                         <outlet property="currentSongLabel" destination="DU6-wF-F2I" id="ud2-Hr-byB"/>
+                        <outlet property="miniMusicPlayerHeightConstraint" destination="Pc8-rK-yrV" id="oJJ-aQ-FGA"/>
+                        <outlet property="miniMusicPlayerView" destination="c5g-V7-yFm" id="OEC-5b-lOp"/>
                         <outlet property="queueDetailView" destination="69V-DI-qgq" id="nJl-Jc-1mC"/>
                         <outlet property="queuedByLabel" destination="dFD-j6-Yq6" id="KeN-uF-7LY"/>
                         <outlet property="resumeQueueButton" destination="ewe-IV-ped" id="P40-jT-e7G"/>
@@ -926,17 +928,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Connect Spotify!" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyg-Ta-b7G">
-                                <rect key="frame" x="96.666666666666686" y="108" width="221" height="36"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Connect With Spotify" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QFe-yG-4pY">
+                                <rect key="frame" x="67" y="224" width="280" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="IUy-6x-0uv"/>
+                                    <constraint firstAttribute="width" constant="280" id="uD4-hL-NaZ"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="queueit_logo" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-03-WZL">
+                                <rect key="frame" x="147" y="74" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="ABD-dx-USr"/>
+                                    <constraint firstAttribute="height" constant="120" id="r2H-5l-fW6"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gyg-Ta-b7G" firstAttribute="centerX" secondItem="TuZ-3r-qDL" secondAttribute="centerX" id="LvS-dR-h8U"/>
-                            <constraint firstItem="gyg-Ta-b7G" firstAttribute="top" secondItem="c0V-wB-5SL" secondAttribute="top" constant="64" id="ksd-nS-yoC"/>
+                            <constraint firstItem="a5Z-03-WZL" firstAttribute="centerX" secondItem="TuZ-3r-qDL" secondAttribute="centerX" id="Kjs-t6-wVc"/>
+                            <constraint firstItem="QFe-yG-4pY" firstAttribute="centerX" secondItem="TuZ-3r-qDL" secondAttribute="centerX" id="Pz9-am-brS"/>
+                            <constraint firstItem="QFe-yG-4pY" firstAttribute="top" secondItem="a5Z-03-WZL" secondAttribute="bottom" constant="30" id="Z70-F4-b8D"/>
+                            <constraint firstItem="a5Z-03-WZL" firstAttribute="top" secondItem="c0V-wB-5SL" secondAttribute="top" constant="30" id="sGn-pJ-bts"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c0V-wB-5SL"/>
                     </view>

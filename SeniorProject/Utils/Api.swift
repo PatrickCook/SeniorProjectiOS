@@ -160,7 +160,6 @@ class Api {
                         if let queue = self.instantiateQueueFromData(json: json) {
                             fulfill(queue)
                         }
-                        queue.sort()
                     case .failure(let error):
                         self.requestErrorHandler(response: response)
                         reject(error)

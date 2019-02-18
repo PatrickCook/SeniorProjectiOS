@@ -93,7 +93,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
             case "show_queue_from_row", "show_queue_from_accessory":
                 if segue.destination is QueueViewController {
                     let queue = queues[(tableView.indexPathForSelectedRow?.row)!]
-                    mainStore.dispatch(SetSelectedQueueAction(selectedQueue: queue))
+                    mainStore.dispatch(SetSelectedQueueAction(selectedQueueId: queue.id))
                 }
             default:
                 break

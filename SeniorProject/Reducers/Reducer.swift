@@ -15,11 +15,19 @@ func reducer(action: Action, state: AppState?) -> AppState {
     /* Modify Selected Queue */
     case let action as FetchedSelectedQueueAction:
         print("In Reducers - FetchedSelectedQueueAction")
+        let index = state.joinedQueues.index(where: { (queue) -> Bool in
+            queue.id == action.selectedQueue.id
+        })
+        state.joinedQueues[index!] = action.selectedQueue
         state.selectedQueue = action.selectedQueue
         
     case let action as SetSelectedQueueAction:
         print("In Reducers - SetSelectedQueueAction")
-        state.selectedQueue = action.selectedQueue
+        let index = state.joinedQueues.index(where: { (queue) -> Bool in
+            queue.id == action.selectedQueueId
+        })
+        
+        state.selectedQueue = state.joinedQueues[index!]
     
     case let action as AddSongToSelectedQueueAction:
         print("In Reducers - AddSongToSelectedQueueAction")
