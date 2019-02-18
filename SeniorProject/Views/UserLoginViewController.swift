@@ -33,19 +33,19 @@ class UserLoginViewController: UIViewController {
         
         // Check against server and move onto spotify authentication
         if let username = userNameTextBox.text, let password = passwordTextBox.text {
-            firstly {
-                 Api.shared.login(username: username, password: password)
-            }.then { (result) -> Void in
-                let encodedData = NSKeyedArchiver.archivedData(withRootObject: result)
-                UserDefaults.standard.set(encodedData, forKey: "loggedInUser")
-                UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                mainStore.dispatch(SetLoggedInUserAction(user: result))
-                
-                self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
-            }.catch { (error) in
-                self.displayAlertToUser(userMessage: "Incorrect user login information/Could not connect to server")
-                print(error)
-            }
+            Api.shared.login(username: username, password: password)
+                .then { (result) -> Void in
+                    let encodedData = NSKeyedArchiver.archivedData(withRootObject: result)
+                    
+                    UserDefaults.standard.set(encodedData, forKey: "loggedInUser")
+                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                    
+                    mainStore.dispatch(SetLoggedInUserAction(user: result))
+                    
+                    self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
+                }.catch { (error) in
+                    self.displayAlertToUser(userMessage: "Error occurred while trying to log in")
+                }
         } else {
             print("Error: Login button pressed but user input is invalid")
         }

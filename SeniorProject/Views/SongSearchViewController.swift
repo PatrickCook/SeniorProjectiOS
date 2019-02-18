@@ -37,17 +37,16 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
         showLoadingAlert(uiView: self.view)
 
-        firstly {
-            Api.shared.getSpotifyAccessToken()
-        }.then { (token) -> Promise<[SpotifySong]> in
-            Api.shared.searchSpotify(query: searchBar.text!, spotifyToken: token)
-        }.then { (songs) -> Void in
-            mainStore.dispatch(FetchedSpotifySearchResultsAction(spotifySearchResults: songs))
-            self.dismissLoadingAlert(uiView: self.view)
-        }.catch { (error) in
-            self.dismissLoadingAlert(uiView: self.view)
-            print(error)
-        }
+        Api.shared.getSpotifyAccessToken()
+            .then { (token) -> Promise<[SpotifySong]> in
+                Api.shared.searchSpotify(query: searchBar.text!, spotifyToken: token)
+            }.then { (songs) -> Void in
+                mainStore.dispatch(FetchedSpotifySearchResultsAction(spotifySearchResults: songs))
+                self.dismissLoadingAlert(uiView: self.view)
+            }.catch { (error) in
+                self.dismissLoadingAlert(uiView: self.view)
+                print(error)
+            }
         self.searchBar.endEditing(true)
     }
     

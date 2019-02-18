@@ -103,7 +103,7 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
             }
         })
         
-        if (MusicPlayer.shared.playback == .PLAYING) {
+        if (MusicPlayer.shared.isPlaying) {
             newImage = pauseButton!
         } else {
             newImage = playButton!

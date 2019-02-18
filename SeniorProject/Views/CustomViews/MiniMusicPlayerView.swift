@@ -56,7 +56,7 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
         let isPlaying = state.playingQueue?.isPlaying ?? false
         let playingUserId = state.playingQueue?.playingUserId ?? 0
         
-        if (MusicPlayer.shared.playback == .PLAYING) {
+        if (MusicPlayer.shared.isPlaying) {
             newImage = pauseButton!
         } else {
             newImage = playButton!

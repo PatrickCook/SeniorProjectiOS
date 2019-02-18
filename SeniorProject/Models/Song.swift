@@ -21,6 +21,7 @@ class Song {
     let votes: Int
     let createdAt: Double
     let updatedAt: Double
+    var locked: Bool
     
     var description: String {
         return "SpotifySong: { title: \(title), image: \(imageURI), artist: \(artist), songURL: \(spotifyURI), previewURL: \(previewURI)}"
@@ -55,21 +56,30 @@ class Song {
         self.queuedBy = user["username"]!
         self.createdAt = Utils.shared.convertDateToEpoch(dateString: createdAt)
         self.updatedAt = Utils.shared.convertDateToEpoch(dateString: updatedAt)
+        self.locked = false
     }
     
     func vote () {
-        firstly {
-            Api.shared.voteSong(song: self)
-        }.catch { (error) in
-            print(error)
-        }
+        Api.shared.voteSong(song: self)
+            .catch { (error) in
+                print(error)
+            }
     }
     
     func unvote () {
-        firstly {
-            Api.shared.unvoteSong(song: self)
-        }.catch { (error) in
-            print(error)
-        }
+        Api.shared.unvoteSong(song: self)
+            .catch { (error) in
+                print(error)
+            }
+    }
+    
+    func lock() {
+        print("Song: locking")
+        locked = true
+    }
+    
+    func unlock() {
+         print("Song: unlocking")
+        locked = false
     }
 }

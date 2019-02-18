@@ -22,16 +22,15 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     
     /* Triggered when the create queue button is pressed */
     @IBAction func createQueueTapped(_ sender: UIButton) {
-        firstly {
-            Api.shared.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))
-        }.then { (result) -> Promise<[Queue]> in
-            print("Created queue.")
-            return Api.shared.getMyQueues()
-        }.then { (result) -> Void in
-            mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result))
-        }.catch { (error) in
-            print(error)
-        }
+        Api.shared.createQueue(name: queueName, isPrivate: false, password: "", members: Array(selectedMembers))
+            .then { (result) -> Promise<[Queue]> in
+                print("Created queue.")
+                return Api.shared.getMyQueues()
+            }.then { (result) -> Void in
+                mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result))
+            }.catch { (error) in
+                print(error)
+            }
     }
     
     override func viewDidLoad() {
@@ -69,15 +68,14 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func fetchData(query: String) {
-        firstly {
-            Api.shared.searchUsers(query: query)
-        }.then { (result) -> Void in
-            self.membersFromQuery = result
-            self.tableView.reloadData()
-        }.catch { (error) in
-            self.showErrorAlert(error: error)
-            print(error)
-        }
+        Api.shared.searchUsers(query: query)
+            .then { (result) -> Void in
+                self.membersFromQuery = result
+                self.tableView.reloadData()
+            }.catch { (error) in
+                self.showErrorAlert(error: error)
+                print(error)
+            }
     }
     
     /* Search View Delegate Methods */

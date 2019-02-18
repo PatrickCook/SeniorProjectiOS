@@ -184,9 +184,8 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func fetchSelectedQueue() {
         showLoadingAlert(uiView: self.view)
         
-        firstly {
-            Api.shared.getSelectedQueue(queue: queue)
-            }.then { (result) -> Void in
+        Api.shared.getSelectedQueue(queue: queue)
+            .then { (result) -> Void in
                 mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
                 if (self.queue.isPlaying && self.queue.playingUserId == mainStore.state.loggedInUser!.id) {
                     mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
@@ -195,22 +194,21 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }.catch { (error) in
                 self.dismissLoadingAlert(uiView: self.view)
                 self.showErrorAlert(error: error)
-        }
+            }
     }
     
     func refreshSelectedQueue() {
         print("Refreshing Selected Queue....")
         showLoadingAlert(uiView: self.view)
         
-        firstly {
-            Api.shared.getSelectedQueue(queue: queue)
-        }.then { (result) -> Void in
-            mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
-            self.dismissLoadingAlert(uiView: self.view)
-        }.catch { (error) in
-            self.dismissLoadingAlert(uiView: self.view)
-            self.showErrorAlert(error: error)
-        }
+        Api.shared.getSelectedQueue(queue: queue)
+            .then { (result) -> Void in
+                mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
+                self.dismissLoadingAlert(uiView: self.view)
+            }.catch { (error) in
+                self.dismissLoadingAlert(uiView: self.view)
+                self.showErrorAlert(error: error)
+            }
     }
     
     /* Segue in order to search for songs */
@@ -240,13 +238,12 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let songId = mainStore.state.selectedQueue?.songs[indexPath.row].id
             
-            firstly {
-                Api.shared.dequeueSong(queueId: self.queue.id, songId: songId!)
-            }.then { (result) -> Void in
-                mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
-            }.catch { (error) in
-                self.showErrorAlert(error: error)
-            }
+            Api.shared.dequeueSong(queueId: self.queue.id, songId: songId!)
+                .then { (result) -> Void in
+                    mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
+                }.catch { (error) in
+                    self.showErrorAlert(error: error)
+                }
             
             tableView.reloadData()
         }

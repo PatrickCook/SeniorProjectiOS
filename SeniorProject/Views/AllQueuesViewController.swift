@@ -32,7 +32,6 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
     }
     
     func validateSpotifyAuthenticated() {
@@ -41,7 +40,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                 print(error.debugDescription)
                 self?.makeUserLogin()
             } else {
-                MusicPlayer.shared.player?.login(withAccessToken: token)
+                MusicPlayer.shared.player.login(withAccessToken: token)
             }
         }
     }
@@ -68,16 +67,16 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func fetchQueues() {
         showLoadingAlert(uiView: self.view)
-        firstly {
-            Api.shared.getMyQueues()
-        }.then { (result) -> Void in
-            mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result)) 
-            self.dismissLoadingAlert(uiView: self.view)
-        }.catch { (error) in
-            self.dismissLoadingAlert(uiView: self.view)
-            self.makeUserLogin()
-            //self.showErrorAlert(error: error)
-        }
+        
+        Api.shared.getMyQueues()
+            .then { (result) -> Void in
+                mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result))
+                self.dismissLoadingAlert(uiView: self.view)
+            }.catch { (error) in
+                self.dismissLoadingAlert(uiView: self.view)
+                self.makeUserLogin()
+                //self.showErrorAlert(error: error)
+            }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -144,9 +143,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        firstly {
-            Api.shared.getMyQueues()
-            }.then { (result) -> Void in
+        Api.shared.getMyQueues()
+            .then { (result) -> Void in
                 mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result))
                 self.tableView.reloadData()
                 refreshControl.endRefreshing()

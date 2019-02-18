@@ -6,30 +6,34 @@ import PromiseKit
 class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     static let shared: MusicPlayer = MusicPlayer()
     
+    var audioStream: AVAudioPlayer = AVAudioPlayer()
+    var player: SPTAudioStreamingController = SPTAudioStreamingController.sharedInstance()
+    
+    var isPlaying: Bool {
+        return playback == .PLAYING
+    }
+    
     var isPreviewPlaying = false
-    var audioStream: AVAudioPlayer
-    var player: SPTAudioStreamingController?
-    var playback: PlaybackState = .INIT
+    
+    private var playback: PlaybackState = .INIT
     
     enum PlaybackState {
         case INIT, PLAYING, PAUSED
     }
     
     override init() {
-        audioStream = AVAudioPlayer()
         super.init()
         
-        player = SPTAudioStreamingController.sharedInstance()
-        player?.playbackDelegate = self
-        player?.delegate = self
-        try! player?.start(withClientId: SpotifyCredentials.clientID)
+        player.playbackDelegate = self
+        player.delegate = self
+        try! player.start(withClientId: SpotifyCredentials.clientID)
     }
     
     func togglePlayback() {
         switch (playback) {
         case .INIT:
             print("MusicPlayer: INIT -> PLAYING")
-            initPlayback()
+            reinitPlayback()
         case .PLAYING:
             print("MusicPlayer: PLAYING -> PAUSED")
             pausePlayback()
@@ -69,48 +73,59 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     /* PLAY BUTTON STATE METHODS */
     
-    func initPlayback() {
-        let queue = mainStore.state.playingQueue!
-        
-        if (queue.songs.count > 0) {
-            let songURL = queue.songs.first?.spotifyURI
-            player!.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: 0, callback: { error in
-                if error != nil {
-                    print("*** failed to play: \(String(describing: error))")
-                    return
-                } else {
-                    self.playback = .PLAYING
-                    mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
-                }
-            })
+    func startPlayback() {
+        guard let queue = mainStore.state.playingQueue else {
+            print("MusicPlayer: Cannot initPlayback without playing queue")
+            return
         }
+        
+        guard let song = queue.songs.first else {
+            print("MusicPlayer: Cannot initPlayback when queue is empty")
+            return
+        }
+        
+        let songURL = song.spotifyURI
+        player.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: 0, callback: { error in
+            if error != nil {
+                print("MusicPlayer: \(String(describing: error))")
+                return
+            } else {
+                self.playback = .PLAYING
+                mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
+            }
+        })
     }
     
     func playPlayback() {
-        player?.setIsPlaying(true, callback: nil)
+        player.setIsPlaying(true, callback: nil)
         playback = .PLAYING
     }
     
     func pausePlayback() {
-        player?.setIsPlaying(false, callback: nil)
+        player.setIsPlaying(false, callback: nil)
         playback = .PAUSED
     }
     
-    func restart() {
-        initPlayback()
+    func reinitPlayback() {
+        playback = .INIT
     }
     
     func skip() {
         // Delete currently playing song from queue
-        if (mainStore.state.playingSong != nil) {
-            Api.shared.dequeueSong(queueId: mainStore.state.playingQueue!.id, songId: mainStore.state.playingSong!.id)
+        if let playingSong = mainStore.state.playingSong,
+            let playingQueue = mainStore.state.playingQueue {
             
-            mainStore.state.playingQueue!.skip()
+            Api.shared.dequeueSong(queueId: playingQueue.id, songId: playingSong.id)
+                .then { (result) -> Void in
+                    playingQueue.skip()
+                }.catch { (error) in
+                    print("ERROR: MusicPlayer.skip()")
+                }
         }
     }
     
     func seektoCurrentTime(timeValue: Double){
-        player?.seek(to: timeValue, callback: { error in
+        player.seek(to: timeValue, callback: { error in
             if error != nil {
                 print("*** failed to play: \(String(describing: error))")
                 return
@@ -187,13 +202,12 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
-        print("Music Player - Audio Streaming Error: \(error)")
+        print("Music Player - Audio Streaming Error")
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
         mainStore.dispatch(SkipCurrentSongAction())
     }
-    
 }
 
 // Helper function inserted by Swift 4.2 migrator.

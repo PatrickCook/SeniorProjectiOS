@@ -55,27 +55,25 @@ class JoinQueueViewController: UIViewController, UITableViewDelegate, UITableVie
     
     /* Fetch all the queues from the database */
     func fetchQueues(query: String) {
-        firstly {
-            Api.shared.getAllQueues(with: query)
-        }.then { (result) -> Void in
-            self.queues = result
-            self.tableView.reloadData()
-        }.catch { (error) in
-            self.showErrorAlert(error: error)
-            print(error)
-        }
+        Api.shared.getAllQueues(with: query)
+            .then { (result) -> Void in
+                self.queues = result
+                self.tableView.reloadData()
+            }.catch { (error) in
+                self.showErrorAlert(error: error)
+                print(error)
+            }
     }
     
     /* Join a queue that exists in the database */
     func joinQueue(withPassword: String!) {
-        firstly {
-            Api.shared.joinQueue(queueId: self.selectedQueue.id, password: withPassword)
-        }.then { (result) -> Void in
-            self.performSegue(withIdentifier: "unwind_to_all_queues", sender: self)
-        }.catch { (error) in
-            self.showErrorAlert(error: error)
-            print(error)
-        }
+        Api.shared.joinQueue(queueId: self.selectedQueue.id, password: withPassword)
+            .then { (result) -> Void in
+                self.performSegue(withIdentifier: "unwind_to_all_queues", sender: self)
+            }.catch { (error) in
+                self.showErrorAlert(error: error)
+                print(error)
+            }
     }
     
     /* TABLE DELEGATE METHODS */
