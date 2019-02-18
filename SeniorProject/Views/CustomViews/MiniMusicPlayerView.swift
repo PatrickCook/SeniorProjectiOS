@@ -21,7 +21,7 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
     @IBOutlet weak var playbackButton: UIButton!
     
     @IBAction func togglePlayback(_ sender: Any) {
-        mainStore.dispatch(TogglePlaybackAction())
+        MusicPlayer.shared.togglePlayback()
     }
     
     required init?(coder aDecoder: NSCoder) {

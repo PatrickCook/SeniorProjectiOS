@@ -1,6 +1,8 @@
 import ReSwift
 
 // Admin Actions
+struct ResetStateAction: Action {}
+
 struct SetLoggedInUserAction: Action {
     let user: User
 }
@@ -53,14 +55,8 @@ struct SetQueueIsPlayingAction: Action {
 }
 
 /* Queue Manipulation Actions */
-struct RestartCurrentSongAction: Action {}
-
 struct SkipCurrentSongAction: Action {}
 
-struct TogglePlaybackAction: Action {}
-
-struct StopPlaybackAction: Action {}
-struct ResetMusicPlayerStateAction: Action {}
 
 /* Song playback Actions */
 struct UpdateCurrentSongPositionAction: Action {

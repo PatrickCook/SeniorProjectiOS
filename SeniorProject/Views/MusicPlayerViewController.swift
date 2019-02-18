@@ -46,21 +46,27 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
     }
     
     @IBAction func playbackToggleTapped(_ sender: Any) {
-        if ((mainStore.state.playingQueue) != nil) {
-            mainStore.dispatch(TogglePlaybackAction())
+        guard let _ = mainStore.state.playingQueue else {
+            print("There is no playing queue")
+            return
         }
+        MusicPlayer.shared.togglePlayback()
     }
     
     @IBAction func previousTapped(_ sender: Any) {
-        if ((mainStore.state.playingQueue) != nil) {
-            mainStore.dispatch(RestartCurrentSongAction())
+        guard let _ = mainStore.state.playingQueue else {
+            print("There is no playing queue")
+            return
         }
+        MusicPlayer.shared.startPlayback()
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        if ((mainStore.state.playingQueue) != nil) {
-            mainStore.dispatch(SkipCurrentSongAction())
+        guard let _ = mainStore.state.playingQueue else {
+            print("There is no playing queue")
+            return
         }
+        MusicPlayer.shared.skip()
     }
     
     @IBAction func closeMusicPlayerSwiped(_ sender: Any) {

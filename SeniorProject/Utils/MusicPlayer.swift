@@ -33,7 +33,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         switch (playback) {
         case .INIT:
             print("MusicPlayer: INIT -> PLAYING")
-            reinitPlayback()
+            startPlayback()
         case .PLAYING:
             print("MusicPlayer: PLAYING -> PAUSED")
             pausePlayback()
@@ -75,17 +75,16 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     func startPlayback() {
         guard let queue = mainStore.state.playingQueue else {
-            print("MusicPlayer: Cannot initPlayback without playing queue")
+            print("MusicPlayer: Cannot start playback without a song")
             return
         }
         
         guard let song = queue.songs.first else {
-            print("MusicPlayer: Cannot initPlayback when queue is empty")
+            print("MusicPlayer: Cannot start playback when the queue is empty")
             return
         }
         
-        let songURL = song.spotifyURI
-        player.playSpotifyURI(songURL, startingWith: 0, startingWithPosition: 0, callback: { error in
+        player.playSpotifyURI(song.spotifyURI, startingWith: 0, startingWithPosition: 0, callback: { error in
             if error != nil {
                 print("MusicPlayer: \(String(describing: error))")
                 return
@@ -106,21 +105,27 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         playback = .PAUSED
     }
     
-    func reinitPlayback() {
+    func resetPlayback() {
         playback = .INIT
     }
     
     func skip() {
-        // Delete currently playing song from queue
-        if let playingSong = mainStore.state.playingSong,
-            let playingQueue = mainStore.state.playingQueue {
-            
+        
+        guard let playingQueue = mainStore.state.playingQueue, let playingSong = mainStore.state.playingSong else {
+            print("MusicPlayer: Cannot skip without playing queue or song")
+            return
+        }
+        
+        if playingQueue.hasNext() {
             Api.shared.dequeueSong(queueId: playingQueue.id, songId: playingSong.id)
-                .then { (result) -> Void in
-                    playingQueue.skip()
-                }.catch { (error) in
+                .catch { (error) in
                     print("ERROR: MusicPlayer.skip()")
                 }
+            
+            mainStore.dispatch(SkipCurrentSongAction())
+            
+            resetPlayback()
+            togglePlayback()
         }
     }
     
@@ -206,7 +211,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
-        mainStore.dispatch(SkipCurrentSongAction())
+        skip()
     }
 }
 

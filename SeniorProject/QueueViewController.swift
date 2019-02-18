@@ -118,7 +118,12 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
      * depending on the state of the music playback
      */
     func refreshResumeButton() {
-        let userId = mainStore.state.loggedInUser!.id
+        guard let loggedInUser = mainStore.state.loggedInUser else {
+            print("QueueViewController: User not logged in")
+            return
+        }
+        
+        let userId = loggedInUser.id
         let playingUserId = mainStore.state.selectedQueue?.playingUserId ?? -1
         let isPlaying = mainStore.state.selectedQueue?.isPlaying ?? false
         
@@ -145,21 +150,25 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
          * Is it playing and the selected queue and playing queue are the same
          */
         if (loggedInUserId == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
-            mainStore.dispatch(StopPlaybackAction())
+            MusicPlayer.shared.pausePlayback()
             mainStore.dispatch(SetPlayingQueueToNilAction())
+            
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: false)
         }
         /*
          * User is playing a queue but trying to swap
          */
         else if (playingQueue != nil && playingQueue!.id != selectedQueue!.id) {
-            print("Supposed to swap")
-            mainStore.dispatch(StopPlaybackAction())
+            MusicPlayer.shared.pausePlayback()
+            
             Api.shared.setQueueIsPlaying(queueId: playingQueue!.id, isPlaying: false)
+            
             mainStore.dispatch(SetPlayingQueueToNilAction())
             mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-            mainStore.dispatch(ResetMusicPlayerStateAction())
-            mainStore.dispatch(TogglePlaybackAction())
+            
+            MusicPlayer.shared.resetPlayback()
+            MusicPlayer.shared.togglePlayback()
+            
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: true)
         }
         /*
@@ -173,7 +182,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
          */
         else if (selectedQueue!.playingUserId == -1){
             mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-            mainStore.dispatch(TogglePlaybackAction())
+            MusicPlayer.shared.togglePlayback()
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: true)
         }
         else {

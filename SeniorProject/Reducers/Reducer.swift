@@ -49,7 +49,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case _ as SetPlayingQueueToNilAction:
         print("In Reducers - SetPlayingQueueToNilAction")
-        MusicPlayer.shared.reinitPlayback()
+        MusicPlayer.shared.resetPlayback()
         state.playingQueue = nil
         state.playingSong = nil
       
@@ -61,30 +61,17 @@ func reducer(action: Action, state: AppState?) -> AppState {
     /* Music Player Actions */
     case _ as SkipCurrentSongAction:
         print("In Reducers - SkipCurrentSongAction")
-        MusicPlayer.shared.skip()
-        MusicPlayer.shared.reinitPlayback()
         
         guard let playingQueue = state.playingQueue else {
             print("In reducers - Cannot skip when playing queue is not set")
             return state
         }
+
+        playingQueue.skip()
         
-        if (playingQueue.songs.count > 0) {
-            state.playingSong = playingQueue.songs.first
-            MusicPlayer.shared.togglePlayback()
+        if let nextSong = playingQueue.songs.first {
+            state.playingSong = nextSong
         }
-        
-    case _ as RestartCurrentSongAction:
-        MusicPlayer.shared.startPlayback()
-        
-    case _ as TogglePlaybackAction:
-        MusicPlayer.shared.togglePlayback()
-        
-    case _ as StopPlaybackAction:
-        MusicPlayer.shared.pausePlayback()
-        
-    case _ as ResetMusicPlayerStateAction:
-        MusicPlayer.shared.reinitPlayback()
         
     /* Playing Song Action */
     case let action as UpdateCurrentSongPositionAction:
@@ -99,7 +86,9 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
     case let action as SetHasSliderChangedAction:
         state.hasSliderChanged = action.hasSliderChanged
-        
+    
+    case _ as ResetStateAction:
+        state = AppState()
     default:
         print("Reducer - Default Action")
         break

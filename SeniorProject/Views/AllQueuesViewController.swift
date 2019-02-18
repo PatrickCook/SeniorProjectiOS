@@ -158,13 +158,12 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
         UserDefaults.standard.set(false, forKey: "isLoggedIn")
         UserDefaults.standard.removeObject(forKey: "loggedInUser")
         
-        if (mainStore.state.playingQueue != nil) {
-            let id = mainStore.state.playingQueue!.id
-            mainStore.dispatch(StopPlaybackAction())
-            mainStore.dispatch(SetPlayingQueueToNilAction())
-            Api.shared.setQueueIsPlaying(queueId: id, isPlaying: false)
+        if let playingQueue = mainStore.state.playingQueue {
+            MusicPlayer.shared.pausePlayback()
+            Api.shared.setQueueIsPlaying(queueId: playingQueue.id, isPlaying: false)
         }
         
+        mainStore.dispatch(ResetStateAction())
         
         SpotifyLogin.shared.logout()
         makeUserLogin()

@@ -80,6 +80,10 @@ class Queue {
         dequeue()
     }
     
+    func hasNext() -> Bool {
+        return songs.count > 1
+    }
+    
     func clearQueue() {
         songs.removeAll()
     }
