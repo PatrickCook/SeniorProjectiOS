@@ -59,6 +59,8 @@ struct SkipCurrentSongAction: Action {}
 
 
 /* Song playback Actions */
+struct MusicPlayerStateChanged: Action {}
+
 struct UpdateCurrentSongPositionAction: Action {
     let updatedTime: Double
 }

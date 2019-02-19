@@ -16,6 +16,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     var blurView: DynamicBlurView!
     var queues: [Queue] = []
     
+    @IBOutlet var miniMusicPlayerView: MiniMusicPlayerView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -32,6 +33,8 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        updateMiniMusicPlayerVisibility()
     }
     
     func validateSpotifyAuthenticated() {
@@ -63,6 +66,10 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
     func newState(state: AppState) {
        queues = state.joinedQueues
        tableView.reloadData()
+    }
+    
+    func updateMiniMusicPlayerVisibility() {
+        miniMusicPlayerView.isHidden = !MusicPlayer.shared.isPlaying
     }
     
     func fetchQueues() {

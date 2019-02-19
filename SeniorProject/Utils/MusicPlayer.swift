@@ -18,7 +18,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     private var playback: PlaybackState = .INIT
     
     enum PlaybackState {
-        case INIT, PLAYING, PAUSED
+        case INIT, PLAYING, PAUSED, ERROR
     }
     
     override init() {
@@ -40,6 +40,8 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         case .PAUSED:
             print("MusicPlayer: PAUSED -> PLAYING")
             resumePlayback()
+        case .ERROR:
+            print("MusicPlayer: ERROR")
         }
     }
     
@@ -56,12 +58,15 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             return
         }
         
+        self.playback = .PLAYING
+        
         player.playSpotifyURI(song.spotifyURI, startingWith: 0, startingWithPosition: 0, callback: { error in
             if error != nil {
                 print("MusicPlayer: \(String(describing: error))")
+                self.playback = .ERROR
                 return
             } else {
-                self.playback = .PLAYING
+                mainStore.dispatch(MusicPlayerStateChanged())
                 mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
             }
         })
@@ -70,11 +75,13 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     func resumePlayback() {
         player.setIsPlaying(true, callback: nil)
         playback = .PLAYING
+        mainStore.dispatch(MusicPlayerStateChanged())
     }
     
     func pausePlayback() {
         player.setIsPlaying(false, callback: nil)
         playback = .PAUSED
+        mainStore.dispatch(MusicPlayerStateChanged())
     }
     
     func resetPlayback() {
@@ -202,7 +209,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChange metadata: SPTPlaybackMetadata!) {
-        //mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
+        mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
     }
     
     func deactivateAudioSession() {

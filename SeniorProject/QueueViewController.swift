@@ -72,6 +72,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         fetchSelectedQueue()
         updatePlaybackButtonText()
+        updateMiniMusicPlayerVisibility()
         
         resumeQueueButton.layer.cornerRadius = resumeQueueButton.frame.height*0.5
         resumeQueueButton.clipsToBounds = true
@@ -122,20 +123,11 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    func toggleMiniMusicPlayerVisibility(show: Bool) {
-        
-        if show {
-            print("Show player")
-            miniMusicPlayerHeightConstraint.isActive = false
-            miniMusicPlayerHeightConstraint.constant = 55
+    func updateMiniMusicPlayerVisibility() {
+        if let _ = mainStore.state.playingQueue {
             miniMusicPlayerView.isHidden = false
-            view.layoutIfNeeded()
         } else {
-            print("Hide player")
-            miniMusicPlayerHeightConstraint.isActive = true
-            miniMusicPlayerHeightConstraint.constant = 0
             miniMusicPlayerView.isHidden = true
-            view.layoutIfNeeded()
         }
     }
     
@@ -177,7 +169,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
          */
         if (loggedInUserId == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
             MusicPlayer.shared.pausePlayback()
-            toggleMiniMusicPlayerVisibility(show: false)
+            updateMiniMusicPlayerVisibility()
             mainStore.dispatch(SetPlayingQueueToNilAction())
             
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: false)
@@ -210,7 +202,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else if (selectedQueue!.playingUserId == -1){
             mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
             MusicPlayer.shared.togglePlayback()
-            toggleMiniMusicPlayerVisibility(show: true)
+            updateMiniMusicPlayerVisibility()
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: true)
         }
         else {
@@ -235,7 +227,6 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func refreshSelectedQueue() {
-        print("Refreshing Selected Queue....")
         showLoadingAlert(uiView: self.view)
         
         Api.shared.getSelectedQueue(queue: queue)

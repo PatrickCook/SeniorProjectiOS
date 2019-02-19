@@ -52,20 +52,11 @@ class MiniMusicPlayerView: UIView, StoreSubscriber {
     
     func newState(state: AppState) {
         let newImage: UIImage
-        let userId = state.loggedInUser?.id
-        let isPlaying = state.playingQueue?.isPlaying ?? false
-        let playingUserId = state.playingQueue?.playingUserId ?? 0
         
         if (MusicPlayer.shared.isPlaying) {
             newImage = pauseButton!
         } else {
             newImage = playButton!
-        }
-        
-        if (isPlaying && (playingUserId == userId)) {
-            playbackButton.isHidden = false;
-        } else {
-            playbackButton.isHidden = true;
         }
         
         songNameLabel.text = "-- • --"
