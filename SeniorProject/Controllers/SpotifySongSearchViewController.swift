@@ -104,4 +104,8 @@ class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UI
             MusicPlayer.shared.stopPreviewURL()
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }

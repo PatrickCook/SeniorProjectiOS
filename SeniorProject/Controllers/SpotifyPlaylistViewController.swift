@@ -69,4 +69,8 @@ class SpotifyPlaylistViewController: UIViewController, UISearchBarDelegate, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
