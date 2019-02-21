@@ -294,7 +294,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func unwindToSelectedQueueVC(segue: UIStoryboardSegue) {
         
     }
 }

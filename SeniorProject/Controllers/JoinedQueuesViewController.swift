@@ -135,6 +135,10 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func popoverDismissed() {
+        guard let _ = blurView else {
+            return
+        }
+        
         blurView.blurRadius = 0
         blurView.remove()
     }
@@ -177,14 +181,13 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func openMusicPlayerTapped(_ sender: Any) {
-        print("open music player")
         if let mvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerViewController") as? MusicPlayerViewController {
             self.present(mvc, animated: true, completion: nil)
         }
     }
     
-    @IBAction func unwindToAllQueues(segue: UIStoryboardSegue) {
+    @IBAction func unwindToJoinedQueuesVC(segue: UIStoryboardSegue) {
         popoverDismissed()
-        fetchQueues()
+        //fetchQueues()
     }
 }

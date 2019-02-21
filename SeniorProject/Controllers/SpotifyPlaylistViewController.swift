@@ -70,6 +70,10 @@ class SpotifyPlaylistViewController: UIViewController, UISearchBarDelegate, UITa
        
     }
     
+    @IBAction func goBackToSelectedQueue(_ sender: Any) {
+        performSegue(withIdentifier: "unwindSequeToSelectedQueue", sender: self)
+    }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
