@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Utils {
+class ConversionUtilities {
     
-    static let shared: Utils = Utils()
+    static let shared: ConversionUtilities = ConversionUtilities()
     
     func convertDateToEpoch(dateString: String) -> Double {
         let dateFormatter = DateFormatter()

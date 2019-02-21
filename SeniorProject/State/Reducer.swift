@@ -65,6 +65,11 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
         state.spotifySearchResults = action.spotifySearchResults
+     
+    /* Modify Spotify User Playlists */
+    case let action as FetchedSpotifyUserPlaylistsAction:
+        print("In Reducers - FetchedSpotifyUserPlaylistsAction")
+        state.spotifyUserPlaylists = action.spotifyUserPlaylists
         
     /* Music Player Actions */
     case _ as SkipCurrentSongAction:
@@ -97,6 +102,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
     
     case _ as ResetStateAction:
         state = AppState()
+    
     default:
         print("Reducer - Default Action")
         break

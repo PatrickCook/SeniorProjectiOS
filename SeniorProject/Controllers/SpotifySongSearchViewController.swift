@@ -13,7 +13,7 @@ import AVFoundation
 import PromiseKit
 import ReSwift
 
-class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
+class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -61,7 +61,7 @@ class SongSearchViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SongSearchCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SpotifySongCell
 
         cell.selectionStyle = .none
         cell.songImageLabel.image = searchResults[indexPath.row].albumImage

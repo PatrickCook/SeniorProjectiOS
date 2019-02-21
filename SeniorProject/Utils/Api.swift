@@ -9,7 +9,7 @@ class Api {
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
 
-    let baseURL: String = "http://10.0.1.12:3000/api"
+    let baseURL: String = "http://192.168.1.34:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -390,6 +390,49 @@ class Api {
                                 songs.append(song!)
                             }  
                             fulfill(songs)
+                        }
+                    case .failure(let error):
+                        self.requestErrorHandler(response: response)
+                        reject(error)
+                    }
+            }
+        }
+    }
+    
+    func fetchSpotifyUserPlaylists(spotifyToken: String) -> Promise<[SpotifyPlaylist]> {
+        let searchURL = "https://api.spotify.com/v1/me/playlists"
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(spotifyToken)"]
+        
+        return Promise { fulfill, reject in
+            sessionManager.request(searchURL, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        if let items = json["items"].array {
+                            var playlists: [SpotifyPlaylist] = []
+                            for item in items {
+                                var image_uri = ""
+                                
+                                if let imgArr = item["images"].array {
+                                    if imgArr.count > 0 {
+                                        image_uri = imgArr[0]["url"].stringValue
+                                    }
+                                }
+
+                                let playlist = SpotifyPlaylist(data: [
+                                    "playlist_id": item["id"].stringValue,
+                                    "name": item["name"].stringValue,
+                                    "image_uri": image_uri,
+                                    "song_count": item["tracks"]["total"].intValue
+                                    ]
+                                )
+                                
+                                playlists.append(playlist!)
+                            }
+                            fulfill(playlists)
                         }
                     case .failure(let error):
                         self.requestErrorHandler(response: response)

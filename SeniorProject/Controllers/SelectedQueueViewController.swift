@@ -5,7 +5,7 @@ import PromiseKit
 import ReSwift
 import SwiftyJSON
 
-class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, StoreSubscriber {
+class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, StoreSubscriber {
     
     var queue: Queue!
     var songs: [Song] = []
@@ -285,7 +285,7 @@ class QueueViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let identifier = segue.identifier {
             switch identifier {
             case "moveToSearch":
-                if let viewController = segue.destination as? SongSearchViewController {
+                if let viewController = segue.destination as? SpotifySongSearchViewController {
                     viewController.queueToAddTo = queue
                 }
             default:

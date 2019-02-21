@@ -212,7 +212,7 @@
         <!--QueuesViewController-->
         <scene sceneID="Qod-6D-822">
             <objects>
-                <viewController title="QueuesViewController" id="aKo-B7-gg7" customClass="AllQueuesViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="QueuesViewController" id="aKo-B7-gg7" customClass="JoinedQueuesViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L4i-EL-7gK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -340,7 +340,7 @@
         <!--Title-->
         <scene sceneID="GLW-Ce-64z">
             <objects>
-                <viewController id="L1w-q5-Uih" customClass="QueueViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="L1w-q5-Uih" customClass="SelectedQueueViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vru-rN-IZO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -567,55 +567,76 @@
             </objects>
             <point key="canvasLocation" x="1904.3478260869567" y="2.6785714285714284"/>
         </scene>
-        <!--View Controller-->
+        <!--Spotify Playlist View Controller-->
         <scene sceneID="W28-PK-gbg">
             <objects>
-                <viewController id="1Pr-mw-YMn" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4W4-PZ-1vh">
+                <viewController id="1Pr-mw-YMn" customClass="SpotifyPlaylistViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4W4-PZ-1vh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="85" id="TR1-Sz-N5Z">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="spotifyPlaylistCell" rowHeight="85" id="TR1-Sz-N5Z" customClass="SpotifyPlaylistCell" customModule="SeniorProject" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TR1-Sz-N5Z" id="V6D-3b-Yjf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="84.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-6O-Uhy">
-                                            <rect key="frame" x="93" y="18" width="246" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-6O-Uhy">
+                                            <rect key="frame" x="93" y="18" width="108.5" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="## Songs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tba-Iq-Jlm">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="## Songs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tba-Iq-Jlm">
                                             <rect key="frame" x="93" y="47" width="66" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default-album-cover" translatesAutoresizingMaskIntoConstraints="NO" id="NLl-Gw-BcI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-album-cover" translatesAutoresizingMaskIntoConstraints="NO" id="NLl-Gw-BcI">
                                             <rect key="frame" x="16" y="11" width="61" height="61"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="61" id="Jfb-aC-YEQ"/>
+                                                <constraint firstAttribute="width" constant="61" id="icD-Hg-yaz"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="NLl-Gw-BcI" firstAttribute="top" secondItem="V6D-3b-Yjf" secondAttribute="topMargin" id="0vJ-cr-WrU"/>
+                                        <constraint firstItem="Tba-Iq-Jlm" firstAttribute="leading" secondItem="NLl-Gw-BcI" secondAttribute="trailing" constant="16" id="3wm-1o-AyG"/>
+                                        <constraint firstItem="vRS-6O-Uhy" firstAttribute="top" secondItem="V6D-3b-Yjf" secondAttribute="topMargin" constant="7" id="8JR-v3-kgM"/>
+                                        <constraint firstItem="NLl-Gw-BcI" firstAttribute="leading" secondItem="V6D-3b-Yjf" secondAttribute="leadingMargin" id="KBG-yv-RkR"/>
+                                        <constraint firstItem="Tba-Iq-Jlm" firstAttribute="top" secondItem="vRS-6O-Uhy" secondAttribute="bottom" constant="8" id="Oov-tY-DDy"/>
+                                        <constraint firstItem="vRS-6O-Uhy" firstAttribute="leading" secondItem="NLl-Gw-BcI" secondAttribute="trailing" constant="16" id="QYU-Xf-i86"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="playlistNameLabel" destination="vRS-6O-Uhy" id="Edo-yP-VSM"/>
+                                    <outlet property="playlistSongCountLabel" destination="Tba-Iq-Jlm" id="Yu3-Cl-X4f"/>
+                                    <outlet property="playlistUIImage" destination="NLl-Gw-BcI" id="hRR-bQ-Iqt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1Pr-mw-YMn" id="WX7-pc-9BE"/>
+                            <outlet property="delegate" destination="1Pr-mw-YMn" id="LAB-iK-puG"/>
+                        </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="4W4-PZ-1vh" id="qZB-eu-0Iy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Poe-OL-Rjx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2860" y="258.62068965517244"/>
         </scene>
-        <!--Song Search View Controller-->
+        <!--Spotify Song Search View Controller-->
         <scene sceneID="QTJ-5I-Opp">
             <objects>
-                <viewController id="8WT-Qf-qPQ" customClass="SongSearchViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8WT-Qf-qPQ" customClass="SpotifySongSearchViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VEg-aw-6vG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -625,7 +646,7 @@
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="85" id="nKn-Cb-hT8" customClass="SongSearchCell" customModule="SeniorProject" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="85" id="nKn-Cb-hT8" customClass="SpotifySongCell" customModule="SeniorProject" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nKn-Cb-hT8" id="rl5-at-rlQ">
@@ -974,10 +995,10 @@
             </objects>
             <point key="canvasLocation" x="285.60000000000002" y="801.94902548725645"/>
         </scene>
-        <!--Log In View Controller-->
+        <!--Spotify Auth View Controller-->
         <scene sceneID="NSZ-lW-T60">
             <objects>
-                <viewController id="Zci-8a-HFR" customClass="LogInViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Zci-8a-HFR" customClass="SpotifyAuthViewController" customModule="SeniorProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TuZ-3r-qDL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

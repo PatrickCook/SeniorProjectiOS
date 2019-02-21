@@ -3,6 +3,7 @@ import ReSwift
 struct AppState: StateType {
     var loggedInUser: User?
     var spotifySearchResults: [SpotifySong] = []
+    var spotifyUserPlaylists: [SpotifyPlaylist] = []
     var joinedQueues: [Queue] = []
     var selectedQueue: Queue?
     var selectedQueueCurrentSong: Song?

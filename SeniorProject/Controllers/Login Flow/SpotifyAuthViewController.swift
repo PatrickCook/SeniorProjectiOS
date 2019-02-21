@@ -2,7 +2,7 @@ import UIKit
 import Foundation
 import SpotifyLogin
 
-class LogInViewController: UIViewController {
+class SpotifyAuthViewController: UIViewController {
     
     var loginButton: UIButton?
     

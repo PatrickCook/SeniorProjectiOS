@@ -54,8 +54,8 @@ class Song {
         self.votes = votes
         self.queueId = queueId
         self.queuedBy = user["username"]!
-        self.createdAt = Utils.shared.convertDateToEpoch(dateString: createdAt)
-        self.updatedAt = Utils.shared.convertDateToEpoch(dateString: updatedAt)
+        self.createdAt = ConversionUtilities.shared.convertDateToEpoch(dateString: createdAt)
+        self.updatedAt = ConversionUtilities.shared.convertDateToEpoch(dateString: updatedAt)
         self.locked = false
     }
     

@@ -8,13 +8,14 @@
 
 import UIKit
 
-class SongSearchCell: UITableViewCell {
+class SpotifySongCell: UITableViewCell {
 
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songArtistLabel: UILabel!
     @IBOutlet weak var songImageLabel: UIImageView!
     
     @IBOutlet weak var playButton: UIButton!
+    
     var spotifySong: SpotifySong!
     
     override func awakeFromNib() {

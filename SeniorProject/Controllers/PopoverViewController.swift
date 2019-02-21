@@ -9,7 +9,7 @@ import UIKit
 import DynamicBlurView
 
 class PopoverViewController: UIViewController {
-    var delegate: AllQueuesViewController!
+    var delegate: JoinedQueuesViewController!
     var queueName: String!
     
     @IBOutlet weak var cancelButton: UIButton!

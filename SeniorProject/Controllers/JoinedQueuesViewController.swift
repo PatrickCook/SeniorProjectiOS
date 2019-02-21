@@ -10,7 +10,7 @@ protocol PopoverDelegate {
     func popoverDismissed()
 }
 
-class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate, StoreSubscriber, PusherDelegate {
+class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, PopoverDelegate, StoreSubscriber, PusherDelegate {
     
     var searchController: UISearchController!
     var blurView: DynamicBlurView!
@@ -98,7 +98,7 @@ class AllQueuesViewController: UIViewController, UITableViewDelegate, UITableVie
                     view.addSubview(blurView)
                 }
             case "show_queue_from_row", "show_queue_from_accessory":
-                if segue.destination is QueueViewController {
+                if segue.destination is SelectedQueueViewController {
                     let queue = queues[(tableView.indexPathForSelectedRow?.row)!]
                     mainStore.dispatch(SetSelectedQueueAction(selectedQueueId: queue.id))
                 }
