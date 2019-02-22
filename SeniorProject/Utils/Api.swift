@@ -9,7 +9,7 @@ class Api {
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
 
-    let baseURL: String = "http://192.168.1.34:3000/api"
+    let baseURL: String = "http://192.168.1.32:3000/api"
     var sessionManager: SessionManager
     
     init() {
@@ -353,6 +353,8 @@ class Api {
         }
     }
     
+    //MARK: Spotify API Requests
+    
     func searchSpotify(query: String, spotifyToken: String) -> Promise<[SpotifySong]> {
         let modifiedWord = query.replacingOccurrences(of: " ", with: "+")
         let searchURL = "https://api.spotify.com/v1/search?q=\(modifiedWord)&type=track"
@@ -377,7 +379,7 @@ class Api {
                                 let artist = item["album"]["artists"][0]["name"].stringValue
                                 let previewURI: String
                                 let songURI = item["uri"].stringValue
-                                let albumURI = item["album"]["images"][0]["url"].stringValue
+                                let albumURI = item["album"]["images"][2]["url"].stringValue
                                 
                                 if (item["preview_url"] == JSON.null) {
                                     previewURI = "null"
@@ -389,6 +391,50 @@ class Api {
                                 
                                 songs.append(song!)
                             }  
+                            fulfill(songs)
+                        }
+                    case .failure(let error):
+                        self.requestErrorHandler(response: response)
+                        reject(error)
+                    }
+            }
+        }
+    }
+    
+    func fetchSpotifyPlaylistSongs(playlistID: String, spotifyToken: String) -> Promise<[SpotifySong]> {
+        let searchURL = "https://api.spotify.com/v1/playlists/\(playlistID)/tracks"
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(spotifyToken)"]
+        
+        return Promise { fulfill, reject in
+            sessionManager.request(searchURL, headers: headers)
+                .validate(statusCode: 200..<300)
+                .responseData { response in
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        
+                        if let items = json["items"].array {
+                            var songs: [SpotifySong] = []
+                            for item in items {
+                                let preview_uri: String
+                                
+                                if item["track"]["preview_url"] == JSON.null {
+                                    preview_uri = "null"
+                                } else {
+                                    preview_uri = item["track"]["preview_url"].stringValue
+                                }
+
+                                let song = SpotifySong(data: [
+                                    "title": item["track"]["name"].stringValue,
+                                    "artist": item["track"]["artists"][0]["name"].stringValue,
+                                    "album_uri": item["track"]["album"]["images"][2]["url"].stringValue,
+                                    "spotify_uri": item["track"]["uri"].stringValue,
+                                    "preview_uri": preview_uri
+                                    ]
+                                )
+                                
+                                songs.append(song!)
+                            }
                             fulfill(songs)
                         }
                     case .failure(let error):
@@ -421,7 +467,7 @@ class Api {
                                         image_uri = imgArr[0]["url"].stringValue
                                     }
                                 }
-
+                                
                                 let playlist = SpotifyPlaylist(data: [
                                     "playlist_id": item["id"].stringValue,
                                     "name": item["name"].stringValue,

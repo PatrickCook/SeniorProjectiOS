@@ -20,6 +20,7 @@ struct FetchedPlayingQueueAction: Action {
     let playingQueue: Queue
 }
 
+//MARK: Spotify API Actions
 struct FetchedSpotifySearchResultsAction: Action {
     let spotifySearchResults: [SpotifySong]
 }
@@ -28,7 +29,11 @@ struct FetchedSpotifyUserPlaylistsAction: Action {
     let spotifyUserPlaylists: [SpotifyPlaylist]
 }
 
-/* Updated which Queue is being VIEWED */
+struct FetchedSpotifyPlaylistSongsAction: Action {
+    let spotifyPlaylistSongs: [SpotifySong]
+}
+
+//MARK: Updated which Queue is being VIEWED */
 struct SetSelectedQueueAction: Action {
     let selectedQueueId: Int
 }

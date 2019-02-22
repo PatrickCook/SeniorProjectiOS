@@ -12,7 +12,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
         print("In Reducers - Fetched Joined Queues Action")
         state.joinedQueues = action.joinedQueues
      
-    /* Modify Selected Queue */
+    //MARK: Modify Selected Queue
     case let action as FetchedSelectedQueueAction:
         print("In Reducers - FetchedSelectedQueueAction")
         let index = state.joinedQueues.index(where: { (queue) -> Bool in
@@ -43,7 +43,7 @@ func reducer(action: Action, state: AppState?) -> AppState {
     case let action as RemoveSongFromSelectedQueueAction:
         state.selectedQueue!.songs = state.selectedQueue!.songs.filter { $0.id != action.songId }
        
-    /* Modify Playing Queue */
+    //MARK:  Modify Playing Queue
     case let action as FetchedPlayingQueueAction:
         print("In Reducers - FetchedPlayingQueueAction")
         state.playingQueue = action.playingQueue
@@ -61,6 +61,8 @@ func reducer(action: Action, state: AppState?) -> AppState {
         state.playingQueue = nil
         state.playingSong = nil
       
+    //MARK: Spotify API Reducers
+        
     /* Modify Spotify Search Results */
     case let action as FetchedSpotifySearchResultsAction:
         print("In Reducers - FetchedSpotifySearchResultsAction")
@@ -71,7 +73,12 @@ func reducer(action: Action, state: AppState?) -> AppState {
         print("In Reducers - FetchedSpotifyUserPlaylistsAction")
         state.spotifyUserPlaylists = action.spotifyUserPlaylists
         
-    /* Music Player Actions */
+    /* Modify Spotify Playist songs */
+    case let action as FetchedSpotifyPlaylistSongsAction:
+        print("In Reducers - FetchedSpotifyPlaylistSongsAction")
+        state.spotifyPlaylistSongs = action.spotifyPlaylistSongs
+        
+    //MARK: Music Player Actions
     case _ as SkipCurrentSongAction:
         print("In Reducers - SkipCurrentSongAction")
         

@@ -13,7 +13,7 @@ import AVFoundation
 import PromiseKit
 import ReSwift
 
-class SpotifyPlaylistViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
+class SpotifyPlaylistsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,7 +30,6 @@ class SpotifyPlaylistViewController: UIViewController, UISearchBarDelegate, UITa
         tableView.reloadData()
     }
     
-    /* When you use the search bar */
     func fetchSpotifyUserPlaylists() {
         showLoadingAlert(uiView: self.view)
         
@@ -45,6 +44,8 @@ class SpotifyPlaylistViewController: UIViewController, UISearchBarDelegate, UITa
                 print(error)
         }
     }
+    
+    
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,11 +68,25 @@ class SpotifyPlaylistViewController: UIViewController, UISearchBarDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+       performSegue(withIdentifier: "show_playlist_songs", sender: self)
     }
     
+    // MARK: Segue Handlers
     @IBAction func goBackToSelectedQueue(_ sender: Any) {
         performSegue(withIdentifier: "unwindSequeToSelectedQueue", sender: self)
+    }
+    
+    @IBAction func unwindToSpotifyPlaylistsVC(segue: UIStoryboardSegue) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is SpotifyPlaylistSongsViewController {
+            if let playlistSongsVC = segue.destination as? SpotifyPlaylistSongsViewController {
+                let queue = spotifyUserPlaylists[(tableView.indexPathForSelectedRow?.row)!]
+                playlistSongsVC.playlist = queue
+            }
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SpotifySongCell: UITableViewCell {
+class SpotifySearchSongCell: UITableViewCell {
 
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songArtistLabel: UILabel!
-    @IBOutlet weak var songImageLabel: UIImageView!
+    @IBOutlet weak var songUIImage: UIImageView!
     
     @IBOutlet weak var playButton: UIButton!
     

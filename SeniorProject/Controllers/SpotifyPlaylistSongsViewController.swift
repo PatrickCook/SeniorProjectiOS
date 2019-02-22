@@ -1,9 +1,9 @@
 //
-//  SongSearchViewController.swift
+//  SpotifyPlaylistSongsViewController.swift
 //  SeniorProject
 //
-//  Created by Patrick Cook on 5/1/18.
-//  Copyright © 2018 Patrick Cook. All rights reserved.
+//  Created by Patrick Cook on 2/21/19.
+//  Copyright © 2019 Patrick Cook. All rights reserved.
 //
 
 import SpotifyLogin
@@ -13,46 +13,46 @@ import AVFoundation
 import PromiseKit
 import ReSwift
 
-class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
+class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, StoreSubscriber {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet var playlistTitleLabel: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
     
-    var queueToAddTo: Queue!
-    var searchResults: [SpotifySong] = []
-    
+    var playlist: SpotifyPlaylist!
+    var songs: [SpotifySong] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        playlistTitleLabel.title = playlist.name
         mainStore.subscribe(self)
-        searchBar.delegate = self
+        fetchSpotifySongsInPlaylist()
     }
     
     func newState(state: AppState) {
-        searchResults = state.spotifySearchResults
+        songs = state.spotifyPlaylistSongs
         tableView.reloadData()
     }
     
     /* When you use the search bar */
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+    func fetchSpotifySongsInPlaylist() {
         showLoadingAlert(uiView: self.view)
-
+        
         Api.shared.getSpotifyAccessToken()
             .then { (token) -> Promise<[SpotifySong]> in
-                Api.shared.searchSpotify(query: searchBar.text!, spotifyToken: token)
+                Api.shared.fetchSpotifyPlaylistSongs(playlistID: self.playlist.playlistID, spotifyToken: token)
             }.then { (songs) -> Void in
-                mainStore.dispatch(FetchedSpotifySearchResultsAction(spotifySearchResults: songs))
+                mainStore.dispatch(FetchedSpotifyPlaylistSongsAction(spotifyPlaylistSongs: songs))
                 self.dismissLoadingAlert(uiView: self.view)
             }.catch { (error) in
                 self.dismissLoadingAlert(uiView: self.view)
                 print(error)
-            }
-        self.searchBar.endEditing(true)
+        }
     }
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
+        return songs.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -61,25 +61,23 @@ class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SpotifySearchSongCell
-
-        cell.selectionStyle = .none
-        cell.songUIImage.image = searchResults[indexPath.row].albumImage
-        cell.songTitleLabel.text = searchResults[indexPath.row].title
-        cell.songArtistLabel.text = searchResults[indexPath.row].artist
-        cell.setSongForCell(spotifySong: searchResults[indexPath.row]) 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "spotifyPlaylistSongCell", for: indexPath) as! SpotifyPlaylistSongCell
+        
+        cell.songTitleLabel.text = songs[indexPath.row].title
+        cell.songArtistLabel.text = songs[indexPath.row].artist
+        cell.songUIImage.image = songs[indexPath.row].albumImage
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            self.addSongToQueue(song: self.searchResults[indexPath.row])
+            self.addSongToQueue(song: self.songs[indexPath.row])
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     /* When user clicks on a song, give user the option to add the song onto the current queue */
     func addSongToQueue(song: SpotifySong) {
         let alertController = UIAlertController(title: "Add song to queue", message: "Add \(song.title) to queue?", preferredStyle: .alert)
@@ -87,11 +85,11 @@ class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UI
         let actionOk = UIAlertAction(title: "OK", style: .default, handler: { alert -> Void in
             firstly {
                 Api.shared.queueSong(queueId: (mainStore.state.selectedQueue?.id)!, song: song)
-            }.then { (result) -> Void in
-                
-            }.catch { (error) in
-                print(error)
-                self.showErrorAlert(error: error)
+                }.then { (result) -> Void in
+                    
+                }.catch { (error) in
+                    print(error)
+                    self.showErrorAlert(error: error)
             }
         })
         alertController.addAction(actionCancel)
@@ -99,13 +97,12 @@ class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UI
         self.present(alertController, animated: true, completion: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        if (self.isMovingFromParent) {
-            MusicPlayer.shared.stopPreviewURL()
-        }
+    @IBAction func goBackToSelectedQueue(_ sender: Any) {
+        performSegue(withIdentifier: "unwindSequeToSelectedPlaylist", sender: self)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 }
+

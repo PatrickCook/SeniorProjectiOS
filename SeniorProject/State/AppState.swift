@@ -4,6 +4,7 @@ struct AppState: StateType {
     var loggedInUser: User?
     var spotifySearchResults: [SpotifySong] = []
     var spotifyUserPlaylists: [SpotifyPlaylist] = []
+    var spotifyPlaylistSongs: [SpotifySong] = []
     var joinedQueues: [Queue] = []
     var selectedQueue: Queue?
     var selectedQueueCurrentSong: Song?

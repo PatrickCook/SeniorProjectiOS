@@ -188,6 +188,6 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func unwindToJoinedQueuesVC(segue: UIStoryboardSegue) {
         popoverDismissed()
-        //fetchQueues()
+        fetchQueues()
     }
 }
