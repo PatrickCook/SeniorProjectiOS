@@ -81,7 +81,7 @@ class Queue {
     }
     
     func hasNext() -> Bool {
-        return songs.count > 1
+        return songs.count > 0
     }
     
     func clearQueue() {

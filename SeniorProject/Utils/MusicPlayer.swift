@@ -95,16 +95,20 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             return
         }
         
-        if playingQueue.hasNext() {
-            Api.shared.dequeueSong(queueId: playingQueue.id, songId: playingSong.id)
-                .catch { (error) in
-                    print("ERROR: MusicPlayer.skip()")
-            }
-            
-            mainStore.dispatch(SkipCurrentSongAction())
-            
-            resetPlayback()
+        Api.shared.dequeueSong(queueId: playingQueue.id, songId: playingSong.id)
+            .catch { (error) in
+                print("ERROR: MusicPlayer.skip()")
+        }
+        
+        mainStore.dispatch(SkipCurrentSongAction())
+        
+        resetPlayback()
+        
+        // Is there another song to play? If not set queue to not playing anymore
+        if let _ = mainStore.state.playingSong {
             togglePlayback()
+        } else {
+            Api.shared.setQueueIsPlaying(queueId: playingQueue.id, isPlaying: false)
         }
     }
     

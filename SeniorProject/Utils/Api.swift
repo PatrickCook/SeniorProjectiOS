@@ -379,7 +379,7 @@ class Api {
                                 let artist = item["album"]["artists"][0]["name"].stringValue
                                 let previewURI: String
                                 let songURI = item["uri"].stringValue
-                                let albumURI = item["album"]["images"][2]["url"].stringValue
+                                let albumURI = item["album"]["images"][0]["url"].stringValue
                                 
                                 if (item["preview_url"] == JSON.null) {
                                     previewURI = "null"
@@ -427,7 +427,7 @@ class Api {
                                 let song = SpotifySong(data: [
                                     "title": item["track"]["name"].stringValue,
                                     "artist": item["track"]["artists"][0]["name"].stringValue,
-                                    "album_uri": item["track"]["album"]["images"][2]["url"].stringValue,
+                                    "album_uri": item["track"]["album"]["images"][0]["url"].stringValue,
                                     "spotify_uri": item["track"]["uri"].stringValue,
                                     "preview_uri": preview_uri
                                     ]

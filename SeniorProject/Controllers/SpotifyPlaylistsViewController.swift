@@ -58,13 +58,13 @@ class SpotifyPlaylistsViewController: UIViewController, UISearchBarDelegate, UIT
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "spotifyPlaylistCell", for: indexPath) as! SpotifyPlaylistCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "spotifyPlaylistCell", for: indexPath) as? SpotifyPlaylistCell
         
-        cell.playlistNameLabel.text = spotifyUserPlaylists[indexPath.row].name
-        cell.playlistUIImage.image = spotifyUserPlaylists[indexPath.row].playlistImage
-        cell.playlistSongCountLabel.text = "\(spotifyUserPlaylists[indexPath.row].songCount) Songs"
+        cell!.playlistNameLabel.text = spotifyUserPlaylists[indexPath.row].name
+        cell!.playlistUIImage.image = spotifyUserPlaylists[indexPath.row].playlistImage
+        cell!.playlistSongCountLabel.text = "\(spotifyUserPlaylists[indexPath.row].songCount) Songs"
         
-        return cell
+        return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

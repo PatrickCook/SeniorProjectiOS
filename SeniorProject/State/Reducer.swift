@@ -91,6 +91,8 @@ func reducer(action: Action, state: AppState?) -> AppState {
         
         if let nextSong = playingQueue.songs.first {
             state.playingSong = nextSong
+        } else {
+            state.playingSong = nil
         }
         
     /* Playing Song Action */

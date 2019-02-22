@@ -40,6 +40,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         mainStore.subscribe(self)
         self.navigationItem.title = queue.name
         
+        print("SETTING UP PUSHER & BINDING EVENTS")
         let channel = PusherUtil.shared.pusher.subscribe("my-channel")
         
         let _ = channel.bind(eventName: "queue-playback-changed", callback: { (data: Any?) -> Void in
@@ -101,6 +102,10 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
                     self.currentSongAlbumImage.image = UIImage(named: "default-album-cover")
                 }
             })
+        } else {
+            queuedByLabel.text = "--"
+            currentSongLabel.text = "--"
+            currentSongAlbumImage.image = UIImage(named: "default-album-cover")
         }
         
         updatePlaybackButtonText()
@@ -169,8 +174,8 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
          */
         if (loggedInUserId == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
             MusicPlayer.shared.pausePlayback()
-            updateMiniMusicPlayerVisibility()
             mainStore.dispatch(SetPlayingQueueToNilAction())
+            updateMiniMusicPlayerVisibility()
             
             Api.shared.setQueueIsPlaying(queueId: selectedQueue!.id, isPlaying: false)
         }
