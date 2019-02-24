@@ -10,6 +10,7 @@ import UIKit
 
 class QueueCell: UITableViewCell {
     
+    @IBOutlet var queueUIImage: UIImageView!
     @IBOutlet weak var queueNameLabel: UILabel!
     @IBOutlet weak var currentSongLabel: UILabel!
     

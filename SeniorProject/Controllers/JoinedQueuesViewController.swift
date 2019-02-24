@@ -120,6 +120,7 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
         
         queueCell?.queueNameLabel.text = queues[indexPath.row].name
         queueCell?.currentSongLabel.text = "\(queues[indexPath.row].songs.count) Songs"
+        queueCell?.queueUIImage.backgroundColor = .random()
         
         return queueCell!
     }

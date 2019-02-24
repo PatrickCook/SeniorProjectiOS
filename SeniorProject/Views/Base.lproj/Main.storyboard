@@ -311,8 +311,9 @@
                                                     <color key="textColor" red="0.70196078429999997" green="0.70196078429999997" blue="0.70196078429999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paracosm" translatesAutoresizingMaskIntoConstraints="NO" id="V84-Rp-Bch">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V84-Rp-Bch">
                                                     <rect key="frame" x="7" y="12" width="61" height="61"/>
+                                                    <color key="backgroundColor" red="0.787109375" green="0.30796925180000001" blue="0.21150888070000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="V84-Rp-Bch" secondAttribute="height" multiplier="1:1" id="Xfg-Th-jgo"/>
                                                     </constraints>
@@ -333,6 +334,7 @@
                                         <connections>
                                             <outlet property="currentSongLabel" destination="czD-ob-09Y" id="DbH-6a-y1g"/>
                                             <outlet property="queueNameLabel" destination="Tfq-Ri-kKA" id="dEW-Tp-pNz"/>
+                                            <outlet property="queueUIImage" destination="V84-Rp-Bch" id="hgx-kU-2hV"/>
                                             <segue destination="L1w-q5-Uih" kind="show" identifier="show_queue_from_row" id="ohD-mb-vh9"/>
                                             <segue destination="L1w-q5-Uih" kind="show" identifier="show_queue_from_accessory" trigger="accessoryAction" id="u04-bl-t8o"/>
                                         </connections>
@@ -1634,7 +1636,6 @@
         <image name="default-album-cover" width="626" height="626"/>
         <image name="down-arrow" width="48" height="48"/>
         <image name="next-icon" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="paracosm" width="72" height="72"/>
         <image name="pause-icon" width="102.40000152587891" height="102.40000152587891"/>
         <image name="play-icon" width="102.40000152587891" height="102.40000152587891"/>
         <image name="previous-icon" width="102.40000152587891" height="102.40000152587891"/>
