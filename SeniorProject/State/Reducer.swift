@@ -81,15 +81,10 @@ func reducer(action: Action, state: AppState?) -> AppState {
     //MARK: Music Player Actions
     case _ as SkipCurrentSongAction:
         print("In Reducers - SkipCurrentSongAction")
-        
-        guard let playingQueue = state.playingQueue else {
-            print("In reducers - Cannot skip when playing queue is not set")
-            return state
-        }
 
-        playingQueue.skip()
+        state.playingQueue?.skip()
         
-        if let nextSong = playingQueue.songs.first {
+        if let nextSong = state.playingQueue?.songs.first {
             state.playingSong = nextSong
         } else {
             state.playingSong = nil

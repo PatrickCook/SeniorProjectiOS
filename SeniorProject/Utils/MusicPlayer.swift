@@ -2,6 +2,8 @@ import Foundation
 import SpotifyLogin
 import AVFoundation
 import PromiseKit
+import MediaPlayer
+
 
 class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     static let shared: MusicPlayer = MusicPlayer()
@@ -26,7 +28,10 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         
         player.playbackDelegate = self
         player.delegate = self
+        
         try! player.start(withClientId: SpotifyCredentials.clientID)
+        
+        setupRemoteCommandCenter()
     }
     
     func togglePlayback() {
@@ -45,7 +50,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
     }
     
-    /* PLAY BUTTON STATE METHODS */
+    // MARK: Music Player playback methods
     
     func startPlayback() {
         guard let queue = mainStore.state.playingQueue else {
@@ -68,23 +73,27 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             } else {
                 mainStore.dispatch(MusicPlayerStateChanged())
                 mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: 0.0))
+                self.updateNowPlaying()
             }
         })
     }
     
     func resumePlayback() {
         player.setIsPlaying(true, callback: nil)
+        MPNowPlayingInfoCenter.default().playbackState = .playing
         playback = .PLAYING
         mainStore.dispatch(MusicPlayerStateChanged())
     }
     
     func pausePlayback() {
         player.setIsPlaying(false, callback: nil)
+        MPNowPlayingInfoCenter.default().playbackState = .paused
         playback = .PAUSED
         mainStore.dispatch(MusicPlayerStateChanged())
     }
     
     func resetPlayback() {
+        MPNowPlayingInfoCenter.default().playbackState = .stopped
         playback = .INIT
     }
     
@@ -123,7 +132,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         })
     }
     
-    /* Preview Handler Methods */
+    // MARK:  Preview Handler Methods
     
     func downloadAndPlayPreviewURL(url: URL) {
         var downloadTask = URLSessionDownloadTask()
@@ -153,8 +162,57 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
     }
     
+    // MARK: Music Player Info center setup
+    
+    func updateNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        
+        let imageURL = URL(string: (mainStore.state.playingSong?.imageURI)!)
+        let imageData = NSData(contentsOf: imageURL!)
+        let image = UIImage(data: imageData! as Data)!
+        
+        nowPlayingInfo[MPMediaItemPropertyTitle] = mainStore.state.playingSong?.title
+        nowPlayingInfo[MPMediaItemPropertyArtist] = mainStore.state.playingSong?.artist
+        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+            return image
+        })
+        
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = mainStore.state.playingSongCurrentTime
+        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = mainStore.state.playingSongDuration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+        
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+        MPNowPlayingInfoCenter.default().playbackState = .playing
+    }
+    
+    func setupRemoteCommandCenter() {
+        let commandCenter = MPRemoteCommandCenter.shared();
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget {event in
+            self.togglePlayback()
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget {event in
+            self.togglePlayback()
+            return .success
+        }
+        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.nextTrackCommand.addTarget { event in
+            self.skip()
+            return .success
+        }
+        commandCenter.previousTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.addTarget { event in
+            self.startPlayback()
+            return .success
+        }
+    }
+    
 
-    /*  SPOTIFY DELEGATE METHODS */
+    // MARK: Audio Session setup methods
     func setupNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self,
@@ -186,25 +244,37 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
     }
     
-    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        if isPlaying {
-            self.activateAudioSession()
-        } else {
-           // self.deactivateAudioSession()
-        }
-    }
+    
     
     // MARK: Activate audio session
     
     func activateAudioSession() {
-        let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: .default)
-        try? session.setActive(true)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .allowAirPlay)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Error setting the AVAudioSession:", error.localizedDescription)
+        }
     }
     
     
     // MARK: Deactivate audio session
+    func deactivateAudioSession() {
+        try? AVAudioSession.sharedInstance().setActive(false)
+    }
     
+    // MARK: Spotify Delegate Methods
+    
+    /* Changing playback status */
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
+        if isPlaying {
+            self.activateAudioSession()
+        } else {
+            self.deactivateAudioSession()
+        }
+    }
+    
+    /* Change song position */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
         
         if (!mainStore.state.hasSliderChanged) {
@@ -212,21 +282,24 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
     }
     
+    /* song metadata changed */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChange metadata: SPTPlaybackMetadata!) {
         mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
     }
     
-    func deactivateAudioSession() {
-        try? AVAudioSession.sharedInstance().setActive(false)
-    }
-    
+    /* received audio error */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
         print("Music Player - Audio Streaming Error")
     }
     
+    /* Playback stopped from track ending */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
         skip()
     }
+    
+    
+    
+    
 }
 
 // Helper function inserted by Swift 4.2 migrator.
