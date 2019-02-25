@@ -64,6 +64,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
         
         self.playback = .PLAYING
+        song.setIsPlaying(true)
         
         player.playSpotifyURI(song.spotifyURI, startingWith: 0, startingWithPosition: 0, callback: { error in
             if error != nil {

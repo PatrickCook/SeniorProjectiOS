@@ -1354,6 +1354,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="cjy-Jg-Jjo" firstAttribute="leading" secondItem="KV8-96-WDa" secondAttribute="leading" constant="20" id="9oa-qh-e8Z"/>
                             <constraint firstItem="KV8-96-WDa" firstAttribute="trailing" secondItem="WAf-u7-Pgx" secondAttribute="trailing" constant="20" id="D36-CH-KSF"/>
@@ -1373,6 +1374,9 @@
                             <constraint firstItem="fKx-vf-6Zu" firstAttribute="top" secondItem="vZm-Z0-7DY" secondAttribute="bottom" id="vsT-9U-RMW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KV8-96-WDa"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="N2K-W5-yBY" appends="YES" id="1s3-qG-t3R"/>
+                        </connections>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1388,9 +1392,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKw-9T-xeG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="down" id="PzM-fH-xmL">
+                <swipeGestureRecognizer direction="down" id="N2K-W5-yBY">
                     <connections>
-                        <action selector="closeMusicPlayerSwiped:" destination="PKo-Lp-u78" id="eaP-r0-h2J"/>
+                        <action selector="closeMusicPlayerSwiped:" destination="PKo-Lp-u78" id="MNF-7a-EFY"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

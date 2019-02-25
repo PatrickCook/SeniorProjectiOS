@@ -8,6 +8,7 @@
 
 import Foundation
 import PromiseKit
+import SwiftyJSON
 
 class Song {
     let id: Int
@@ -18,10 +19,12 @@ class Song {
     let imageURI: String
     let spotifyURI: String
     let previewURI: String
+    let isPlaying: Bool
     let votes: Int
+    var voterIds: [Int]
     let createdAt: Double
     let updatedAt: Double
-    var locked: Bool
+    
     
     var description: String {
         return "SpotifySong: { title: \(title), image: \(imageURI), artist: \(artist), songURL: \(spotifyURI), previewURL: \(previewURI)}"
@@ -35,11 +38,12 @@ class Song {
             let imageURI = data["albumURI"] as? String,
             let spotifyURI = data["spotifyURI"] as? String,
             let previewURI = data["previewURI"] as? String,
-            let votes = data["votes"] as? Int,
             let queueId = data["queueId"] as? Int,
             let user = data["queuedBy"] as? [String : String],
+            let voters = data["votes"] as? [[String : Any]],
             let createdAt = data["createdAt"] as? String,
-            let updatedAt = data["updatedAt"] as? String
+            let updatedAt = data["updatedAt"] as? String,
+            let isPlaying = data["isPlaying"] as? Bool
         else {
             print("Error serializing Song.")
             return nil
@@ -51,12 +55,25 @@ class Song {
         self.imageURI = imageURI
         self.spotifyURI = spotifyURI
         self.previewURI = previewURI
-        self.votes = votes
         self.queueId = queueId
         self.queuedBy = user["username"]!
         self.createdAt = ConversionUtilities.shared.convertDateToEpoch(dateString: createdAt)
         self.updatedAt = ConversionUtilities.shared.convertDateToEpoch(dateString: updatedAt)
-        self.locked = false
+        self.isPlaying = isPlaying
+        self.voterIds = voters.compactMap { $0["UserId"] } as! [Int]
+        self.votes = voterIds.count
+        
+    }
+    
+    func didUserVote(userId: Int) -> Bool {
+        return voterIds.contains(userId)
+    }
+    
+    func setIsPlaying (_ isPlaying: Bool) {
+        Api.shared.setSongIsPlaying(song: self, isPlaying: isPlaying)
+            .catch { (error) in
+                print(error)
+        }
     }
     
     func vote () {
@@ -71,15 +88,5 @@ class Song {
             .catch { (error) in
                 print(error)
             }
-    }
-    
-    func lock() {
-        print("Song: locking")
-        locked = true
-    }
-    
-    func unlock() {
-         print("Song: unlocking")
-        locked = false
     }
 }

@@ -34,7 +34,6 @@ class SongCell: UITableViewCell {
         let origImage = UIImage(named: "up-arrow-2")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         voteButton.setImage(tintedImage, for: .normal)
-        voteButton.tintColor = #colorLiteral(red: 0.7019607843, green: 0.7019607843, blue: 0.7019607843, alpha: 1)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

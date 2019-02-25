@@ -58,7 +58,9 @@ class Queue {
     
     func sort() {
         songs = songs.sorted(by: {
-            if ($0.votes == $1.votes) {
+            if $0.isPlaying {
+                return $0.isPlaying
+            } else if ($0.votes == $1.votes) {
                 return $0.createdAt > $0.createdAt
             } else {
                 return $0.votes > $1.votes

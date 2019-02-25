@@ -257,11 +257,18 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let songCell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as? SongCell
+        let song = songs[indexPath.row]
         
-        songCell?.song = songs[indexPath.row]
-        songCell?.songNameLabel.text = songs[indexPath.row].title
-        songCell?.queuedByLabel.text = songs[indexPath.row].queuedBy
-        songCell?.votesLabel.text = "\(songs[indexPath.row].votes)"
+        songCell?.song = song
+        songCell?.songNameLabel.text = song.title
+        songCell?.queuedByLabel.text = song.queuedBy
+        songCell?.votesLabel.text = "\(song.votes)"
+        
+        if song.didUserVote(userId: (mainStore.state.loggedInUser?.id)!) {
+            songCell?.voteButton.tintColor =  #colorLiteral(red: 0.3803921569, green: 0.6980392157, blue: 0.9764705882, alpha: 1)
+        } else {
+            songCell?.voteButton.tintColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
         
         return songCell!
     }

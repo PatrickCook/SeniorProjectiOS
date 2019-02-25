@@ -309,6 +309,32 @@ class Api {
         }
     }
     
+    func setSongIsPlaying(song: Song, isPlaying: Bool) -> Promise<Any> {
+        
+        let parameters: [String : Any] = [
+            "isPlaying": isPlaying,
+            "queueID": song.queueId
+        ]
+        
+        return Promise{ fulfill, reject in
+            sessionManager.request (
+                baseURL + "/song/\(song.id)/playing",
+                method: .post,
+                parameters: parameters,
+                encoding: JSONEncoding.default
+            ).validate(statusCode: 200..<300)
+             .responseData { response in
+                switch response.result {
+                case .success:
+                    fulfill(true)
+                case .failure(let error):
+                    self.requestErrorHandler(response: response)
+                    reject(error)
+                }
+            }
+        }
+    }
+    
     func voteSong(song: Song) -> Promise<Any> {
         return Promise{ fulfill, reject in
             sessionManager.request(baseURL + "/song/\(song.id)/vote", method: .put)
@@ -502,7 +528,7 @@ class Api {
                         print("Error: cannot instantiate song from data")
                         continue
                     }
-                    dict["votes"] = item["votes"].array?.count
+                    
                     if let song = Song(data: dict) {
                         queue.enqueue(song: song)
                     }
