@@ -117,6 +117,10 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
         currentTimeLabel.text = "0:00"
         timeRemainingLabel.text = "0:00"
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.

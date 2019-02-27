@@ -50,4 +50,8 @@ class UserLoginViewController: UIViewController {
             print("Error: Login button pressed but user input is invalid")
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }

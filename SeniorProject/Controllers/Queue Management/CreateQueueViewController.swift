@@ -141,4 +141,8 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
             selectedMembersLabel.text = extracted.joined(separator: ", ")
         }
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
