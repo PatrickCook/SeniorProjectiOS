@@ -12,7 +12,7 @@ class Api {
     let baseURL: String = "http://192.168.1.32:3000/api"
     var sessionManager: SessionManager
     
-    init() {
+    private init() {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 4 // seconds
         configuration.timeoutIntervalForResource = 4
@@ -148,7 +148,6 @@ class Api {
     }
     
     func getSelectedQueue(queue: Queue) -> Promise<Queue> {
-        queue.clearQueue()
         
         return Promise { fulfill, reject in
             sessionManager.request(baseURL + "/queue/\(queue.id)", method: .get)
@@ -524,7 +523,7 @@ class Api {
         if let queue = Queue(data: dictionary) {
             if let array = json["data"]["Songs"].array {
                 for item in array {
-                    guard var dict = item.dictionaryObject else {
+                    guard let dict = item.dictionaryObject else {
                         print("Error: cannot instantiate song from data")
                         continue
                     }

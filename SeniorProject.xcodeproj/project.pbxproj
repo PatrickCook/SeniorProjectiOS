@@ -372,21 +372,13 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		3AC1CD3F209BAC6700C2D154 /* CustomViews */ = {
-			isa = PBXGroup;
-			children = (
-				3A23600220B398460054698D /* MiniMusicPlayerView.swift */,
-				3A23600120B398450054698D /* MiniMusicPlayerView.xib */,
-			);
-			path = CustomViews;
-			sourceTree = "<group>";
-		};
 		3AC4A89A208EDC05006D9B2B /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				3AA9D6D4208E479F009F24F4 /* Main.storyboard */,
 				3AA9D6D9208E47A0009F24F4 /* LaunchScreen.storyboard */,
-				3AC1CD3F209BAC6700C2D154 /* CustomViews */,
+				3A23600220B398460054698D /* MiniMusicPlayerView.swift */,
+				3A23600120B398450054698D /* MiniMusicPlayerView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";

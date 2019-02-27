@@ -60,14 +60,28 @@ class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SpotifySearchSongCell
-
+        let song = searchResults[indexPath.row]
+        let url = URL(string: song.imageURI)
+        
         cell.selectionStyle = .none
-        cell.songUIImage.image = searchResults[indexPath.row].albumImage
-        cell.songTitleLabel.text = searchResults[indexPath.row].title
-        cell.songArtistLabel.text = searchResults[indexPath.row].artist
-        cell.setSongForCell(spotifySong: searchResults[indexPath.row]) 
+        cell.songTitleLabel.text = song.title
+        cell.songArtistLabel.text = song.artist
+        cell.setSongForCell(spotifySong: song)
+        
+        if let image = song.image {
+            cell.songUIImage.image = image
+        } else {
+            cell.songUIImage.kf.indicatorType = .activity
+            cell.songUIImage.kf.setImage(with: url, completionHandler: {
+                (image, error, cacheType, imageUrl) in
+                if (image == nil) {
+                    cell.songUIImage.image = UIImage(named: "default-album-cover")
+                } else {
+                    song.image = image
+                }
+            })
+        }
         
         return cell
     }

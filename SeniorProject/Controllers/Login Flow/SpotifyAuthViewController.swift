@@ -33,4 +33,8 @@ class SpotifyAuthViewController: UIViewController {
     @objc func loginSuccessful() {
         self.performSegue(withIdentifier: "unwindBack", sender: self)
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }

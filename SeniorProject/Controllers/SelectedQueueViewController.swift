@@ -34,6 +34,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
     /* Button associated with the play button on the bottom of the screen */
     @IBAction func changePlaybackButtonPressed(_ sender: UIButton) {
         handlePlaybackOwnership()
+        updatePlaybackButtonText()
     }
     
     override func viewDidLoad() {
@@ -216,30 +217,17 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func fetchSelectedQueue() {
-        showLoadingAlert(uiView: self.view)
+        //showLoadingAlert(uiView: self.view)
         
         Api.shared.getSelectedQueue(queue: queue)
             .then { (result) -> Void in
                 mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
-                if (self.queue.isPlaying && self.queue.playingUserId == mainStore.state.loggedInUser!.id) {
-                    mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-                }
-                self.dismissLoadingAlert(uiView: self.view)
+//                if (self.queue.isPlaying && self.queue.playingUserId == mainStore.state.loggedInUser!.id) {
+//                    mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
+//                }
+                //self.dismissLoadingAlert(uiView: self.view)
             }.catch { (error) in
-                self.dismissLoadingAlert(uiView: self.view)
-                self.showErrorAlert(error: error)
-            }
-    }
-    
-    func refreshSelectedQueue() {
-        showLoadingAlert(uiView: self.view)
-        
-        Api.shared.getSelectedQueue(queue: queue)
-            .then { (result) -> Void in
-                mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
-                self.dismissLoadingAlert(uiView: self.view)
-            }.catch { (error) in
-                self.dismissLoadingAlert(uiView: self.view)
+                //self.dismissLoadingAlert(uiView: self.view)
                 self.showErrorAlert(error: error)
             }
     }
@@ -256,21 +244,25 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let songCell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as? SongCell
+        let songCell = tableView.dequeueReusableCell(withIdentifier: "songCell", for: indexPath) as! SongCell
         let song = songs[indexPath.row]
         
-        songCell?.song = song
-        songCell?.songNameLabel.text = song.title
-        songCell?.queuedByLabel.text = song.queuedBy
-        songCell?.votesLabel.text = "\(song.votes)"
+        songCell.song = song
+        songCell.songNameLabel.text = song.title
+        songCell.queuedByLabel.text = song.queuedBy
+        songCell.votesLabel.text = "\(song.votes)"
         
-        if song.didUserVote(userId: (mainStore.state.loggedInUser?.id)!) {
-            songCell?.voteButton.tintColor =  #colorLiteral(red: 0.3803921569, green: 0.6980392157, blue: 0.9764705882, alpha: 1)
-        } else {
-            songCell?.voteButton.tintColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        if song.isPlaying {
+            songCell.voteButton.isEnabled = false
         }
         
-        return songCell!
+        if song.didUserVote(userId: (mainStore.state.loggedInUser?.id)!) {
+            songCell.voteButton.tintColor =  #colorLiteral(red: 0.3803921569, green: 0.6980392157, blue: 0.9764705882, alpha: 1)
+        } else {
+            songCell.voteButton.tintColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
+        return songCell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

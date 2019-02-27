@@ -15,7 +15,7 @@ class PusherUtil: PusherDelegate {
     
     var pusher: Pusher! = nil
     
-    init() {
+    private init() {
         
         let pusherClientOptions = PusherClientOptions(
             authMethod: .inline(secret: "3282b1f895978bb203e8"),

@@ -20,8 +20,10 @@ class SongCell: UITableViewCell {
     
     @IBAction func voteButtonTapped(_ sender: Any) {
         if (checked) {
+            voteButton.tintColor =  #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             song.unvote()
         } else {
+            voteButton.tintColor =  #colorLiteral(red: 0.3803921569, green: 0.6980392157, blue: 0.9764705882, alpha: 1)
             song.vote()
         }
         

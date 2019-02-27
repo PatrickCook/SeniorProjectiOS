@@ -57,14 +57,29 @@ class SpotifyPlaylistsViewController: UIViewController, UISearchBarDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let playlist = spotifyUserPlaylists[indexPath.row]
+        let url = URL(string: playlist.imageURI)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "spotifyPlaylistCell", for: indexPath) as! SpotifyPlaylistCell
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "spotifyPlaylistCell", for: indexPath) as? SpotifyPlaylistCell
+        cell.selectionStyle = .none
+        cell.playlistNameLabel.text = playlist.name
+        cell.playlistSongCountLabel.text = "\(playlist.songCount) Songs"
         
-        cell!.playlistNameLabel.text = spotifyUserPlaylists[indexPath.row].name
-        cell!.playlistUIImage.image = spotifyUserPlaylists[indexPath.row].playlistImage
-        cell!.playlistSongCountLabel.text = "\(spotifyUserPlaylists[indexPath.row].songCount) Songs"
+        if let image = playlist.image {
+           cell.playlistUIImage.image = image
+        } else {
+            cell.playlistUIImage.kf.indicatorType = .activity
+            cell.playlistUIImage.kf.setImage(with: url, completionHandler: {
+                (image, error, cacheType, imageUrl) in
+                if (image == nil) {
+                    cell.playlistUIImage.image = UIImage(named: "default-album-cover")
+                } else {
+                    playlist.image = image
+                }
+            })
+        }
         
-        return cell!
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

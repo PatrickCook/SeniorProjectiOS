@@ -13,7 +13,7 @@ class SpotifyPlaylist {
     let playlistID: String
     let name: String
     let imageURI: String
-    let playlistImage: UIImage
+    var image: UIImage?
     let songCount: Int
     let songs: [SpotifySong]
 
@@ -37,10 +37,6 @@ class SpotifyPlaylist {
         self.imageURI = imageURI
         self.songs = []
         self.songCount = count
-        
-        let mainImageURL = URL(string: imageURI)
-        let mainImageData = NSData(contentsOf: mainImageURL!)
-        self.playlistImage = UIImage(data: mainImageData! as Data)!
     }
 }
 

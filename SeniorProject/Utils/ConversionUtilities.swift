@@ -12,6 +12,8 @@ class ConversionUtilities {
     
     static let shared: ConversionUtilities = ConversionUtilities()
     
+    private init () {}
+    
     func convertDateToEpoch(dateString: String) -> Double {
         let dateFormatter = DateFormatter()
         

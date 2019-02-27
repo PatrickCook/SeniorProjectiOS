@@ -23,7 +23,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         case INIT, PLAYING, PAUSED, ERROR
     }
     
-    override init() {
+    private override init() {
         super.init()
         
         player.playbackDelegate = self
@@ -31,7 +31,15 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         
         try! player.start(withClientId: SpotifyCredentials.clientID)
         
+        activateAudioSession()
+        setupNotifications()
         setupRemoteCommandCenter()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        deactivateAudioSession()
+        try? player.stop()
     }
     
     func togglePlayback() {
@@ -230,6 +238,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         }
         if type == .began {
             print("Music Player: Interuption begain")
+            pausePlayback()
         }
         else if type == .ended {
             if let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt {
@@ -237,9 +246,11 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
                 if options.contains(.shouldResume) {
                     // Interruption Ended - playback should resume
                     print("Music Player: Interruption - playback should resume")
+                    resumePlayback()
                 } else {
                     // Interruption Ended - playback should NOT resume
                     print("Music Player: Interruption - playback should NOT resume")
+                    resetPlayback()
                 }
             }
         }
@@ -268,11 +279,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     /* Changing playback status */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        if isPlaying {
-            self.activateAudioSession()
-        } else {
-            self.deactivateAudioSession()
-        }
+        
     }
     
     /* Change song position */
