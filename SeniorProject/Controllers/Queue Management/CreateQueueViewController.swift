@@ -28,9 +28,11 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
                 return Api.shared.getMyQueues()
             }.then { (result) -> Void in
                 mainStore.dispatch(FetchedJoinedQueuesAction(joinedQueues: result))
+                
             }.catch { (error) in
                 print(error)
             }
+        performSegue(withIdentifier: "unwindSequeToJoinedQueues", sender: self)
     }
     
     override func viewDidLoad() {

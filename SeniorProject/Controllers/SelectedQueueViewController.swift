@@ -42,7 +42,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationItem.title = queue.name
         
         print("SETTING UP PUSHER & BINDING EVENTS")
-        let channel = PusherUtil.shared.pusher.subscribe("my-channel")
+        let channel = PusherController.shared.pusher.subscribe("my-channel")
         
         let _ = channel.bind(eventName: "queue-playback-changed", callback: { (data: Any?) -> Void in
             print("Pusher: queue-playback-changed")

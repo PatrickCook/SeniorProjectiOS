@@ -16,8 +16,18 @@ class UserLoginViewController: UIViewController {
     @IBOutlet weak var userNameTextBox: UITextField!
     @IBOutlet weak var passwordTextBox: UITextField!
     
+    convenience init() {
+        self.init(nibName:nil, bundle:nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handleAuthStateChange),
+            name: .loginStatusChanged,
+            object: nil
+        )
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -26,28 +36,22 @@ class UserLoginViewController: UIViewController {
     @IBAction func submitButtonClicked(_ sender: Any) {
         
         // Check if username or password are empty
-        if (userNameTextBox.text?.isEmpty)! || (passwordTextBox.text?.isEmpty)! {
-            displayAlertToUser(userMessage: "Please fill in the missing information before proceeding")
+        guard let username = userNameTextBox.text,
+              let password = passwordTextBox.text else {
             return
         }
         
-        // Check against server and move onto spotify authentication
-        if let username = userNameTextBox.text, let password = passwordTextBox.text {
-            Api.shared.login(username: username, password: password)
-                .then { (result) -> Void in
-                    let encodedData = NSKeyedArchiver.archivedData(withRootObject: result)
-                    
-                    UserDefaults.standard.set(encodedData, forKey: "loggedInUser")
-                    UserDefaults.standard.set(true, forKey: "isLoggedIn")
-                    
-                    mainStore.dispatch(SetLoggedInUserAction(user: result))
-                    
-                    self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
-                }.catch { (error) in
-                    self.displayAlertToUser(userMessage: "Error occurred while trying to log in")
-                }
-        } else {
-            print("Error: Login button pressed but user input is invalid")
+        do {
+            try AuthController.signIn(username: username, password: password)
+        } catch {
+            print("Error signing in: \(error.localizedDescription)")
+        }
+    }
+    
+    @objc func handleAuthStateChange() {
+        print("Here")
+        if AuthController.isSignedIn {
+           self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
         }
     }
     

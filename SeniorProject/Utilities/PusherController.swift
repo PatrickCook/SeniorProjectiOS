@@ -10,8 +10,8 @@ import Foundation
 import PromiseKit
 import PusherSwift
 
-class PusherUtil: PusherDelegate {
-    static let shared: PusherUtil = PusherUtil()
+class PusherController: PusherDelegate {
+    static let shared: PusherController = PusherController()
     
     var pusher: Pusher! = nil
     

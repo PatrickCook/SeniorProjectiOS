@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                       clientSecret: SpotifyCredentials.clientSecret,
                                       redirectURL: redirectURL)
         
-        PusherUtil.shared.startPusher()
+        PusherController.shared.startPusher()
         
         return true
     }

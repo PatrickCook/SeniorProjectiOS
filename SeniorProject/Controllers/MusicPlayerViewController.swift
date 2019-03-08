@@ -103,8 +103,8 @@ class MusicPlayerViewController: UIViewController, StoreSubscriber {
             newImage = playButton!
         }
         
-        currentTimeLabel.text = ConversionUtilities.shared.convertTimeInSecondsToString(seconds: state.playingSongCurrentTime)
-        timeRemainingLabel.text = ConversionUtilities.shared.convertTimeInSecondsToString(seconds:state.playingSongDuration - state.playingSongCurrentTime)
+        currentTimeLabel.text = Formatter.shared.convertTimeInSecondsToString(seconds: state.playingSongCurrentTime)
+        timeRemainingLabel.text = Formatter.shared.convertTimeInSecondsToString(seconds:state.playingSongDuration - state.playingSongCurrentTime)
         playbackButton.setImage(newImage, for: UIControl.State.normal)
     }
     

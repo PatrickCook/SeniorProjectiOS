@@ -23,17 +23,17 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         self.tableView.addSubview(self.refreshControl)
-        
+
         mainStore.subscribe(self)
-        validateUserAuthenticated()
-        validateSpotifyAuthenticated()
+       
         fetchQueues()
     }
 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        validateUserAuthenticated()
+        validateSpotifyAuthenticated()
         updateMiniMusicPlayerVisibility()
     }
     
@@ -49,16 +49,7 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func validateUserAuthenticated() {
-        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
-        if (isUserLoggedIn) {
-            if let data = UserDefaults.standard.data(forKey: "loggedInUser"),
-                let loggedInUser = NSKeyedUnarchiver.unarchiveObject(with: data) as? User {
-                mainStore.dispatch(SetLoggedInUserAction(user: loggedInUser))
-                print("Logged In User: \(loggedInUser.username)")
-            } else {
-                print("User is logged in but was not saved in UserDefaults correctly")
-            }
-        } else {
+        if !AuthController.isSignedIn {
             makeUserLogin()
         }
     }
@@ -167,8 +158,6 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
     
     
     @IBAction func didTapLogout(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: "isLoggedIn")
-        UserDefaults.standard.removeObject(forKey: "loggedInUser")
         
         if let playingQueue = mainStore.state.playingQueue {
             MusicPlayer.shared.pausePlayback()

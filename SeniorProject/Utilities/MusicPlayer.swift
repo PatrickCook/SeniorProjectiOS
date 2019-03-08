@@ -250,7 +250,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
                 } else {
                     // Interruption Ended - playback should NOT resume
                     print("Music Player: Interruption - playback should NOT resume")
-                    resetPlayback()
+                    //resetPlayback()
                 }
             }
         }

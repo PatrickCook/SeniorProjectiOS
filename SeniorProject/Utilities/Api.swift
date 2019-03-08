@@ -9,7 +9,7 @@ class Api {
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
 
-    let baseURL: String = "http://192.168.1.32:3000/api"
+    let baseURL: String = "https://queue-it-api.herokuapp.com/api"
     var sessionManager: SessionManager
     
     private init() {
@@ -32,7 +32,6 @@ class Api {
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
-                        print(json)
                         guard let dictionary = json["data"].dictionaryObject else {
                             return
                         }
@@ -586,9 +585,8 @@ class Api {
         let username = UserDefaults.standard.value(forKey: "username") as! String
         let password = UserDefaults.standard.value(forKey: "password") as! String
         
-        firstly {
-            login(username: username, password: password)
-            }.then { (result) -> Void in
+        login(username: username, password: password)
+            .then { (result) -> Void in
                 UserDefaults.standard.set(true, forKey: "isLoggedIn")
                 mainStore.dispatch(SetLoggedInUserAction(user: result))
             }.catch { (error) in

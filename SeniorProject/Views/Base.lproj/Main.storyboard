@@ -72,6 +72,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createUserClicked:" destination="LdG-0g-ag0" eventType="touchUpInside" id="ZS4-7L-4vI"/>
+                                    <action selector="logoutPressed:" destination="xUg-FL-8AK" eventType="touchUpInside" id="oHC-A1-Mrm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1453,7 +1454,7 @@
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="NKE-Gg-kWB">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
-                                                <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToJoinedQueuesVCWithSegue:" id="Dxe-KE-qvc"/>
+                                                <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToJoinedQueuesVCWithSegue:" id="q11-BC-bHh"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1481,7 +1482,7 @@
                                         <state key="normal" title="Create Group Queue"/>
                                         <connections>
                                             <action selector="createQueueTapped:" destination="ydq-LT-0WT" eventType="touchUpInside" id="yyC-cg-1tK"/>
-                                            <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToAllQueuesWithSegue:" id="HGQ-C3-QQB"/>
+                                            <segue destination="oGZ-Ks-D2s" kind="unwind" unwindAction="unwindToJoinedQueuesVCWithSegue:" id="TyC-r7-nai"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user_a, user_b, user_c" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBl-cu-s2G">
@@ -1655,7 +1656,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ScS-5B-HYI"/>
-        <segue reference="ohD-mb-vh9"/>
+        <segue reference="u04-bl-t8o"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

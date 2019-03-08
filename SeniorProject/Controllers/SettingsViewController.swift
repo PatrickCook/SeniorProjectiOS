@@ -25,6 +25,15 @@ class SettingsViewController: UIViewController {
         performSegue(withIdentifier: "unwindSequeToJoinedQueues", sender: self)
     }
     
+    @IBAction func logoutPressed(_ sender: Any) {
+        do {
+            try AuthController.signOut()
+        } catch {
+            print("error occured while signing out")
+        }
+    }
+    
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

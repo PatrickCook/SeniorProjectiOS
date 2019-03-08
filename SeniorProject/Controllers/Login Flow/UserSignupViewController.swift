@@ -35,34 +35,30 @@ class UserSignupViewController: UIViewController {
      */
     @IBAction func createUserClicked(_ sender: Any) {
         
-        // Check that passwords match
-        if passwordInput.text != repeatpasswordInput.text {
-            displayAlertToUser(userMessage: "Please make sure passwords match.")
-            return
+        guard let username = usernameInput.text,
+            let password = passwordInput.text,
+            let repeatPassword = repeatpasswordInput.text else {
+                displayAlertToUser(userMessage: "Please fill in missing data")
+                return
         }
         
         // Check all fields are filled out
-        if (usernameInput.text?.isEmpty)! || (passwordInput.text?.isEmpty)! || (repeatpasswordInput.text?.isEmpty)! {
+        if username.isEmpty || password.isEmpty || repeatPassword.isEmpty {
             displayAlertToUser(userMessage: "Some fields are missing information")
             return
         }
         
-        // Verify with server and move to spotify authentication
-        if let username = usernameInput.text, let password = passwordInput.text {
-            Api.shared.createUser(username: username, password: password)
-                .then { (result) -> Void in
-                    self.displayAlertToUserWithHandler(
-                        title: "Welcome to QueueIt!",
-                        userMessage: "Go ahead and sign in now",
-                        handler: { (action) in
-                            
-                            self.dismiss(animated: true, completion: nil)
-                    })
-                    
-                }.catch { (error) in
-                    self.displayAlertToUser(userMessage: "Error creating a new user")
-                    print(error)
-                }
+        // Check that passwords match
+        if password != repeatPassword{
+            displayAlertToUser(userMessage: "Please make sure passwords match.")
+            return
+        }
+        
+        
+        do {
+            try AuthController.createUser(username: username, password: password)
+        } catch {
+            displayAlertToUser(userMessage: "Error occured during registration.")
         }
     }
     

@@ -57,8 +57,8 @@ class Song {
         self.previewURI = previewURI
         self.queueId = queueId
         self.queuedBy = user["username"]!
-        self.createdAt = ConversionUtilities.shared.convertDateToEpoch(dateString: createdAt)
-        self.updatedAt = ConversionUtilities.shared.convertDateToEpoch(dateString: updatedAt)
+        self.createdAt = Formatter.shared.convertDateToEpoch(dateString: createdAt)
+        self.updatedAt = Formatter.shared.convertDateToEpoch(dateString: updatedAt)
         self.isPlaying = isPlaying
         self.voterIds = voters.compactMap { $0["UserId"] } as! [Int]
         self.votes = voterIds.count

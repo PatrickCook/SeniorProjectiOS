@@ -8,9 +8,9 @@
 
 import Foundation
 
-class ConversionUtilities {
+class Formatter {
     
-    static let shared: ConversionUtilities = ConversionUtilities()
+    static let shared: Formatter = Formatter()
     
     private init () {}
     
