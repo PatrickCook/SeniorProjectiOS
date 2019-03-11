@@ -165,15 +165,18 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
     
     /* Handles who owns which queue */
     func handlePlaybackOwnership() {
-        let loggedInUserId = mainStore.state.loggedInUser!.id
         let selectedQueue = mainStore.state.selectedQueue
         let playingQueue = mainStore.state.playingQueue
         let isSelectedQueuePlaying = mainStore.state.selectedQueue!.isPlaying
+        guard let user = Settings.currentUser else {
+            return print("HandlePlaybackOwnership Error: not logged in")
+            
+        }
 
         /* Logged In User is Controlling Playback of a Queue
          * Is it playing and the selected queue and playing queue are the same
          */
-        if (loggedInUserId == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
+        if (user.id == selectedQueue!.playingUserId && isSelectedQueuePlaying) {
             MusicPlayer.shared.pausePlayback()
             mainStore.dispatch(SetPlayingQueueToNilAction())
             updateMiniMusicPlayerVisibility()
@@ -199,7 +202,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         /*
          * User is viewing a playing queue
          */
-        else if (loggedInUserId != selectedQueue!.playingUserId && isSelectedQueuePlaying) {
+        else if (user.id != selectedQueue!.playingUserId && isSelectedQueuePlaying) {
             print("This case should never happen")
         }
         /*

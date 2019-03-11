@@ -8,6 +8,7 @@ import MediaPlayer
 class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     static let shared: MusicPlayer = MusicPlayer()
     
+    var debug = false
     var audioStream: AVAudioPlayer = AVAudioPlayer()
     var player: SPTAudioStreamingController = SPTAudioStreamingController.sharedInstance()
     
@@ -37,6 +38,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     deinit {
+        print("DEINIT")
         NotificationCenter.default.removeObserver(self)
         deactivateAudioSession()
         try? player.stop()
@@ -115,7 +117,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
         
         Api.shared.dequeueSong(queueId: playingQueue.id, songId: playingSong.id)
             .catch { (error) in
-                print("ERROR: MusicPlayer.skip()")
+                print("MusicPlayer: dequeue song failure")
         }
         
         mainStore.dispatch(SkipCurrentSongAction())
@@ -236,6 +238,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             let type = AVAudioSession.InterruptionType(rawValue: typeValue) else {
                 return
         }
+        
         if type == .began {
             print("Music Player: Interuption begain")
             pausePlayback()
@@ -279,12 +282,12 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     /* Changing playback status */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        
+        //print("SpotifyPlayer: didChangePlaybackStatus")
     }
     
     /* Change song position */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController, didChangePosition position: TimeInterval) {
-        
+        //print("SpotifyPlayer: didChangePosition")
         if (!mainStore.state.hasSliderChanged) {
             mainStore.dispatch(UpdateCurrentSongPositionAction(updatedTime: position))
         }
@@ -292,17 +295,23 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     
     /* song metadata changed */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didChange metadata: SPTPlaybackMetadata!) {
+        //print("SpotifyPlayer: didChange")
         mainStore.dispatch(UpdateCurrentSongDurationAction(updatedDuration: (metadata.currentTrack?.duration)!))
     }
     
     /* received audio error */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
-        print("Music Player - Audio Streaming Error")
+        print("Music Player - Audio Streaming Error: \(error.debugDescription)")
     }
     
     /* Playback stopped from track ending */
     func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: String!) {
+        //print("SpotifyPlayer: didStopPlayingTrack")
         skip()
+    }
+    
+    func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveMessage message: String!) {
+        //print("SpotifyPlayer: didReceiveMessage \(message!)")
     }
     
     

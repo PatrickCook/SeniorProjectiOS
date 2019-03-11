@@ -25,15 +25,19 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.addSubview(self.refreshControl)
 
         mainStore.subscribe(self)
-       
+        
+        validateUserAuthenticated()
+        validateSpotifyAuthenticated()
+        
         fetchQueues()
     }
 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // revalidate incase log out
         validateUserAuthenticated()
-        validateSpotifyAuthenticated()
         updateMiniMusicPlayerVisibility()
     }
     

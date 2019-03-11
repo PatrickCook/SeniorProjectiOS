@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SpotifyLogin
 
 
 
@@ -28,6 +28,15 @@ class SettingsViewController: UIViewController {
     @IBAction func logoutPressed(_ sender: Any) {
         do {
             try AuthController.signOut()
+            SpotifyLogin.shared.logout()
+            
+            if let playingQueue = mainStore.state.playingQueue {
+                MusicPlayer.shared.pausePlayback()
+                Api.shared.setQueueIsPlaying(queueId: playingQueue.id, isPlaying: false)
+            }
+            
+            mainStore.dispatch(ResetStateAction())
+            
             performSegue(withIdentifier: "unwindSequeToJoinedQueues", sender: self)
         } catch {
             print("error occured while signing out")
