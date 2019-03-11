@@ -656,7 +656,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRS-6O-Uhy">
-                                                    <rect key="frame" x="97" y="18" width="108.66666666666669" height="21"/>
+                                                    <rect key="frame" x="97" y="18" width="287" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -682,6 +682,7 @@
                                                 <constraint firstItem="NLl-Gw-BcI" firstAttribute="leading" secondItem="V6D-3b-Yjf" secondAttribute="leadingMargin" id="KBG-yv-RkR"/>
                                                 <constraint firstItem="Tba-Iq-Jlm" firstAttribute="top" secondItem="vRS-6O-Uhy" secondAttribute="bottom" constant="8" id="Oov-tY-DDy"/>
                                                 <constraint firstItem="vRS-6O-Uhy" firstAttribute="leading" secondItem="NLl-Gw-BcI" secondAttribute="trailing" constant="16" id="QYU-Xf-i86"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vRS-6O-Uhy" secondAttribute="trailing" constant="10" id="uJh-JY-aCb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1542,8 +1543,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ump-bd-UTF">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EYT-3b-d6K"/>
+                                </constraints>
+                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Playlist Title" id="olO-7U-3F7">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="4Cl-ku-mai">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <segue destination="YbH-dQ-fqG" kind="unwind" unwindAction="unwindToSpotifyPlaylistsVCWithSegue:" id="vDi-fd-p8F"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxG-o0-jsf">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <color key="tintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="search"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="JI6-cl-hb3" id="BpT-o5-EjQ"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lv7-NT-3vb">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
                                 <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="spotifyPlaylistSongCell" rowHeight="85" id="GPq-NW-hhX" customClass="SpotifyPlaylistSongCell" customModule="SeniorProject" customModuleProvider="target">
@@ -1554,7 +1588,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEf-0r-Mkc">
-                                                    <rect key="frame" x="97" y="18" width="92" height="21"/>
+                                                    <rect key="frame" x="97" y="18" width="287" height="21"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1578,6 +1612,7 @@
                                                 <constraint firstItem="ggL-1T-x2w" firstAttribute="leading" secondItem="VYK-fm-yCH" secondAttribute="trailing" constant="16" id="As7-qZ-dxw"/>
                                                 <constraint firstItem="VYK-fm-yCH" firstAttribute="leading" secondItem="172-VE-Aer" secondAttribute="leadingMargin" id="VGt-Sm-V9G"/>
                                                 <constraint firstItem="sEf-0r-Mkc" firstAttribute="leading" secondItem="VYK-fm-yCH" secondAttribute="trailing" constant="16" id="WNz-25-S3n"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sEf-0r-Mkc" secondAttribute="trailing" constant="10" id="jdI-8Q-W9K"/>
                                                 <constraint firstItem="VYK-fm-yCH" firstAttribute="top" secondItem="172-VE-Aer" secondAttribute="topMargin" id="t8G-HM-fzk"/>
                                                 <constraint firstItem="ggL-1T-x2w" firstAttribute="top" secondItem="sEf-0r-Mkc" secondAttribute="bottom" constant="8" id="yNH-e8-lkB"/>
                                             </constraints>
@@ -1595,39 +1630,26 @@
                                     <outlet property="delegate" destination="JI6-cl-hb3" id="ORp-bl-g6L"/>
                                 </connections>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ump-bd-UTF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="EYT-3b-d6K"/>
-                                </constraints>
-                                <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Playlist Title" id="olO-7U-3F7">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="reply" id="4Cl-ku-mai">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <connections>
-                                                <segue destination="YbH-dQ-fqG" kind="unwind" unwindAction="unwindToSpotifyPlaylistsVCWithSegue:" id="vDi-fd-p8F"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.070588235289999995" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="lv7-NT-3vb" firstAttribute="top" secondItem="ump-bd-UTF" secondAttribute="bottom" id="91P-4q-0Ka"/>
+                            <constraint firstItem="qxG-o0-jsf" firstAttribute="trailing" secondItem="kYQ-DO-xDk" secondAttribute="trailing" id="C5N-wq-seN"/>
                             <constraint firstItem="lv7-NT-3vb" firstAttribute="bottom" secondItem="kYQ-DO-xDk" secondAttribute="bottom" id="DPx-iL-koJ"/>
-                            <constraint firstItem="lv7-NT-3vb" firstAttribute="top" secondItem="ump-bd-UTF" secondAttribute="bottom" id="J1m-Bh-POJ"/>
+                            <constraint firstItem="qxG-o0-jsf" firstAttribute="top" secondItem="ump-bd-UTF" secondAttribute="bottom" id="Yk3-lY-4XY"/>
+                            <constraint firstItem="qxG-o0-jsf" firstAttribute="leading" secondItem="kYQ-DO-xDk" secondAttribute="leading" id="cWk-Hl-Yzu"/>
                             <constraint firstItem="ump-bd-UTF" firstAttribute="trailing" secondItem="kYQ-DO-xDk" secondAttribute="trailing" id="hBw-WI-fRg"/>
+                            <constraint firstItem="lv7-NT-3vb" firstAttribute="top" secondItem="qxG-o0-jsf" secondAttribute="bottom" id="iWm-lb-lvo"/>
                             <constraint firstItem="lv7-NT-3vb" firstAttribute="trailing" secondItem="kYQ-DO-xDk" secondAttribute="trailing" id="m4z-N8-NB2"/>
                             <constraint firstItem="ump-bd-UTF" firstAttribute="leading" secondItem="kYQ-DO-xDk" secondAttribute="leading" id="pIN-d0-PjX"/>
                             <constraint firstItem="ump-bd-UTF" firstAttribute="top" secondItem="kYQ-DO-xDk" secondAttribute="top" id="tMj-wT-x8I"/>
                             <constraint firstItem="lv7-NT-3vb" firstAttribute="leading" secondItem="kYQ-DO-xDk" secondAttribute="leading" id="vK0-1Q-yJ9"/>
+                            <constraint firstItem="lv7-NT-3vb" firstAttribute="top" secondItem="qxG-o0-jsf" secondAttribute="bottom" id="zct-MX-PvA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kYQ-DO-xDk"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="EMs-j5-7TC" appends="YES" id="hU1-Gu-U5z"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="playlistTitleLabel" destination="olO-7U-3F7" id="whj-gf-Rbq"/>
@@ -1637,8 +1659,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9aQ-P8-DmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YbH-dQ-fqG" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="EMs-j5-7TC">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="JI6-cl-hb3" id="8Ga-0g-bqa"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3649" y="283"/>
+            <point key="canvasLocation" x="3647.826086956522" y="282.58928571428572"/>
         </scene>
     </scenes>
     <resources>
@@ -1655,7 +1682,7 @@
         <image name="up-arrow-2" width="51.200000762939453" height="51.200000762939453"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ScS-5B-HYI"/>
+        <segue reference="e6h-3A-3gx"/>
         <segue reference="u04-bl-t8o"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

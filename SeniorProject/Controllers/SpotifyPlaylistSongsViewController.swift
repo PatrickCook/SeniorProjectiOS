@@ -19,14 +19,34 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     @IBOutlet weak var tableView: UITableView!
     
     var playlist: SpotifyPlaylist!
-    var songs: [SpotifySong] = []
+    var songs: [SpotifySong]!
+    
+    var searchQuery: String = ""
+    var filteredSongs: [SpotifySong] {
+        get {
+            return songs.filter { return searchQuery == "" ||
+                                         $0.title.contains(searchQuery) ||
+                                         $0.artist.contains(searchQuery)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
         playlistTitleLabel.title = playlist.name
         mainStore.subscribe(self)
         fetchSpotifySongsInPlaylist()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        songs = []
     }
     
     func newState(state: AppState) {
@@ -52,7 +72,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     
     /* TABLE DELEGATE METHODS */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return filteredSongs.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,7 +80,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let song = songs[indexPath.row]
+        let song = filteredSongs[indexPath.row]
         let url = URL(string: song.imageURI)
         let cell = tableView.dequeueReusableCell(withIdentifier: "spotifyPlaylistSongCell", for: indexPath) as! SpotifyPlaylistSongCell
        
@@ -98,7 +118,6 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let addToQueueAction = UIContextualAction(style: .normal, title: "QueueIt!") { (action, view, handler) in
-            print("Add Action Tapped")
             let song = self.songs[indexPath.row]
             
             firstly {
@@ -114,7 +133,6 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
         addToQueueAction.backgroundColor = #colorLiteral(red: 0.3803921569, green: 0.6980392157, blue: 0.9764705882, alpha: 1)
         
         let configuration = UISwipeActionsConfiguration(actions: [addToQueueAction])
-
         
         return configuration
     }
@@ -122,6 +140,27 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
+    }
+    
+    // MARK: Keyboard Delegate Functions
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            searchQuery = text
+            tableView.reloadData()
+        }
+        
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchQuery = searchText
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchQuery = ""
+        tableView.reloadData()
+        view.endEditing(true)
     }
     
     /* When user clicks on a song, give user the option to add the song onto the current queue */

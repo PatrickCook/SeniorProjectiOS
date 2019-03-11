@@ -31,8 +31,10 @@ class UserLoginViewController: UIViewController {
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
+        
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
     }
+    
     @IBAction func submitButtonClicked(_ sender: Any) {
         
         // Check if username or password are empty
