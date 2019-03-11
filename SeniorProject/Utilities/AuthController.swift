@@ -45,7 +45,6 @@ final class AuthController {
                 Settings.currentUser = result
 
                 NotificationCenter.default.post(name: .loginStatusChanged, object: nil)
-                print("Did this work?")
             }.catch { (error) in
                 // TODO: Implement error display with reswift
                 print("error during logging in")

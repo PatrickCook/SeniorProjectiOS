@@ -142,7 +142,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
      * depending on the state of the music playback
      */
     func updatePlaybackButtonText() {
-        guard let loggedInUser = mainStore.state.loggedInUser else {
+        guard let loggedInUser = Settings.currentUser else {
             print("QueueViewController: User not logged in")
             return
         }
@@ -256,7 +256,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
             songCell.voteButton.isEnabled = false
         }
         
-        if song.didUserVote(userId: (mainStore.state.loggedInUser?.id)!) {
+        if song.didUserVote(userId: Settings.currentUser!.id) {
             songCell.voteButton.tintColor =  #colorLiteral(red: 0.3803921569, green: 0.6980392157, blue: 0.9764705882, alpha: 1)
         } else {
             songCell.voteButton.tintColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

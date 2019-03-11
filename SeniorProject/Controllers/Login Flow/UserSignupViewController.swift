@@ -54,10 +54,12 @@ class UserSignupViewController: UIViewController {
             return
         }
         
-        
+        // Create new user and show loading icon
         do {
+            showLoadingAlert(uiView: self.view)
             try AuthController.createUser(username: username, password: password)
         } catch {
+            dismissLoadingAlert(uiView: self.view)
             displayAlertToUser(userMessage: "Error occured during registration.")
         }
     }

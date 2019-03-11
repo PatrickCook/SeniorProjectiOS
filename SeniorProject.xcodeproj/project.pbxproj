@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A04AFA52231FDCB005D3523 /* SpotifyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A04AFA42231FDCB005D3523 /* SpotifyApi.swift */; };
 		3A1538E8209911210083EA18 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538E7209911210083EA18 /* Queue.swift */; };
 		3A1538EA2099152A0083EA18 /* SpotifySearchSongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538E92099152A0083EA18 /* SpotifySearchSongCell.swift */; };
 		3A1538EC2099154F0083EA18 /* SpotifySongSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1538EB2099154F0083EA18 /* SpotifySongSearchViewController.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		04A4D48C6E29EC3938AACFB1 /* Pods_SeniorProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeniorProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A04AFA42231FDCB005D3523 /* SpotifyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyApi.swift; sourceTree = "<group>"; };
 		3A1538E7209911210083EA18 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		3A1538E92099152A0083EA18 /* SpotifySearchSongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySearchSongCell.swift; sourceTree = "<group>"; };
 		3A1538EB2099154F0083EA18 /* SpotifySongSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifySongSearchViewController.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			children = (
 				3AFC0A9822284AC4000001EB /* AuthController.swift */,
 				3A15A59120A276D5006E24C5 /* Api.swift */,
+				3A04AFA42231FDCB005D3523 /* SpotifyApi.swift */,
 				3AB989F920B4FD9A00E26583 /* MusicPlayer.swift */,
 				3A7BB97520CAFFD800C673FD /* PusherController.swift */,
 				3AFC0A9A22284D6F000001EB /* Helpers */,
@@ -673,6 +676,7 @@
 				3A1538EA2099152A0083EA18 /* SpotifySearchSongCell.swift in Sources */,
 				3A4994DF20C1F07300DEFEA3 /* AppState.swift in Sources */,
 				3AD49DF7221F64E4005A71D1 /* SpotifyPlaylistSongsViewController.swift in Sources */,
+				3A04AFA52231FDCB005D3523 /* SpotifyApi.swift in Sources */,
 				3AFC0A9C22284DCD000001EB /* Settings.swift in Sources */,
 				3A4994D920C1F06100DEFEA3 /* Actions.swift in Sources */,
 				3A8087DD221E29DB0047724C /* SpotifyPlaylistCell.swift in Sources */,

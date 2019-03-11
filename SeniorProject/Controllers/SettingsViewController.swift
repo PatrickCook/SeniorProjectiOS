@@ -28,6 +28,7 @@ class SettingsViewController: UIViewController {
     @IBAction func logoutPressed(_ sender: Any) {
         do {
             try AuthController.signOut()
+            performSegue(withIdentifier: "unwindSequeToJoinedQueues", sender: self)
         } catch {
             print("error occured while signing out")
         }

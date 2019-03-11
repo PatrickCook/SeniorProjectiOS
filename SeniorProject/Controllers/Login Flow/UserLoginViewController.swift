@@ -42,14 +42,17 @@ class UserLoginViewController: UIViewController {
         }
         
         do {
+            showLoadingAlert(uiView: self.view)
             try AuthController.signIn(username: username, password: password)
         } catch {
+            dismissLoadingAlert(uiView: self.view)
             print("Error signing in: \(error.localizedDescription)")
         }
     }
     
     @objc func handleAuthStateChange() {
-        print("Here")
+        dismissLoadingAlert(uiView: self.view)
+        
         if AuthController.isSignedIn {
            self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
         }

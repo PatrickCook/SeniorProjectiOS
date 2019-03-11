@@ -30,8 +30,8 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         validateUserAuthenticated()
         validateSpotifyAuthenticated()
         updateMiniMusicPlayerVisibility()
@@ -73,7 +73,7 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
             }.catch { (error) in
                 self.dismissLoadingAlert(uiView: self.view)
                 self.makeUserLogin()
-                //self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error)
             }
     }
     

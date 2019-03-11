@@ -35,7 +35,7 @@ class SpotifyPlaylistsViewController: UIViewController, UISearchBarDelegate, UIT
         
         Api.shared.getSpotifyAccessToken()
             .then { (token) -> Promise<[SpotifyPlaylist]> in
-                Api.shared.fetchSpotifyUserPlaylists(spotifyToken: token)
+                SpotifyApi.shared.fetchUserPlaylists(spotifyToken: token)
             }.then { (playlists) -> Void in
                 mainStore.dispatch(FetchedSpotifyUserPlaylistsAction(spotifyUserPlaylists: playlists))
                 self.dismissLoadingAlert(uiView: self.view)
