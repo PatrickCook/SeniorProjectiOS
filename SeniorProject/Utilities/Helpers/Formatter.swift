@@ -14,10 +14,20 @@ class Formatter {
     
     private init () {}
     
-    func convertDateToEpoch(dateString: String) -> Double {
+    func mysqlDateToEpoch(dateString: String) -> Double {
         let dateFormatter = DateFormatter()
         
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        if let datePublished = dateFormatter.date(from: dateString) {
+            return datePublished.timeIntervalSince1970
+        }
+        return 0.0
+    }
+    
+    func utcDateToEpoch(dateString: String) -> Double {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         if let datePublished = dateFormatter.date(from: dateString) {
             return datePublished.timeIntervalSince1970
         }

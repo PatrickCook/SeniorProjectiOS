@@ -15,6 +15,7 @@ class SpotifySong {
     let artist: String
     let imageURI: String
     var image: UIImage?
+    var addedAt: Double?
     let spotifyURI: String
     let previewURI: String
     
@@ -40,6 +41,10 @@ class SpotifySong {
         self.imageURI = imageURI
         self.spotifyURI = spotifyURI
         self.previewURI = previewURI
+        
+        if let addedAt = data["added_at"] as? String {
+            self.addedAt = Formatter.shared.utcDateToEpoch(dateString: addedAt)
+        }
     }
 }
 

@@ -19,17 +19,10 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     @IBOutlet weak var tableView: UITableView!
     
     var playlist: SpotifyPlaylist!
-    var songs: [SpotifySong]!
+    var defaultSongs: [SpotifySong] = []
+    var filteredSongs: [SpotifySong] = []
     
     var searchQuery: String = ""
-    var filteredSongs: [SpotifySong] {
-        get {
-            return songs.filter { return searchQuery == "" ||
-                                         $0.title.contains(searchQuery) ||
-                                         $0.artist.contains(searchQuery)
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,15 +39,38 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        songs = []
+        defaultSongs = []
+        filteredSongs = []
     }
     
     func newState(state: AppState) {
-        songs = state.spotifyPlaylistSongs
+        defaultSongs = state.spotifyPlaylistSongs
+        filteredSongs = state.spotifyPlaylistSongs
+        
+        sortResults()
+    }
+    
+    // MARK: Spotify Song ordering management
+    func resetFilteredResults() {
+        filteredSongs = defaultSongs
+        sortResults()
         tableView.reloadData()
     }
     
-    /* When you use the search bar */
+    func sortResults () {
+        filteredSongs = filteredSongs.sorted(by: {
+            return $0.addedAt! > $1.addedAt!
+        })
+        tableView.reloadData()
+    }
+    
+    func updateFilteredResults() {
+        filteredSongs = defaultSongs.filter {
+            return searchQuery == "" || $0.title.contains(searchQuery) || $0.artist.contains(searchQuery)
+        }
+        tableView.reloadData()
+    }
+    
     func fetchSpotifySongsInPlaylist() {
         showLoadingAlert(uiView: self.view)
         
@@ -108,7 +124,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         DispatchQueue.main.async {
-            self.addSongToQueue(song: self.songs[indexPath.row])
+            self.addSongToQueue(song: self.filteredSongs[indexPath.row])
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -118,7 +134,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let addToQueueAction = UIContextualAction(style: .normal, title: "QueueIt!") { (action, view, handler) in
-            let song = self.songs[indexPath.row]
+            let song = self.filteredSongs[indexPath.row]
             
             firstly {
                 Api.shared.queueSong(queueId: (mainStore.state.selectedQueue?.id)!, song: song)
@@ -137,8 +153,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
         return configuration
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
-    {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
@@ -146,7 +161,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
             searchQuery = text
-            tableView.reloadData()
+            updateFilteredResults()
         }
         
         view.endEditing(true)
@@ -154,12 +169,13 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchQuery = searchText
-        tableView.reloadData()
+        updateFilteredResults()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchQuery = ""
-        tableView.reloadData()
+        resetFilteredResults()
+        sortResults()
         view.endEditing(true)
     }
     
@@ -177,8 +193,10 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
                     self.showErrorAlert(error: error)
             }
         })
+        
         alertController.addAction(actionCancel)
         alertController.addAction(actionOk)
+        
         self.present(alertController, animated: true, completion: nil)
     }
     

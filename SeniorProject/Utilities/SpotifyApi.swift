@@ -116,7 +116,8 @@ class SpotifyApi {
                                     "artist": item["track"]["artists"][0]["name"].stringValue,
                                     "album_uri": item["track"]["album"]["images"][0]["url"].stringValue,
                                     "spotify_uri": item["track"]["uri"].stringValue,
-                                    "preview_uri": preview_uri
+                                    "preview_uri": preview_uri,
+                                    "added_at": item["added_at"].stringValue
                                     ]
                                 )
                                 
