@@ -5,7 +5,24 @@ func reducer(action: Action, state: AppState?) -> AppState {
     var state = state ?? AppState()
     
     switch action {
+    case _ as ShowLoadingIndicatorAction:
+        print("In Reducers - ShowLoadingIndicatorAction")
+        state.showLoadingIndicator = true
+        
+    case _ as DismissLoadingIndicatorAction:
+        print("In Reducers - DismissLoadingIndicatorAction")
+        state.showLoadingIndicator = false
+        
+    case let action as DisplayErrorAction:
+        print("In Reducers - DisplayErrorAction")
+        state.errorMessage = action.errorString
+        
+    case _ as DismissErrorAction:
+        print("In Reducers - DismissErrorAction")
+        state.errorMessage = nil
+        
     case let action as SetLoggedInUserAction:
+        print("In Reducers - SetLOggedInUserAction")
         state.loggedInUser = action.user
         
     case let action as FetchedJoinedQueuesAction:

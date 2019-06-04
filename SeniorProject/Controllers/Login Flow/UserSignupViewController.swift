@@ -5,13 +5,13 @@
 //  Created by Jin Young Jeong on 6/7/18.
 //  Copyright © 2018 Patrick Cook. All rights reserved.
 //
-
+import ReSwift
 import UIKit
 import Foundation
 import SpotifyLogin
 import PromiseKit
 
-class UserSignupViewController: UIViewController {
+class UserSignupViewController: UIViewController, StoreSubscriber {
 
     @IBOutlet weak var usernameInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
@@ -19,6 +19,12 @@ class UserSignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.handleAuthStateChange),
+            name: .loginStatusChanged,
+            object: nil
+        )
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -27,6 +33,10 @@ class UserSignupViewController: UIViewController {
     
     @IBAction func loginButtonClicked(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func newState(state: AppState) {
+        enableLoadingIndicatorsAndErrorAlerts()
     }
     
     /*
@@ -56,11 +66,15 @@ class UserSignupViewController: UIViewController {
         
         // Create new user and show loading icon
         do {
-            showLoadingAlert(uiView: self.view)
             try AuthController.createUser(username: username, password: password)
         } catch {
-            dismissLoadingAlert(uiView: self.view)
             displayAlertToUser(userMessage: "Error occured during registration.")
+        }
+    }
+    
+    @objc func handleAuthStateChange() {
+        if AuthController.isSignedIn {
+            self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
         }
     }
     

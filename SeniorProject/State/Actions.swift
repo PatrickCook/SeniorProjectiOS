@@ -1,5 +1,16 @@
 import ReSwift
 
+// Error Handling and Loading Indicators
+struct DisplayErrorAction: Action {
+    let errorString: String?
+}
+
+struct DismissErrorAction: Action {}
+
+struct ShowLoadingIndicatorAction: Action {}
+
+struct DismissLoadingIndicatorAction: Action {}
+
 // Admin Actions
 struct ResetStateAction: Action {}
 

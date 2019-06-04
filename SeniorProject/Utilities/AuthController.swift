@@ -39,23 +39,33 @@ final class AuthController {
         let finalHash = passwordHash(from: username, password: password)
         try KeychainPasswordItem(service: serviceName, account: username).savePassword(finalHash)
         // Check against server and move onto spotify authentication
+        mainStore.dispatch(ShowLoadingIndicatorAction())
+        
         Api.shared.login(username: username, password: finalHash)
             .then { (result) -> Void in
                 mainStore.dispatch(SetLoggedInUserAction(user: result))
                 Settings.currentUser = result
 
                 NotificationCenter.default.post(name: .loginStatusChanged, object: nil)
+                mainStore.dispatch(DismissLoadingIndicatorAction())
             }.catch { (error) in
-                // TODO: Implement error display with reswift
-                print("error during logging in")
+                mainStore.dispatch(DismissLoadingIndicatorAction())
+                mainStore.dispatch(DisplayErrorAction(errorString: error.localizedDescription))
             }
     }
     
     class func createUser(username: String, password: String) throws {
         let finalHash = passwordHash(from: username, password: password)
+        
+        mainStore.dispatch(ShowLoadingIndicatorAction())
+        
         Api.shared.createUser(username: username, password: finalHash)
-            .catch { (error) in
-                print(error)
+            .then { (result) -> Void in
+                mainStore.dispatch(DismissLoadingIndicatorAction())
+                try signIn(username: username, password: finalHash)
+            }.catch { (error) in
+                mainStore.dispatch(DismissLoadingIndicatorAction())
+                mainStore.dispatch(DisplayErrorAction(errorString: error.localizedDescription))
         }
     }
     

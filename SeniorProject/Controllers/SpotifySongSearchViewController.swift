@@ -105,7 +105,7 @@ class SpotifySongSearchViewController: UIViewController, UISearchBarDelegate, UI
                 
             }.catch { (error) in
                 print(error)
-                self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error.localizedDescription)
             }
         })
         alertController.addAction(actionCancel)

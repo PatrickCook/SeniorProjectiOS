@@ -10,14 +10,17 @@ import UIKit
 import Foundation
 import SpotifyLogin
 import PromiseKit
+import ReSwift
 
-class UserLoginViewController: UIViewController {
+class UserLoginViewController: UIViewController, StoreSubscriber {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var userNameTextBox: UITextField!
     @IBOutlet weak var passwordTextBox: UITextField!
     
     convenience init() {
         self.init(nibName:nil, bundle:nil)
+        
+        
     }
     
     override func viewDidLoad() {
@@ -28,6 +31,12 @@ class UserLoginViewController: UIViewController {
             name: .loginStatusChanged,
             object: nil
         )
+        
+        mainStore.subscribe(self)
+    }
+    
+    func newState(state: AppState) {
+        enableLoadingIndicatorsAndErrorAlerts()
     }
     
     @IBAction func dismissKeyboard(_ sender: Any) {
@@ -44,17 +53,13 @@ class UserLoginViewController: UIViewController {
         }
         
         do {
-            showLoadingAlert(uiView: self.view)
             try AuthController.signIn(username: username, password: password)
         } catch {
-            dismissLoadingAlert(uiView: self.view)
             print("Error signing in: \(error.localizedDescription)")
         }
     }
     
     @objc func handleAuthStateChange() {
-        dismissLoadingAlert(uiView: self.view)
-        
         if AuthController.isSignedIn {
            self.performSegue(withIdentifier: "moveToSpotifyLoginFromLogin", sender: self)
         }

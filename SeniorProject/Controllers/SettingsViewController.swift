@@ -27,6 +27,7 @@ class SettingsViewController: UIViewController {
     
     @IBAction func logoutPressed(_ sender: Any) {
         do {
+            print ("logging out")
             try AuthController.signOut()
             SpotifyLogin.shared.logout()
             

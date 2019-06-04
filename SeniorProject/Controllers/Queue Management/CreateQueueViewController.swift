@@ -75,7 +75,7 @@ class CreateQueueViewController: UIViewController, UITableViewDelegate, UITableV
                 self.membersFromQuery = result
                 self.tableView.reloadData()
             }.catch { (error) in
-                self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error.localizedDescription)
                 print(error)
             }
     }

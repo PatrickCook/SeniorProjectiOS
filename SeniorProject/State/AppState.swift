@@ -1,6 +1,8 @@
 import ReSwift
 
 struct AppState: StateType {
+    var showLoadingIndicator: Bool = false
+    var errorMessage: String?
     var loggedInUser: User?
     var spotifySearchResults: [SpotifySong] = []
     var spotifyUserPlaylists: [SpotifyPlaylist] = []

@@ -9,7 +9,7 @@ class Api {
     static let shared: Api = Api()
     let localStorage = UserDefaults.standard
 
-    let baseURL: String = "https://queue-it-api.herokuapp.com/api"
+    let baseURL: String = ENV.production ? ENV.heroku_api : ENV.development_api
     var sessionManager: SessionManager
     
     private init() {
@@ -17,6 +17,8 @@ class Api {
         configuration.timeoutIntervalForRequest = 4 // seconds
         configuration.timeoutIntervalForResource = 4
         sessionManager = Alamofire.SessionManager(configuration: configuration)
+        
+        print(baseURL)
     }
     
     func login(username: String, password: String) -> Promise<User> {
@@ -24,21 +26,26 @@ class Api {
             "username": username,
             "passwordHash": password
         ]
-        
+        print(parameters)
         return Promise{ fulfill, reject in
             sessionManager.request(baseURL + "/auth", method: .post, parameters: parameters, encoding: JSONEncoding.default)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
+                    
                     switch response.result {
                     case .success(let value):
                         let json = JSON(value)
+                        print("here")
                         guard let dictionary = json["data"].dictionaryObject else {
+                            
                             return
                         }
+                        print("here")
                         if let user = User(data: dictionary) {
                             fulfill(user)
                         }
                     case .failure(let error):
+                        
                         self.requestErrorHandler(response: response)
                         reject(error)
                     }
@@ -146,10 +153,10 @@ class Api {
         }
     }
     
-    func getSelectedQueue(queue: Queue) -> Promise<Queue> {
+    func getQueue(id: Int) -> Promise<Queue> {
         
         return Promise { fulfill, reject in
-            sessionManager.request(baseURL + "/queue/\(queue.id)", method: .get)
+            sessionManager.request(baseURL + "/queue/\(id)", method: .get)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     switch response.result {
@@ -411,6 +418,7 @@ class Api {
     func requestErrorHandler(response: DataResponse<Data>) {
         print("Success: \(response.result.isSuccess)")
         print("Response String: \(String(describing: response.result.value))")
+        print("Response Status Code: \(response.response?.statusCode)")
         
         if let error = response.result.error as? AFError {
             switch error {

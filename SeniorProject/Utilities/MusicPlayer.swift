@@ -97,15 +97,17 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
     }
     
     func pausePlayback() {
-        player.setIsPlaying(false, callback: nil)
         MPNowPlayingInfoCenter.default().playbackState = .paused
         playback = .PAUSED
+        player.setIsPlaying(false, callback: nil)
         mainStore.dispatch(MusicPlayerStateChanged())
     }
     
     func resetPlayback() {
         MPNowPlayingInfoCenter.default().playbackState = .stopped
         playback = .INIT
+        player.setIsPlaying(false, callback: nil)
+        mainStore.dispatch(MusicPlayerStateChanged())
     }
     
     func skip() {
@@ -129,6 +131,7 @@ class MusicPlayer: NSObject, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamin
             togglePlayback()
         } else {
             Api.shared.setQueueIsPlaying(queueId: playingQueue.id, isPlaying: false)
+            
         }
     }
     

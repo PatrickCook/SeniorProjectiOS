@@ -45,19 +45,25 @@ extension UIViewController {
         }
     }
     
-    func showErrorAlert(error: Error) {
-        if error._code == NSURLErrorTimedOut {
-            let alertController = UIAlertController(title: "Connection Timeout", message: "Sorry about that, someone must have spilled coffee on our servers..", preferredStyle: .alert)
-            let actionOk = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertController.addAction(actionOk)
-            self.present(alertController, animated: true, completion: nil)
+    func showErrorAlert(error: String) {
+        let alertController = UIAlertController(title: "Network Error", message: error, preferredStyle: .alert)
+        let actionOk = UIAlertAction(title: "OK", style: .default) { (action) in
+            mainStore.dispatch(DismissErrorAction())
+        }
+        
+        alertController.addAction(actionOk)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func enableLoadingIndicatorsAndErrorAlerts() {
+        if mainStore.state.showLoadingIndicator {
+            showLoadingAlert(uiView: self.view)
         } else {
-            let alertController = UIAlertController(title: "Oops, something happened", message: "Sorry about that, someone must have spilled coffee on our servers.. (wasn't a 401)", preferredStyle: .alert)
-            let actionOk = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertController.addAction(actionOk)
-            self.present(alertController, animated: true, completion: nil)
+            dismissLoadingAlert(uiView: self.view)
+        }
+        
+        if let errMsg = mainStore.state.errorMessage {
+            showErrorAlert(error: errMsg)
         }
     }
     

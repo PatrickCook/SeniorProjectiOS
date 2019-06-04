@@ -77,7 +77,7 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
             }.catch { (error) in
                 self.dismissLoadingAlert(uiView: self.view)
                 self.makeUserLogin()
-                self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error.localizedDescription)
             }
     }
     
@@ -156,7 +156,7 @@ class JoinedQueuesViewController: UIViewController, UITableViewDelegate, UITable
                 self.tableView.reloadData()
                 refreshControl.endRefreshing()
             }.catch { (error) in
-                self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error.localizedDescription)
         }
     }
     

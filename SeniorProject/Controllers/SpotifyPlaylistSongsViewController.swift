@@ -142,7 +142,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
                     
                 }.catch { (error) in
                     print(error)
-                    self.showErrorAlert(error: error)
+                    self.showErrorAlert(error: error.localizedDescription)
             }
         }
         
@@ -190,7 +190,7 @@ class SpotifyPlaylistSongsViewController: UIViewController, UISearchBarDelegate,
                     
                 }.catch { (error) in
                     print(error)
-                    self.showErrorAlert(error: error)
+                    self.showErrorAlert(error: error.localizedDescription)
             }
         })
         

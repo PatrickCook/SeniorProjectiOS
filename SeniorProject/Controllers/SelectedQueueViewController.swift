@@ -41,33 +41,8 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         mainStore.subscribe(self)
         self.navigationItem.title = queue.name
         
-        print("SETTING UP PUSHER & BINDING EVENTS")
-        let channel = PusherController.shared.pusher.subscribe("my-channel")
-        
-        let _ = channel.bind(eventName: "queue-playback-changed", callback: { (data: Any?) -> Void in
-            print("Pusher: queue-playback-changed")
-            let json = JSON(data!)
-            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
-        })
-        
-        let _ = channel.bind(eventName: "song-upvoted", callback: { (data: Any?) -> Void in
-            print("Pusher: song-upvoted")
-            let json = JSON(data!)
-            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
-        })
-        
-        let _ = channel.bind(eventName: "song-added-to-queue", callback: { (data: Any?) -> Void in
-            print("Pusher: song-added-to-queue")
-            let json = JSON(data!)
-            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
-        })
-        
-        let _ = channel.bind(eventName: "song-deleted-from-queue", callback: { (data: Any?) -> Void in
-            print("Pusher: song-deleted-from-queue")
-            let json = JSON(data!)
-            self.refreshSelectedAndPlayingQueueAfterTrigger(json: json)
-        })
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,6 +53,15 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         
         resumeQueueButton.layer.cornerRadius = resumeQueueButton.frame.height*0.5
         resumeQueueButton.clipsToBounds = true
+        
+        PusherController.shared.initPusherWithChannel(channel: "queue\(queue.id)_pusher_channel")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        PusherController.shared.pusher.unsubscribeAll()
+        
+
     }
     
     func newState(state: AppState) {
@@ -114,20 +98,6 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.reloadData()
     }
     
-    func refreshSelectedAndPlayingQueueAfterTrigger(json: JSON) {
-        if (json["queueId"].intValue == queue.id) {
-            firstly {
-                Api.shared.getSelectedQueue(queue: queue)
-            }.then { (result) -> Void in
-                mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
-                if (json["queueId"].intValue == mainStore.state.playingQueue?.id) {
-                    mainStore.dispatch(SetSelectedQueueAsPlayingQueue())
-                }
-            }.catch { (error) in
-                self.showErrorAlert(error: error)
-            }
-        }
-    }
     
     func updateMiniMusicPlayerVisibility() {
         if let _ = mainStore.state.playingQueue {
@@ -222,7 +192,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
     func fetchSelectedQueue() {
         //showLoadingAlert(uiView: self.view)
         
-        Api.shared.getSelectedQueue(queue: queue)
+        Api.shared.getQueue(id: queue.id)
             .then { (result) -> Void in
                 mainStore.dispatch(FetchedSelectedQueueAction(selectedQueue: result))
 //                if (self.queue.isPlaying && self.queue.playingUserId == mainStore.state.loggedInUser!.id) {
@@ -231,7 +201,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
                 //self.dismissLoadingAlert(uiView: self.view)
             }.catch { (error) in
                 //self.dismissLoadingAlert(uiView: self.view)
-                self.showErrorAlert(error: error)
+                self.showErrorAlert(error: error.localizedDescription)
             }
     }
     
@@ -277,7 +247,7 @@ class SelectedQueueViewController: UIViewController, UITableViewDelegate, UITabl
                 .then { (result) -> Void in
                     mainStore.dispatch(RemoveSongFromSelectedQueueAction(songId: songId!))
                 }.catch { (error) in
-                    self.showErrorAlert(error: error)
+                    self.showErrorAlert(error: error.localizedDescription)
                 }
             
             tableView.reloadData()
